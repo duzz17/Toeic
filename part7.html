@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TOEIC Part 7 Master — Luyện Đề, Giải Thích, Từ Vựng & Mẹo</title>
+    <script src="./review-store.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -4668,8 +4669,26 @@
         if (state.submittedPassages[passageId]) return; // Locked after submit until retry
         const key = getAnswerKey(passageId, qNum);
         state.userAnswers[key] = optIdx;
+        const passage = TOEIC_DATA.find((item) => item.id === passageId);
+        const question = passage?.questions.find((item) => item.num === qNum);
+        if (passage && question) {
+          window.TOEICReviewStore.recordAnswer(
+            {
+              id: `part7-${passage.id}-${question.num}`,
+              part: 7,
+              test: passage.test ? `Test ${passage.test}` : passage.id,
+              number: question.num,
+              prompt: question.text,
+              options: question.options,
+              correctIndex: question.answer,
+              explanation: question.explanation,
+              context: passage.passages.map((doc) => doc.content).join("\n"),
+              source: "part7",
+            },
+            optIdx,
+          );
+        }
         saveState();
-        const passage = TOEIC_DATA.find((p) => p.id === passageId);
         renderQuestions(passage, false);
         lucide.createIcons();
       }

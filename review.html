@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ôn câu sai — TOEIC Master</title>
+    <style>
+      :root {
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        color: #172033;
+        background: #f5f7ff;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; background: #f5f7ff; }
+      .wrap { width: min(100% - 32px, 920px); margin: 0 auto; padding: 28px 0 56px; }
+      .top { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin-bottom:22px; }
+      a { color:#4f46e5; text-decoration:none; font-weight:700; }
+      h1 { margin:0; font-size:clamp(26px,5vw,36px); letter-spacing:-.03em; }
+      .muted { color:#667085; line-height:1.55; }
+      .toolbar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:18px 0; }
+      select,button { font:inherit; }
+      select { padding:9px 12px; border:1px solid #d5daea; border-radius:10px; background:white; }
+      button { cursor:pointer; }
+      .clear { padding:9px 12px; border:1px solid #fecaca; border-radius:10px; background:white; color:#b91c1c; font-weight:700; }
+      .count { margin-left:auto; color:#475467; font-size:14px; font-weight:700; }
+      .card { margin:14px 0; padding:20px; border:1px solid #e3e7f0; border-radius:18px; background:white; box-shadow:0 8px 24px #22305a0a; }
+      .meta { display:flex; flex-wrap:wrap; gap:8px; align-items:center; color:#667085; font-size:12px; font-weight:700; }
+      .tag { padding:4px 8px; border-radius:999px; background:#eef2ff; color:#4338ca; }
+      .card h2 { margin:12px 0; font-size:18px; line-height:1.5; }
+      .context { margin:0 0 12px; padding:10px 12px; border-left:3px solid #a5b4fc; background:#f8faff; color:#59657b; font-size:13px; white-space:pre-wrap; }
+      .options { display:grid; gap:8px; }
+      .option { width:100%; padding:11px 12px; border:1px solid #e1e5ef; border-radius:11px; background:white; color:#283248; text-align:left; line-height:1.5; }
+      .option:hover:not(:disabled) { border-color:#818cf8; background:#f5f6ff; }
+      .option:disabled { cursor:default; opacity:1; }
+      .option.correct { border-color:#34d399; background:#ecfdf5; color:#065f46; }
+      .option.incorrect { border-color:#fb7185; background:#fff1f2; color:#9f1239; }
+      .feedback { margin-top:12px; color:#475467; line-height:1.6; }
+      .mastered { display:none; margin-top:12px; padding:9px 12px; border:0; border-radius:10px; background:#4f46e5; color:white; font-weight:700; }
+      .empty { margin-top:30px; padding:38px 20px; border:1px dashed #cbd2e1; border-radius:18px; background:#fff; text-align:center; }
+      @media(max-width:560px) { .count { width:100%; margin-left:0; } .card { padding:15px; } }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="top">
+        <a href="./">← Trang chủ</a>
+        <a href="./library.html">Thư viện tài liệu →</a>
+      </div>
+      <h1>Ôn tập câu sai</h1>
+      <p class="muted">
+        Câu trả lời sai ở các Part sẽ được tổng hợp tại đây trên trình duyệt này.
+        Trả lời đúng rồi chọn “Đã nhớ” để bỏ câu khỏi danh sách.
+      </p>
+      <div class="toolbar">
+        <label for="part-filter">Lọc theo Part:</label>
+        <select id="part-filter">
+          <option value="all">Tất cả 7 Part</option>
+          <option value="1">Part 1</option>
+          <option value="2">Part 2</option>
+          <option value="3">Part 3</option>
+          <option value="4">Part 4</option>
+          <option value="5">Part 5</option>
+          <option value="6">Part 6</option>
+          <option value="7">Part 7</option>
+        </select>
+        <button id="clear-wrong" class="clear" type="button">Xóa danh sách</button>
+        <span id="wrong-count" class="count"></span>
+      </div>
+      <section id="wrong-list" aria-live="polite"></section>
+    </main>
+    <script src="./review-store.js" defer></script>
+    <script src="./review.js" defer></script>
+  </body>
+</html>

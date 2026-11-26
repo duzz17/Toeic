@@ -6,6 +6,7 @@
     <title>
       TOEIC Part 5 Master - Luyện Đề & Giải Thích Chi Tiết (150 Câu)
     </title>
+    <script src="./review-store.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
@@ -4138,6 +4139,22 @@
           if (mode === "test" && submitted) return;
 
           this.state.session.sessionAnswers[q.id] = letter;
+          const letters = ["A", "B", "C", "D"];
+          window.TOEICReviewStore.recordAnswer(
+            {
+              id: `part5-${q.id}`,
+              part: 5,
+              test: `Unit ${q.unit}`,
+              number: q.num,
+              prompt: q.q,
+              options: letters.map((key) => q.displayOpts[key]),
+              correctIndex: letters.indexOf(q.displayAns),
+              explanation: q.exp,
+              context: q.trans,
+              source: "part5",
+            },
+            letters.indexOf(letter),
+          );
 
           // Nếu là chế độ luyện tập thì lưu ngay kết quả vào localStorage
           if (mode === "practice") {

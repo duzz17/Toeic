@@ -3709,6 +3709,29 @@ export default function App() {
   const handleSelectOption = (questionNumber, optionIdx) => {
     if (mode === "exam" && examSubmitted) return;
 
+    const question = currentPassage.questions.find(
+      (item) => item.number === questionNumber,
+    );
+    if (question) {
+      window.TOEICReviewStore.recordAnswer(
+        {
+          id: `part3-${currentTest.id}-${currentPassage.id}-${question.number}`,
+          part: 3,
+          test: currentTest.title,
+          number: question.number,
+          prompt: question.question,
+          options: question.options,
+          correctIndex: question.correct,
+          explanation: question.explanation,
+          context: currentPassage.script
+            .map((line) => `${line.speaker}: ${line.text}`)
+            .join("\n"),
+          source: "part3",
+        },
+        optionIdx,
+      );
+    }
+
     const updatedAnswers = {
       ...userAnswers,
       [questionNumber]: optionIdx,

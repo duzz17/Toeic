@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "toeic-gemini-api",
+  "main": "index.js",
+  "compatibility_date": "2026-11-26",
+  "workers_dev": true,
+  "vars": {
+    "ALLOWED_ORIGIN": "https://duzz17.github.io",
+    "GEMINI_MODEL": "gemini-4-hydrogen"
+  }
+}

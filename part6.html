@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TOEIC Part 6 Master — Luyện Đề & Giải Chi Tiết (Unit 1–8)</title>
+    <script src="./review-store.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -3270,6 +3271,33 @@
             'Bài thi thử đã nộp. Nhấn "Thi lại Unit này" nếu muốn làm lại.',
           );
           return;
+        }
+
+        const passage =
+          TOEIC_DATA[appState.currentUnitIndex].passages[
+            appState.currentPassageIndex
+          ];
+        const question = passage.questions.find(
+          (item) => item.number === qNumber,
+        );
+        if (question) {
+          const letters = ["A", "B", "C", "D"];
+          const documentContext = passage.paragraphs.join("\n");
+          window.TOEICReviewStore.recordAnswer(
+            {
+              id: `part6-u${appState.currentUnitIndex + 1}-q${question.number}`,
+              part: 6,
+              test: `Unit ${appState.currentUnitIndex + 1}`,
+              number: question.number,
+              prompt: `Choose the best option for blank ${question.number}.`,
+              options: letters.map((key) => question.options[key]),
+              correctIndex: letters.indexOf(question.answer),
+              explanation: question.explanation,
+              context: documentContext,
+              source: "part6",
+            },
+            letters.indexOf(letter),
+          );
         }
 
         appState.userAnswers[uid] = letter;

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TOEIC Part 4 Listening Master — Linh Cani TOEIC Data</title>
+    <script src="./review-store.js" defer></script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
@@ -2782,11 +2783,29 @@
         }
 
         state.userAnswers[`${passageId}_${qNum}`] = optIndex;
+        const passage = TOEIC_DATA.find((item) => item.id === passageId);
+        const question = passage?.questions.find((item) => item.num === qNum);
+        if (passage && question) {
+          window.TOEICReviewStore.recordAnswer(
+            {
+              id: `part4-${passage.id}-${question.num}`,
+              part: 4,
+              test: `Test ${passage.test}`,
+              number: question.num,
+              prompt: question.q,
+              options: question.options,
+              correctIndex: question.ans,
+              explanation: passage.explanation,
+              context: passage.script,
+              source: "part4",
+            },
+            optIndex,
+          );
+        }
         saveState();
 
         // In practice mode, auto-check once all 3 questions of the passage are answered
         if (state.mode === "practice") {
-          const passage = TOEIC_DATA.find((p) => p.id === passageId);
           const allAnswered = passage.questions.every(
             (q) => state.userAnswers[`${passageId}_${q.num}`] !== undefined,
           );

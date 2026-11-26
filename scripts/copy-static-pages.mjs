@@ -40,12 +40,19 @@ if (readdirSync(assetsDirectory).length === 0) {
 }
 
 const pages = [
+  "library.html",
   "part1.html",
   "part2.html",
   "part4.html",
   "part5.html",
   "part6.html",
   "part7.html",
+  "review.html",
+  "AI-SETUP.md",
+  "library-db.js",
+  "library.js",
+  "review-store.js",
+  "review.js",
 ];
 
 for (const page of pages) {

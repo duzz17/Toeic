@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOEIC Part 2 Master - Trọn Bộ 90 Câu (Test 1 - 2 - 3)</title>
+    <script src="./review-store.js" defer></script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
@@ -993,6 +994,17 @@
                 if (isFirstAttempt) showToast("Sai rồi! Đã lưu vào mục Câu sai để ôn tập.", "error");
             }
 
+            window.TOEICReviewStore.recordAnswer({
+                id: `part2-${item.id}`,
+                part: 2,
+                test: `Test ${item.test}`,
+                number: item.num,
+                prompt: item.q,
+                options: item.options,
+                correctIndex: item.answer,
+                explanation: "",
+                source: "part2",
+            }, optIdx);
             saveState();
             renderAll();
         }

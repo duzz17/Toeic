@@ -1,0 +1,4372 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      TOEIC Part 5 Master - Luyện Đề & Giải Thích Chi Tiết (150 Câu)
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                50: "#eef2ff",
+                100: "#e0e7ff",
+                200: "#c7d2fe",
+                500: "#6366f1",
+                600: "#4f46e5",
+                700: "#4338ca",
+                900: "#312e81",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        -webkit-tap-highlight-color: transparent;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(156, 163, 175, 0.5);
+        border-radius: 9999px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(107, 114, 128, 0.8);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.25s ease-out forwards;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200 min-h-screen flex flex-col"
+  >
+    <!-- Top Navbar -->
+    <header
+      class="sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2"
+      >
+        <!-- Brand -->
+        <div
+          class="flex items-center gap-2.5 cursor-pointer"
+          onclick="app.showDashboard()"
+        >
+          <div
+            class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-600 to-blue-600 flex items-center justify-center text-white font-extrabold text-lg shadow-md shadow-indigo-500/20"
+          >
+            P5
+          </div>
+          <div>
+            <h1
+              class="font-bold text-base sm:text-lg leading-tight tracking-tight text-slate-900 dark:text-white"
+            >
+              TOEIC Part 5
+              <span class="text-indigo-600 dark:text-indigo-400">Master</span>
+            </h1>
+            <p
+              class="text-[11px] text-slate-500 dark:text-slate-400 hidden sm:block"
+            >
+              Ngân hàng 150 câu chuẩn đề thi & Giải thích sâu
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Controls -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Global Accuracy Pill -->
+          <div
+            id="header-stats-pill"
+            class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300"
+          >
+            <span
+              >Đã làm:
+              <strong
+                id="header-done-count"
+                class="text-indigo-600 dark:text-indigo-400"
+                >0</strong
+              >/150</span
+            >
+            <span class="text-slate-300 dark:text-slate-600">|</span>
+            <span
+              >Đúng:
+              <strong
+                id="header-accuracy"
+                class="text-emerald-600 dark:text-emerald-400"
+                >0%</strong
+              ></span
+            >
+          </div>
+
+          <!-- Home / Dashboard Button -->
+          <button
+            onclick="app.showDashboard()"
+            id="btn-home"
+            class="hidden px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition flex items-center gap-1.5"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+              />
+            </svg>
+            <span>Trang chủ</span>
+          </button>
+
+          <!-- Dark Mode Toggle -->
+          <button
+            onclick="app.toggleDarkMode()"
+            title="Đổi giao diện Sáng / Tối"
+            class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition"
+          >
+            <svg
+              id="icon-sun"
+              class="w-5 h-5 hidden dark:block text-amber-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+              />
+            </svg>
+            <svg
+              id="icon-moon"
+              class="w-5 h-5 block dark:hidden text-slate-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
+      <!-- ==================== VIEW 1: DASHBOARD ==================== -->
+      <section id="view-dashboard" class="space-y-6 animate-fade-in">
+        <!-- Overview Banner & Progress -->
+        <div
+          class="bg-gradient-to-r from-indigo-600 via-indigo-700 to-blue-700 rounded-2xl p-6 sm:p-8 text-white shadow-xl shadow-indigo-500/10"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+          >
+            <div class="space-y-2 max-w-2xl">
+              <span
+                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-xs font-semibold tracking-wide uppercase"
+              >
+                Bộ đề Linh Cani • Unit 1 – Unit 5
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                Luyện phản xạ TOEIC Part 5 chuẩn xác
+              </h2>
+              <p class="text-indigo-100 text-sm sm:text-base leading-relaxed">
+                Bao gồm đầy đủ 150 câu hỏi trắc nghiệm ngữ pháp & từ vựng kèm
+                phân tích cấu trúc câu, dịch nghĩa sát đề và từ vựng mở rộng.
+              </p>
+            </div>
+
+            <!-- Summary Stats Card -->
+            <div
+              class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5 min-w-[260px] space-y-3"
+            >
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-indigo-100">Tiến độ tổng thể</span>
+                <span id="dash-progress-text" class="font-bold"
+                  >0 / 150 câu</span
+                >
+              </div>
+              <div
+                class="w-full h-2.5 bg-indigo-950/50 rounded-full overflow-hidden"
+              >
+                <div
+                  id="dash-progress-bar"
+                  class="h-full bg-emerald-400 rounded-full transition-all duration-500"
+                  style="width: 0%"
+                ></div>
+              </div>
+              <div class="grid grid-cols-3 gap-2 pt-1 text-center">
+                <div class="bg-white/10 rounded-xl p-2">
+                  <div
+                    id="dash-correct-count"
+                    class="text-lg font-bold text-emerald-300"
+                  >
+                    0
+                  </div>
+                  <div class="text-[11px] text-indigo-100">Câu đúng</div>
+                </div>
+                <div class="bg-white/10 rounded-xl p-2">
+                  <div
+                    id="dash-wrong-count"
+                    class="text-lg font-bold text-rose-300"
+                  >
+                    0
+                  </div>
+                  <div class="text-[11px] text-indigo-100">Câu sai</div>
+                </div>
+                <div class="bg-white/10 rounded-xl p-2">
+                  <div
+                    id="dash-bookmark-count"
+                    class="text-lg font-bold text-amber-300"
+                  >
+                    0
+                  </div>
+                  <div class="text-[11px] text-indigo-100">Đã lưu</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Practice Configuration Bar -->
+        <div
+          class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4"
+        >
+          <div
+            class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+          >
+            <div>
+              <h3 class="font-bold text-base text-slate-900 dark:text-white">
+                Tùy chỉnh chế độ luyện tập
+              </h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">
+                Chọn chế độ làm bài và tùy chọn trộn câu trước khi bắt đầu
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+              <!-- Mode Selector -->
+              <div
+                class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+              >
+                <button
+                  id="mode-btn-practice"
+                  onclick="app.setMode('practice')"
+                  class="px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-sm"
+                >
+                  📖 Luyện tập (Xem giải thích ngay)
+                </button>
+                <button
+                  id="mode-btn-test"
+                  onclick="app.setMode('test')"
+                  class="px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-400 hover:text-slate-900"
+                >
+                  ⏱️ Thi thử tính giờ
+                </button>
+              </div>
+
+              <!-- Shuffle Toggles -->
+              <label
+                class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer text-xs sm:text-sm font-medium select-none"
+              >
+                <input
+                  type="checkbox"
+                  id="opt-shuffle-q"
+                  class="w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500"
+                />
+                <span>Trộn câu hỏi</span>
+              </label>
+              <label
+                class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 cursor-pointer text-xs sm:text-sm font-medium select-none"
+              >
+                <input
+                  type="checkbox"
+                  id="opt-shuffle-opt"
+                  class="w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500"
+                />
+                <span>Trộn đáp án A-D</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Units Grid -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-lg text-slate-900 dark:text-white">
+              Chọn bộ đề luyện tập
+            </h3>
+            <button
+              onclick="app.confirmResetProgress()"
+              class="text-xs font-medium text-rose-600 hover:text-rose-700 dark:text-rose-400 underline"
+            >
+              Đặt lại toàn bộ tiến độ
+            </button>
+          </div>
+
+          <div
+            id="units-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            <!-- Rendered dynamically by JS -->
+          </div>
+        </div>
+
+        <!-- Special Review Filters -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          <button
+            onclick="app.startSession('all')"
+            class="flex items-center justify-between p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 dark:hover:border-indigo-500 transition shadow-sm text-left group"
+          >
+            <div class="space-y-1">
+              <span
+                class="inline-block px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300"
+                >TỔNG HỢP</span
+              >
+              <h4
+                class="font-bold text-base text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition"
+              >
+                Tất cả 150 câu
+              </h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400">
+                Luyện tập xuyên suốt từ Unit 1 đến Unit 5
+              </p>
+            </div>
+            <span
+              class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold group-hover:scale-110 transition"
+              >→</span
+            >
+          </button>
+
+          <button
+            onclick="app.startSession('wrong')"
+            class="flex items-center justify-between p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-rose-500 dark:hover:border-rose-500 transition shadow-sm text-left group"
+          >
+            <div class="space-y-1">
+              <span
+                class="inline-block px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-300"
+                >ÔN LỖI SAI</span
+              >
+              <h4
+                class="font-bold text-base text-slate-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-400 transition"
+              >
+                Câu làm sai (<span id="btn-wrong-num">0</span>)
+              </h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400">
+                Tập trung khắc phục các câu đã chọn nhầm
+              </p>
+            </div>
+            <span
+              class="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold group-hover:scale-110 transition"
+              >↺</span
+            >
+          </button>
+
+          <button
+            onclick="app.startSession('bookmarked')"
+            class="flex items-center justify-between p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500 dark:hover:border-amber-500 transition shadow-sm text-left group"
+          >
+            <div class="space-y-1">
+              <span
+                class="inline-block px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300"
+                >ĐÁNH DẤU</span
+              >
+              <h4
+                class="font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition"
+              >
+                Câu đã gắn cờ (<span id="btn-bookmark-num">0</span>)
+              </h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400">
+                Xem lại các câu hay hoặc cấu trúc khó
+              </p>
+            </div>
+            <span
+              class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold group-hover:scale-110 transition"
+              >★</span
+            >
+          </button>
+        </div>
+      </section>
+
+      <!-- ==================== VIEW 2: QUIZ / PRACTICE WORKSPACE ==================== -->
+      <section id="view-quiz" class="hidden animate-fade-in">
+        <!-- Top Session Control Bar -->
+        <div
+          class="bg-white dark:bg-slate-900 rounded-2xl p-4 mb-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-wrap items-center justify-between gap-3"
+        >
+          <div class="flex items-center gap-3">
+            <span
+              id="quiz-session-badge"
+              class="px-3 py-1 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 font-bold text-xs sm:text-sm"
+            >
+              Unit 1
+            </span>
+            <span
+              id="quiz-mode-label"
+              class="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400"
+            >
+              Chế độ luyện tập
+            </span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <!-- Timer (for Test Mode) -->
+            <div
+              id="quiz-timer-box"
+              class="hidden items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300 font-mono font-bold text-sm"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span id="quiz-timer-text">15:00</span>
+            </div>
+
+            <!-- Submit Test Button -->
+            <button
+              id="btn-submit-test"
+              onclick="app.submitTest()"
+              class="hidden px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-sm transition"
+            >
+              Nộp bài & Chấm điểm
+            </button>
+
+            <!-- Mobile Palette Toggle -->
+            <button
+              onclick="app.toggleMobilePalette()"
+              class="lg:hidden px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-semibold flex items-center gap-1.5"
+            >
+              <span>Danh sách câu</span>
+              <span
+                id="mobile-q-counter"
+                class="px-1.5 py-0.5 rounded bg-indigo-600 text-white text-[11px]"
+                >1/30</span
+              >
+            </button>
+          </div>
+        </div>
+
+        <!-- Test Result Banner (Shown after submitting test) -->
+        <div
+          id="test-result-banner"
+          class="hidden mb-5 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-5 text-white shadow-lg"
+        >
+          <div
+            class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+          >
+            <div>
+              <h3 class="text-lg sm:text-xl font-extrabold">
+                Kết quả bài thi thử
+              </h3>
+              <p id="test-result-summary" class="text-emerald-100 text-sm mt-1">
+                Bạn trả lời đúng 25/30 câu (83%)
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button
+                onclick="app.restartCurrentSession()"
+                class="px-4 py-2 rounded-xl bg-white text-emerald-700 font-bold text-xs sm:text-sm hover:bg-emerald-50 transition"
+              >
+                Làm lại đề này
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main 2-Column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- Left Column: Question Card & Explanation (8 cols on lg) -->
+          <div class="lg:col-span-8 space-y-5">
+            <!-- Question Box -->
+            <div
+              class="bg-white dark:bg-slate-900 rounded-2xl p-5 sm:p-7 border border-slate-200 dark:border-slate-800 shadow-sm"
+            >
+              <!-- Question Header -->
+              <div
+                class="flex items-center justify-between gap-2 pb-4 mb-5 border-b border-slate-100 dark:border-slate-800"
+              >
+                <div class="flex items-center gap-2.5">
+                  <span
+                    id="q-number-badge"
+                    class="px-3 py-1 rounded-lg bg-slate-900 dark:bg-indigo-600 text-white font-bold text-sm"
+                  >
+                    Câu 101
+                  </span>
+                  <span
+                    id="q-unit-tag"
+                    class="text-xs font-medium text-slate-500 dark:text-slate-400"
+                  >
+                    Unit 1 • Câu 1 / 30
+                  </span>
+                </div>
+
+                <!-- Bookmark / Flag Button -->
+                <button
+                  id="btn-bookmark"
+                  onclick="app.toggleBookmarkCurrent()"
+                  class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-semibold transition hover:bg-amber-50 dark:hover:bg-amber-950/40"
+                >
+                  <svg
+                    id="icon-bookmark"
+                    class="w-4 h-4 text-slate-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+                    />
+                  </svg>
+                  <span id="text-bookmark">Đánh dấu</span>
+                </button>
+              </div>
+
+              <!-- Question Sentence -->
+              <div class="mb-6">
+                <p
+                  id="q-sentence"
+                  class="text-lg sm:text-xl font-medium leading-relaxed text-slate-900 dark:text-slate-100"
+                >
+                  Loading question...
+                </p>
+              </div>
+
+              <!-- Options Grid -->
+              <div id="q-options" class="space-y-3">
+                <!-- Options A, B, C, D rendered dynamically -->
+              </div>
+
+              <!-- Navigation Footer -->
+              <div
+                class="mt-7 pt-5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3"
+              >
+                <button
+                  id="btn-prev"
+                  onclick="app.prevQuestion()"
+                  class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-sm transition flex items-center gap-1.5 disabled:opacity-40 disabled:pointer-events-none"
+                >
+                  <span>←</span>
+                  <span>Câu trước</span>
+                </button>
+
+                <span class="hidden sm:inline text-[11px] text-slate-400">
+                  Phím tắt:
+                  <kbd
+                    class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-mono"
+                    >A</kbd
+                  >
+                  <kbd
+                    class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-mono"
+                    >B</kbd
+                  >
+                  <kbd
+                    class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-mono"
+                    >C</kbd
+                  >
+                  <kbd
+                    class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-mono"
+                    >D</kbd
+                  >
+                  &
+                  <kbd
+                    class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-mono"
+                    >←</kbd
+                  >
+                  <kbd
+                    class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-mono"
+                    >→</kbd
+                  >
+                </span>
+
+                <button
+                  id="btn-next"
+                  onclick="app.nextQuestion()"
+                  class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-sm transition flex items-center gap-1.5 disabled:opacity-40 disabled:pointer-events-none"
+                >
+                  <span>Câu tiếp</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Detailed Explanation Card -->
+            <div
+              id="explanation-card"
+              class="hidden bg-white dark:bg-slate-900 rounded-2xl p-5 sm:p-7 border-2 border-indigo-100 dark:border-indigo-900/60 shadow-sm space-y-5 animate-fade-in"
+            >
+              <!-- Header Banner -->
+              <div
+                class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100 dark:border-slate-800"
+              >
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm font-bold"
+                    >💡</span
+                  >
+                  <h4
+                    class="font-bold text-base text-slate-900 dark:text-white"
+                  >
+                    Giải thích chi tiết
+                  </h4>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    id="exp-category"
+                    class="px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-xs font-bold"
+                  >
+                    Từ loại
+                  </span>
+                  <span
+                    id="exp-correct-badge"
+                    class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-xs font-bold"
+                  >
+                    Đáp án: (A)
+                  </span>
+                </div>
+              </div>
+
+              <!-- Grammar / Logic Analysis -->
+              <div class="space-y-1.5">
+                <h5
+                  class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400"
+                >
+                  1. Phân tích cấu trúc & Mẹo làm bài
+                </h5>
+                <p
+                  id="exp-analysis"
+                  class="text-sm sm:text-[15px] leading-relaxed text-slate-700 dark:text-slate-300"
+                >
+                  ...
+                </p>
+              </div>
+
+              <!-- Full Translation -->
+              <div
+                class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/70 dark:border-slate-700/70 space-y-1"
+              >
+                <h5
+                  class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                >
+                  2. Dịch nghĩa câu hoàn chỉnh
+                </h5>
+                <p
+                  id="exp-translation"
+                  class="text-sm sm:text-[15px] font-medium text-slate-800 dark:text-slate-200 italic"
+                >
+                  ...
+                </p>
+              </div>
+
+              <!-- Key Vocabulary -->
+              <div class="space-y-2">
+                <h5
+                  class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400"
+                >
+                  3. Từ vựng đáng chú ý
+                </h5>
+                <div
+                  id="exp-vocab"
+                  class="grid grid-cols-1 sm:grid-cols-2 gap-2"
+                >
+                  <!-- Vocab pills rendered dynamically -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Question Palette Sidebar (4 cols on lg) -->
+          <aside
+            id="question-palette-sidebar"
+            class="hidden lg:block lg:col-span-4 bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm sticky top-20"
+          >
+            <div
+              class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100 dark:border-slate-800"
+            >
+              <h4 class="font-bold text-sm text-slate-900 dark:text-white">
+                Bảng câu hỏi
+              </h4>
+              <span
+                id="palette-progress"
+                class="text-xs font-semibold text-indigo-600 dark:text-indigo-400"
+                >0/30 đã làm</span
+              >
+            </div>
+
+            <!-- Legend -->
+            <div
+              class="grid grid-cols-2 gap-2 text-[11px] text-slate-500 dark:text-slate-400 mb-4"
+            >
+              <div class="flex items-center gap-1.5">
+                <span
+                  class="w-3 h-3 rounded bg-emerald-500 inline-block"
+                ></span>
+                <span>Trả lời đúng</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="w-3 h-3 rounded bg-rose-500 inline-block"></span>
+                <span>Trả lời sai</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="w-3 h-3 rounded bg-indigo-600 inline-block"></span>
+                <span>Đang chọn</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span
+                  class="w-3 h-3 rounded border-2 border-amber-400 inline-block"
+                ></span>
+                <span>Đã gắn cờ</span>
+              </div>
+            </div>
+
+            <!-- Grid of Question Numbers -->
+            <div
+              id="palette-grid"
+              class="grid grid-cols-5 sm:grid-cols-6 gap-2 max-h-[380px] overflow-y-auto pr-1"
+            >
+              <!-- Buttons rendered dynamically -->
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <!-- Custom Modal for Confirmations / Alerts -->
+    <div
+      id="custom-modal"
+      class="hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white dark:bg-slate-900 rounded-2xl max-w-md w-full p-6 border border-slate-200 dark:border-slate-800 shadow-2xl space-y-4 animate-fade-in"
+      >
+        <h3
+          id="modal-title"
+          class="text-lg font-bold text-slate-900 dark:text-white"
+        >
+          Thông báo
+        </h3>
+        <p
+          id="modal-message"
+          class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed"
+        >
+          Nội dung thông báo
+        </p>
+        <div class="flex justify-end gap-2.5 pt-2">
+          <button
+            id="modal-btn-cancel"
+            onclick="app.closeModal()"
+            class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-sm font-semibold transition"
+          >
+            Hủy
+          </button>
+          <button
+            id="modal-btn-confirm"
+            class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold transition"
+          >
+            Đồng ý
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div
+      id="toast"
+      class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 dark:bg-slate-800 text-white px-4 py-3 rounded-xl shadow-lg text-xs sm:text-sm font-medium border border-slate-700 animate-fade-in"
+    >
+      Thông báo
+    </div>
+
+    <script>
+      // =========================================================================
+      // DỮ LIỆU ĐẦY ĐỦ 150 CÂU HỎI TOEIC PART 5 (UNIT 1 - UNIT 5) + GIẢI THÍCH
+      // =========================================================================
+      const RAW_DATA = [
+        // ==================== UNIT 1 (101 - 130) ====================
+        {
+          unit: 1,
+          num: 101,
+          q: "Not far _______ the train station lies Starlight Park, which is a popular destination for tourists and locals alike.",
+          opts: { A: "from", B: "with", C: "next", D: "until" },
+          ans: "A",
+          cat: "Giới từ & Cụm từ cố định",
+          exp: "Cụm giới từ cố định 'far from + địa điểm' mang nghĩa 'cách xa nơi nào đó'. Các giới từ khác không đi với 'far' trong ngữ cảnh chỉ khoảng cách địa lý.",
+          trans:
+            "Cách nhà ga xe lửa không xa là Công viên Starlight, một điểm đến nổi tiếng đối với cả khách du lịch lẫn người dân địa phương.",
+          vocab: [
+            "destination (n): điểm đến",
+            "locals (n): người dân địa phương",
+            "alike (adv): như nhau, cả hai",
+          ],
+        },
+        {
+          unit: 1,
+          num: 102,
+          q: "The sales director will give a brief talk _______ the keynote speaker is introduced.",
+          opts: { A: "before", B: "opposite", C: "about", D: "between" },
+          ans: "A",
+          cat: "Liên từ chỉ thời gian",
+          exp: "Phía sau chỗ trống là một mệnh đề hoàn chỉnh ('the keynote speaker is introduced'), do đó cần một liên từ. 'Before' (trước khi) vừa đúng ngữ pháp vừa hợp nghĩa; các đáp án B, C, D đều là giới từ.",
+          trans:
+            "Giám đốc kinh doanh sẽ có một bài phát biểu ngắn trước khi diễn giả chính được giới thiệu.",
+          vocab: [
+            "brief (adj): ngắn gọn",
+            "keynote speaker (n): diễn giả chính",
+            "introduce (v): giới thiệu",
+          ],
+        },
+        {
+          unit: 1,
+          num: 103,
+          q: "The charity's new reading program is _______ to increase literacy rates in developing countries over the next ten years.",
+          opts: {
+            A: "project",
+            B: "projecting",
+            C: "projected",
+            D: "projects",
+          },
+          ans: "C",
+          cat: "Thể bị động (Passive Voice)",
+          exp: "Chủ ngữ là vật ('reading program' - chương trình đọc sách) nên không thể tự 'dự kiến' mà phải 'được dự kiến'. Cấu trúc bị động: 'be + V3/ed + to V' -> 'is projected to increase'.",
+          trans:
+            "Chương trình đọc sách mới của tổ chức từ thiện được dự kiến sẽ làm tăng tỷ lệ biết chữ ở các nước đang phát triển trong mười năm tới.",
+          vocab: [
+            "charity (n): tổ chức từ thiện",
+            "literacy rate (n): tỷ lệ biết chữ",
+            "project (v): dự kiến, ước tính",
+          ],
+        },
+        {
+          unit: 1,
+          num: 104,
+          q: "Engaging in social _______, Ms. Mason quickly expanded her network after moving to a new city.",
+          opts: {
+            A: "active",
+            B: "activities",
+            C: "activates",
+            D: "activated",
+          },
+          ans: "B",
+          cat: "Từ loại (Danh từ)",
+          exp: "Sau tính từ 'social' (thuộc về xã hội) cần một danh từ để hoàn thành cụm danh từ làm tân ngữ cho 'Engaging in'. 'Activities' (các hoạt động) là danh từ số nhiều phù hợp nhất.",
+          trans:
+            "Nhờ tham gia vào các hoạt động xã hội, cô Mason đã nhanh chóng mở rộng mạng lưới quan hệ của mình sau khi chuyển đến thành phố mới.",
+          vocab: [
+            "engage in (phr.v): tham gia vào",
+            "expand (v): mở rộng",
+            "network (n): mạng lưới quan hệ",
+          ],
+        },
+        {
+          unit: 1,
+          num: 105,
+          q: "Artists wanting to participate in the contest should submit their work by the _______ of June 30.",
+          opts: {
+            A: "admission",
+            B: "possibility",
+            C: "deadline",
+            D: "output",
+          },
+          ans: "C",
+          cat: "Từ vựng (Danh từ)",
+          exp: "Phía sau có mốc thời gian cụ thể ('June 30' - ngày 30 tháng 6) đi với 'by the ... of', nên danh từ phù hợp nhất là 'deadline' (hạn chót).",
+          trans:
+            "Các nghệ sĩ muốn tham gia cuộc thi nên nộp tác phẩm của mình trước hạn chót là ngày 30 tháng 6.",
+          vocab: [
+            "participate in (v): tham gia",
+            "submit (v): nộp, đệ trình",
+            "deadline (n): hạn chót",
+          ],
+        },
+        {
+          unit: 1,
+          num: 106,
+          q: "Drake Pharmaceuticals is _______ to have world-renowned chemist Jonas Lund as its senior lab technician.",
+          opts: {
+            A: "absent",
+            B: "fortunate",
+            C: "approximate",
+            D: "respective",
+          },
+          ans: "B",
+          cat: "Từ vựng (Tính từ)",
+          exp: "Cấu trúc 'be fortunate to V' (may mắn khi làm gì). Các từ khác sai nghĩa: absent (vắng mặt), approximate (xấp xỉ), respective (tương ứng).",
+          trans:
+            "Công ty Dược phẩm Drake thật may mắn khi có nhà hóa học nổi tiếng thế giới Jonas Lund làm kỹ thuật viên phòng thí nghiệm cấp cao.",
+          vocab: [
+            "world-renowned (adj): nổi tiếng thế giới",
+            "chemist (n): nhà hóa học",
+            "fortunate (adj): may mắn",
+          ],
+        },
+        {
+          unit: 1,
+          num: 107,
+          q: "The Zans Corporation _______ manufacturing all of its luxury wallets and footwear domestically next year.",
+          opts: {
+            A: "was starting",
+            B: "started",
+            C: "will start",
+            D: "has started",
+          },
+          ans: "C",
+          cat: "Ngữ pháp - Thì động từ",
+          exp: "Cuối câu có trạng từ chỉ thời gian ở tương lai 'next year' (năm tới), vì vậy động từ chính phải chia ở thì tương lai đơn 'will start'.",
+          trans:
+            "Tập đoàn Zans sẽ bắt đầu sản xuất toàn bộ ví và giày dép cao cấp trong nước vào năm tới.",
+          vocab: [
+            "manufacture (v): sản xuất",
+            "footwear (n): giày dép",
+            "domestically (adv): trong nước, nội địa",
+          ],
+        },
+        {
+          unit: 1,
+          num: 108,
+          q: "Some voters have a clear _______ for candidates who have practiced law.",
+          opts: {
+            A: "selection",
+            B: "reflection",
+            C: "component",
+            D: "preference",
+          },
+          ans: "D",
+          cat: "Từ vựng & Cụm từ cố định",
+          exp: "Cụm danh từ cố định 'have a preference for someone/something' nghĩa là 'có sự ưu ái / thiên vị dành cho ai hoặc cái gì'.",
+          trans:
+            "Một số cử tri có sự ưu ái rõ rệt dành cho các ứng cử viên từng hành nghề luật.",
+          vocab: [
+            "voter (n): cử tri",
+            "preference (n): sự ưu tiên, ưa thích",
+            "practice law (phr): hành nghề luật",
+          ],
+        },
+        {
+          unit: 1,
+          num: 109,
+          q: "The clerk said that _______ fifteen customers had been waiting outside the store for it to open.",
+          opts: { A: "rougher", B: "roughly", C: "rough", D: "roughness" },
+          ans: "B",
+          cat: "Từ loại (Trạng từ bổ nghĩa số lượng)",
+          exp: "Đứng trước một con số ước lượng ('fifteen customers') cần một trạng từ chỉ mức độ xấp xỉ. 'Roughly' = approximately (khoảng, xấp xỉ).",
+          trans:
+            "Người nhân viên bán hàng nói rằng có khoảng mười lăm khách hàng đã đứng đợi bên ngoài cửa hàng để chờ mở cửa.",
+          vocab: [
+            "clerk (n): nhân viên bán hàng/văn phòng",
+            "roughly (adv): khoảng, xấp xỉ",
+            "customer (n): khách hàng",
+          ],
+        },
+        {
+          unit: 1,
+          num: 110,
+          q: "The leaky faucet has been repaired, so visitors may _______ use the first-floor restroom.",
+          opts: { A: "however", B: "once", C: "now", D: "quite" },
+          ans: "C",
+          cat: "Từ vựng (Trạng từ)",
+          exp: "Vế trước nói vòi nước bị rò rỉ đã được sửa xong, nên vế sau dùng trạng từ 'now' (bây giờ) để chỉ kết quả hiện tại: du khách bây giờ đã có thể sử dụng.",
+          trans:
+            "Vòi nước bị rò rỉ đã được sửa chữa, vì vậy khách tham quan hiện đã có thể sử dụng nhà vệ sinh ở tầng một.",
+          vocab: [
+            "leaky (adj): bị rò rỉ",
+            "faucet (n): vòi nước",
+            "repair (v): sửa chữa",
+          ],
+        },
+        {
+          unit: 1,
+          num: 111,
+          q: "The _______ of the disease can be significantly slowed by taking the medicine developed by Dr. Toft's team.",
+          opts: {
+            A: "progressed",
+            B: "progression",
+            C: "progressive",
+            D: "progressively",
+          },
+          ans: "B",
+          cat: "Từ loại (Danh từ)",
+          exp: "Giữa mạo từ 'The' và giới từ 'of' (The + N + of) bắt buộc phải là một danh từ. 'Progression' (sự tiến triển) là danh từ duy nhất trong 4 đáp án.",
+          trans:
+            "Sự tiến triển của căn bệnh có thể được làm chậm lại đáng kể bằng cách uống loại thuốc do nhóm của Tiến sĩ Toft phát triển.",
+          vocab: [
+            "progression (n): sự tiến triển",
+            "significantly (adv): đáng kể",
+            "disease (n): căn bệnh",
+          ],
+        },
+        {
+          unit: 1,
+          num: 112,
+          q: "Unfortunately, when the hurricane hit the area, residents as well as public officials were _______ unprepared.",
+          opts: {
+            A: "subsequently",
+            B: "totally",
+            C: "beneficially",
+            D: "currently",
+          },
+          ans: "B",
+          cat: "Từ vựng (Trạng từ)",
+          exp: "Cần trạng từ bổ nghĩa cho tính từ 'unprepared' (chưa chuẩn bị). 'Totally unprepared' = hoàn toàn không có sự chuẩn bị trước.",
+          trans:
+            "Thật không may, khi cơn bão đổ bộ vào khu vực, người dân cũng như các quan chức địa phương đều hoàn toàn chưa có sự chuẩn bị.",
+          vocab: [
+            "hurricane (n): cơn bão lớn",
+            "public official (n): quan chức nhà nước",
+            "unprepared (adj): chưa chuẩn bị",
+          ],
+        },
+        {
+          unit: 1,
+          num: 113,
+          q: "The company plans on _______ the salespeople for the expenses they incurred while attending the conference.",
+          opts: {
+            A: "reimbursement",
+            B: "reimbursed",
+            C: "reimburse",
+            D: "reimbursing",
+          },
+          ans: "D",
+          cat: "Từ loại (Danh động từ sau giới từ)",
+          exp: "Sau giới từ 'on' (trong cụm 'plan on' - dự định làm gì) cần một danh động từ (V-ing) hoặc danh từ. Vì phía sau có tân ngữ 'the salespeople' nên phải dùng V-ing ('reimbursing').",
+          trans:
+            "Công ty dự định hoàn trả tiền cho các nhân viên bán hàng đối với những chi phí họ đã phát sinh khi tham dự hội nghị.",
+          vocab: [
+            "reimburse (v): hoàn trả, bồi hoàn",
+            "incur (v): gánh chịu, phát sinh (chi phí)",
+            "conference (n): hội nghị",
+          ],
+        },
+        {
+          unit: 1,
+          num: 114,
+          q: "Ms. Carlton felt comfortable crossing the road because there were no vehicles coming in her _______.",
+          opts: { A: "directly", B: "direction", C: "direct", D: "directs" },
+          ans: "B",
+          cat: "Từ loại (Danh từ sau tính từ sở hữu)",
+          exp: "Sau tính từ sở hữu 'her' cần một danh từ. 'Direction' (hướng, phía) tạo thành cụm 'in her direction' (về phía cô ấy).",
+          trans:
+            "Cô Carlton cảm thấy yên tâm khi băng qua đường vì không có phương tiện nào đang lao về phía mình.",
+          vocab: [
+            "vehicle (n): phương tiện giao thông",
+            "direction (n): phương hướng",
+            "cross (v): băng qua",
+          ],
+        },
+        {
+          unit: 1,
+          num: 115,
+          q: "_______ the television coverage of the general election, a number of high-profile candidates were interviewed live on air.",
+          opts: { A: "During", B: "About", C: "While", D: "Since" },
+          ans: "A",
+          cat: "Giới từ vs Liên từ",
+          exp: "Phía sau chỗ trống là một cụm danh từ ('the television coverage of the general election'), không có động từ chia thì nên loại các liên từ 'While' và 'Since'. 'During' (trong suốt) phù hợp nhất về nghĩa.",
+          trans:
+            "Trong suốt chương trình truyền hình đưa tin về cuộc tổng tuyển cử, nhiều ứng cử viên nổi tiếng đã được phỏng vấn trực tiếp trên sóng.",
+          vocab: [
+            "coverage (n): việc đưa tin, tường thuật",
+            "general election (n): tổng tuyển cử",
+            "high-profile (adj): nổi tiếng, tầm cỡ",
+          ],
+        },
+        {
+          unit: 1,
+          num: 116,
+          q: "Mr. Hicks _______ seating near the stage in the concert hall for important clients.",
+          opts: {
+            A: "cooperated",
+            B: "entertained",
+            C: "loosened",
+            D: "reserved",
+          },
+          ans: "D",
+          cat: "Từ vựng (Động từ)",
+          exp: "Tân ngữ phía sau là 'seating' (chỗ ngồi), động từ đi kèm hợp nghĩa nhất là 'reserved' (đặt trước).",
+          trans:
+            "Ông Hicks đã đặt trước chỗ ngồi gần sân khấu trong phòng hòa nhạc cho các khách hàng quan trọng.",
+          vocab: [
+            "reserve (v): đặt trước",
+            "seating (n): chỗ ngồi",
+            "client (n): khách hàng",
+          ],
+        },
+        {
+          unit: 1,
+          num: 117,
+          q: "Fritz Center, the venue _______ hosts the film industry's awards banquet, is undergoing an ambitious expansion project.",
+          opts: { A: "that", B: "where", C: "what", D: "even" },
+          ans: "A",
+          cat: "Đại từ quan hệ",
+          exp: "Phía sau chỗ trống là động từ 'hosts' (tổ chức) nên cần một đại từ quan hệ đóng vai trò làm chủ ngữ thay thế cho danh từ chỉ vật/nơi chốn 'the venue'. Không dùng 'where' vì thiếu chủ ngữ sau nó; dùng 'that' (hoặc 'which').",
+          trans:
+            "Trung tâm Fritz, địa điểm tổ chức tiệc trao giải của ngành điện ảnh, đang trải qua một dự án mở rộng đầy tham vọng.",
+          vocab: [
+            "venue (n): địa điểm tổ chức",
+            "banquet (n): bữa tiệc lớn",
+            "undergo (v): trải qua",
+          ],
+        },
+        {
+          unit: 1,
+          num: 118,
+          q: "The monthly staff dinners give employees from different departments the chance to interact with _______ on a personal level.",
+          opts: { A: "other", B: "neither", C: "every", D: "each other" },
+          ans: "D",
+          cat: "Đại từ tương hỗ",
+          exp: "Cụm từ 'interact with each other' mang nghĩa 'tương tác lẫn nhau'. 'Other' và 'every' không đứng một mình sau giới từ 'with' như đại từ.",
+          trans:
+            "Các bữa tối nhân viên hàng tháng mang lại cho nhân viên từ các phòng ban khác nhau cơ hội tương tác với nhau ở góc độ cá nhân.",
+          vocab: [
+            "interact with (v): tương tác với",
+            "each other (pron): lẫn nhau",
+            "department (n): phòng ban",
+          ],
+        },
+        {
+          unit: 1,
+          num: 119,
+          q: "Landlords are required to _______ with the regulations set by the Regional Department of Safe Housing.",
+          opts: { A: "reinforce", B: "comply", C: "fulfill", D: "interfere" },
+          ans: "B",
+          cat: "Từ vựng & Giới từ đi kèm",
+          exp: "Động từ 'comply' luôn đi với giới từ 'with' ('comply with' = tuân thủ theo quy định/luật lệ). Các động từ còn lại không đi với 'with' theo nghĩa này.",
+          trans:
+            "Các chủ nhà được yêu cầu phải tuân thủ các quy định do Sở Nhà ở An toàn Khu vực đặt ra.",
+          vocab: [
+            "landlord (n): chủ nhà",
+            "comply with (v): tuân thủ",
+            "regulation (n): quy định",
+          ],
+        },
+        {
+          unit: 1,
+          num: 120,
+          q: "A sturdy support beam was added to the first story of the building for _______ reasons.",
+          opts: {
+            A: "structures",
+            B: "structurally",
+            C: "structure",
+            D: "structural",
+          },
+          ans: "D",
+          cat: "Từ loại (Tính từ)",
+          exp: "Trước danh từ 'reasons' (những lý do) cần một tính từ bổ nghĩa. 'Structural reasons' = các lý do về mặt kết cấu.",
+          trans:
+            "Một thanh dầm đỡ chắc chắn đã được thêm vào tầng một của tòa nhà vì các lý do kết cấu.",
+          vocab: [
+            "sturdy (adj): cứng cáp, chắc chắn",
+            "support beam (n): dầm đỡ",
+            "structural (adj): thuộc về kết cấu",
+          ],
+        },
+        {
+          unit: 1,
+          num: 121,
+          q: "Eco Unite is a non-profit organization _______ to educating the public about environmental issues.",
+          opts: { A: "proposed", B: "deferred", C: "dedicated", D: "observed" },
+          ans: "C",
+          cat: "Từ vựng & Cấu trúc rút gọn",
+          exp: "Cấu trúc 'be dedicated to + V-ing' (tận tâm, cống hiến cho việc gì). Ở đây mệnh đề quan hệ '(which is) dedicated to educating...' được rút gọn còn 'dedicated'.",
+          trans:
+            "Eco Unite là một tổ chức phi lợi nhuận tận tâm với việc giáo dục công chúng về các vấn đề môi trường.",
+          vocab: [
+            "non-profit (adj): phi lợi nhuận",
+            "dedicated to (adj): tận tâm, cống hiến cho",
+            "issue (n): vấn đề",
+          ],
+        },
+        {
+          unit: 1,
+          num: 122,
+          q: "It is essential that the logo for Prime Vitamins be integrated _______ all of its catalogs and mailings.",
+          opts: { A: "into", B: "of", C: "as", D: "than" },
+          ans: "A",
+          cat: "Giới từ đi kèm động từ",
+          exp: "Cấu trúc 'integrate A into B' (tích hợp, lồng ghép A vào trong B). Ở dạng bị động: 'be integrated into'.",
+          trans:
+            "Điều thiết yếu là logo của Prime Vitamins phải được tích hợp vào tất cả các danh mục sản phẩm và thư quảng cáo của hãng.",
+          vocab: [
+            "essential (adj): thiết yếu",
+            "integrate into (v): tích hợp vào",
+            "catalog (n): danh mục sản phẩm",
+          ],
+        },
+        {
+          unit: 1,
+          num: 123,
+          q: "Despite receiving rejections from several major publishers, Ian Wright _______ to become a world-famous novelist.",
+          opts: {
+            A: "gave up",
+            B: "figured out",
+            C: "brought down",
+            D: "went on",
+          },
+          ans: "D",
+          cat: "Cụm động từ (Phrasal Verbs)",
+          exp: "'Go on to do something' nghĩa là 'tiếp tục làm điều gì đó (thường là đạt tới thành công tiếp theo)'. Câu mang nghĩa tương phản: Mặc dù bị từ chối, ông vẫn tiến tới trở thành tiểu thuyết gia nổi tiếng.",
+          trans:
+            "Mặc dù nhận được lời từ chối từ nhiều nhà xuất bản lớn, Ian Wright vẫn tiếp tục vươn lên trở thành một tiểu thuyết gia nổi tiếng thế giới.",
+          vocab: [
+            "rejection (n): sự từ chối",
+            "publisher (n): nhà xuất bản",
+            "go on to V (phr.v): tiếp tục làm gì",
+          ],
+        },
+        {
+          unit: 1,
+          num: 124,
+          q: "Mr. Burrows was praised for creating _______ user manuals which can be easily understood.",
+          opts: {
+            A: "inform",
+            B: "informant",
+            C: "informer",
+            D: "informative",
+          },
+          ans: "D",
+          cat: "Từ loại (Tính từ)",
+          exp: "Đứng trước cụm danh từ 'user manuals' (sách hướng dẫn sử dụng) cần một tính từ mô tả tính chất. 'Informative' = cung cấp nhiều thông tin hữu ích.",
+          trans:
+            "Ông Burrows được khen ngợi vì đã tạo ra những cuốn sách hướng dẫn sử dụng giàu thông tin và dễ hiểu.",
+          vocab: [
+            "praise (v): khen ngợi",
+            "informative (adj): nhiều thông tin hữu ích",
+            "user manual (n): sách hướng dẫn sử dụng",
+          ],
+        },
+        {
+          unit: 1,
+          num: 125,
+          q: "Even though Ms. Garcia had a small account at the financial institution, the employee treated her _______ she were a major investor.",
+          opts: {
+            A: "rather than",
+            B: "in spite of",
+            C: "as if",
+            D: "provided that",
+          },
+          ans: "C",
+          cat: "Liên từ & Thức giả định",
+          exp: "'As if' (như thể là) dùng với động từ lùi thì giả định ('she were') để diễn tả một tình huống không có thật ở hiện tại.",
+          trans:
+            "Mặc dù cô Garcia chỉ có một tài khoản nhỏ tại tổ chức tài chính đó, nhân viên vẫn đối xử với cô như thể cô là một nhà đầu tư lớn.",
+          vocab: [
+            "financial institution (n): tổ chức tài chính",
+            "as if (conj): như thể là",
+            "investor (n): nhà đầu tư",
+          ],
+        },
+        {
+          unit: 1,
+          num: 126,
+          q: "When you return an item by mail, be sure the receipt is _______ to the request form to expedite processing.",
+          opts: { A: "attachment", B: "attached", C: "attaching", D: "attach" },
+          ans: "B",
+          cat: "Thể bị động",
+          exp: "Chủ ngữ 'the receipt' (hóa đơn) cần được đính kèm vào mẫu đơn -> dùng bị động 'is attached to'.",
+          trans:
+            "Khi bạn trả lại một món hàng qua đường bưu điện, hãy đảm bảo hóa đơn được đính kèm vào mẫu yêu cầu để đẩy nhanh quá trình xử lý.",
+          vocab: [
+            "receipt (n): hóa đơn, biên lai",
+            "attach (v): đính kèm",
+            "expedite (v): xúc tiến, đẩy nhanh",
+          ],
+        },
+        {
+          unit: 1,
+          num: 127,
+          q: "The witness saw only a _______ figure standing near the lamp post shortly before the crime was committed.",
+          opts: { A: "solitary", B: "spare", C: "previous", D: "random" },
+          ans: "A",
+          cat: "Từ vựng (Tính từ)",
+          exp: "Phía trước có từ 'only a' (chỉ một), nên tính từ 'solitary' (đơn độc, một mình) là hợp lý nhất về mặt ngữ nghĩa.",
+          trans:
+            "Nhân chứng chỉ nhìn thấy một bóng người đơn độc đứng gần cột đèn ngay trước khi vụ án xảy ra.",
+          vocab: [
+            "witness (n): nhân chứng",
+            "solitary (adj): đơn độc, một mình",
+            "commit a crime (phr): phạm tội",
+          ],
+        },
+        {
+          unit: 1,
+          num: 128,
+          q: "Ben Sanders _______ designed the suitcase to fold up easily for compact storage.",
+          opts: {
+            A: "innovatively",
+            B: "innovate",
+            C: "innovative",
+            D: "innovation",
+          },
+          ans: "A",
+          cat: "Từ loại (Trạng từ bổ nghĩa động từ)",
+          exp: "Giữa chủ ngữ 'Ben Sanders' và động từ thường 'designed' cần một trạng từ để bổ nghĩa cho hành động thiết kế. 'Innovatively' = một cách sáng tạo.",
+          trans:
+            "Ben Sanders đã thiết kế chiếc vali một cách đầy sáng tạo để có thể gấp gọn dễ dàng giúp tiết kiệm diện tích cất giữ.",
+          vocab: [
+            "innovatively (adv): một cách sáng tạo",
+            "fold up (phr.v): gấp lại",
+            "compact (adj): nhỏ gọn",
+          ],
+        },
+        {
+          unit: 1,
+          num: 129,
+          q: "Because the weather was warmer than usual this summer, the crops _______ a few weeks early.",
+          opts: {
+            A: "have been harvesting",
+            B: "will have harvested",
+            C: "are harvesting",
+            D: "will be harvested",
+          },
+          ans: "D",
+          cat: "Thể bị động & Thì động từ",
+          exp: "Chủ ngữ 'the crops' (mùa màng/cây trồng) không thể tự thu hoạch mà phải 'được thu hoạch' -> cần câu bị động. Trong 4 đáp án chỉ có (D) 'will be harvested' là dạng bị động.",
+          trans:
+            "Vì thời tiết mùa hè năm nay ấm hơn bình thường nên mùa màng sẽ được thu hoạch sớm hơn vài tuần.",
+          vocab: [
+            "crop (n): vụ mùa, cây trồng",
+            "harvest (v): thu hoạch",
+            "than usual (phr): hơn thường lệ",
+          ],
+        },
+        {
+          unit: 1,
+          num: 130,
+          q: "_______ auditing the financial records of Rockford Consulting, the accountant will submit an official report.",
+          opts: { A: "In addition", B: "Given", C: "For example", D: "Upon" },
+          ans: "D",
+          cat: "Giới từ + V-ing",
+          exp: "Giới từ 'Upon + V-ing' mang nghĩa 'Ngay sau khi làm gì'. Các phương án A và C là trạng từ liên kết (thường có dấu phẩy ngay sau), còn B không hợp nghĩa.",
+          trans:
+            "Ngay sau khi kiểm toán hồ sơ tài chính của Rockford Consulting, nhân viên kế toán sẽ nộp một báo cáo chính thức.",
+          vocab: [
+            "audit (v): kiểm toán",
+            "financial records (n): hồ sơ tài chính",
+            "upon (prep): ngay khi, sau khi",
+          ],
+        },
+
+        // ==================== UNIT 2 (101 - 130) ====================
+        {
+          unit: 2,
+          num: 101,
+          q: "Should the customer believe that the proposed color scheme is not _______, the interior designer can make adjustments.",
+          opts: {
+            A: "attract",
+            B: "attractive",
+            C: "attracted",
+            D: "attractively",
+          },
+          ans: "B",
+          cat: "Từ loại (Tính từ sau to be)",
+          exp: "Sau động từ 'is not' cần một tính từ mô tả tính chất của 'color scheme' (bảng phối màu). 'Attractive' = thu hút, bắt mắt.",
+          trans:
+            "Nếu khách hàng cho rằng bảng phối màu được đề xuất chưa bắt mắt, nhà thiết kế nội thất có thể thực hiện các điều chỉnh.",
+          vocab: [
+            "color scheme (n): bảng phối màu",
+            "interior designer (n): nhà thiết kế nội thất",
+            "adjustment (n): sự điều chỉnh",
+          ],
+        },
+        {
+          unit: 2,
+          num: 102,
+          q: "Due to congestion on the roads, an increasing number of manufacturers _______ transport their goods by train.",
+          opts: { A: "either", B: "very", C: "now", D: "rather" },
+          ans: "C",
+          cat: "Từ vựng (Trạng từ)",
+          exp: "Câu diễn tả một xu hướng hiện tại ('an increasing number of...' - ngày càng nhiều nhà sản xuất), nên dùng trạng từ 'now' (hiện nay, bây giờ) đứng trước động từ chính 'transport'.",
+          trans:
+            "Do tình trạng tắc nghẽn trên đường bộ, ngày càng nhiều nhà sản xuất hiện vận chuyển hàng hóa của họ bằng tàu hỏa.",
+          vocab: [
+            "congestion (n): sự tắc nghẽn",
+            "manufacturer (n): nhà sản xuất",
+            "transport (v): vận chuyển",
+          ],
+        },
+        {
+          unit: 2,
+          num: 103,
+          q: "Mr. Brandt asked for the banner to be hung _______ the exterior wall of the building.",
+          opts: { A: "up", B: "next", C: "on", D: "with" },
+          ans: "C",
+          cat: "Giới từ chỉ vị trí",
+          exp: "Treo vật gì lên bề mặt bức tường dùng giới từ 'on' ('on the exterior wall' - trên bức tường bên ngoài). ('next' phải có 'to').",
+          trans:
+            "Ông Brandt yêu cầu treo biểu ngữ lên bức tường bên ngoài của tòa nhà.",
+          vocab: [
+            "banner (n): biểu ngữ, băng rôn",
+            "exterior (adj): bên ngoài",
+            "hang (v): treo (quá khứ phân từ: hung)",
+          ],
+        },
+        {
+          unit: 2,
+          num: 104,
+          q: "Old furniture, vintage jewelry, and other _______ are available for sale at this market.",
+          opts: {
+            A: "quantities",
+            B: "antiques",
+            C: "compartments",
+            D: "statements",
+          },
+          ans: "B",
+          cat: "Từ vựng (Danh từ)",
+          exp: "Liệt kê cùng nhóm với 'Old furniture, vintage jewelry' (đồ nội thất cũ, trang sức cổ điển) nên danh từ phù hợp nhất là 'antiques' (đồ cổ).",
+          trans:
+            "Đồ nội thất cũ, trang sức cổ điển và các món đồ cổ khác đều được bày bán tại khu chợ này.",
+          vocab: [
+            "vintage (adj): cổ điển",
+            "antique (n): đồ cổ",
+            "available for sale (phr): có sẵn để bán",
+          ],
+        },
+        {
+          unit: 2,
+          num: 105,
+          q: "If the patient's nasal problem does not show signs of improvement _______ two days, he should visit the clinic again.",
+          opts: {
+            A: "because of",
+            B: "regarding",
+            C: "apart from",
+            D: "within",
+          },
+          ans: "D",
+          cat: "Giới từ chỉ thời gian",
+          exp: "'Within + khoảng thời gian' nghĩa là 'trong vòng bao lâu' ('within two days' - trong vòng hai ngày).",
+          trans:
+            "Nếu vấn đề về mũi của bệnh nhân không có dấu hiệu cải thiện trong vòng hai ngày, anh ấy nên đến phòng khám lần nữa.",
+          vocab: [
+            "nasal (adj): thuộc về mũi",
+            "improvement (n): sự cải thiện",
+            "within (prep): trong vòng",
+          ],
+        },
+        {
+          unit: 2,
+          num: 106,
+          q: "Dissatisfied customers of Maple Housekeeping may terminate the contract _______ three days of the first cleaning session.",
+          opts: { A: "as", B: "by", C: "within", D: "unless" },
+          ans: "C",
+          cat: "Giới từ chỉ thời gian",
+          exp: "Cụm 'within three days of...' nghĩa là 'trong vòng 3 ngày kể từ...'. Lưu ý 'by' đi với một mốc thời gian cụ thể chứ không đi với khoảng thời gian 'three days'.",
+          trans:
+            "Khách hàng không hài lòng của Maple Housekeeping có thể chấm dứt hợp đồng trong vòng ba ngày kể từ buổi dọn dẹp đầu tiên.",
+          vocab: [
+            "dissatisfied (adj): không hài lòng",
+            "terminate (v): chấm dứt (hợp đồng)",
+            "session (n): buổi, phiên",
+          ],
+        },
+        {
+          unit: 2,
+          num: 107,
+          q: "Because its latest exhibit is highly valuable, the Gabe Gallery took more precautions than it _______ did in the past.",
+          opts: { A: "ever", B: "yet", C: "such", D: "much" },
+          ans: "A",
+          cat: "Trạng từ nhấn mạnh trong so sánh",
+          exp: "Trong cấu trúc so sánh hơn ('more ... than it ever did in the past'), trạng từ 'ever' (từng) được dùng để nhấn mạnh: nhiều biện pháp phòng ngừa hơn bất cứ lúc nào từng làm trong quá khứ.",
+          trans:
+            "Vì triển lãm mới nhất có giá trị rất cao nên Phòng trưng bày Gabe đã thực hiện nhiều biện pháp phòng ngừa hơn bao giờ hết trong quá khứ.",
+          vocab: [
+            "exhibit (n): cuộc triển lãm, vật trưng bày",
+            "valuable (adj): có giá trị",
+            "precaution (n): biện pháp phòng ngừa",
+          ],
+        },
+        {
+          unit: 2,
+          num: 108,
+          q: "Ms. Fox extended the operating hours of the store because she agreed _______ Mr. Arbor that they were not long enough.",
+          opts: { A: "for", B: "against", C: "to", D: "with" },
+          ans: "D",
+          cat: "Giới từ đi kèm động từ",
+          exp: "Cấu trúc 'agree with someone' (đồng ý với ai). Lưu ý: 'agree to something' là đồng ý với một đề xuất/kế hoạch, còn phía sau đây là tên người ('Mr. Arbor') nên dùng 'with'.",
+          trans:
+            "Cô Fox đã kéo dài giờ mở cửa của cửa hàng vì cô đồng ý với ông Arbor rằng thời gian đó chưa đủ dài.",
+          vocab: [
+            "extend (v): kéo dài, gia hạn",
+            "operating hours (n): giờ hoạt động",
+            "agree with (v): đồng ý với ai",
+          ],
+        },
+        {
+          unit: 2,
+          num: 109,
+          q: "Employees who attend the workshop on improving communication skills will be given a certificate of _______ by the instructor.",
+          opts: {
+            A: "achieved",
+            B: "achieving",
+            C: "achieve",
+            D: "achievement",
+          },
+          ans: "D",
+          cat: "Từ loại (Danh từ sau giới từ)",
+          exp: "Sau giới từ 'of' cần một danh từ. 'Certificate of achievement' là cụm danh từ cố định nghĩa là 'giấy chứng nhận thành tích / hoàn thành'.",
+          trans:
+            "Những nhân viên tham dự hội thảo về cải thiện kỹ năng giao tiếp sẽ được giảng viên trao giấy chứng nhận thành tích.",
+          vocab: [
+            "workshop (n): hội thảo chuyên đề",
+            "certificate (n): giấy chứng nhận",
+            "achievement (n): thành tích, sự đạt được",
+          ],
+        },
+        {
+          unit: 2,
+          num: 110,
+          q: "The majority of occupants _______ live in Regal Towers are upset about the ongoing problems with their air conditioning systems.",
+          opts: { A: "what", B: "where", C: "they", D: "who" },
+          ans: "D",
+          cat: "Đại từ quan hệ",
+          exp: "Danh từ đứng trước là 'occupants' (những cư dân - chỉ người) và ngay sau chỗ trống là động từ 'live', nên cần đại từ quan hệ chỉ người làm chủ ngữ là 'who'.",
+          trans:
+            "Phần lớn cư dân sinh sống tại tòa tháp Regal đều bức xúc về những sự cố kéo dài đối với hệ thống điều hòa không khí của họ.",
+          vocab: [
+            "occupant (n): người cư ngụ, cư dân",
+            "upset (adj): bực bội, buồn phiền",
+            "ongoing (adj): đang tiếp diễn",
+          ],
+        },
+        {
+          unit: 2,
+          num: 111,
+          q: "The donations received from the fundraiser _______ among the charity's three locations equally.",
+          opts: {
+            A: "have divided",
+            B: "is being divided",
+            C: "are dividing",
+            D: "will be divided",
+          },
+          ans: "D",
+          cat: "Thể bị động & Sự hòa hợp chủ vị",
+          exp: "Chủ ngữ chính là 'The donations' (số nhiều) và mang nghĩa bị động ('được chia đều'). Loại (B) vì 'is' chia số ít; (A) và (C) là thể chủ động. Chỉ có (D) 'will be divided' vừa bị động vừa hợp ngữ pháp.",
+          trans:
+            "Số tiền quyên góp nhận được từ buổi gây quỹ sẽ được chia đều cho ba cơ sở của tổ chức từ thiện.",
+          vocab: [
+            "donation (n): khoản quyên góp",
+            "fundraiser (n): sự kiện gây quỹ",
+            "equally (adv): một cách đồng đều",
+          ],
+        },
+        {
+          unit: 2,
+          num: 112,
+          q: "The exchange rate has increased by 3.2% compared to the _______ month of the previous year.",
+          opts: { A: "only", B: "same", C: "later", D: "true" },
+          ans: "B",
+          cat: "Từ vựng (Tính từ)",
+          exp: "Cụm từ quen thuộc trong báo cáo tài chính: 'the same month of the previous year' (cùng kỳ / cùng tháng của năm trước).",
+          trans:
+            "Tỷ giá hối đoái đã tăng 3,2% so với cùng tháng của năm trước.",
+          vocab: [
+            "exchange rate (n): tỷ giá hối đoái",
+            "compared to (phr): so với",
+            "previous (adj): trước đó",
+          ],
+        },
+        {
+          unit: 2,
+          num: 113,
+          q: "The train delays on the Trenton line were caused by a _______ error at one of the stations.",
+          opts: {
+            A: "proceed",
+            B: "proceeded",
+            C: "procedural",
+            D: "procedurally",
+          },
+          ans: "C",
+          cat: "Từ loại (Tính từ)",
+          exp: "Giữa mạo từ 'a' và danh từ 'error' (lỗi) cần một tính từ bổ nghĩa. 'Procedural error' = lỗi quy trình.",
+          trans:
+            "Việc chậm trễ tàu trên tuyến Trenton là do một lỗi quy trình tại một trong các nhà ga.",
+          vocab: [
+            "delay (n): sự chậm trễ",
+            "procedural (adj): thuộc về quy trình",
+            "station (n): nhà ga",
+          ],
+        },
+        {
+          unit: 2,
+          num: 114,
+          q: "Those who attend the creative writing workshop will learn a variety of useful methods _______ the next two days.",
+          opts: { A: "above", B: "at", C: "toward", D: "over" },
+          ans: "D",
+          cat: "Giới từ chỉ thời gian",
+          exp: "Giới từ 'over' khi đi với khoảng thời gian ('over the next two days') mang nghĩa 'trong suốt / trong vòng hai ngày tới'.",
+          trans:
+            "Những người tham dự hội thảo viết sáng tạo sẽ học được nhiều phương pháp hữu ích trong suốt hai ngày tới.",
+          vocab: [
+            "a variety of (phr): nhiều, đa dạng",
+            "method (n): phương pháp",
+            "over (prep): trong suốt (khoảng thời gian)",
+          ],
+        },
+        {
+          unit: 2,
+          num: 115,
+          q: "The lecturer _______ on the country's struggle for independence when he gives his talk.",
+          opts: {
+            A: "has focused",
+            B: "is focused",
+            C: "will focus",
+            D: "focusing",
+          },
+          ans: "C",
+          cat: "Ngữ pháp - Thì động từ",
+          exp: "Mệnh đề trạng ngữ chỉ thời gian 'when he gives his talk' chia ở thì hiện tại đơn để chỉ một sự việc sẽ diễn ra trong tương lai -> mệnh đề chính phải chia thì tương lai đơn 'will focus'.",
+          trans:
+            "Giảng viên sẽ tập trung vào cuộc đấu tranh giành độc lập của đất nước khi ông có bài thuyết trình.",
+          vocab: [
+            "lecturer (n): giảng viên",
+            "struggle (n): cuộc đấu tranh",
+            "independence (n): nền độc lập",
+          ],
+        },
+        {
+          unit: 2,
+          num: 116,
+          q: "According to company policy, _______ requests for reimbursement of business expenses must be accompanied by a receipt.",
+          opts: { A: "since", B: "every", C: "all", D: "much" },
+          ans: "C",
+          cat: "Lượng từ (Quantifiers)",
+          exp: "Danh từ đứng sau là 'requests' (danh từ đếm được số nhiều), do đó chỉ có 'all' (tất cả) đi được với danh từ số nhiều. ('every' đi với danh từ số ít; 'much' đi với danh từ không đếm được).",
+          trans:
+            "Theo chính sách của công ty, tất cả các yêu cầu hoàn trả chi phí công tác đều phải có hóa đơn đi kèm.",
+          vocab: [
+            "policy (n): chính sách",
+            "business expenses (n): chi phí công tác",
+            "accompany (v): đi kèm",
+          ],
+        },
+        {
+          unit: 2,
+          num: 117,
+          q: "The balconies connected to the rooms at the Orwell Hotel provide a _______ view of a private beach.",
+          opts: { A: "stunningly", B: "stuns", C: "stunning", D: "stunned" },
+          ans: "C",
+          cat: "Từ loại (Tính từ chủ động -ing)",
+          exp: "Trước danh từ 'view' (cảnh quan) cần tính từ. Vì 'view' là vật tạo ra cảm giác tuyệt đẹp nên dùng tính từ đuôi '-ing': 'stunning' (tuyệt đẹp, ngoạn mục).",
+          trans:
+            "Ban công nối liền với các phòng tại Khách sạn Orwell mang lại tầm nhìn tuyệt đẹp ra bãi biển riêng.",
+          vocab: [
+            "balcony (n): ban công",
+            "stunning (adj): tuyệt đẹp, lộng lẫy",
+            "private (adj): riêng tư",
+          ],
+        },
+        {
+          unit: 2,
+          num: 118,
+          q: "_______ of an error on the order form, some of the construction materials were never shipped.",
+          opts: { A: "Because", B: "Even if", C: "In spite", D: "Instead" },
+          ans: "A",
+          cat: "Giới từ kép chỉ nguyên nhân",
+          exp: "Sau chỗ trống có từ 'of' và một cụm danh từ ('an error on the order form'). 'Because of' = bởi vì (hợp nghĩa: vì lỗi trên đơn hàng nên vật liệu không được giao). Loại 'In spite of' (mặc dù) vì sai nghĩa.",
+          trans:
+            "Vì có lỗi trên mẫu đơn đặt hàng nên một số vật liệu xây dựng đã không bao giờ được giao đi.",
+          vocab: [
+            "order form (n): mẫu đơn đặt hàng",
+            "construction materials (n): vật liệu xây dựng",
+            "ship (v): vận chuyển, giao hàng",
+          ],
+        },
+        {
+          unit: 2,
+          num: 119,
+          q: "After examining the vehicle, the mechanic had _______ identified the reason why the engine lost power.",
+          opts: {
+            A: "corrections",
+            B: "correctly",
+            C: "correct",
+            D: "corrects",
+          },
+          ans: "B",
+          cat: "Từ loại (Trạng từ)",
+          exp: "Giữa trợ động từ 'had' và phân từ hai 'identified' cần một trạng từ bổ nghĩa cho động từ. 'Correctly' = một cách chính xác.",
+          trans:
+            "Sau khi kiểm tra chiếc xe, người thợ máy đã xác định chính xác lý do tại sao động cơ bị mất công suất.",
+          vocab: [
+            "examine (v): kiểm tra",
+            "mechanic (n): thợ máy",
+            "identify (v): xác định, nhận diện",
+          ],
+        },
+        {
+          unit: 2,
+          num: 120,
+          q: "The size of private tours of the old castle will be limited _______ ten people.",
+          opts: { A: "to", B: "during", C: "than", D: "of" },
+          ans: "A",
+          cat: "Giới từ đi kèm động từ",
+          exp: "Cấu trúc 'be limited to + số lượng/mức độ' nghĩa là 'bị giới hạn ở mức bao nhiêu'.",
+          trans:
+            "Quy mô các chuyến tham quan riêng tại lâu đài cổ sẽ được giới hạn ở mức mười người.",
+          vocab: [
+            "castle (n): lâu đài",
+            "be limited to (phr): bị giới hạn ở mức",
+            "tour (n): chuyến tham quan",
+          ],
+        },
+        {
+          unit: 2,
+          num: 121,
+          q: "The project development team is partially responsible for the selection and _______ of potential building sites.",
+          opts: {
+            A: "appraisal",
+            B: "appraises",
+            C: "appraise",
+            D: "appraised",
+          },
+          ans: "A",
+          cat: "Cấu trúc song song & Từ loại",
+          exp: "Liên từ 'and' nối hai thành phần cùng từ loại. Phía trước là danh từ 'selection' (sự lựa chọn), nên phía sau cũng cần một danh từ là 'appraisal' (sự thẩm định, đánh giá).",
+          trans:
+            "Nhóm phát triển dự án chịu trách nhiệm một phần về việc lựa chọn và thẩm định các địa điểm xây dựng tiềm năng.",
+          vocab: [
+            "partially (adv): một phần",
+            "appraisal (n): sự thẩm định, đánh giá",
+            "potential (adj): tiềm năng",
+          ],
+        },
+        {
+          unit: 2,
+          num: 122,
+          q: "To _______ the monthly payment for the mortgage, Mr. Tyler would need a substantial salary increase.",
+          opts: { A: "admit", B: "suppose", C: "convene", D: "afford" },
+          ans: "D",
+          cat: "Từ vựng (Động từ)",
+          exp: "'Afford' (đủ khả năng chi trả) đi với tân ngữ 'the monthly payment for the mortgage' (khoản thanh toán thế chấp hàng tháng) rất tự nhiên và chính xác.",
+          trans:
+            "Để đủ khả năng chi trả khoản tiền thế chấp hàng tháng, ông Tyler sẽ cần một mức tăng lương đáng kể.",
+          vocab: [
+            "mortgage (n): khoản vay thế chấp",
+            "afford (v): đủ khả năng chi trả",
+            "substantial (adj): đáng kể, lớn",
+          ],
+        },
+        {
+          unit: 2,
+          num: 123,
+          q: "The education center provides training classes in key skills _______ that the unemployed can find jobs more easily.",
+          opts: { A: "so", B: "ever", C: "only", D: "as" },
+          ans: "A",
+          cat: "Liên từ chỉ mục đích",
+          exp: "Cụm liên từ 'so that + mệnh đề' mang nghĩa 'để mà, nhằm mục đích là'.",
+          trans:
+            "Trung tâm giáo dục cung cấp các lớp đào tạo những kỹ năng then chốt để người thất nghiệp có thể tìm việc làm dễ dàng hơn.",
+          vocab: [
+            "key skills (n): kỹ năng then chốt",
+            "so that (conj): để mà",
+            "the unemployed (n): những người thất nghiệp",
+          ],
+        },
+        {
+          unit: 2,
+          num: 124,
+          q: "The National Health Organization reported on the _______ cases of the disease.",
+          opts: {
+            A: "confirmation",
+            B: "confirms",
+            C: "confirm",
+            D: "confirmed",
+          },
+          ans: "D",
+          cat: "Từ loại (Quá khứ phân từ làm tính từ)",
+          exp: "Đứng trước danh từ 'cases' (các ca bệnh) cần một tính từ mang nghĩa bị động ('đã được xác nhận') -> dùng quá khứ phân từ 'confirmed'.",
+          trans:
+            "Tổ chức Y tế Quốc gia đã báo cáo về các ca mắc bệnh đã được xác nhận.",
+          vocab: [
+            "confirmed (adj): đã được xác nhận",
+            "case (n): ca bệnh, trường hợp",
+            "report on (v): báo cáo về",
+          ],
+        },
+        {
+          unit: 2,
+          num: 125,
+          q: "The informational materials sent to conference attendees _______ the presentation schedule and social events.",
+          opts: { A: "expand", B: "solicit", C: "allow", D: "outline" },
+          ans: "D",
+          cat: "Từ vựng (Động từ)",
+          exp: "'Outline' (động từ) nghĩa là 'phác thảo, nêu tóm tắt các ý chính/lịch trình'. Tài liệu thông tin nêu tóm tắt lịch thuyết trình và các sự kiện giao lưu.",
+          trans:
+            "Các tài liệu thông tin gửi đến người tham dự hội nghị nêu tóm tắt lịch trình thuyết trình và các sự kiện giao lưu.",
+          vocab: [
+            "attendee (n): người tham dự",
+            "outline (v): nêu tóm tắt, phác thảo",
+            "schedule (n): lịch trình",
+          ],
+        },
+        {
+          unit: 2,
+          num: 126,
+          q: "_______ buildings in a neighborhood can lead to a net loss of property values for nearby homeowners.",
+          opts: { A: "Fertile", B: "Mandatory", C: "Vacant", D: "Compliant" },
+          ans: "C",
+          cat: "Từ vựng (Tính từ)",
+          exp: "'Vacant buildings' (các tòa nhà bỏ trống/bỏ hoang) làm giảm giá trị bất động sản của các hộ xung quanh. Các từ khác: fertile (màu mỡ), mandatory (bắt buộc), compliant (tuân thủ).",
+          trans:
+            "Các tòa nhà bỏ trống trong một khu dân cư có thể dẫn đến sự sụt giảm ròng về giá trị bất động sản cho các chủ nhà lân cận.",
+          vocab: [
+            "vacant (adj): bỏ trống, trống rỗng",
+            "property value (n): giá trị bất động sản",
+            "lead to (v): dẫn đến",
+          ],
+        },
+        {
+          unit: 2,
+          num: 127,
+          q: "_______ occurring substances are used in the vitamin supplement instead of chemicals.",
+          opts: { A: "Naturally", B: "Natural", C: "Naturalize", D: "Nature" },
+          ans: "A",
+          cat: "Từ loại (Trạng từ bổ nghĩa tính từ)",
+          exp: "Đứng trước tính từ/phân từ 'occurring' để bổ nghĩa cho nó cần một trạng từ. Cụm cố định 'naturally occurring' = có nguồn gốc tự nhiên.",
+          trans:
+            "Các chất có nguồn gốc tự nhiên được sử dụng trong thực phẩm bổ sung vitamin thay vì hóa chất.",
+          vocab: [
+            "naturally occurring (adj): có sẵn trong tự nhiên",
+            "substance (n): chất",
+            "supplement (n): thực phẩm bổ sung",
+          ],
+        },
+        {
+          unit: 2,
+          num: 128,
+          q: "The director attributed the success of the film _______ to the experience and talent of the actor in the lead role.",
+          opts: {
+            A: "punctually",
+            B: "attentively",
+            C: "primarily",
+            D: "importantly",
+          },
+          ans: "C",
+          cat: "Từ vựng (Trạng từ)",
+          exp: "Cấu trúc 'attribute A primarily to B' = quy kết / cho rằng thành công của A chủ yếu là nhờ vào B.",
+          trans:
+            "Đạo diễn cho rằng thành công của bộ phim chủ yếu là nhờ vào kinh nghiệm và tài năng của nam diễn viên đóng vai chính.",
+          vocab: [
+            "attribute A to B (v): cho rằng A là nhờ B",
+            "primarily (adv): chủ yếu",
+            "lead role (n): vai chính",
+          ],
+        },
+        {
+          unit: 2,
+          num: 129,
+          q: "The crew members _______ the main section of the building by the time the waste removal trucks arrive at 3:30.",
+          opts: {
+            A: "demolish",
+            B: "will have demolished",
+            C: "demolished",
+            D: "had demolished",
+          },
+          ans: "B",
+          cat: "Ngữ pháp - Thì tương lai hoàn thành",
+          exp: "Dấu hiệu 'by the time + S + V(hiện tại đơn)' ('arrive at 3:30') diễn tả một hành động sẽ hoàn tất trước một thời điểm trong tương lai -> dùng thì tương lai hoàn thành 'will have demolished'.",
+          trans:
+            "Các công nhân sẽ phá dỡ xong phần chính của tòa nhà trước khi xe chở rác thải đến vào lúc 3 giờ 30.",
+          vocab: [
+            "demolish (v): phá dỡ",
+            "by the time (conj): trước khi, vào lúc",
+            "waste removal (n): thu gom rác thải",
+          ],
+        },
+        {
+          unit: 2,
+          num: 130,
+          q: "Employees are allowed to use vacation time whenever they want _______ it does not disrupt their assignments.",
+          opts: {
+            A: "except for",
+            B: "as well as",
+            C: "depending on",
+            D: "so long as",
+          },
+          ans: "D",
+          cat: "Liên từ chỉ điều kiện",
+          exp: "Phía sau là một mệnh đề ('it does not disrupt their assignments'), cần một liên từ. 'So long as' (= as long as: miễn là) diễn tả điều kiện hợp nghĩa.",
+          trans:
+            "Nhân viên được phép sử dụng thời gian nghỉ phép bất cứ khi nào họ muốn miễn là điều đó không làm gián đoạn công việc được giao.",
+          vocab: [
+            "so long as (conj): miễn là",
+            "disrupt (v): làm gián đoạn",
+            "assignment (n): nhiệm vụ được giao",
+          ],
+        },
+
+        // ==================== UNIT 3 (101 - 130) ====================
+        {
+          unit: 3,
+          num: 101,
+          q: "Recyclable materials such as glass and plastic are collected _______ weekly on Mondays and Thursdays.",
+          opts: { A: "twice", B: "much", C: "yet", D: "far" },
+          ans: "A",
+          cat: "Từ vựng chỉ tần suất",
+          exp: "Phía sau nhắc đến hai ngày 'Mondays and Thursdays' (thứ Hai và thứ Năm) -> tần suất là hai lần mỗi tuần ('twice weekly').",
+          trans:
+            "Các vật liệu có thể tái chế như thủy tinh và nhựa được thu gom hai lần mỗi tuần vào các ngày thứ Hai và thứ Năm.",
+          vocab: [
+            "recyclable (adj): có thể tái chế",
+            "twice weekly (adv): hai lần một tuần",
+            "collect (v): thu gom",
+          ],
+        },
+        {
+          unit: 3,
+          num: 102,
+          q: "For Friday's dinner reservation, please _______ the number of seats from eight to ten guests.",
+          opts: { A: "increase", B: "reflect", C: "merge", D: "invite" },
+          ans: "A",
+          cat: "Từ vựng (Động từ)",
+          exp: "'From eight to ten' (từ 8 lên 10) thể hiện sự tăng lên về số lượng -> chọn động từ 'increase' (tăng lên).",
+          trans:
+            "Đối với đặt chỗ ăn tối thứ Sáu, vui lòng tăng số lượng ghế từ tám lên mười khách.",
+          vocab: [
+            "reservation (n): sự đặt chỗ trước",
+            "increase (v): tăng lên",
+            "guest (n): khách",
+          ],
+        },
+        {
+          unit: 3,
+          num: 103,
+          q: "When customers have a complaint, employees have been instructed _______ the supervisor on duty.",
+          opts: {
+            A: "to inform",
+            B: "to have informed",
+            C: "to informing",
+            D: "to be informed",
+          },
+          ans: "A",
+          cat: "Cấu trúc động từ (instruct sb to V)",
+          exp: "Cấu trúc chủ động 'instruct someone to V' -> khi chuyển sang bị động là 'be instructed to V'. Nhân viên được hướng dẫn để thông báo cho người giám sát (nghĩa chủ động) nên dùng 'to inform'.",
+          trans:
+            "Khi khách hàng có khiếu nại, nhân viên đã được hướng dẫn phải thông báo cho người giám sát đang trực.",
+          vocab: [
+            "complaint (n): lời phàn nàn, khiếu nại",
+            "instruct (v): hướng dẫn, chỉ thị",
+            "on duty (phr): đang trực, đang làm nhiệm vụ",
+          ],
+        },
+        {
+          unit: 3,
+          num: 104,
+          q: "In case you have problems with the device in the future, you should retain your newly _______ receipt.",
+          opts: {
+            A: "expressed",
+            B: "predicted",
+            C: "issued",
+            D: "approached",
+          },
+          ans: "C",
+          cat: "Từ vựng (Phân từ làm tính từ)",
+          exp: "Động từ 'issue' đi với giấy tờ/hóa đơn mang nghĩa là 'cấp, phát hành, xuất hóa đơn'. 'Newly issued receipt' = hóa đơn mới được xuất.",
+          trans:
+            "Trong trường hợp bạn gặp sự cố với thiết bị trong tương lai, bạn nên giữ lại hóa đơn mới được xuất của mình.",
+          vocab: [
+            "in case (conj): phòng khi, trong trường hợp",
+            "retain (v): giữ lại",
+            "issue (v): cấp, phát hành, xuất (hóa đơn)",
+          ],
+        },
+        {
+          unit: 3,
+          num: 105,
+          q: "_______ the necessary safety precautions are not taken, there could be a higher risk of injury.",
+          opts: { A: "Just", B: "If", C: "That", D: "From" },
+          ans: "B",
+          cat: "Câu điều kiện",
+          exp: "Câu diễn tả điều kiện - kết quả: Nếu không thực hiện các biện pháp phòng ngừa an toàn cần thiết, có thể sẽ có nguy cơ chấn thương cao hơn -> dùng 'If'.",
+          trans:
+            "Nếu các biện pháp phòng ngừa an toàn cần thiết không được thực hiện, có thể sẽ có nguy cơ chấn thương cao hơn.",
+          vocab: [
+            "take precautions (phr): thực hiện biện pháp phòng ngừa",
+            "risk (n): nguy cơ, rủi ro",
+            "injury (n): chấn thương",
+          ],
+        },
+        {
+          unit: 3,
+          num: 106,
+          q: "Those giving demonstrations at the department store _______ explained the product's features and benefits.",
+          opts: {
+            A: "enthusiasm",
+            B: "enthusiast",
+            C: "enthusiastically",
+            D: "enthusiastic",
+          },
+          ans: "C",
+          cat: "Từ loại (Trạng từ)",
+          exp: "Đứng trước động từ thường 'explained' cần một trạng từ bổ nghĩa cho hành động giải thích. 'Enthusiastically' = một cách nhiệt tình.",
+          trans:
+            "Những người giới thiệu sản phẩm tại cửa hàng bách hóa đã giải thích một cách nhiệt tình các tính năng và lợi ích của sản phẩm.",
+          vocab: [
+            "demonstration (n): sự giới thiệu/trình diễn sản phẩm",
+            "enthusiastically (adv): một cách nhiệt tình",
+            "feature (n): tính năng",
+          ],
+        },
+        {
+          unit: 3,
+          num: 107,
+          q: "The free clinic on Warren street is _______ by volunteer doctors and nurses.",
+          opts: { A: "retained", B: "staffed", C: "founded", D: "produced" },
+          ans: "B",
+          cat: "Từ vựng (Động từ)",
+          exp: "Cấu trúc 'be staffed by + nhân sự' nghĩa là 'có đội ngũ nhân viên là ai làm việc'.",
+          trans:
+            "Phòng khám miễn phí trên đường Warren có đội ngũ làm việc là các bác sĩ và y tá tình nguyện.",
+          vocab: [
+            "clinic (n): phòng khám",
+            "staff (v): cung cấp nhân sự, làm việc tại",
+            "volunteer (n/adj): tình nguyện",
+          ],
+        },
+        {
+          unit: 3,
+          num: 108,
+          q: "_______ making structural changes to a house must first apply for a building permit.",
+          opts: { A: "Our", B: "Who", C: "Them", D: "Anyone" },
+          ans: "D",
+          cat: "Đại từ bất định",
+          exp: "Cần một đại từ làm chủ ngữ cho cả câu ('... must first apply for a building permit'), được bổ nghĩa bởi cụm phân từ rút gọn 'making structural changes...'. 'Anyone' = bất kỳ ai.",
+          trans:
+            "Bất kỳ ai thực hiện các thay đổi về kết cấu của một ngôi nhà trước tiên phải xin giấy phép xây dựng.",
+          vocab: [
+            "anyone (pron): bất kỳ ai",
+            "apply for (v): nộp đơn xin",
+            "building permit (n): giấy phép xây dựng",
+          ],
+        },
+        {
+          unit: 3,
+          num: 109,
+          q: "Investigators visited the site to ensure that it complied with the _______ regulations in the field.",
+          opts: {
+            A: "applicability",
+            B: "apply",
+            C: "applies",
+            D: "applicable",
+          },
+          ans: "D",
+          cat: "Từ loại (Tính từ)",
+          exp: "Giữa mạo từ 'the' và danh từ 'regulations' cần một tính từ bổ nghĩa. 'Applicable regulations' = các quy định hiện hành / có thể áp dụng.",
+          trans:
+            "Các điều tra viên đã đến thăm hiện trường để đảm bảo rằng nơi này tuân thủ các quy định hiện hành trong lĩnh vực này.",
+          vocab: [
+            "investigator (n): điều tra viên",
+            "site (n): địa điểm, hiện trường",
+            "applicable (adj): có thể áp dụng, hiện hành",
+          ],
+        },
+        {
+          unit: 3,
+          num: 110,
+          q: "_______ its distinguished faculty in the science department, the university has state-of-the-art laboratory facilities.",
+          opts: {
+            A: "In addition to",
+            B: "Otherwise",
+            C: "As well",
+            D: "Hardly ever",
+          },
+          ans: "A",
+          cat: "Giới từ kép (Bổ sung thông tin)",
+          exp: "Phía sau chỗ trống là một cụm danh từ ('its distinguished faculty...'), nên cần một giới từ kép. 'In addition to' = bên cạnh, ngoài ... ra.",
+          trans:
+            "Bên cạnh đội ngũ giảng viên xuất sắc ở khoa khoa học, trường đại học còn có cơ sở vật chất phòng thí nghiệm hiện đại bậc nhất.",
+          vocab: [
+            "distinguished (adj): xuất sắc, lỗi lạc",
+            "faculty (n): đội ngũ giảng viên",
+            "state-of-the-art (adj): hiện đại nhất",
+          ],
+        },
+        {
+          unit: 3,
+          num: 111,
+          q: "Mr. Hughes broke up the staff into small discussion groups to improve _______ in meetings.",
+          opts: {
+            A: "participation",
+            B: "participates",
+            C: "participant",
+            D: "participated",
+          },
+          ans: "A",
+          cat: "Từ loại (Danh từ không đếm được)",
+          exp: "Sau ngoại động từ 'improve' cần một danh từ làm tân ngữ. Không dùng 'participant' (danh từ đếm được số ít chỉ người, nếu dùng phải có 'a' hoặc thêm 's'). 'Participation' (sự tham gia) là danh từ không đếm được hoàn toàn phù hợp.",
+          trans:
+            "Ông Hughes đã chia nhân viên thành các nhóm thảo luận nhỏ để cải thiện sự tham gia trong các cuộc họp.",
+          vocab: [
+            "break up into (phr.v): chia nhỏ thành",
+            "participation (n): sự tham gia",
+            "discussion (n): sự thảo luận",
+          ],
+        },
+        {
+          unit: 3,
+          num: 112,
+          q: "_______ the building's age, the ventilation system must be up-to-date with all safety codes.",
+          opts: {
+            A: "Instead of",
+            B: "Toward",
+            C: "Regardless of",
+            D: "Since",
+          },
+          ans: "C",
+          cat: "Giới từ kép",
+          exp: "'Regardless of + N' nghĩa là 'bất kể, không phân biệt'. Bất kể tuổi thọ của tòa nhà là bao nhiêu, hệ thống thông gió vẫn phải đáp ứng tiêu chuẩn an toàn.",
+          trans:
+            "Bất kể tuổi đời của tòa nhà, hệ thống thông gió phải luôn được cập nhật theo tất cả các quy chuẩn an toàn.",
+          vocab: [
+            "regardless of (prep): bất kể",
+            "ventilation system (n): hệ thống thông gió",
+            "up-to-date (adj): cập nhật, hiện đại",
+          ],
+        },
+        {
+          unit: 3,
+          num: 113,
+          q: "Brenda Tipton is _______ to win the race for mayor because she has the most experience of all the candidates.",
+          opts: {
+            A: "predictable",
+            B: "predict",
+            C: "predicts",
+            D: "predicted",
+          },
+          ans: "D",
+          cat: "Thể bị động (be predicted to V)",
+          exp: "Cấu trúc 'be predicted to V' (được dự đoán là sẽ làm gì). Không dùng tính từ 'predictable' vì nó mang nghĩa 'có thể đoán trước được (nhàm chán)' và không đi với 'to win' theo cấu trúc này.",
+          trans:
+            "Brenda Tipton được dự đoán sẽ giành chiến thắng trong cuộc đua giành chức thị trưởng vì bà có nhiều kinh nghiệm nhất trong số tất cả các ứng cử viên.",
+          vocab: [
+            "mayor (n): thị trưởng",
+            "candidate (n): ứng cử viên",
+            "predict (v): dự đoán",
+          ],
+        },
+        {
+          unit: 3,
+          num: 114,
+          q: "As we expect to receive hundreds of applications for the position, please _______ your resume to two pages.",
+          opts: { A: "limit", B: "follow", C: "refrain", D: "unfold" },
+          ans: "A",
+          cat: "Từ vựng (Động từ)",
+          exp: "Cấu trúc 'limit something to + số lượng' nghĩa là 'giới hạn cái gì ở mức bao nhiêu' (giới hạn sơ yếu lý lịch trong vòng 2 trang).",
+          trans:
+            "Vì chúng tôi dự kiến sẽ nhận được hàng trăm đơn ứng tuyển cho vị trí này, vui lòng giới hạn sơ yếu lý lịch của bạn trong hai trang.",
+          vocab: [
+            "application (n): đơn xin việc",
+            "resume (n): sơ yếu lý lịch",
+            "limit A to B (v): giới hạn A ở mức B",
+          ],
+        },
+        {
+          unit: 3,
+          num: 115,
+          q: "By _______ planning the relocation in advance, we can minimize unexpected expenses and increase efficiency.",
+          opts: { A: "carefully", B: "cares", C: "to care", D: "cared" },
+          ans: "A",
+          cat: "Từ loại (Trạng từ)",
+          exp: "Đứng trước danh động từ 'planning' để bổ nghĩa cho hành động lên kế hoạch cần một trạng từ. 'Carefully planning' = lên kế hoạch một cách cẩn thận.",
+          trans:
+            "Bằng cách lên kế hoạch di dời trước một cách cẩn thận, chúng ta có thể giảm thiểu các chi phí phát sinh ngoài dự kiến và tăng hiệu quả.",
+          vocab: [
+            "relocation (n): sự di dời địa điểm",
+            "in advance (phr): trước",
+            "minimize (v): giảm thiểu",
+          ],
+        },
+        {
+          unit: 3,
+          num: 116,
+          q: "The welcome activity is an opportunity to improve communication _______ volunteers before the project begins.",
+          opts: { A: "among", B: "like", C: "above", D: "under" },
+          ans: "A",
+          cat: "Giới từ",
+          exp: "'Among' (giữa / trong số) dùng cho nhóm từ 3 người/vật trở lên ('volunteers' - các tình nguyện viên).",
+          trans:
+            "Hoạt động chào mừng là cơ hội để cải thiện sự giao tiếp giữa các tình nguyện viên trước khi dự án bắt đầu.",
+          vocab: [
+            "opportunity (n): cơ hội",
+            "among (prep): giữa, trong số",
+            "volunteer (n): tình nguyện viên",
+          ],
+        },
+        {
+          unit: 3,
+          num: 117,
+          q: "Safe-Co has _______ home security products since its founding in 2008.",
+          opts: {
+            A: "corresponded",
+            B: "functioned",
+            C: "manufactured",
+            D: "enrolled",
+          },
+          ans: "C",
+          cat: "Từ vựng (Động từ)",
+          exp: "Tân ngữ là 'home security products' (các sản phẩm an ninh gia đình) nên động từ phù hợp nhất là 'manufactured' (sản xuất).",
+          trans:
+            "Safe-Co đã sản xuất các sản phẩm an ninh gia đình kể từ khi thành lập vào năm 2008.",
+          vocab: [
+            "manufacture (v): sản xuất",
+            "security (n): an ninh",
+            "founding (n): sự thành lập",
+          ],
+        },
+        {
+          unit: 3,
+          num: 118,
+          q: "The travel agent's _______ of the ticket purchase was sent to the customer by e-mail as soon as the payment was made.",
+          opts: {
+            A: "extent",
+            B: "confirmation",
+            C: "awareness",
+            D: "proposal",
+          },
+          ans: "B",
+          cat: "Từ vựng (Danh từ)",
+          exp: "Sau khi thanh toán ('as soon as the payment was made'), đại lý du lịch sẽ gửi email 'xác nhận' việc mua vé ('confirmation').",
+          trans:
+            "Thư xác nhận việc mua vé của đại lý du lịch đã được gửi cho khách hàng qua email ngay sau khi thanh toán được thực hiện.",
+          vocab: [
+            "travel agent (n): đại lý du lịch",
+            "confirmation (n): sự xác nhận",
+            "purchase (n): việc mua hàng",
+          ],
+        },
+        {
+          unit: 3,
+          num: 119,
+          q: "The new policies were implemented in an effort to encourage better _______ among the corporation's departments.",
+          opts: {
+            A: "communication",
+            B: "communicative",
+            C: "communicate",
+            D: "communicator",
+          },
+          ans: "A",
+          cat: "Từ loại (Danh từ)",
+          exp: "Sau tính từ so sánh 'better' cần một danh từ làm tân ngữ cho động từ 'encourage'. 'Communication' (sự giao tiếp/trao đổi thông tin) hợp nghĩa nhất.",
+          trans:
+            "Các chính sách mới đã được triển khai nhằm nỗ lực khuyến khích sự giao tiếp tốt hơn giữa các phòng ban của tập đoàn.",
+          vocab: [
+            "implement (v): triển khai, thực thi",
+            "in an effort to V (phr): nhằm nỗ lực làm gì",
+            "corporation (n): tập đoàn",
+          ],
+        },
+        {
+          unit: 3,
+          num: 120,
+          q: "Because of her hearing disability, Ms. Frasier will be _______ by a sign language expert so she can participate in the meeting.",
+          opts: {
+            A: "convinced",
+            B: "anticipated",
+            C: "accompanied",
+            D: "cautioned",
+          },
+          ans: "C",
+          cat: "Từ vựng (Động từ)",
+          exp: "Cấu trúc 'be accompanied by someone' nghĩa là 'được đi cùng / có ai đó đồng hành hỗ trợ'.",
+          trans:
+            "Do khuyết tật về thính giác, cô Frasier sẽ có một chuyên gia ngôn ngữ ký hiệu đi cùng để cô có thể tham gia cuộc họp.",
+          vocab: [
+            "disability (n): sự khuyết tật",
+            "accompany (v): đi cùng, đồng hành",
+            "sign language (n): ngôn ngữ ký hiệu",
+          ],
+        },
+        {
+          unit: 3,
+          num: 121,
+          q: "Please do not use metal utensils when cooking with the pan _______ its surface doesn't get scratched.",
+          opts: { A: "since", B: "in order to", C: "while", D: "so that" },
+          ans: "D",
+          cat: "Liên từ chỉ mục đích",
+          exp: "Phía sau chỗ trống là một mệnh đề hoàn chỉnh ('its surface doesn't get scratched') chỉ mục đích của hành động phía trước -> dùng 'so that' (để mà). Loại 'in order to' vì theo sau nó phải là V nguyên mẫu.",
+          trans:
+            "Vui lòng không sử dụng dụng cụ bằng kim loại khi nấu ăn với chiếc chảo này để bề mặt của nó không bị trầy xước.",
+          vocab: [
+            "utensil (n): dụng cụ (nhà bếp)",
+            "surface (n): bề mặt",
+            "scratched (adj): bị trầy xước",
+          ],
+        },
+        {
+          unit: 3,
+          num: 122,
+          q: "The easy-to-prepare meal packets come with all the ingredients necessary for an individual dinner _______ boiling water.",
+          opts: { A: "except", B: "despite", C: "elsewhere", D: "past" },
+          ans: "A",
+          cat: "Giới từ",
+          exp: "Gói bữa ăn chế biến sẵn có đầy đủ nguyên liệu cần thiết 'ngoại trừ' nước sôi ('except boiling water').",
+          trans:
+            "Các gói bữa ăn dễ chế biến đi kèm với tất cả các nguyên liệu cần thiết cho một bữa tối cá nhân ngoại trừ nước sôi.",
+          vocab: [
+            "ingredient (n): nguyên liệu, thành phần",
+            "individual (adj): cá nhân",
+            "except (prep): ngoại trừ",
+          ],
+        },
+        {
+          unit: 3,
+          num: 123,
+          q: "Environmentalists were pleased with the community's _______ in increasing recycling in the area.",
+          opts: {
+            A: "indifference",
+            B: "cooperation",
+            C: "allocation",
+            D: "separation",
+          },
+          ans: "B",
+          cat: "Từ vựng (Danh từ)",
+          exp: "Các nhà môi trường hài lòng với 'sự hợp tác' ('cooperation') của cộng đồng trong việc tăng cường tái chế.",
+          trans:
+            "Các nhà môi trường học rất hài lòng với sự hợp tác của cộng đồng trong việc gia tăng hoạt động tái chế tại khu vực.",
+          vocab: [
+            "environmentalist (n): nhà môi trường học",
+            "cooperation (n): sự hợp tác",
+            "recycling (n): việc tái chế",
+          ],
+        },
+        {
+          unit: 3,
+          num: 124,
+          q: "The terms of the licensing agreement are quite _______ and do not require legal experience to be understood.",
+          opts: {
+            A: "energetic",
+            B: "frequent",
+            C: "straightforward",
+            D: "accomplished",
+          },
+          ans: "C",
+          cat: "Từ vựng (Tính từ)",
+          exp: "Vế sau giải thích 'không cần kinh nghiệm pháp lý vẫn có thể hiểu được', nên tính từ mô tả các điều khoản phải là 'straightforward' (đơn giản, rõ ràng, dễ hiểu).",
+          trans:
+            "Các điều khoản của thỏa thuận cấp phép khá rõ ràng, dễ hiểu và không đòi hỏi kinh nghiệm pháp lý để nắm bắt.",
+          vocab: [
+            "terms (n): các điều khoản",
+            "licensing agreement (n): thỏa thuận cấp phép",
+            "straightforward (adj): đơn giản, rõ ràng",
+          ],
+        },
+        {
+          unit: 3,
+          num: 125,
+          q: "Due to a _______ in his political position, the senator no longer supported the proposed law on immigration.",
+          opts: {
+            A: "shift",
+            B: "compliment",
+            C: "shortage",
+            D: "description",
+          },
+          ans: "A",
+          cat: "Từ vựng (Danh từ)",
+          exp: "'A shift in...' nghĩa là 'một sự thay đổi / chuyển dịch trong...'. Do có sự thay đổi trong lập trường chính trị nên vị thượng nghị sĩ không còn ủng hộ dự luật nữa.",
+          trans:
+            "Do có sự thay đổi trong lập trường chính trị, vị thượng nghị sĩ không còn ủng hộ dự luật nhập cư được đề xuất nữa.",
+          vocab: [
+            "shift (n): sự thay đổi, chuyển dịch",
+            "senator (n): thượng nghị sĩ",
+            "immigration (n): sự nhập cư",
+          ],
+        },
+        {
+          unit: 3,
+          num: 126,
+          q: "You may have the merchandise sent directly to your home or pick it up in person at the store, _______ you prefer.",
+          opts: { A: "both", B: "whichever", C: "everybody", D: "another" },
+          ans: "B",
+          cat: "Đại từ quan hệ / Từ hạn định",
+          exp: "Phía trước đưa ra 2 lựa chọn (giao tận nhà HOẶC đến lấy tại cửa hàng), nên dùng 'whichever' (bất cứ lựa chọn nào trong hai cách trên) mà bạn thích hơn.",
+          trans:
+            "Bạn có thể yêu cầu giao hàng trực tiếp đến tận nhà hoặc tự đến lấy tại cửa hàng, tùy theo cách nào bạn thích hơn.",
+          vocab: [
+            "merchandise (n): hàng hóa",
+            "in person (phr): trực tiếp, đích thân",
+            "whichever (pron): bất cứ cái nào",
+          ],
+        },
+        {
+          unit: 3,
+          num: 127,
+          q: "Rather than decorating each conference room _______, the owner of Norris Hall bought furnishings in bulk and gave the spaces the same appearance.",
+          opts: {
+            A: "differing",
+            B: "difference",
+            C: "differently",
+            D: "differs",
+          },
+          ans: "C",
+          cat: "Từ loại (Trạng từ)",
+          exp: "Cần một trạng từ bổ nghĩa cho động từ 'decorating' (trang trí). 'Decorating each conference room differently' = trang trí mỗi phòng hội nghị một cách khác nhau.",
+          trans:
+            "Thay vì trang trí mỗi phòng hội nghị một cách khác nhau, chủ sở hữu của Norris Hall đã mua đồ nội thất số lượng lớn và tạo cho các không gian diện mạo giống hệt nhau.",
+          vocab: [
+            "rather than (conj): thay vì",
+            "in bulk (phr): số lượng lớn",
+            "furnishings (n): đồ đạc nội thất",
+          ],
+        },
+        {
+          unit: 3,
+          num: 128,
+          q: "The bus driver used a side street rather than the main highway, _______ avoiding rush hour traffic.",
+          opts: { A: "such as", B: "than", C: "unless", D: "thereby" },
+          ans: "D",
+          cat: "Trạng từ liên kết",
+          exp: "Cấu trúc '..., thereby + V-ing' mang nghĩa 'nhờ đó mà, do vậy mà...'. Tài xế đi đường nhánh thay vì đường cao tốc chính, nhờ đó tránh được giao thông giờ cao điểm.",
+          trans:
+            "Tài xế xe buýt đã đi vào một con đường nhánh thay vì đường cao tốc chính, nhờ đó tránh được tình trạng kẹt xe giờ cao điểm.",
+          vocab: [
+            "thereby (adv): nhờ đó, do vậy",
+            "rush hour (n): giờ cao điểm",
+            "highway (n): đường cao tốc",
+          ],
+        },
+        {
+          unit: 3,
+          num: 129,
+          q: "The company's new software for online banking is _______ with most smartphone models.",
+          opts: {
+            A: "tangible",
+            B: "extensive",
+            C: "mechanical",
+            D: "compatible",
+          },
+          ans: "D",
+          cat: "Từ vựng & Giới từ đi kèm",
+          exp: "Tính từ 'compatible' luôn đi với giới từ 'with' ('compatible with' = tương thích với thiết bị/phần mềm nào).",
+          trans:
+            "Phần mềm ngân hàng trực tuyến mới của công ty tương thích với hầu hết các mẫu điện thoại thông minh.",
+          vocab: [
+            "compatible with (adj): tương thích với",
+            "software (n): phần mềm",
+            "model (n): mẫu mã, dòng sản phẩm",
+          ],
+        },
+        {
+          unit: 3,
+          num: 130,
+          q: "Should you find any manufacturing _______ in your ultra-high-definition television, contact the place of purchase as soon as possible.",
+          opts: {
+            A: "premises",
+            B: "defects",
+            C: "impacts",
+            D: "distractions",
+          },
+          ans: "B",
+          cat: "Từ vựng (Danh từ)",
+          exp: "Cụm danh từ cố định 'manufacturing defects' nghĩa là 'các lỗi kỹ thuật từ nhà sản xuất'.",
+          trans:
+            "Nếu bạn phát hiện bất kỳ lỗi sản xuất nào trên chiếc tivi độ phân giải siêu cao của mình, hãy liên hệ với nơi mua hàng càng sớm càng tốt.",
+          vocab: [
+            "manufacturing defect (n): lỗi sản xuất",
+            "purchase (n): việc mua hàng",
+            "premises (n): cơ sở, khuôn viên",
+          ],
+        },
+
+        // ==================== UNIT 4 (101 - 130) ====================
+        {
+          unit: 4,
+          num: 101,
+          q: "The projector borrowed by Ms. Reid is _______ back to the IT department by five o'clock.",
+          opts: { A: "due", B: "set", C: "paid", D: "prompt" },
+          ans: "A",
+          cat: "Từ vựng (Tính từ)",
+          exp: "Cấu trúc 'be due back' (đến hạn phải trả lại). Máy chiếu do cô Reid mượn đến hạn phải trả lại cho phòng IT trước 5 giờ.",
+          trans:
+            "Chiếc máy chiếu do cô Reid mượn đến hạn phải trả lại cho bộ phận CNTT trước năm giờ chiều.",
+          vocab: [
+            "projector (n): máy chiếu",
+            "due (adj): đến hạn",
+            "department (n): phòng ban, bộ phận",
+          ],
+        },
+        {
+          unit: 4,
+          num: 102,
+          q: "Audience members were impressed that the question asked of the candidate was answered _______.",
+          opts: { A: "clearly", B: "clear", C: "cleared", D: "clearing" },
+          ans: "A",
+          cat: "Từ loại (Trạng từ)",
+          exp: "Đứng cuối câu sau động từ bị động 'was answered' cần một trạng từ bổ nghĩa cho cách thức trả lời ('answered clearly' - được trả lời một cách rõ ràng).",
+          trans:
+            "Khán giả rất ấn tượng vì câu hỏi đặt ra cho ứng cử viên đã được trả lời một cách rõ ràng.",
+          vocab: [
+            "audience (n): khán giả",
+            "impressed (adj): ấn tượng",
+            "clearly (adv): một cách rõ ràng",
+          ],
+        },
+        {
+          unit: 4,
+          num: 103,
+          q: "Before you distribute the report, ask Ms. Burns to check that _______ has all the necessary information.",
+          opts: { A: "them", B: "our", C: "he", D: "it" },
+          ans: "D",
+          cat: "Đại từ nhân xưng",
+          exp: "Cần một đại từ làm chủ ngữ cho động từ 'has' và thay thế cho danh từ số ít chỉ vật ở vế trước là 'the report' -> dùng 'it'.",
+          trans:
+            "Trước khi bạn phân phát bản báo cáo, hãy nhờ cô Burns kiểm tra xem nó đã có đầy đủ thông tin cần thiết chưa.",
+          vocab: [
+            "distribute (v): phân phát",
+            "report (n): bản báo cáo",
+            "necessary (adj): cần thiết",
+          ],
+        },
+        {
+          unit: 4,
+          num: 104,
+          q: "The slow _______ of the fire department resulted in severe damage to the building.",
+          opts: {
+            A: "duration",
+            B: "response",
+            C: "treatment",
+            D: "maintenance",
+          },
+          ans: "B",
+          cat: "Từ vựng (Danh từ)",
+          exp: "Cụm từ 'slow response of the fire department' = sự phản ứng / ứng phó chậm trễ của sở cứu hỏa.",
+          trans:
+            "Sự ứng phó chậm trễ của sở cứu hỏa đã dẫn đến thiệt hại nghiêm trọng cho tòa nhà.",
+          vocab: [
+            "response (n): sự phản hồi, ứng phó",
+            "result in (phr.v): dẫn đến, gây ra",
+            "severe (adj): nghiêm trọng",
+          ],
+        },
+        {
+          unit: 4,
+          num: 105,
+          q: "Anyone who participates _______ the city's Annual Baking Competition will receive a coupon from Fresh Supermarket.",
+          opts: { A: "to", B: "beside", C: "in", D: "among" },
+          ans: "C",
+          cat: "Giới từ đi kèm động từ",
+          exp: "Động từ 'participate' luôn đi với giới từ 'in' ('participate in' = tham gia vào sự kiện/cuộc thi nào).",
+          trans:
+            "Bất kỳ ai tham gia Cuộc thi Làm bánh Thường niên của thành phố sẽ nhận được phiếu giảm giá từ Siêu thị Fresh.",
+          vocab: [
+            "participate in (v): tham gia vào",
+            "annual (adj): thường niên, hàng năm",
+            "coupon (n): phiếu giảm giá",
+          ],
+        },
+        {
+          unit: 4,
+          num: 106,
+          q: "Please tell _______ that the workshop has been moved to Conference Room 402.",
+          opts: {
+            A: "whatever",
+            B: "themselves",
+            C: "everyone",
+            D: "something",
+          },
+          ans: "C",
+          cat: "Đại từ bất định",
+          exp: "Sau động từ 'tell' cần một đại từ chỉ người làm tân ngữ ('tell everyone' - hãy báo cho mọi người biết).",
+          trans:
+            "Vui lòng thông báo cho mọi người biết rằng buổi hội thảo đã được chuyển sang Phòng Hội nghị 402.",
+          vocab: [
+            "everyone (pron): mọi người",
+            "move (v): chuyển sang",
+            "conference room (n): phòng hội nghị",
+          ],
+        },
+        {
+          unit: 4,
+          num: 107,
+          q: "Heron Glassworks _______ student groups of all ages for weekday tours of its warehouse and production floor.",
+          opts: { A: "conveys", B: "preserves", C: "encloses", D: "welcomes" },
+          ans: "D",
+          cat: "Từ vựng (Động từ)",
+          exp: "'Welcome' nghĩa là 'chào đón'. Công ty Heron Glassworks chào đón các nhóm học sinh ở mọi lứa tuổi đến tham quan.",
+          trans:
+            "Heron Glassworks chào đón các nhóm học sinh ở mọi lứa tuổi đến tham quan nhà kho và khu vực sản xuất vào các ngày trong tuần.",
+          vocab: [
+            "welcome (v): chào đón",
+            "warehouse (n): nhà kho",
+            "production floor (n): khu vực/sàn sản xuất",
+          ],
+        },
+        {
+          unit: 4,
+          num: 108,
+          q: "Meal vouchers were given to Beta Airways passengers _______ were not able to depart on time because of a booking error.",
+          opts: { A: "when", B: "because", C: "recently", D: "who" },
+          ans: "D",
+          cat: "Đại từ quan hệ",
+          exp: "Danh từ đứng trước là 'passengers' (hành khách - chỉ người) và ngay sau chỗ trống là động từ 'were', nên dùng đại từ quan hệ 'who'.",
+          trans:
+            "Phiếu ăn uống đã được trao cho những hành khách của hãng hàng không Beta Airways, những người không thể khởi hành đúng giờ do lỗi đặt vé.",
+          vocab: [
+            "voucher (n): phiếu quà tặng/ăn uống",
+            "depart (v): khởi hành",
+            "on time (phr): đúng giờ",
+          ],
+        },
+        {
+          unit: 4,
+          num: 109,
+          q: "Brandy can make withdrawals from any Sails Bank branch, but she usually visits the _______ one.",
+          opts: { A: "closing", B: "closely", C: "closure", D: "closest" },
+          ans: "D",
+          cat: "So sánh nhất của tính từ",
+          exp: "Phía trước có mạo từ 'the' và phía sau là đại từ 'one' (thay cho 'branch'), cần tính từ so sánh nhất 'closest' (chi nhánh gần nhất).",
+          trans:
+            "Brandy có thể rút tiền từ bất kỳ chi nhánh nào của Ngân hàng Sails, nhưng cô ấy thường đến chi nhánh gần nhất.",
+          vocab: [
+            "withdrawal (n): sự rút tiền",
+            "branch (n): chi nhánh",
+            "closest (adj): gần nhất",
+          ],
+        },
+        {
+          unit: 4,
+          num: 110,
+          q: "To ensure that old appliances are disposed of properly, the city will offer free removal of these devices _______ April 2 and April 5.",
+          opts: { A: "into", B: "from", C: "until", D: "between" },
+          ans: "D",
+          cat: "Cặp giới từ (between A and B)",
+          exp: "Phía sau có hai mốc thời gian nối với nhau bằng liên từ 'and' ('April 2 and April 5') -> bắt buộc dùng 'between' (cấu trúc 'between A and B'). Lưu ý: 'from' phải đi với 'to'.",
+          trans:
+            "Để đảm bảo các thiết bị gia dụng cũ được xử lý đúng cách, thành phố sẽ cung cấp dịch vụ thu dọn miễn phí các thiết bị này từ ngày 2 tháng 4 đến ngày 5 tháng 4.",
+          vocab: [
+            "appliance (n): thiết bị gia dụng",
+            "dispose of (phr.v): vứt bỏ, xử lý",
+            "removal (n): sự dọn dẹp, loại bỏ",
+          ],
+        },
+        {
+          unit: 4,
+          num: 111,
+          q: "Please be seated according to the _______ name cards that have been placed on each table.",
+          opts: {
+            A: "personalizes",
+            B: "personalizing",
+            C: "personalize",
+            D: "personalized",
+          },
+          ans: "D",
+          cat: "Từ loại (Quá khứ phân từ làm tính từ)",
+          exp: "Cần một tính từ đứng trước cụm danh từ 'name cards' (thẻ tên). 'Personalized' (được cá nhân hóa / in tên riêng từng người) mang nghĩa bị động nên dùng đuôi '-ed'.",
+          trans:
+            "Vui lòng ngồi vào chỗ theo các thẻ tên riêng đã được đặt sẵn trên mỗi bàn.",
+          vocab: [
+            "be seated (phr): ngồi vào chỗ",
+            "according to (prep): theo như",
+            "personalized (adj): được cá nhân hóa",
+          ],
+        },
+        {
+          unit: 4,
+          num: 112,
+          q: "During the music festival, goods will be sold only by _______ vendors who have registered with the planners.",
+          opts: {
+            A: "controversial",
+            B: "increased",
+            C: "confident",
+            D: "approved",
+          },
+          ans: "D",
+          cat: "Từ vựng (Tính từ)",
+          exp: "'Approved vendors' = các nhà cung cấp / người bán hàng đã được phê duyệt (vì họ đã đăng ký với ban tổ chức).",
+          trans:
+            "Trong suốt lễ hội âm nhạc, hàng hóa sẽ chỉ được bán bởi những người bán hàng đã được phê duyệt, những người đã đăng ký với ban tổ chức.",
+          vocab: [
+            "vendor (n): người bán hàng, nhà cung cấp",
+            "approved (adj): được phê duyệt, chấp thuận",
+            "register (v): đăng ký",
+          ],
+        },
+        {
+          unit: 4,
+          num: 113,
+          q: "Many voters in this city are uninterested, and only about 15% of them are _______ active.",
+          opts: {
+            A: "politically",
+            B: "political",
+            C: "politics",
+            D: "politician",
+          },
+          ans: "A",
+          cat: "Từ loại (Trạng từ bổ nghĩa tính từ)",
+          exp: "Đứng trước tính từ 'active' (tích cực, năng động) cần một trạng từ bổ nghĩa. 'Politically active' = tích cực tham gia các hoạt động chính trị.",
+          trans:
+            "Nhiều cử tri ở thành phố này không mấy quan tâm, và chỉ khoảng 15% trong số họ hoạt động chính trị tích cực.",
+          vocab: [
+            "uninterested (adj): không quan tâm, thờ ơ",
+            "politically (adv): về mặt chính trị",
+            "active (adj): tích cực",
+          ],
+        },
+        {
+          unit: 4,
+          num: 114,
+          q: "The malfunction of the printer was _______ a component that had been inserted incorrectly during the assembly process.",
+          opts: { A: "due to", B: "whereas", C: "as though", D: "instead of" },
+          ans: "A",
+          cat: "Giới từ kép chỉ nguyên nhân",
+          exp: "Cấu trúc 'be due to + N' nghĩa là 'là do nguyên nhân gì'. Sự cố máy in là do một linh kiện bị lắp sai.",
+          trans:
+            "Sự cố trục trặc của máy in là do một linh kiện đã bị lắp sai trong quá trình lắp ráp.",
+          vocab: [
+            "malfunction (n): sự trục trặc, hỏng hóc",
+            "component (n): linh kiện, bộ phận",
+            "assembly process (n): quá trình lắp ráp",
+          ],
+        },
+        {
+          unit: 4,
+          num: 115,
+          q: "_______, the cabin will be rented out for the entire month, but the owner would agree to four weekly rentals instead.",
+          opts: {
+            A: "Reluctantly",
+            B: "Absolutely",
+            C: "Ideally",
+            D: "Mutually",
+          },
+          ans: "C",
+          cat: "Từ vựng (Trạng từ)",
+          exp: "'Ideally' (lý tưởng nhất là): Lý tưởng nhất là căn nhà gỗ sẽ được cho thuê trọn cả tháng, nhưng chủ nhà vẫn đồng ý cho thuê theo 4 tuần lẻ.",
+          trans:
+            "Lý tưởng nhất là căn nhà gỗ sẽ được cho thuê trọn cả tháng, nhưng chủ nhà cũng sẽ đồng ý cho thuê bốn lần theo tuần thay thế.",
+          vocab: [
+            "ideally (adv): lý tưởng nhất là",
+            "rent out (phr.v): cho thuê",
+            "entire (adj): toàn bộ",
+          ],
+        },
+        {
+          unit: 4,
+          num: 116,
+          q: "The test will _______ prove whether or not the patient has the disease.",
+          opts: { A: "like", B: "liking", C: "likable", D: "likely" },
+          ans: "D",
+          cat: "Từ loại (Trạng từ)",
+          exp: "Giữa trợ động từ 'will' và động từ nguyên mẫu 'prove' cần một trạng từ bổ nghĩa. 'Likely' vừa là tính từ vừa là trạng từ mang nghĩa 'có khả năng, có lẽ'.",
+          trans:
+            "Xét nghiệm này có khả năng sẽ chứng minh được liệu bệnh nhân có mắc căn bệnh đó hay không.",
+          vocab: [
+            "likely (adv/adj): có khả năng, có thể",
+            "prove (v): chứng minh",
+            "patient (n): bệnh nhân",
+          ],
+        },
+        {
+          unit: 4,
+          num: 117,
+          q: "No passengers are allowed on board _______ the aircraft's door has been closed.",
+          opts: { A: "that", B: "despite", C: "once", D: "rather" },
+          ans: "C",
+          cat: "Liên từ chỉ thời gian",
+          exp: "Phía sau là mệnh đề ('the aircraft's door has been closed'), cần liên từ 'once' (một khi, ngay khi). Một khi cửa máy bay đã đóng thì không hành khách nào được phép lên máy bay nữa.",
+          trans:
+            "Không hành khách nào được phép lên máy bay một khi cửa máy bay đã được đóng lại.",
+          vocab: [
+            "on board (phr): ở trên tàu/máy bay",
+            "once (conj): một khi, ngay khi",
+            "aircraft (n): máy bay",
+          ],
+        },
+        {
+          unit: 4,
+          num: 118,
+          q: "The participants will be judged on _______ performance, and the winners will be announced later in the awards ceremony.",
+          opts: {
+            A: "athletically",
+            B: "athletic",
+            C: "athletes",
+            D: "athlete",
+          },
+          ans: "B",
+          cat: "Từ loại (Tính từ)",
+          exp: "Đứng trước danh từ 'performance' (màn trình diễn/thành tích) cần một tính từ bổ nghĩa. 'Athletic performance' = thành tích thể thao.",
+          trans:
+            "Những người tham gia sẽ được đánh giá dựa trên thành tích thể thao và những người chiến thắng sẽ được công bố sau đó trong lễ trao giải.",
+          vocab: [
+            "judge (v): đánh giá, chấm điểm",
+            "athletic (adj): thuộc về thể thao",
+            "awards ceremony (n): lễ trao giải",
+          ],
+        },
+        {
+          unit: 4,
+          num: 119,
+          q: "An extensive _______ conducted by Ivanex Communications revealed that Internet speed was one of the most important factors to customers.",
+          opts: { A: "inventory", B: "strategy", C: "coverage", D: "survey" },
+          ans: "D",
+          cat: "Từ vựng (Danh từ)",
+          exp: "Cụm từ 'conduct a survey' = thực hiện một cuộc khảo sát. Khảo sát cho thấy tốc độ Internet là yếu tố quan trọng nhất đối với khách hàng.",
+          trans:
+            "Một cuộc khảo sát quy mô rộng do Ivanex Communications thực hiện đã tiết lộ rằng tốc độ Internet là một trong những yếu tố quan trọng nhất đối với khách hàng.",
+          vocab: [
+            "extensive (adj): rộng rãi, quy mô lớn",
+            "survey (n): cuộc khảo sát",
+            "reveal (v): tiết lộ, cho thấy",
+          ],
+        },
+        {
+          unit: 4,
+          num: 120,
+          q: "_______ the volleyball tournament is held indoors or outdoors depends heavily on the weather forecast for that day.",
+          opts: { A: "Because", B: "Although", C: "Whether", D: "Whereas" },
+          ans: "C",
+          cat: "Mệnh đề danh ngữ (Whether ... or ...)",
+          exp: "Phía sau có từ 'or' ('indoors or outdoors') và cả cụm đứng đầu câu làm chủ ngữ cho động từ 'depends' -> dùng liên từ 'Whether' ('Whether A or B' = Liệu rằng A hay B).",
+          trans:
+            "Việc giải đấu bóng chuyền được tổ chức trong nhà hay ngoài trời phụ thuộc rất nhiều vào dự báo thời tiết của ngày hôm đó.",
+          vocab: [
+            "tournament (n): giải đấu",
+            "whether (conj): liệu rằng",
+            "weather forecast (n): dự báo thời tiết",
+          ],
+        },
+        {
+          unit: 4,
+          num: 121,
+          q: "Ms. May reminded us that the agreement was only _______ because it had not been approved yet.",
+          opts: {
+            A: "perishable",
+            B: "imperative",
+            C: "accustomed",
+            D: "tentative",
+          },
+          ans: "D",
+          cat: "Từ vựng (Tính từ)",
+          exp: "Vế sau giải thích 'vì nó vẫn chưa được phê duyệt', nên tính từ mô tả thỏa thuận phải là 'tentative' (tạm thời, dự kiến, chưa chính thức).",
+          trans:
+            "Cô May nhắc nhở chúng tôi rằng thỏa thuận này mới chỉ là tạm thời vì nó vẫn chưa được phê duyệt.",
+          vocab: [
+            "agreement (n): thỏa thuận",
+            "tentative (adj): tạm thời, dự kiến",
+            "approve (v): phê duyệt",
+          ],
+        },
+        {
+          unit: 4,
+          num: 122,
+          q: "_______ joined Vince's Gym, Mr. Pinter could attend group classes and health counseling sessions for free.",
+          opts: { A: "Being", B: "Having", C: "To have", D: "To be" },
+          ans: "B",
+          cat: "Phân từ hoàn thành (Having + V3/ed)",
+          exp: "Rút gọn mệnh đề trạng ngữ cùng chủ ngữ khi hành động xảy ra trước một hành động khác trong quá khứ: 'Having + V3/ed' ('Having joined' = Sau khi đã gia nhập).",
+          trans:
+            "Sau khi gia nhập phòng tập Vince's Gym, ông Pinter đã có thể tham gia các lớp học nhóm và các buổi tư vấn sức khỏe miễn phí.",
+          vocab: [
+            "attend (v): tham dự",
+            "counseling (n): sự tư vấn",
+            "for free (phr): miễn phí",
+          ],
+        },
+        {
+          unit: 4,
+          num: 123,
+          q: "_______ the right environmental conditions, this tree will yield fresh fruit for most of the year.",
+          opts: { A: "With", B: "About", C: "On", D: "As" },
+          ans: "A",
+          cat: "Giới từ chỉ điều kiện",
+          exp: "Giới từ 'With' đứng đầu câu mang nghĩa 'Với / Nếu có...' ('With the right environmental conditions' = Với điều kiện môi trường thích hợp).",
+          trans:
+            "Với điều kiện môi trường thích hợp, loài cây này sẽ cho trái tươi trong hầu hết cả năm.",
+          vocab: [
+            "environmental conditions (n): điều kiện môi trường",
+            "yield (v): sinh lợi, cho ra (trái/sản lượng)",
+            "fresh (adj): tươi",
+          ],
+        },
+        {
+          unit: 4,
+          num: 124,
+          q: "Marketers believed that if the packaging were more _______ colored, consumers might pay more attention to the product.",
+          opts: { A: "variously", B: "vary", C: "various", D: "variety" },
+          ans: "A",
+          cat: "Từ loại (Trạng từ bổ nghĩa tính từ)",
+          exp: "Đứng trước tính từ phân từ 'colored' (được tô màu) cần một trạng từ bổ nghĩa. 'More variously colored' = có màu sắc đa dạng hơn.",
+          trans:
+            "Các nhà tiếp thị tin rằng nếu bao bì có màu sắc đa dạng hơn, người tiêu dùng có thể sẽ chú ý đến sản phẩm nhiều hơn.",
+          vocab: [
+            "packaging (n): bao bì",
+            "variously (adv): một cách đa dạng",
+            "pay attention to (phr): chú ý đến",
+          ],
+        },
+        {
+          unit: 4,
+          num: 125,
+          q: "_______ the parking lot is closed, both employees and customers will have to make use of street parking.",
+          opts: { A: "As if", B: "Until", C: "So that", D: "While" },
+          ans: "D",
+          cat: "Liên từ chỉ thời gian",
+          exp: "'While' (trong khi, trong thời gian) diễn tả hai sự việc xảy ra song song: Trong thời gian bãi đỗ xe đóng cửa, nhân viên và khách hàng sẽ phải đỗ xe trên đường.",
+          trans:
+            "Trong thời gian bãi đỗ xe đóng cửa, cả nhân viên và khách hàng sẽ phải tận dụng chỗ đỗ xe trên đường phố.",
+          vocab: [
+            "parking lot (n): bãi đỗ xe",
+            "make use of (phr): tận dụng",
+            "while (conj): trong khi",
+          ],
+        },
+        {
+          unit: 4,
+          num: 126,
+          q: "Employees are asked to pair up with another _______ and check each other at the predetermined meeting place during fire drills.",
+          opts: {
+            A: "reliance",
+            B: "supervision",
+            C: "colleague",
+            D: "calculator",
+          },
+          ans: "C",
+          cat: "Từ vựng (Danh từ)",
+          exp: "Nhân viên được yêu cầu ghép cặp với một 'đồng nghiệp' khác ('another colleague') trong buổi diễn tập phòng cháy chữa cháy.",
+          trans:
+            "Nhân viên được yêu cầu ghép cặp với một đồng nghiệp khác và kiểm tra lẫn nhau tại điểm tập kết đã định trước trong các buổi diễn tập chữa cháy.",
+          vocab: [
+            "pair up with (phr.v): ghép cặp với",
+            "colleague (n): đồng nghiệp",
+            "fire drill (n): diễn tập phòng cháy chữa cháy",
+          ],
+        },
+        {
+          unit: 4,
+          num: 127,
+          q: "The city hosted a display of _______ fireworks to celebrate the 100th anniversary of its founding.",
+          opts: {
+            A: "impressive",
+            B: "impress",
+            C: "impression",
+            D: "impressively",
+          },
+          ans: "A",
+          cat: "Từ loại (Tính từ)",
+          exp: "Đứng trước danh từ 'fireworks' (pháo hoa) cần một tính từ bổ nghĩa. 'Impressive fireworks' = màn pháo hoa ấn tượng.",
+          trans:
+            "Thành phố đã tổ chức một màn trình diễn pháo hoa ấn tượng để kỷ niệm 100 năm ngày thành lập.",
+          vocab: [
+            "impressive (adj): ấn tượng",
+            "fireworks (n): pháo hoa",
+            "anniversary (n): lễ kỷ niệm",
+          ],
+        },
+        {
+          unit: 4,
+          num: 128,
+          q: "The restrooms on the second floor are _______ unavailable because one of the sinks is being replaced.",
+          opts: {
+            A: "temporarily",
+            B: "previously",
+            C: "respectively",
+            D: "vitally",
+          },
+          ans: "A",
+          cat: "Từ vựng (Trạng từ)",
+          exp: "Vì bồn rửa đang được thay thế ('is being replaced') nên nhà vệ sinh chỉ 'tạm thời' không sử dụng được ('temporarily unavailable').",
+          trans:
+            "Nhà vệ sinh trên tầng hai tạm thời không sử dụng được vì một trong các bồn rửa đang được thay thế.",
+          vocab: [
+            "temporarily (adv): tạm thời",
+            "unavailable (adj): không có sẵn, không dùng được",
+            "replace (v): thay thế",
+          ],
+        },
+        {
+          unit: 4,
+          num: 129,
+          q: "The receptionists change the artwork in the clinic's waiting room _______ and rearrange the layout of the furniture.",
+          opts: {
+            A: "periodically",
+            B: "relatively",
+            C: "tightly",
+            D: "narrowly",
+          },
+          ans: "A",
+          cat: "Từ vựng (Trạng từ)",
+          exp: "'Periodically' nghĩa là 'định kỳ, theo chu kỳ'. Nhân viên lễ tân định kỳ thay đổi tranh ảnh trong phòng chờ.",
+          trans:
+            "Các nhân viên lễ tân định kỳ thay đổi các tác phẩm nghệ thuật trong phòng chờ của phòng khám và sắp xếp lại bố cục nội thất.",
+          vocab: [
+            "receptionist (n): nhân viên lễ tân",
+            "periodically (adv): định kỳ",
+            "rearrange (v): sắp xếp lại",
+          ],
+        },
+        {
+          unit: 4,
+          num: 130,
+          q: "On next week's radio program, our host will interview Kristen Dabney about her time working as an _______ for a UN official.",
+          opts: {
+            A: "interpretation",
+            B: "interpret",
+            C: "interpreting",
+            D: "interpreter",
+          },
+          ans: "D",
+          cat: "Từ loại (Danh từ chỉ người)",
+          exp: "Sau 'working as an' (làm việc với tư cách là một...) cần một danh từ chỉ nghề nghiệp của con người. 'Interpreter' = thông dịch viên.",
+          trans:
+            "Trên chương trình phát thanh tuần tới, người dẫn chương trình của chúng tôi sẽ phỏng vấn Kristen Dabney về thời gian cô làm thông dịch viên cho một quan chức Liên Hợp Quốc.",
+          vocab: [
+            "host (n): người dẫn chương trình",
+            "interpreter (n): thông dịch viên",
+            "official (n): quan chức",
+          ],
+        },
+
+        // ==================== UNIT 5 (101 - 130) ====================
+        {
+          unit: 5,
+          num: 101,
+          q: "_______ the difference between the two brands is small, most consumers purchase the cheaper one.",
+          opts: { A: "Until", B: "Because", C: "Before", D: "So" },
+          ans: "B",
+          cat: "Liên từ chỉ nguyên nhân",
+          exp: "Mối quan hệ nguyên nhân - kết quả: 'Bởi vì' sự khác biệt giữa hai thương hiệu là rất nhỏ, nên hầu hết người tiêu dùng đều mua loại rẻ hơn -> dùng 'Because'.",
+          trans:
+            "Bởi vì sự khác biệt giữa hai thương hiệu là không đáng kể nên hầu hết người tiêu dùng đều mua loại rẻ hơn.",
+          vocab: [
+            "brand (n): thương hiệu",
+            "consumer (n): người tiêu dùng",
+            "purchase (v): mua",
+          ],
+        },
+        {
+          unit: 5,
+          num: 102,
+          q: "Now that the annual conference is finished, the planning committee will hold meetings _______ often.",
+          opts: { A: "below", B: "less", C: "decreased", D: "lower" },
+          ans: "B",
+          cat: "So sánh kém với trạng từ",
+          exp: "Đứng trước trạng từ 'often' (thường xuyên) để tạo thành cụm so sánh 'less often' (ít thường xuyên hơn).",
+          trans:
+            "Vì hội nghị thường niên đã kết thúc nên ủy ban lập kế hoạch sẽ tổ chức các cuộc họp ít thường xuyên hơn.",
+          vocab: [
+            "now that (conj): bởi vì, giờ thì",
+            "committee (n): ủy ban",
+            "less often (adv): ít thường xuyên hơn",
+          ],
+        },
+        {
+          unit: 5,
+          num: 103,
+          q: "In an attempt _______ sustainable energy, city officials have had solar panels affixed to some public buildings.",
+          opts: {
+            A: "generates",
+            B: "generated",
+            C: "generating",
+            D: "to generate",
+          },
+          ans: "D",
+          cat: "Cấu trúc danh từ + to V",
+          exp: "Cụm từ cố định 'in an attempt to V' mang nghĩa 'trong nỗ lực làm gì đó'.",
+          trans:
+            "Trong nỗ lực tạo ra năng lượng bền vững, các quan chức thành phố đã cho lắp đặt các tấm pin mặt trời trên một số tòa nhà công cộng.",
+          vocab: [
+            "in an attempt to V (phr): nỗ lực làm gì",
+            "sustainable (adj): bền vững",
+            "solar panel (n): tấm pin năng lượng mặt trời",
+          ],
+        },
+        {
+          unit: 5,
+          num: 104,
+          q: "According to consumers, using the new website is not _______ than calling the help center directly.",
+          opts: { A: "easily", B: "easy", C: "easiest", D: "easier" },
+          ans: "D",
+          cat: "So sánh hơn của tính từ",
+          exp: "Phía sau có từ 'than' và động từ chính là 'is not', nên cần tính từ dạng so sánh hơn là 'easier' (dễ dàng hơn).",
+          trans:
+            "Theo người tiêu dùng, việc sử dụng trang web mới không dễ dàng hơn so với việc gọi trực tiếp cho trung tâm trợ giúp.",
+          vocab: [
+            "according to (prep): theo như",
+            "help center (n): trung tâm trợ giúp",
+            "directly (adv): trực tiếp",
+          ],
+        },
+        {
+          unit: 5,
+          num: 105,
+          q: "After hours of searching, the source of the water leak was _______ identified by the plumber.",
+          opts: { A: "routinely", B: "finally", C: "rarely", D: "strongly" },
+          ans: "B",
+          cat: "Từ vựng (Trạng từ)",
+          exp: "Sau nhiều giờ tìm kiếm ('After hours of searching'), nguồn rò rỉ nước 'cuối cùng' ('finally') đã được thợ sửa ống nước tìm ra.",
+          trans:
+            "Sau nhiều giờ tìm kiếm, nguồn rò rỉ nước cuối cùng đã được người thợ sửa ống nước xác định.",
+          vocab: [
+            "source (n): nguồn",
+            "finally (adv): cuối cùng",
+            "plumber (n): thợ sửa ống nước",
+          ],
+        },
+        {
+          unit: 5,
+          num: 106,
+          q: "City officials are still debating Irving Enterprises' request _______ the outdated building.",
+          opts: {
+            A: "demolishes",
+            B: "have demolished",
+            C: "to demolish",
+            D: "demolished",
+          },
+          ans: "C",
+          cat: "Cấu trúc danh từ + to V",
+          exp: "Danh từ 'request' đi với động từ nguyên mẫu có 'to' ('request to V' = yêu cầu / đề nghị được làm gì).",
+          trans:
+            "Các quan chức thành phố vẫn đang tranh luận về yêu cầu phá dỡ tòa nhà lỗi thời của công ty Irving Enterprises.",
+          vocab: [
+            "debate (v): tranh luận, thảo luận",
+            "request (n): lời yêu cầu",
+            "outdated (adj): lỗi thời, cũ kỹ",
+          ],
+        },
+        {
+          unit: 5,
+          num: 107,
+          q: "Highway 16 was widened over the summer to _______ the heavier traffic that is using the roadway.",
+          opts: { A: "duplicate", B: "extend", C: "accommodate", D: "propose" },
+          ans: "C",
+          cat: "Từ vựng (Động từ)",
+          exp: "'Accommodate' nghĩa là 'đáp ứng / chứa được' (mở rộng đường cao tốc để đáp ứng lưu lượng giao thông đông đúc hơn).",
+          trans:
+            "Quốc lộ 16 đã được mở rộng trong suốt mùa hè để đáp ứng lưu lượng giao thông đông đúc hơn đang lưu thông trên tuyến đường này.",
+          vocab: [
+            "widen (v): mở rộng",
+            "accommodate (v): đáp ứng, chứa được",
+            "traffic (n): giao thông",
+          ],
+        },
+        {
+          unit: 5,
+          num: 108,
+          q: "To combat mental illness, the clinic will take a more comprehensive _______ than it did in the past.",
+          opts: {
+            A: "approachably",
+            B: "approached",
+            C: "approach",
+            D: "approachable",
+          },
+          ans: "C",
+          cat: "Từ loại (Danh từ)",
+          exp: "Sau mạo từ 'a' và tính từ 'more comprehensive' cần một danh từ làm tân ngữ cho động từ 'take'. Cụm 'take an approach' = áp dụng một phương pháp tiếp cận.",
+          trans:
+            "Để chống lại bệnh tâm lý, phòng khám sẽ áp dụng một phương pháp tiếp cận toàn diện hơn so với trước đây.",
+          vocab: [
+            "combat (v): chống lại",
+            "comprehensive (adj): toàn diện",
+            "approach (n): phương pháp tiếp cận",
+          ],
+        },
+        {
+          unit: 5,
+          num: 109,
+          q: "The catalog for the gallery contains an accurate _______ of each piece of artwork that is offered for sale.",
+          opts: {
+            A: "described",
+            B: "description",
+            C: "descriptive",
+            D: "describes",
+          },
+          ans: "B",
+          cat: "Từ loại (Danh từ)",
+          exp: "Sau mạo từ 'an' và tính từ 'accurate' cần một danh từ. 'Description' (sự mô tả) là danh từ duy nhất.",
+          trans:
+            "Danh mục của phòng trưng bày có chứa phần mô tả chính xác về từng tác phẩm nghệ thuật được chào bán.",
+          vocab: [
+            "accurate (adj): chính xác",
+            "description (n): sự mô tả",
+            "artwork (n): tác phẩm nghệ thuật",
+          ],
+        },
+        {
+          unit: 5,
+          num: 110,
+          q: "As a _______ for making contracts with a lot of new clients, Mr. Skinner was given additional vacation days.",
+          opts: { A: "reward", B: "progress", C: "solution", D: "routine" },
+          ans: "A",
+          cat: "Từ vựng (Danh từ)",
+          exp: "Cụm 'As a reward for...' nghĩa là 'Như một phần thưởng cho việc gì...'. Ông Skinner được thưởng thêm ngày nghỉ phép vì ký được nhiều hợp đồng mới.",
+          trans:
+            "Như một phần thưởng cho việc ký kết hợp đồng với nhiều khách hàng mới, ông Skinner đã được tặng thêm ngày nghỉ phép.",
+          vocab: [
+            "reward (n): phần thưởng",
+            "contract (n): hợp đồng",
+            "additional (adj): thêm, bổ sung",
+          ],
+        },
+        {
+          unit: 5,
+          num: 111,
+          q: "A buffet dinner is available to the guests, so they may eat _______ looks appetizing to them without having to place an order.",
+          opts: { A: "anyway", B: "whatever", C: "wherever", D: "anything" },
+          ans: "B",
+          cat: "Đại từ quan hệ ghép (Nominal Relative Clause)",
+          exp: "Cần một đại từ vừa làm tân ngữ cho động từ 'eat' vừa làm chủ ngữ cho động từ 'looks' -> dùng 'whatever' (= anything that: bất cứ món gì mà trông ngon miệng). Không dùng 'anything' vì thiếu đại từ quan hệ 'that' nối với 'looks'.",
+          trans:
+            "Bữa tối tự chọn luôn sẵn sàng phục vụ khách, vì vậy họ có thể ăn bất cứ món gì trông ngon miệng đối với họ mà không cần phải gọi món.",
+          vocab: [
+            "appetizing (adj): ngon miệng, hấp dẫn",
+            "place an order (phr): gọi món, đặt hàng",
+            "whatever (pron): bất cứ thứ gì",
+          ],
+        },
+        {
+          unit: 5,
+          num: 112,
+          q: "The memo sent by Mr. Lee addressed a few _______ that were discovered during the quarterly inspection.",
+          opts: { A: "issuing", B: "issue", C: "issues", D: "issued" },
+          ans: "C",
+          cat: "Từ loại & Số ít/Số nhiều",
+          exp: "Sau lượng từ 'a few' (một vài) bắt buộc phải là một danh từ đếm được số nhiều -> 'issues' (các vấn đề).",
+          trans:
+            "Bản ghi nhớ do ông Lee gửi đã đề cập đến một vài vấn đề được phát hiện trong đợt kiểm tra hàng quý.",
+          vocab: [
+            "memo (n): bản ghi nhớ, thông báo nội bộ",
+            "address (v): giải quyết, đề cập đến",
+            "quarterly inspection (n): đợt kiểm tra hàng quý",
+          ],
+        },
+        {
+          unit: 5,
+          num: 113,
+          q: "The grocery store chain Refresh Foods has _______ in organic products since it opened in 2001.",
+          opts: {
+            A: "participated",
+            B: "certified",
+            C: "specialized",
+            D: "admired",
+          },
+          ans: "C",
+          cat: "Từ vựng & Giới từ đi kèm",
+          exp: "Động từ 'specialize' đi với giới từ 'in' ('specialize in' = chuyên về lĩnh vực/sản phẩm nào).",
+          trans:
+            "Chuỗi cửa hàng tạp hóa Refresh Foods đã chuyên kinh doanh các sản phẩm hữu cơ kể từ khi mở cửa vào năm 2001.",
+          vocab: [
+            "grocery store chain (n): chuỗi cửa hàng tạp hóa",
+            "specialize in (v): chuyên về",
+            "organic (adj): hữu cơ",
+          ],
+        },
+        {
+          unit: 5,
+          num: 114,
+          q: "The malfunction of the printer was _______ a component that had been inserted incorrectly during the assembly process.",
+          opts: { A: "due to", B: "whereas", C: "as though", D: "instead of" },
+          ans: "A",
+          cat: "Giới từ kép chỉ nguyên nhân",
+          exp: "Cấu trúc 'be due to + cụm danh từ' nghĩa là 'là do nguyên nhân gì'. Sự cố máy in là do một linh kiện bị lắp sai.",
+          trans:
+            "Sự cố trục trặc của máy in là do một linh kiện đã bị lắp sai trong quá trình lắp ráp.",
+          vocab: [
+            "malfunction (n): sự hỏng hóc, trục trặc",
+            "due to (prep): bởi vì, do",
+            "insert (v): chèn vào, lắp vào",
+          ],
+        },
+        {
+          unit: 5,
+          num: 115,
+          q: "The proposed holiday schedule is _______ to most workers because they feel it is fair.",
+          opts: {
+            A: "acceptably",
+            B: "accept",
+            C: "acceptable",
+            D: "accepting",
+          },
+          ans: "C",
+          cat: "Từ loại (Tính từ sau to be)",
+          exp: "Sau động từ liên kết 'is' cần một tính từ mô tả tính chất của lịch nghỉ lễ ('acceptable' = có thể chấp nhận được).",
+          trans:
+            "Lịch nghỉ lễ được đề xuất có thể chấp nhận được đối với hầu hết người lao động vì họ cảm thấy nó công bằng.",
+          vocab: [
+            "proposed (adj): được đề xuất",
+            "acceptable (adj): có thể chấp nhận được",
+            "fair (adj): công bằng",
+          ],
+        },
+        {
+          unit: 5,
+          num: 116,
+          q: "The non-profit organization released to the press several documents _______ the largest donors and how much they contributed.",
+          opts: { A: "detailed", B: "detail", C: "details", D: "detailing" },
+          ans: "D",
+          cat: "Rút gọn mệnh đề quan hệ (Chủ động)",
+          exp: "Rút gọn mệnh đề quan hệ mang nghĩa chủ động: 'several documents (which detail...) -> detailing' (những tài liệu liệt kê chi tiết các nhà tài trợ lớn nhất).",
+          trans:
+            "Tổ chức phi lợi nhuận đã công bố cho báo chí một số tài liệu nêu chi tiết về các nhà tài trợ lớn nhất và số tiền họ đã đóng góp.",
+          vocab: [
+            "press (n): báo chí",
+            "donor (n): nhà tài trợ, người quyên góp",
+            "detail (v): nêu chi tiết",
+          ],
+        },
+        {
+          unit: 5,
+          num: 117,
+          q: "With over two hundred unique stores, the Plainview Mall _______ millions of shoppers on an annual basis.",
+          opts: {
+            A: "attracts",
+            B: "implements",
+            C: "postpones",
+            D: "contributes",
+          },
+          ans: "A",
+          cat: "Từ vựng (Động từ)",
+          exp: "'Attract' nghĩa là 'thu hút'. Trung tâm thương mại Plainview thu hút hàng triệu người mua sắm mỗi năm.",
+          trans:
+            "Với hơn hai trăm cửa hàng độc đáo, Trung tâm thương mại Plainview thu hút hàng triệu người mua sắm mỗi năm.",
+          vocab: [
+            "attract (v): thu hút",
+            "unique (adj): độc đáo",
+            "on an annual basis (phr): hàng năm",
+          ],
+        },
+        {
+          unit: 5,
+          num: 118,
+          q: "A government _______ will visit the site to talk with protesters directly and seek a resolution.",
+          opts: {
+            A: "representative",
+            B: "representation",
+            C: "represent",
+            D: "represented",
+          },
+          ans: "A",
+          cat: "Từ loại (Danh từ chỉ người)",
+          exp: "Cần một danh từ đếm được số ít chỉ người làm chủ ngữ cho hành động 'visit the site to talk...'. 'Representative' (người đại diện) là danh từ chỉ người.",
+          trans:
+            "Một đại diện của chính phủ sẽ đến hiện trường để nói chuyện trực tiếp với những người biểu tình và tìm kiếm giải pháp.",
+          vocab: [
+            "representative (n): người đại diện",
+            "protester (n): người biểu tình",
+            "resolution (n): giải pháp, sự giải quyết",
+          ],
+        },
+        {
+          unit: 5,
+          num: 119,
+          q: "The York Foundation is an organization that has been supporting _______ in medical technology for the past decade.",
+          opts: {
+            A: "to advance",
+            B: "advanced",
+            C: "advances",
+            D: "advancing",
+          },
+          ans: "C",
+          cat: "Từ loại (Danh từ số nhiều)",
+          exp: "Sau ngoại động từ 'supporting' (hỗ trợ) và đứng trước giới từ 'in' cần một danh từ làm tân ngữ. 'Advances in medical technology' = những bước tiến trong công nghệ y tế.",
+          trans:
+            "Quỹ York là một tổ chức đã hỗ trợ những bước tiến trong công nghệ y tế suốt thập kỷ qua.",
+          vocab: [
+            "foundation (n): quỹ (từ thiện/nghiên cứu)",
+            "advance (n): bước tiến, sự tiến bộ",
+            "decade (n): thập kỷ",
+          ],
+        },
+        {
+          unit: 5,
+          num: 120,
+          q: "Mr. Denson wanted to purchase a special edition gold-plated watch from Utica Watches, but there were _______ left.",
+          opts: { A: "none", B: "nothing", C: "something", D: "some" },
+          ans: "A",
+          cat: "Đại từ bất định",
+          exp: "Liên từ 'but' báo hiệu sự đối lập: Ông ấy muốn mua đồng hồ mạ vàng phiên bản đặc biệt, nhưng không còn chiếc nào cả -> dùng 'none' (thay thế cho danh từ đếm được 'watches' ở dạng phủ định).",
+          trans:
+            "Ông Denson muốn mua một chiếc đồng hồ mạ vàng phiên bản đặc biệt từ Utica Watches, nhưng không còn chiếc nào cả.",
+          vocab: [
+            "special edition (n): phiên bản đặc biệt",
+            "gold-plated (adj): mạ vàng",
+            "none (pron): không có cái nào",
+          ],
+        },
+        {
+          unit: 5,
+          num: 121,
+          q: "The company was under investigation after several former employees made allegations of unfair _______.",
+          opts: {
+            A: "compositions",
+            B: "assurances",
+            C: "momentums",
+            D: "practices",
+          },
+          ans: "D",
+          cat: "Từ vựng (Danh từ)",
+          exp: "Cụm từ chuyên ngành kinh doanh/pháp lý: 'unfair practices' = các hành vi / thông lệ làm việc không công bằng.",
+          trans:
+            "Công ty đã bị điều tra sau khi một số cựu nhân viên đưa ra cáo buộc về các hành vi đối xử không công bằng.",
+          vocab: [
+            "investigation (n): cuộc điều tra",
+            "allegation (n): lời cáo buộc",
+            "practice (n): thông lệ, hành vi",
+          ],
+        },
+        {
+          unit: 5,
+          num: 122,
+          q: "Following the restoration project, the lobby of the historical Kirkwood Hotel looked _______ like its original state.",
+          opts: { A: "remarkably", B: "remarking", C: "remark", D: "remarked" },
+          ans: "A",
+          cat: "Từ loại (Trạng từ)",
+          exp: "Đứng trước giới từ 'like' để nhấn mạnh mức độ giống nhau ('remarkably like its original state' = giống một cách đáng kinh ngạc so với trạng thái ban đầu) cần một trạng từ.",
+          trans:
+            "Sau dự án trùng tu, sảnh của Khách sạn lịch sử Kirkwood trông giống trạng thái ban đầu một cách đáng kinh ngạc.",
+          vocab: [
+            "restoration (n): sự trùng tu, khôi phục",
+            "remarkably (adv): đáng kinh ngạc, nổi bật",
+            "original state (n): trạng thái ban đầu",
+          ],
+        },
+        {
+          unit: 5,
+          num: 123,
+          q: "The best method for improving the _______ of your home at little cost is giving the exterior a fresh coat of paint.",
+          opts: { A: "privacy", B: "appearance", C: "control", D: "location" },
+          ans: "B",
+          cat: "Từ vựng (Danh từ)",
+          exp: "Sơn lại lớp sơn mới bên ngoài ('giving the exterior a fresh coat of paint') giúp cải thiện 'diện mạo / vẻ bề ngoài' ('appearance') của ngôi nhà.",
+          trans:
+            "Phương pháp tốt nhất để cải thiện diện mạo ngôi nhà của bạn với chi phí thấp là sơn lại mặt ngoài một lớp sơn mới.",
+          vocab: [
+            "method (n): phương pháp",
+            "appearance (n): diện mạo, vẻ bề ngoài",
+            "coat of paint (n): lớp sơn",
+          ],
+        },
+        {
+          unit: 5,
+          num: 124,
+          q: "One of the interns _______ that the logo on the second page of the sales report was upside down.",
+          opts: {
+            A: "looked after",
+            B: "accounted for",
+            C: "pointed out",
+            D: "came across",
+          },
+          ans: "C",
+          cat: "Cụm động từ (Phrasal Verbs)",
+          exp: "'Point out that + mệnh đề' nghĩa là 'chỉ ra rằng...'. Một thực tập sinh đã chỉ ra rằng logo ở trang hai bị lộn ngược.",
+          trans:
+            "Một trong những thực tập sinh đã chỉ ra rằng logo trên trang thứ hai của báo cáo bán hàng bị lộn ngược.",
+          vocab: [
+            "intern (n): thực tập sinh",
+            "point out (phr.v): chỉ ra",
+            "upside down (adv/adj): lộn ngược",
+          ],
+        },
+        {
+          unit: 5,
+          num: 125,
+          q: "The police officer directed the traffic _______ the detour ramp so that drivers could find the route easily.",
+          opts: { A: "toward", B: "like", C: "of", D: "during" },
+          ans: "A",
+          cat: "Giới từ chỉ phương hướng",
+          exp: "'Direct traffic toward + địa điểm' = điều hướng giao thông về phía lối rẽ đường vòng.",
+          trans:
+            "Viên cảnh sát đã điều hướng giao thông về phía đoạn đường dẫn rẽ vòng để các tài xế có thể tìm đường dễ dàng.",
+          vocab: [
+            "direct (v): điều hướng, chỉ đường",
+            "toward (prep): về phía",
+            "detour (n): đường vòng",
+          ],
+        },
+        {
+          unit: 5,
+          num: 126,
+          q: "If the new athletic shoes do well in the smaller test markets, their nationwide launch could be _______.",
+          opts: {
+            A: "convinced",
+            B: "accelerated",
+            C: "directed",
+            D: "circulated",
+          },
+          ans: "B",
+          cat: "Từ vựng (Động từ)",
+          exp: "'Accelerate' nghĩa là 'đẩy nhanh tiến độ'. Nếu giày bán chạy ở thị trường thử nghiệm nhỏ, việc ra mắt toàn quốc có thể được đẩy nhanh hơn.",
+          trans:
+            "Nếu mẫu giày thể thao mới bán chạy ở các thị trường thử nghiệm nhỏ hơn, việc ra mắt trên toàn quốc của chúng có thể được đẩy nhanh.",
+          vocab: [
+            "launch (n): sự ra mắt sản phẩm",
+            "accelerate (v): đẩy nhanh, tăng tốc",
+            "nationwide (adj/adv): trên toàn quốc",
+          ],
+        },
+        {
+          unit: 5,
+          num: 127,
+          q: "The car owner submitted _______ evidence of the damage along with a mechanic's report to his insurance company.",
+          opts: {
+            A: "photographer",
+            B: "photographically",
+            C: "photographic",
+            D: "photogenic",
+          },
+          ans: "C",
+          cat: "Từ loại (Tính từ)",
+          exp: "Đứng trước danh từ không đếm được 'evidence' (bằng chứng) cần một tính từ bổ nghĩa. 'Photographic evidence' = bằng chứng bằng hình ảnh. (Loại 'photogenic' vì từ này nghĩa là 'ăn ảnh', dùng cho người).",
+          trans:
+            "Chủ xe đã nộp bằng chứng hình ảnh về thiệt hại cùng với báo cáo của thợ máy cho công ty bảo hiểm của mình.",
+          vocab: [
+            "evidence (n): bằng chứng",
+            "photographic (adj): thuộc về hình ảnh",
+            "insurance company (n): công ty bảo hiểm",
+          ],
+        },
+        {
+          unit: 5,
+          num: 128,
+          q: "After investing heavily in Internet marketing campaigns, Bailey Coffee increased its annual profits _______ fifteen percent.",
+          opts: { A: "by", B: "among", C: "between", D: "on" },
+          ans: "A",
+          cat: "Giới từ chỉ mức độ chênh lệch",
+          exp: "Động từ 'increase / decrease + by + % / con số' dùng để chỉ mức độ tăng/giảm thêm bao nhiêu ('increased its annual profits by fifteen percent' = tăng lợi nhuận thêm 15%).",
+          trans:
+            "Sau khi đầu tư mạnh vào các chiến dịch tiếp thị trực tuyến, Bailey Coffee đã tăng lợi nhuận hàng năm thêm mười lăm phần trăm.",
+          vocab: [
+            "invest (v): đầu tư",
+            "campaign (n): chiến dịch",
+            "profit (n): lợi nhuận",
+          ],
+        },
+        {
+          unit: 5,
+          num: 129,
+          q: "Because our sales representatives meet with high-level clients in the industry, _______ those with a professional manner will be considered for the position.",
+          opts: { A: "only", B: "moreover", C: "except", D: "however" },
+          ans: "A",
+          cat: "Phó từ nhấn mạnh",
+          exp: "'Only those with...' = chỉ những người có... (tác phong chuyên nghiệp) mới được cân nhắc cho vị trí này.",
+          trans:
+            "Vì các đại diện bán hàng của chúng tôi gặp gỡ những khách hàng cấp cao trong ngành nên chỉ những người có tác phong chuyên nghiệp mới được xem xét cho vị trí này.",
+          vocab: [
+            "high-level (adj): cấp cao",
+            "professional manner (n): tác phong chuyên nghiệp",
+            "consider (v): xem xét, cân nhắc",
+          ],
+        },
+        {
+          unit: 5,
+          num: 130,
+          q: "The policy that requires businesses to provide medical insurance applies only to those _______ more than twenty-five people.",
+          opts: { A: "employs", B: "employ", C: "employed", D: "employing" },
+          ans: "D",
+          cat: "Rút gọn mệnh đề quan hệ (Chủ động)",
+          exp: "'Those' ở đây thay thế cho 'businesses' (các doanh nghiệp). Rút gọn mệnh đề quan hệ mang nghĩa chủ động: 'those (which employ) more than twenty-five people' -> 'those employing...'.",
+          trans:
+            "Chính sách yêu cầu các doanh nghiệp cung cấp bảo hiểm y tế chỉ áp dụng cho những doanh nghiệp sử dụng trên hai mươi lăm nhân viên.",
+          vocab: [
+            "medical insurance (n): bảo hiểm y tế",
+            "apply to (v): áp dụng đối với",
+            "employ (v): thuê, sử dụng lao động",
+          ],
+        },
+      ];
+
+      // Gán ID duy nhất cho từng câu (u1_101 ... u5_130)
+      const QUESTIONS_DB = RAW_DATA.map((item) => ({
+        ...item,
+        id: `u${item.unit}_${item.num}`,
+      }));
+
+      // =========================================================================
+      // ỨNG DỤNG QUẢN LÝ TRẠNG THÁI & GIAO DIỆN
+      // =========================================================================
+      const app = {
+        state: {
+          // Tiến độ lưu vào localStorage: { [id]: { userAns: 'A', isCorrect: true } }
+          progress: {},
+          // Danh sách ID câu đã đánh dấu: ['u1_101', ...]
+          bookmarks: [],
+          // Chế độ mặc định trên Dashboard: 'practice' | 'test'
+          selectedMode: "practice",
+          // Dữ liệu phiên làm bài hiện tại
+          session: {
+            active: false,
+            type: "unit", // 'unit' | 'all' | 'wrong' | 'bookmarked'
+            unitNum: 1,
+            mode: "practice",
+            questions: [], // Mảng câu hỏi đã xử lý (có thể đã trộn)
+            currentIndex: 0,
+            sessionAnswers: {}, // Đáp án trong phiên hiện tại { [id]: 'A' }
+            submitted: false,
+            timerSeconds: 0,
+            timerInterval: null,
+          },
+        },
+
+        STORAGE_KEY: "toeic_part5_master_v1",
+
+        init() {
+          this.loadStorage();
+          this.initTheme();
+          this.renderDashboard();
+          this.bindKeyboardShortcuts();
+        },
+
+        // --- LocalStorage ---
+        loadStorage() {
+          try {
+            const saved = localStorage.getItem(this.STORAGE_KEY);
+            if (saved) {
+              const parsed = JSON.parse(saved);
+              this.state.progress = parsed.progress || {};
+              this.state.bookmarks = parsed.bookmarks || [];
+            }
+          } catch (e) {
+            console.error("Lỗi đọc localStorage:", e);
+          }
+        },
+
+        saveStorage() {
+          try {
+            localStorage.setItem(
+              this.STORAGE_KEY,
+              JSON.stringify({
+                progress: this.state.progress,
+                bookmarks: this.state.bookmarks,
+              }),
+            );
+          } catch (e) {
+            console.error("Lỗi lưu localStorage:", e);
+          }
+        },
+
+        // --- Dark Mode ---
+        initTheme() {
+          const isDark =
+            localStorage.getItem("toeic_theme") === "dark" ||
+            (!localStorage.getItem("toeic_theme") &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (isDark) {
+            document.documentElement.classList.add("dark");
+          }
+        },
+
+        toggleDarkMode() {
+          const html = document.documentElement;
+          html.classList.toggle("dark");
+          localStorage.setItem(
+            "toeic_theme",
+            html.classList.contains("dark") ? "dark" : "light",
+          );
+        },
+
+        // --- Dashboard Rendering ---
+        setMode(mode) {
+          this.state.selectedMode = mode;
+          const btnPractice = document.getElementById("mode-btn-practice");
+          const btnTest = document.getElementById("mode-btn-test");
+          if (mode === "practice") {
+            btnPractice.className =
+              "px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-sm";
+            btnTest.className =
+              "px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-400 hover:text-slate-900";
+          } else {
+            btnTest.className =
+              "px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-sm";
+            btnPractice.className =
+              "px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-400 hover:text-slate-900";
+          }
+        },
+
+        renderDashboard() {
+          const allIds = QUESTIONS_DB.map((q) => q.id);
+          let doneCount = 0;
+          let correctCount = 0;
+          let wrongCount = 0;
+
+          allIds.forEach((id) => {
+            const p = this.state.progress[id];
+            if (p) {
+              doneCount++;
+              if (p.isCorrect) correctCount++;
+              else wrongCount++;
+            }
+          });
+
+          const bookmarkCount = this.state.bookmarks.length;
+          const accuracy =
+            doneCount > 0 ? Math.round((correctCount / doneCount) * 100) : 0;
+          const pct = Math.round((doneCount / QUESTIONS_DB.length) * 100);
+
+          // Update Header & Banner stats
+          document.getElementById("header-done-count").textContent = doneCount;
+          document.getElementById("header-accuracy").textContent =
+            `${accuracy}%`;
+          document.getElementById("dash-progress-text").textContent =
+            `${doneCount} / ${QUESTIONS_DB.length} câu (${pct}%)`;
+          document.getElementById("dash-progress-bar").style.width = `${pct}%`;
+          document.getElementById("dash-correct-count").textContent =
+            correctCount;
+          document.getElementById("dash-wrong-count").textContent = wrongCount;
+          document.getElementById("dash-bookmark-count").textContent =
+            bookmarkCount;
+          document.getElementById("btn-wrong-num").textContent = wrongCount;
+          document.getElementById("btn-bookmark-num").textContent =
+            bookmarkCount;
+
+          // Render 5 Units
+          const unitDescriptions = [
+            {
+              num: 1,
+              title: "Unit 1 (Câu 101 – 130)",
+              desc: "Từ loại cơ bản, giới từ chỉ nơi chốn, thì động từ & cấu trúc bị động.",
+            },
+            {
+              num: 2,
+              title: "Unit 2 (Câu 101 – 130)",
+              desc: "Đại từ quan hệ, lượng từ, so sánh hơn & thì tương lai hoàn thành.",
+            },
+            {
+              num: 3,
+              title: "Unit 3 (Câu 101 – 130)",
+              desc: "Liên từ chỉ mục đích, đại từ bất định, cụm giới từ & từ vựng thương mại.",
+            },
+            {
+              num: 4,
+              title: "Unit 4 (Câu 101 – 130)",
+              desc: "Mệnh đề danh ngữ Whether, phân từ hoàn thành & trạng từ bổ nghĩa.",
+            },
+            {
+              num: 5,
+              title: "Unit 5 (Câu 101 – 130)",
+              desc: "Rút gọn mệnh đề quan hệ, cụm động từ (Phrasal Verbs) & từ vựng nâng cao.",
+            },
+          ];
+
+          const grid = document.getElementById("units-grid");
+          grid.innerHTML = unitDescriptions
+            .map((u) => {
+              const uQuestions = QUESTIONS_DB.filter((q) => q.unit === u.num);
+              let uDone = 0;
+              let uCorrect = 0;
+              uQuestions.forEach((q) => {
+                if (this.state.progress[q.id]) {
+                  uDone++;
+                  if (this.state.progress[q.id].isCorrect) uCorrect++;
+                }
+              });
+              const uPct = Math.round((uDone / uQuestions.length) * 100);
+
+              return `
+            <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-indigo-400 dark:hover:border-indigo-500 transition flex flex-col justify-between gap-4">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-bold text-xs">
+                    UNIT ${u.num}
+                  </span>
+                  <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                    Đúng: <strong class="text-emerald-600 dark:text-emerald-400">${uCorrect}</strong>/${uQuestions.length}
+                  </span>
+                </div>
+                <h4 class="font-bold text-base text-slate-900 dark:text-white">${u.title}</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">${u.desc}</p>
+              </div>
+
+              <div class="space-y-3">
+                <div class="space-y-1">
+                  <div class="flex justify-between text-[11px] font-medium text-slate-500">
+                    <span>Hoàn thành</span>
+                    <span>${uDone}/30 (${uPct}%)</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-indigo-600 rounded-full transition-all" style="width: ${uPct}%"></div>
+                  </div>
+                </div>
+
+                <button onclick="app.startSession('unit', ${u.num})" class="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs sm:text-sm transition shadow-sm">
+                  Bắt đầu Unit ${u.num}
+                </button>
+              </div>
+            </div>
+          `;
+            })
+            .join("");
+        },
+
+        // --- Session Management ---
+        shuffleArray(arr) {
+          const copy = [...arr];
+          for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+          }
+          return copy;
+        },
+
+        startSession(type, unitNum = 1) {
+          let filtered = [];
+          let badgeText = "";
+
+          if (type === "unit") {
+            filtered = QUESTIONS_DB.filter((q) => q.unit === unitNum);
+            badgeText = `Unit ${unitNum}`;
+          } else if (type === "all") {
+            filtered = [...QUESTIONS_DB];
+            badgeText = "Tất cả 150 câu";
+          } else if (type === "wrong") {
+            filtered = QUESTIONS_DB.filter(
+              (q) =>
+                this.state.progress[q.id] &&
+                !this.state.progress[q.id].isCorrect,
+            );
+            badgeText = "Ôn tập câu làm sai";
+            if (filtered.length === 0) {
+              this.showToast(
+                "Tuyệt vời! Bạn chưa có câu làm sai nào cần ôn lại.",
+              );
+              return;
+            }
+          } else if (type === "bookmarked") {
+            filtered = QUESTIONS_DB.filter((q) =>
+              this.state.bookmarks.includes(q.id),
+            );
+            badgeText = "Câu đã đánh dấu";
+            if (filtered.length === 0) {
+              this.showToast("Bạn chưa đánh dấu (gắn cờ) câu hỏi nào.");
+              return;
+            }
+          }
+
+          const shuffleQ = document.getElementById("opt-shuffle-q").checked;
+          const shuffleOpt = document.getElementById("opt-shuffle-opt").checked;
+
+          if (shuffleQ) {
+            filtered = this.shuffleArray(filtered);
+          }
+
+          // Xử lý trộn đáp án nếu người dùng bật tùy chọn
+          const preparedQuestions = filtered.map((q) => {
+            if (!shuffleOpt) {
+              return {
+                ...q,
+                displayOpts: { ...q.opts },
+                displayAns: q.ans,
+              };
+            }
+            const keys = ["A", "B", "C", "D"];
+            const entries = keys.map((k) => ({ origKey: k, text: q.opts[k] }));
+            const shuffledEntries = this.shuffleArray(entries);
+            const displayOpts = {};
+            let displayAns = q.ans;
+            keys.forEach((newKey, idx) => {
+              displayOpts[newKey] = shuffledEntries[idx].text;
+              if (shuffledEntries[idx].origKey === q.ans) {
+                displayAns = newKey;
+              }
+            });
+            return {
+              ...q,
+              displayOpts,
+              displayAns,
+            };
+          });
+
+          // Dừng timer cũ nếu có
+          this.stopTimer();
+
+          const mode = this.state.selectedMode;
+          this.state.session = {
+            active: true,
+            type,
+            unitNum,
+            mode,
+            questions: preparedQuestions,
+            currentIndex: 0,
+            sessionAnswers: {},
+            submitted: false,
+            timerSeconds: preparedQuestions.length * 30, // 30 giây / câu (30 câu = 15 phút)
+            timerInterval: null,
+          };
+
+          // Cập nhật UI chuyển sang Quiz View
+          document.getElementById("view-dashboard").classList.add("hidden");
+          document.getElementById("view-quiz").classList.remove("hidden");
+          document.getElementById("btn-home").classList.remove("hidden");
+          document.getElementById("test-result-banner").classList.add("hidden");
+
+          document.getElementById("quiz-session-badge").textContent = badgeText;
+          document.getElementById("quiz-mode-label").textContent =
+            mode === "practice"
+              ? "Chế độ Luyện tập (Xem giải thích ngay)"
+              : "Chế độ Thi thử tính giờ";
+
+          const timerBox = document.getElementById("quiz-timer-box");
+          const submitBtn = document.getElementById("btn-submit-test");
+
+          if (mode === "test") {
+            timerBox.classList.remove("hidden");
+            timerBox.classList.add("flex");
+            submitBtn.classList.remove("hidden");
+            this.startTimer();
+          } else {
+            timerBox.classList.add("hidden");
+            timerBox.classList.remove("flex");
+            submitBtn.classList.add("hidden");
+          }
+
+          this.renderPalette();
+          this.renderCurrentQuestion();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        },
+
+        restartCurrentSession() {
+          const { type, unitNum } = this.state.session;
+          this.startSession(type, unitNum);
+        },
+
+        showDashboard() {
+          this.stopTimer();
+          this.state.session.active = false;
+          document.getElementById("view-quiz").classList.add("hidden");
+          document.getElementById("view-dashboard").classList.remove("hidden");
+          document.getElementById("btn-home").classList.add("hidden");
+          this.renderDashboard();
+        },
+
+        // --- Timer Logic ---
+        startTimer() {
+          this.updateTimerDisplay();
+          this.state.session.timerInterval = setInterval(() => {
+            this.state.session.timerSeconds--;
+            this.updateTimerDisplay();
+            if (this.state.session.timerSeconds <= 0) {
+              this.stopTimer();
+              this.showToast("Hết giờ làm bài! Hệ thống đã tự động nộp bài.");
+              this.submitTest(true);
+            }
+          }, 1000);
+        },
+
+        stopTimer() {
+          if (this.state.session.timerInterval) {
+            clearInterval(this.state.session.timerInterval);
+            this.state.session.timerInterval = null;
+          }
+        },
+
+        updateTimerDisplay() {
+          const sec = Math.max(0, this.state.session.timerSeconds);
+          const mins = Math.floor(sec / 60);
+          const remSec = sec % 60;
+          document.getElementById("quiz-timer-text").textContent =
+            `${String(mins).padStart(2, "0")}:${String(remSec).padStart(2, "0")}`;
+        },
+
+        // --- Question Rendering & Answering ---
+        renderCurrentQuestion() {
+          const { questions, currentIndex, sessionAnswers, mode, submitted } =
+            this.state.session;
+          const q = questions[currentIndex];
+          if (!q) return;
+
+          // Header info
+          document.getElementById("q-number-badge").textContent =
+            `Câu ${q.num}`;
+          document.getElementById("q-unit-tag").textContent =
+            `Unit ${q.unit} • Câu ${currentIndex + 1} / ${questions.length}`;
+          document.getElementById("mobile-q-counter").textContent =
+            `${currentIndex + 1}/${questions.length}`;
+
+          // Bookmark button state
+          const isBookmarked = this.state.bookmarks.includes(q.id);
+          const btnBookmark = document.getElementById("btn-bookmark");
+          const iconBookmark = document.getElementById("icon-bookmark");
+          const textBookmark = document.getElementById("text-bookmark");
+
+          if (isBookmarked) {
+            btnBookmark.className =
+              "flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-amber-400 bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 text-xs font-semibold transition";
+            iconBookmark.setAttribute("fill", "currentColor");
+            iconBookmark.classList.replace("text-slate-400", "text-amber-500");
+            textBookmark.textContent = "Đã đánh dấu";
+          } else {
+            btnBookmark.className =
+              "flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold transition hover:bg-amber-50 dark:hover:bg-amber-950/40";
+            iconBookmark.setAttribute("fill", "none");
+            iconBookmark.classList.replace("text-amber-500", "text-slate-400");
+            textBookmark.textContent = "Đánh dấu";
+          }
+
+          // Format sentence blank nicely
+          const formattedSentence = q.q.replace(
+            /_______/g,
+            '<span class="inline-block min-w-[70px] border-b-2 border-indigo-500 text-indigo-600 dark:text-indigo-400 font-bold text-center px-2">_______</span>',
+          );
+          document.getElementById("q-sentence").innerHTML = formattedSentence;
+
+          // Render Options
+          const userAns = sessionAnswers[q.id];
+          const showFeedback =
+            (mode === "practice" && Boolean(userAns)) ||
+            (mode === "test" && submitted);
+          const optionsContainer = document.getElementById("q-options");
+
+          optionsContainer.innerHTML = ["A", "B", "C", "D"]
+            .map((letter) => {
+              const optText = q.displayOpts[letter];
+              let cardClass =
+                "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 hover:border-indigo-400 dark:hover:border-indigo-500";
+              let badgeClass =
+                "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200";
+              let statusIcon = "";
+
+              if (!showFeedback) {
+                if (userAns === letter) {
+                  cardClass =
+                    "border-indigo-600 bg-indigo-50/70 dark:bg-indigo-950/50 ring-1 ring-indigo-600";
+                  badgeClass = "bg-indigo-600 text-white";
+                }
+              } else {
+                // Đã chấm điểm
+                if (letter === q.displayAns) {
+                  cardClass =
+                    "border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/40 ring-1 ring-emerald-500";
+                  badgeClass = "bg-emerald-600 text-white";
+                  statusIcon = `<span class="ml-auto text-emerald-600 dark:text-emerald-400 font-bold text-sm">✓ Đúng</span>`;
+                } else if (userAns === letter && letter !== q.displayAns) {
+                  cardClass =
+                    "border-rose-500 bg-rose-50/80 dark:bg-rose-950/40 ring-1 ring-rose-500";
+                  badgeClass = "bg-rose-600 text-white";
+                  statusIcon = `<span class="ml-auto text-rose-600 dark:text-rose-400 font-bold text-sm">✕ Sai</span>`;
+                } else {
+                  cardClass =
+                    "border-slate-200 dark:border-slate-800 opacity-60";
+                }
+              }
+
+              return `
+            <button onclick="app.selectOption('${letter}')" ${showFeedback ? "disabled" : ""} class="w-full text-left p-3.5 sm:p-4 rounded-xl border-2 transition flex items-center gap-3.5 ${cardClass}">
+              <span class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm shrink-0 transition ${badgeClass}">
+                ${letter}
+              </span>
+              <span class="text-sm sm:text-base font-medium text-slate-800 dark:text-slate-100">${optText}</span>
+              ${statusIcon}
+            </button>
+          `;
+            })
+            .join("");
+
+          // Prev / Next buttons
+          document.getElementById("btn-prev").disabled = currentIndex === 0;
+          document.getElementById("btn-next").disabled =
+            currentIndex === questions.length - 1;
+
+          // Explanation Card
+          const expCard = document.getElementById("explanation-card");
+          if (showFeedback) {
+            expCard.classList.remove("hidden");
+            document.getElementById("exp-category").textContent = q.cat;
+            document.getElementById("exp-correct-badge").textContent =
+              `Đáp án đúng: (${q.displayAns}) ${q.displayOpts[q.displayAns]}`;
+            document.getElementById("exp-analysis").textContent = q.exp;
+            document.getElementById("exp-translation").textContent =
+              `"${q.trans}"`;
+            document.getElementById("exp-vocab").innerHTML = q.vocab
+              .map(
+                (v) => `
+            <div class="px-3 py-2 rounded-lg bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/60 dark:border-emerald-800/50 text-xs sm:text-[13px] font-medium text-slate-800 dark:text-slate-200">
+              • ${v}
+            </div>
+          `,
+              )
+              .join("");
+          } else {
+            expCard.classList.add("hidden");
+          }
+
+          this.renderPalette();
+        },
+
+        selectOption(letter) {
+          const { questions, currentIndex, mode, submitted } =
+            this.state.session;
+          const q = questions[currentIndex];
+          if (!q) return;
+
+          // Nếu đang ở chế độ luyện tập đã chọn rồi, hoặc thi thử đã nộp rồi thì không cho chọn lại
+          if (mode === "practice" && this.state.session.sessionAnswers[q.id])
+            return;
+          if (mode === "test" && submitted) return;
+
+          this.state.session.sessionAnswers[q.id] = letter;
+
+          // Nếu là chế độ luyện tập thì lưu ngay kết quả vào localStorage
+          if (mode === "practice") {
+            const isCorrect = letter === q.displayAns;
+            this.state.progress[q.id] = {
+              userAns: letter,
+              isCorrect,
+            };
+            this.saveStorage();
+          }
+
+          this.renderCurrentQuestion();
+        },
+
+        submitTest(autoSubmit = false) {
+          const { questions, sessionAnswers, submitted } = this.state.session;
+          if (submitted) return;
+
+          const doSubmit = () => {
+            this.stopTimer();
+            this.state.session.submitted = true;
+            let correctCount = 0;
+
+            questions.forEach((q) => {
+              const userAns = sessionAnswers[q.id];
+              if (userAns) {
+                const isCorrect = userAns === q.displayAns;
+                if (isCorrect) correctCount++;
+                this.state.progress[q.id] = { userAns, isCorrect };
+              }
+            });
+            this.saveStorage();
+
+            const pct = Math.round((correctCount / questions.length) * 100);
+            document.getElementById("btn-submit-test").classList.add("hidden");
+            document
+              .getElementById("test-result-banner")
+              .classList.remove("hidden");
+            document.getElementById("test-result-summary").textContent =
+              `Bạn trả lời đúng ${correctCount} / ${questions.length} câu (${pct}%). Bấm vào từng câu để xem giải thích chi tiết.`;
+
+            this.renderCurrentQuestion();
+          };
+
+          if (autoSubmit) {
+            doSubmit();
+            return;
+          }
+
+          const answeredCount = Object.keys(sessionAnswers).length;
+          if (answeredCount < questions.length) {
+            this.openModal(
+              "Xác nhận nộp bài",
+              `Bạn mới hoàn thành ${answeredCount}/${questions.length} câu hỏi. Bạn có chắc chắn muốn nộp bài ngay bây giờ không?`,
+              doSubmit,
+            );
+          } else {
+            doSubmit();
+          }
+        },
+
+        prevQuestion() {
+          if (this.state.session.currentIndex > 0) {
+            this.state.session.currentIndex--;
+            this.renderCurrentQuestion();
+          }
+        },
+
+        nextQuestion() {
+          if (
+            this.state.session.currentIndex <
+            this.state.session.questions.length - 1
+          ) {
+            this.state.session.currentIndex++;
+            this.renderCurrentQuestion();
+          }
+        },
+
+        jumpToQuestion(index) {
+          this.state.session.currentIndex = index;
+          this.renderCurrentQuestion();
+          // Trên mobile tự động đóng palette sau khi nhảy câu
+          if (window.innerWidth < 1024) {
+            document
+              .getElementById("question-palette-sidebar")
+              .classList.add("hidden");
+          }
+        },
+
+        toggleBookmarkCurrent() {
+          const q =
+            this.state.session.questions[this.state.session.currentIndex];
+          if (!q) return;
+
+          const idx = this.state.bookmarks.indexOf(q.id);
+          if (idx > -1) {
+            this.state.bookmarks.splice(idx, 1);
+            this.showToast(`Đã bỏ đánh dấu Câu ${q.num}`);
+          } else {
+            this.state.bookmarks.push(q.id);
+            this.showToast(`Đã đánh dấu Câu ${q.num} để ôn tập`);
+          }
+          this.saveStorage();
+          this.renderCurrentQuestion();
+        },
+
+        // --- Question Palette Sidebar ---
+        renderPalette() {
+          const { questions, currentIndex, sessionAnswers, mode, submitted } =
+            this.state.session;
+          const answeredCount = Object.keys(sessionAnswers).length;
+          document.getElementById("palette-progress").textContent =
+            `${answeredCount}/${questions.length} đã làm`;
+
+          const grid = document.getElementById("palette-grid");
+          grid.innerHTML = questions
+            .map((q, idx) => {
+              const userAns = sessionAnswers[q.id];
+              const isCurrent = idx === currentIndex;
+              const isBookmarked = this.state.bookmarks.includes(q.id);
+              const showResult =
+                (mode === "practice" && Boolean(userAns)) ||
+                (mode === "test" && submitted);
+
+              let btnStyle =
+                "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700";
+
+              if (showResult && userAns) {
+                if (userAns === q.displayAns) {
+                  btnStyle = "bg-emerald-500 text-white font-bold";
+                } else {
+                  btnStyle = "bg-rose-500 text-white font-bold";
+                }
+              } else if (userAns) {
+                btnStyle =
+                  "bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-bold";
+              }
+
+              if (isCurrent) {
+                btnStyle +=
+                  " ring-2 ring-offset-2 ring-indigo-600 dark:ring-offset-slate-900";
+              }
+
+              if (isBookmarked) {
+                btnStyle += " border-2 border-amber-400";
+              }
+
+              return `
+            <button onclick="app.jumpToQuestion(${idx})" class="h-9 rounded-lg text-xs font-medium transition flex items-center justify-center ${btnStyle}">
+              ${q.num}
+            </button>
+          `;
+            })
+            .join("");
+        },
+
+        toggleMobilePalette() {
+          const sidebar = document.getElementById("question-palette-sidebar");
+          sidebar.classList.toggle("hidden");
+        },
+
+        // --- Keyboard Shortcuts ---
+        bindKeyboardShortcuts() {
+          document.addEventListener("keydown", (e) => {
+            if (!this.state.session.active) return;
+            // Bỏ qua nếu đang mở modal
+            if (
+              !document
+                .getElementById("custom-modal")
+                .classList.contains("hidden")
+            )
+              return;
+
+            const key = e.key.toUpperCase();
+            if (["A", "B", "C", "D"].includes(key)) {
+              this.selectOption(key);
+            } else if (e.key === "ArrowRight") {
+              this.nextQuestion();
+            } else if (e.key === "ArrowLeft") {
+              this.prevQuestion();
+            }
+          });
+        },
+
+        // --- Reset Progress & Custom Modal ---
+        confirmResetProgress() {
+          this.openModal(
+            "Đặt lại toàn bộ tiến độ?",
+            "Tất cả lịch sử làm bài (câu đúng, câu sai) và danh sách câu đánh dấu sẽ bị xóa vĩnh viễn. Bạn có chắc chắn không?",
+            () => {
+              this.state.progress = {};
+              this.state.bookmarks = [];
+              this.saveStorage();
+              this.renderDashboard();
+              this.showToast("Đã đặt lại toàn bộ tiến độ học tập.");
+            },
+          );
+        },
+
+        openModal(title, message, onConfirm) {
+          document.getElementById("modal-title").textContent = title;
+          document.getElementById("modal-message").textContent = message;
+          const confirmBtn = document.getElementById("modal-btn-confirm");
+          confirmBtn.onclick = () => {
+            this.closeModal();
+            if (onConfirm) onConfirm();
+          };
+          document.getElementById("custom-modal").classList.remove("hidden");
+        },
+
+        closeModal() {
+          document.getElementById("custom-modal").classList.add("hidden");
+        },
+
+        showToast(msg) {
+          const toast = document.getElementById("toast");
+          toast.textContent = msg;
+          toast.classList.remove("hidden");
+          clearTimeout(this._toastTimer);
+          this._toastTimer = setTimeout(() => {
+            toast.classList.add("hidden");
+          }, 2800);
+        },
+      };
+
+      // Khởi chạy ứng dụng khi tải trang xong
+      window.addEventListener("DOMContentLoaded", () => {
+        app.init();
+      });
+    </script>
+  </body>
+</html>

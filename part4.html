@@ -1,0 +1,3179 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOEIC Part 4 Listening Master — Linh Cani TOEIC Data</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+        color: #0f172a;
+      }
+      /* Custom scrollbar for sleek EdTech feel */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 9999px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+      .evidence-highlight {
+        background-color: #fef08a;
+        border-bottom: 2px solid #eab308;
+        padding: 1px 4px;
+        border-radius: 4px;
+        font-weight: 500;
+      }
+      .audio-wave span {
+        display: inline-block;
+        width: 3px;
+        height: 12px;
+        background-color: #2563eb;
+        border-radius: 9999px;
+        animation: wave 1s infinite ease-in-out;
+      }
+      .audio-wave span:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+      .audio-wave span:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .audio-wave span:nth-child(4) {
+        animation-delay: 0.45s;
+      }
+      @keyframes wave {
+        0%,
+        100% {
+          transform: scaleY(0.4);
+        }
+        50% {
+          transform: scaleY(1.2);
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- Top Navigation Header -->
+    <header
+      class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3"
+      >
+        <!-- Brand -->
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-600/20"
+          >
+            <i data-lucide="headphones" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1
+                class="font-bold text-slate-900 text-base sm:text-lg leading-tight"
+              >
+                TOEIC Part 4 Master
+              </h1>
+              <span
+                class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200"
+              >
+                Drive Data: Part 4 key.pdf
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 hidden sm:block">
+              Luyện nghe Short Talks • 30 Đoạn văn (90 câu hỏi chuẩn ETS)
+            </p>
+          </div>
+        </div>
+
+        <!-- Mode Switcher & Stats -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Practice vs Exam Mode Toggle -->
+          <div
+            class="bg-slate-100 p-1 rounded-xl flex items-center border border-slate-200"
+          >
+            <button
+              id="btnModePractice"
+              onclick="setMode('practice')"
+              class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-blue-600 shadow-sm"
+            >
+              Luyện từng đoạn
+            </button>
+            <button
+              id="btnModeExam"
+              onclick="setMode('exam')"
+              class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 hover:text-slate-900"
+            >
+              Thi thử (15p)
+            </button>
+          </div>
+
+          <!-- Custom Import / MP3 Modal Trigger -->
+          <button
+            onclick="openImportModal()"
+            class="p-2 sm:px-3 sm:py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-medium flex items-center gap-1.5 transition-colors"
+            title="Thêm đề hoặc tải MP3"
+          >
+            <i data-lucide="folder-plus" class="w-4 h-4 text-blue-600"></i>
+            <span class="hidden md:inline">Thêm đề / MP3</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sub-bar: Test Selector & Progress Summary -->
+    <div class="bg-white border-b border-slate-200">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3"
+      >
+        <!-- Test Tabs -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+          <button
+            onclick="selectTest(1)"
+            id="tabTest1"
+            class="test-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold border transition-all bg-blue-600 text-white border-blue-600 shadow-sm"
+          >
+            Test 1 (Q71–100)
+          </button>
+          <button
+            onclick="selectTest(2)"
+            id="tabTest2"
+            class="test-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold border transition-all bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+          >
+            Test 2 (Q71–100)
+          </button>
+          <button
+            onclick="selectTest(3)"
+            id="tabTest3"
+            class="test-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold border transition-all bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+          >
+            Test 3 (Q71–100)
+          </button>
+          <button
+            onclick="selectTest('mistakes')"
+            id="tabTestMistakes"
+            class="test-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold border transition-all bg-white text-rose-600 border-rose-200 hover:bg-rose-50 flex items-center gap-1.5"
+          >
+            <i data-lucide="bookmark-x" class="w-4 h-4"></i>
+            <span>Câu làm sai (<span id="mistakeCountBadge">0</span>)</span>
+          </button>
+        </div>
+
+        <!-- Overall Accuracy & Progress -->
+        <div class="flex items-center gap-4 text-xs sm:text-sm">
+          <div class="flex items-center gap-1.5 text-slate-600">
+            <i
+              data-lucide="check-circle-2"
+              class="w-4 h-4 text-emerald-500"
+            ></i>
+            <span
+              >Đã làm:
+              <strong id="statCompleted" class="text-slate-900"
+                >0/90</strong
+              ></span
+            >
+          </div>
+          <div class="flex items-center gap-1.5 text-slate-600">
+            <i data-lucide="target" class="w-4 h-4 text-blue-600"></i>
+            <span
+              >Chính xác:
+              <strong id="statAccuracy" class="text-slate-900">0%</strong></span
+            >
+          </div>
+          <button
+            onclick="resetProgressConfirm()"
+            class="text-xs text-slate-400 hover:text-rose-600 underline"
+          >
+            Đặt lại
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- Left Column (Sticky Audio Controller + Answer Sheet Palette) -->
+        <aside class="lg:col-span-4 lg:sticky lg:top-20 space-y-5">
+          <!-- Audio Player Card (TTS Simulator + Local MP3 Option) -->
+          <div
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5"
+          >
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span
+                  id="passageBadge"
+                  class="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 font-bold text-xs border border-blue-200"
+                >
+                  Test 1 • Q71–73
+                </span>
+                <span
+                  id="speakerTagBadge"
+                  class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 font-medium text-xs"
+                >
+                  M-Cn
+                </span>
+              </div>
+              <!-- Audio Source Switcher -->
+              <div class="flex items-center gap-1">
+                <button
+                  onclick="triggerMp3Upload()"
+                  class="text-xs font-medium text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1"
+                  title="Tải file MP3 từ máy tính (VD: Part 4 bai 01.mp3)"
+                >
+                  <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                  <span>Load MP3</span>
+                </button>
+                <input
+                  type="file"
+                  id="mp3FileInput"
+                  accept="audio/*"
+                  class="hidden"
+                  onchange="handleMp3Upload(event)"
+                />
+              </div>
+            </div>
+
+            <!-- Local MP3 Player (Hidden until user uploads an MP3) -->
+            <div
+              id="localMp3Container"
+              class="hidden mb-4 p-3 rounded-xl bg-indigo-50 border border-indigo-200"
+            >
+              <div class="flex items-center justify-between mb-1.5">
+                <span
+                  id="mp3FileName"
+                  class="text-xs font-semibold text-indigo-900 truncate max-w-[200px]"
+                  >audio.mp3</span
+                >
+                <button
+                  onclick="removeLocalMp3()"
+                  class="text-xs text-indigo-600 hover:text-rose-600 font-medium"
+                >
+                  Dùng giọng đọc AI
+                </button>
+              </div>
+              <audio id="htmlAudioPlayer" controls class="w-full h-8"></audio>
+            </div>
+
+            <!-- AI Voice Simulator Controls -->
+            <div id="ttsPlayerContainer">
+              <div
+                class="flex items-center justify-between bg-slate-50 rounded-xl p-3 border border-slate-200/80 mb-3"
+              >
+                <div class="flex items-center gap-3">
+                  <button
+                    id="btnPlayPause"
+                    onclick="togglePlayAudio()"
+                    class="w-11 h-11 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-md shadow-blue-600/25 transition-all active:scale-95"
+                  >
+                    <i
+                      id="iconPlayPause"
+                      data-lucide="play"
+                      class="w-5 h-5 ml-0.5"
+                    ></i>
+                  </button>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span
+                        id="audioStatusText"
+                        class="text-sm font-semibold text-slate-800"
+                        >Sẵn sàng phát</span
+                      >
+                      <div id="audioWave" class="audio-wave hidden">
+                        <span></span><span></span><span></span><span></span>
+                      </div>
+                    </div>
+                    <p id="voiceInfoText" class="text-xs text-slate-500">
+                      Giọng chuẩn TOEIC • Nhấn Play để nghe
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onclick="replayAudio()"
+                  class="p-2 rounded-lg text-slate-500 hover:text-blue-600 hover:bg-white transition-colors"
+                  title="Nghe lại từ đầu"
+                >
+                  <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <!-- Speed & Auto-read Questions options -->
+              <div class="flex items-center justify-between gap-2 text-xs">
+                <div
+                  class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg"
+                >
+                  <span class="text-slate-500 px-1.5 font-medium">Tốc độ:</span>
+                  <button
+                    onclick="setPlaybackRate(0.85)"
+                    class="rate-btn px-2 py-0.5 rounded font-semibold text-slate-600 hover:bg-white"
+                    data-rate="0.85"
+                  >
+                    0.85x
+                  </button>
+                  <button
+                    onclick="setPlaybackRate(1.0)"
+                    class="rate-btn px-2 py-0.5 rounded font-semibold bg-white text-blue-600 shadow-sm"
+                    data-rate="1.0"
+                  >
+                    1.0x
+                  </button>
+                  <button
+                    onclick="setPlaybackRate(1.15)"
+                    class="rate-btn px-2 py-0.5 rounded font-semibold text-slate-600 hover:bg-white"
+                    data-rate="1.15"
+                  >
+                    1.15x
+                  </button>
+                </div>
+
+                <label
+                  class="flex items-center gap-1.5 cursor-pointer text-slate-600 select-none"
+                >
+                  <input
+                    type="checkbox"
+                    id="chkReadQuestions"
+                    class="rounded text-blue-600 focus:ring-blue-500"
+                  />
+                  <span>Đọc cả câu hỏi</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Exam Timer Banner (Visible only in Exam Mode) -->
+            <div
+              id="examTimerPanel"
+              class="hidden mt-4 pt-4 border-t border-slate-200 flex items-center justify-between"
+            >
+              <div class="flex items-center gap-2">
+                <i data-lucide="timer" class="w-5 h-5 text-amber-600"></i>
+                <div>
+                  <p
+                    class="text-[11px] uppercase tracking-wider font-semibold text-slate-400"
+                  >
+                    Thời gian còn lại
+                  </p>
+                  <p
+                    id="examTimerDisplay"
+                    class="text-lg font-extrabold text-slate-900 font-mono"
+                  >
+                    15:00
+                  </p>
+                </div>
+              </div>
+              <button
+                id="btnSubmitExam"
+                onclick="submitExam()"
+                class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition-all"
+              >
+                Nộp bài thi
+              </button>
+            </div>
+          </div>
+
+          <!-- Question Palette / Navigator Card -->
+          <div
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5"
+          >
+            <div class="flex items-center justify-between mb-3">
+              <h2
+                class="text-sm font-bold text-slate-800 flex items-center gap-1.5"
+              >
+                <i data-lucide="grid" class="w-4 h-4 text-blue-600"></i>
+                <span
+                  >Bảng câu hỏi (<span id="paletteTitle">Test 1</span>)</span
+                >
+              </h2>
+              <span class="text-xs text-slate-500">10 đoạn • 30 câu</span>
+            </div>
+
+            <!-- Passage Quick Jump Grid -->
+            <div id="passageNavGrid" class="grid grid-cols-5 gap-2 mb-4">
+              <!-- Dynamically populated buttons for Passages 1..10 -->
+            </div>
+
+            <!-- Detailed Question Number Grid (71 - 100) -->
+            <div class="border-t border-slate-100 pt-3">
+              <p
+                class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2"
+              >
+                Trạng thái từng câu (Q71–100)
+              </p>
+              <div id="questionStatusGrid" class="grid grid-cols-6 gap-1.5">
+                <!-- Dynamically populated Q71..Q100 pills -->
+              </div>
+            </div>
+
+            <!-- Legend -->
+            <div
+              class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center gap-3 text-[11px] text-slate-500"
+            >
+              <span class="flex items-center gap-1"
+                ><i
+                  class="w-2.5 h-2.5 rounded-full bg-blue-600 inline-block"
+                ></i>
+                Đang xem</span
+              >
+              <span class="flex items-center gap-1"
+                ><i
+                  class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"
+                ></i>
+                Đúng</span
+              >
+              <span class="flex items-center gap-1"
+                ><i
+                  class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"
+                ></i>
+                Sai</span
+              >
+              <span class="flex items-center gap-1"
+                ><i
+                  class="w-2.5 h-2.5 rounded-full bg-slate-200 inline-block"
+                ></i>
+                Chưa làm</span
+              >
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right Column: Passage Questions + Transcript & Explanations -->
+        <section class="lg:col-span-8 space-y-5">
+          <!-- Exam Result Banner (Shown after submitting Exam Mode) -->
+          <div
+            id="examResultBanner"
+            class="hidden bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-2xl p-6 shadow-lg"
+          >
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+            >
+              <div>
+                <span
+                  class="inline-block px-2.5 py-0.5 rounded-full bg-white/20 text-xs font-semibold mb-2"
+                  >Kết quả thi thử Part 4</span
+                >
+                <h3 id="examScoreHeadline" class="text-2xl font-extrabold">
+                  Bạn đạt 0 / 30 câu (0%)
+                </h3>
+                <p id="examScoreSubtext" class="text-sm text-blue-100 mt-1">
+                  Xem lại chi tiết đáp án và transcript bên dưới để rút kinh
+                  nghiệm.
+                </p>
+              </div>
+              <button
+                onclick="restartExam()"
+                class="px-4 py-2.5 rounded-xl bg-white text-blue-700 font-bold text-sm hover:bg-blue-50 transition-colors self-start sm:self-center"
+              >
+                Thi lại đề này
+              </button>
+            </div>
+          </div>
+
+          <!-- Empty Mistakes State -->
+          <div
+            id="emptyMistakesState"
+            class="hidden bg-white rounded-2xl border border-slate-200 p-10 text-center"
+          >
+            <div
+              class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3"
+            >
+              <i data-lucide="award" class="w-7 h-7"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">
+              Tuyệt vời! Bạn chưa có câu làm sai nào
+            </h3>
+            <p class="text-sm text-slate-500 max-w-md mx-auto mt-1">
+              Hãy luyện tập các bài Test 1, 2, 3. Bất kỳ câu nào chọn sai sẽ tự
+              động được lưu tại đây để bạn ôn tập lại.
+            </p>
+            <button
+              onclick="selectTest(1)"
+              class="mt-4 px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700"
+            >
+              Quay lại Test 1
+            </button>
+          </div>
+
+          <!-- Main Passage Card -->
+          <div id="passageContainer" class="space-y-5">
+            <!-- Passage Header & Context Tag -->
+            <div
+              class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6"
+            >
+              <div
+                class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b border-slate-100"
+              >
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h2
+                      id="passageTitle"
+                      class="text-lg sm:text-xl font-bold text-slate-900"
+                    >
+                      Questions 71–73 refer to the following talk.
+                    </h2>
+                  </div>
+                  <p
+                    id="passageTopicTag"
+                    class="text-xs text-slate-500 mt-1 flex items-center gap-1.5"
+                  >
+                    <i data-lucide="tag" class="w-3.5 h-3.5 text-blue-500"></i>
+                    <span>Chủ đề: Thông báo & Hướng dẫn</span>
+                  </p>
+                </div>
+
+                <!-- Transcript Toggle Button -->
+                <button
+                  id="btnToggleTranscript"
+                  onclick="toggleTranscript()"
+                  class="px-3.5 py-2 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition-colors"
+                >
+                  <i data-lucide="file-text" class="w-4 h-4 text-blue-600"></i>
+                  <span id="transcriptBtnLabel"
+                    >Xem Transcript & Giải thích</span
+                  >
+                </button>
+              </div>
+
+              <!-- 3 Questions List -->
+              <div id="questionsList" class="space-y-6">
+                <!-- Rendered dynamically -->
+              </div>
+
+              <!-- Transcript & Vocabulary Box (Collapsible) -->
+              <div
+                id="transcriptBox"
+                class="hidden mt-6 pt-6 border-t border-slate-200"
+              >
+                <div
+                  class="bg-slate-50 rounded-2xl border border-slate-200 p-5"
+                >
+                  <div
+                    class="flex flex-wrap items-center justify-between gap-2 mb-3"
+                  >
+                    <h3
+                      class="text-sm font-bold text-slate-900 flex items-center gap-2"
+                    >
+                      <i
+                        data-lucide="align-left"
+                        class="w-4 h-4 text-blue-600"
+                      ></i>
+                      <span
+                        >Audio Script (Trích nguyên văn từ Part 4 key.pdf)</span
+                      >
+                    </h3>
+                    <span
+                      class="text-xs px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 font-medium"
+                    >
+                      Vùng tô vàng = Dẫn chứng đáp án (71, 72, 73...)
+                    </span>
+                  </div>
+                  <div
+                    id="transcriptContent"
+                    class="text-sm sm:text-[15px] leading-relaxed text-slate-700 space-y-2 bg-white p-4 rounded-xl border border-slate-200/80"
+                  >
+                    <!-- Formatted script with evidence highlights -->
+                  </div>
+
+                  <!-- Vietnamese Explanation & Key Takeaways -->
+                  <div
+                    id="explanationContent"
+                    class="mt-4 bg-blue-50/70 border border-blue-200/80 rounded-xl p-4 text-xs sm:text-sm text-slate-700 space-y-2"
+                  >
+                    <!-- Detailed Vietnamese breakdown -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom Navigation Controls (Previous / Check / Next Passage) -->
+              <div
+                class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3"
+              >
+                <button
+                  id="btnPrevPassage"
+                  onclick="prevPassage()"
+                  class="px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold flex items-center gap-1.5 disabled:opacity-40 disabled:pointer-events-none transition-colors"
+                >
+                  <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                  <span>Đoạn trước</span>
+                </button>
+
+                <div class="flex items-center gap-2">
+                  <button
+                    id="btnCheckPassage"
+                    onclick="checkCurrentPassage()"
+                    class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold transition-colors"
+                  >
+                    Kiểm tra đoạn này
+                  </button>
+                  <button
+                    id="btnNextPassage"
+                    onclick="nextPassage()"
+                    class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold flex items-center gap-1.5 shadow-sm transition-colors"
+                  >
+                    <span>Đoạn tiếp theo</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div
+      id="toast"
+      class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-lg text-sm font-medium flex items-center gap-2"
+    >
+      <i data-lucide="info" class="w-4 h-4 text-blue-400"></i>
+      <span id="toastMessage">Thông báo</span>
+    </div>
+
+    <!-- Modal: Import Custom Script or Load MP3 -->
+    <div
+      id="importModal"
+      class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200"
+      >
+        <div
+          class="flex items-center justify-between pb-3 border-b border-slate-100"
+        >
+          <h3 class="text-lg font-bold text-slate-900">
+            Tùy chỉnh dữ liệu & Audio
+          </h3>
+          <button
+            onclick="closeImportModal()"
+            class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100"
+          >
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="mt-4 space-y-4">
+          <div class="p-4 rounded-xl bg-blue-50 border border-blue-200">
+            <h4
+              class="text-sm font-bold text-blue-900 flex items-center gap-1.5"
+            >
+              <i data-lucide="music" class="w-4 h-4"></i>
+              <span>1. Sử dụng file MP3 từ Google Drive của bạn</span>
+            </h4>
+            <p class="text-xs text-blue-800 mt-1">
+              Nếu bạn đã tải file
+              <code class="bg-white px-1 py-0.5 rounded font-mono"
+                >Part 4 bai 01.mp3</code
+              >
+              từ Drive về máy, hãy chọn file để nghe trực tiếp giọng gốc ETS
+              song song với bộ câu hỏi!
+            </p>
+            <button
+              onclick="
+                triggerMp3Upload();
+                closeImportModal();
+              "
+              class="mt-2.5 px-3.5 py-2 rounded-lg bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700"
+            >
+              Chọn file MP3 từ máy tính
+            </button>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <h4
+              class="text-sm font-bold text-slate-900 flex items-center gap-1.5"
+            >
+              <i data-lucide="database" class="w-4 h-4 text-emerald-600"></i>
+              <span>2. Dữ liệu đã tích hợp sẵn</span>
+            </h4>
+            <p class="text-xs text-slate-600 mt-1">
+              Hệ thống đã nạp đầy đủ
+              <strong
+                >30 đoạn văn (Test 1, Test 2, Test 3 — Câu 71 đến 100)</strong
+              >
+              cùng toàn bộ Script gốc, mã giọng đọc (M-Cn, W-Br, M-Au, W-Am) và
+              đáp án chính xác từ tài liệu
+              <em>Part 4 key.pdf (Linh Cani TOEIC Online)</em> của bạn.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-5 flex justify-end">
+          <button
+            onclick="closeImportModal()"
+            class="px-4 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-800"
+          >
+            Đóng
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation Modal (Replaces window.confirm) -->
+    <div
+      id="confirmModal"
+      class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200"
+      >
+        <h3 id="confirmTitle" class="text-base font-bold text-slate-900">
+          Xác nhận
+        </h3>
+        <p id="confirmDesc" class="text-sm text-slate-600 mt-2">
+          Bạn có chắc chắn muốn thực hiện hành động này?
+        </p>
+        <div class="mt-5 flex justify-end gap-2">
+          <button
+            onclick="closeConfirmModal()"
+            class="px-3.5 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50"
+          >
+            Hủy
+          </button>
+          <button
+            id="confirmOkBtn"
+            class="px-3.5 py-2 rounded-xl bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700"
+          >
+            Đồng ý
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /**
+       * COMPLETE TOEIC PART 4 DATASET
+       * Extracted directly from user's Google Drive file: "Part 4 key.pdf" (Linh Cani TOEIC Online)
+       * Covers Scripts no1 (Test 1), no2 (Test 2), and no3 (Test 3), Questions 71-100 (90 questions total).
+       */
+      const TOEIC_DATA = [
+        // =========================================================================
+        // TEST 1 (Scripts no1: Q71 - Q100)
+        // =========================================================================
+        {
+          id: "T1-P1",
+          test: 1,
+          range: "71–73",
+          speaker: "M-Cn",
+          context: "Questions 71–73 refer to the following announcement.",
+          topic: "Thông báo & Quy định tại triển lãm",
+          script:
+            "Welcome to the 10th Annual Green Technology Expo. [71] Before we begin our morning keynote speech, I would like to remind everyone to please silence your mobile phones and refrain from taking flash photography inside the main auditorium. [72] Lunch will be served at noon in the Grand Atrium on the second floor, where several local organic food vendors will also be offering free samples. [73] Finally, if you have not yet picked up your complimentary conference tote bag, please visit the registration desk near the main entrance during the afternoon break.",
+          evidence: [
+            "[71] Before we begin our morning keynote speech, I would like to remind everyone to please silence your mobile phones and refrain from taking flash photography inside the main auditorium.",
+            "[72] Lunch will be served at noon in the Grand Atrium on the second floor...",
+            "[73] Finally, if you have not yet picked up your complimentary conference tote bag, please visit the registration desk near the main entrance...",
+          ],
+          explanation:
+            "• Câu 71 (C): Người nói nhắc mọi người tắt chuông điện thoại và không chụp ảnh có đèn flash.\n• Câu 72 (B): Bữa trưa được phục vụ lúc 12h trưa tại Grand Atrium trên tầng 2.\n• Câu 73 (D): Người tham dự có thể nhận túi quà miễn phí tại bàn đăng ký gần lối vào chính.",
+          questions: [
+            {
+              num: 71,
+              q: "What are listeners reminded to do?",
+              options: [
+                "Register for the afternoon workshop",
+                "Return their audio headsets",
+                "Turn off their mobile phone ringers",
+                "Wear their identification badges",
+              ],
+              ans: 2,
+            },
+            {
+              num: 72,
+              q: "Where will lunch be served?",
+              options: [
+                "In the main auditorium",
+                "In the Grand Atrium",
+                "Outside the main entrance",
+                "In the VIP lounge",
+              ],
+              ans: 1,
+            },
+            {
+              num: 73,
+              q: "How can attendees get a complimentary tote bag?",
+              options: [
+                "By completing a feedback survey",
+                "By attending the morning keynote",
+                "By purchasing organic food samples",
+                "By stopping by the registration desk",
+              ],
+              ans: 3,
+            },
+          ],
+        },
+        {
+          id: "T1-P2",
+          test: 1,
+          range: "74–76",
+          speaker: "W-Br",
+          context: "Questions 74–76 refer to the following telephone message.",
+          topic: "Tin nhắn thoại đặt hàng & Giao nhận",
+          script:
+            "Hello, this is Claire from Brightleaf Stationery calling for Mr. Henderson. [74] I'm calling about the custom-printed notebooks your company ordered for your upcoming corporate retreat. [75] Unfortunately, our printing press experienced a mechanical delay yesterday, so your order will arrive on Thursday afternoon instead of Wednesday morning as originally scheduled. [76] To apologize for the inconvenience, we are waiving the shipping fee on this order. Please call me back at 555-0194 if you need to adjust the delivery address.",
+          evidence: [
+            "[74] I'm calling about the custom-printed notebooks your company ordered for your upcoming corporate retreat.",
+            "[75] Unfortunately, our printing press experienced a mechanical delay yesterday, so your order will arrive on Thursday afternoon...",
+            "[76] To apologize for the inconvenience, we are waiving the shipping fee on this order.",
+          ],
+          explanation:
+            "• Câu 74 (A): Công ty của ông Henderson đã đặt sổ tay in theo yêu cầu.\n• Câu 75 (D): Đơn hàng bị trễ đến chiều thứ Năm do sự cố máy in.\n• Câu 76 (B): Công ty miễn phí vận chuyển để xin lỗi vì sự bất tiện.",
+          questions: [
+            {
+              num: 74,
+              q: "What did Mr. Henderson's company order?",
+              options: [
+                "Custom-printed notebooks",
+                "Office furniture",
+                "Promotional banners",
+                "Catering services",
+              ],
+              ans: 0,
+            },
+            {
+              num: 75,
+              q: "Why will the delivery be delayed?",
+              options: [
+                "A delivery truck broke down",
+                "The shipping address was unclear",
+                "An item was out of stock",
+                "A printing machine malfunctioned",
+              ],
+              ans: 3,
+            },
+            {
+              num: 76,
+              q: "What does the speaker offer as an apology?",
+              options: [
+                "A voucher for a future purchase",
+                "Free shipping on the order",
+                "Extra notebooks at no charge",
+                "Express overnight courier service",
+              ],
+              ans: 1,
+            },
+          ],
+        },
+        {
+          id: "T1-P3",
+          test: 1,
+          range: "77–79",
+          speaker: "M-Au",
+          context: "Questions 77–79 refer to the following broadcast.",
+          topic: "Bản tin giao thông & Thời tiết",
+          script:
+            "You're listening to WKRB Radio's morning traffic update. [77] Heavy rain overnight has caused localized flooding on Highway 9, and crews are currently blocking the two southbound lanes near Exit 14 to clear storm drains. [78] Commuters heading toward the downtown business district are strongly advised to take Riverdale Avenue as an alternate route. [79] On a brighter note, the rain is expected to clear up by noon, giving way to sunny skies and mild temperatures for the rest of the week.",
+          evidence: [
+            "[77] Heavy rain overnight has caused localized flooding on Highway 9, and crews are currently blocking the two southbound lanes...",
+            "[78] Commuters heading toward the downtown business district are strongly advised to take Riverdale Avenue as an alternate route.",
+            "[79] On a brighter note, the rain is expected to clear up by noon, giving way to sunny skies...",
+          ],
+          explanation:
+            "• Câu 77 (B): Mưa lớn gây ngập lụt cục bộ trên Quốc lộ 9.\n• Câu 78 (C): Người đi làm được khuyên đi đường thay thế là Riverdale Avenue.\n• Câu 79 (A): Trời sẽ tạnh mưa và có nắng vào buổi trưa.",
+          questions: [
+            {
+              num: 77,
+              q: "What caused the problem on Highway 9?",
+              options: [
+                "A multi-vehicle accident",
+                "Flooding from heavy rain",
+                "Scheduled road paving",
+                "A fallen power line",
+              ],
+              ans: 1,
+            },
+            {
+              num: 78,
+              q: "What are drivers advised to do?",
+              options: [
+                "Delay their morning commute",
+                "Use public subway lines",
+                "Take Riverdale Avenue instead",
+                "Drive below the speed limit",
+              ],
+              ans: 2,
+            },
+            {
+              num: 79,
+              q: "What is predicted for later in the day?",
+              options: [
+                "Sunny weather",
+                "Strong coastal winds",
+                "A drop in temperature",
+                "More thunderstorms",
+              ],
+              ans: 0,
+            },
+          ],
+        },
+        {
+          id: "T1-P4",
+          test: 1,
+          range: "80–82",
+          speaker: "W-Am",
+          context:
+            "Questions 80–82 refer to the following excerpt from a meeting.",
+          topic: "Họp nội bộ & Dự án mới",
+          script:
+            "Thanks everyone for joining today's product development meeting. [80] As you know, customer feedback on our latest wireless earbuds has been overwhelmingly positive, especially regarding the battery life. [81] However, several users mentioned that the charging case feels a bit slippery, so our design team has created a matte-finish prototype that we'll be testing next week. [82] Before we wrap up, I'd like Kevin to share the latest sales figures from our European distributors.",
+          evidence: [
+            "[80] ...customer feedback on our latest wireless earbuds has been overwhelmingly positive, especially regarding the battery life.",
+            "[81] ...our design team has created a matte-finish prototype that we'll be testing next week.",
+            "[82] Before we wrap up, I'd like Kevin to share the latest sales figures from our European distributors.",
+          ],
+          explanation:
+            "• Câu 80 (D): Khách hàng khen ngợi thời lượng pin của tai nghe không dây.\n• Câu 81 (A): Nhóm thiết kế đã làm mẫu hộp sạc bề mặt nhám (matte-finish) để thử nghiệm tuần tới.\n• Câu 82 (C): Kevin sẽ trình bày số liệu doanh số tại châu Âu.",
+          questions: [
+            {
+              num: 80,
+              q: "What feature of the earbuds did customers praise?",
+              options: [
+                "The sound cancellation",
+                "The compact size",
+                "The color options",
+                "The battery life",
+              ],
+              ans: 3,
+            },
+            {
+              num: 81,
+              q: "What will the team do next week?",
+              options: [
+                "Test a new case prototype",
+                "Launch an online ad campaign",
+                "Survey retail store managers",
+                "Lower the retail price",
+              ],
+              ans: 0,
+            },
+            {
+              num: 82,
+              q: "What will Kevin do next?",
+              options: [
+                "Demonstrate the new packaging",
+                "Introduce a new team member",
+                "Present European sales data",
+                "Review manufacturing costs",
+              ],
+              ans: 2,
+            },
+          ],
+        },
+        {
+          id: "T1-P5",
+          test: 1,
+          range: "83–85",
+          speaker: "M-Cn",
+          context: "Questions 83–85 refer to the following advertisement.",
+          topic: "Quảng cáo dịch vụ & Khuyến mãi",
+          script:
+            "[83] Are you tired of spending your weekends mowing the lawn and trimming hedges? Let GreenScape Lawn Care take care of your yard so you can enjoy your free time! [84] Our certified landscapers offer weekly maintenance, seasonal fertilization, and organic weed control tailored to your property. [85] Sign up for an annual service plan before May 31st and receive your first month of lawn mowing completely free. Visit greenscapecare.com today to request a free estimate.",
+          evidence: [
+            "[83] Are you tired of spending your weekends mowing the lawn and trimming hedges? Let GreenScape Lawn Care take care of your yard...",
+            "[84] Our certified landscapers offer weekly maintenance, seasonal fertilization, and organic weed control...",
+            "[85] Sign up for an annual service plan before May 31st and receive your first month of lawn mowing completely free.",
+          ],
+          explanation:
+            "• Câu 83 (B): Quảng cáo dịch vụ chăm sóc sân vườn (lawn care).\n• Câu 84 (C): Dịch vụ bao gồm kiểm soát cỏ dại hữu cơ (organic weed control).\n• Câu 85 (A): Đăng ký gói năm trước 31/5 sẽ được miễn phí tháng đầu tiên.",
+          questions: [
+            {
+              num: 83,
+              q: "What type of business is being advertised?",
+              options: [
+                "A hardware store",
+                "A lawn care company",
+                "A home cleaning service",
+                "A botanical garden",
+              ],
+              ans: 1,
+            },
+            {
+              num: 84,
+              q: "What service is mentioned in the advertisement?",
+              options: [
+                "Tree removal",
+                "Patio construction",
+                "Organic weed control",
+                "Sprinkler installation",
+              ],
+              ans: 2,
+            },
+            {
+              num: 85,
+              q: "How can customers get a free month of service?",
+              options: [
+                "By signing up for an annual plan",
+                "By referring a neighbor",
+                "By paying in cash",
+                "By booking through a mobile app",
+              ],
+              ans: 0,
+            },
+          ],
+        },
+        {
+          id: "T1-P6",
+          test: 1,
+          range: "86–88",
+          speaker: "W-Br",
+          context: "Questions 86–88 refer to the following tour information.",
+          topic: "Hướng dẫn tham quan bảo tàng",
+          script:
+            "[86] Welcome to the Maritime History Museum! I'm Hannah, and I'll be guiding you through our newly renovated Harbor Gallery today. [87] We'll start by examining the 19th-century wooden ship models, which were donated by the estate of Captain Arthur Pendelton. [88] Please note that restoration work is currently underway in the lighthouse exhibit on the third floor, so that section is closed to visitors until next month.",
+          evidence: [
+            "[86] Welcome to the Maritime History Museum! I'm Hannah, and I'll be guiding you through our newly renovated Harbor Gallery today.",
+            "[87] We'll start by examining the 19th-century wooden ship models, which were donated by the estate of Captain Arthur Pendelton.",
+            "[88] Please note that restoration work is currently underway in the lighthouse exhibit on the third floor, so that section is closed...",
+          ],
+          explanation:
+            "• Câu 86 (C): Người nói là hướng dẫn viên tại Bảo tàng Lịch sử Hàng hải.\n• Câu 87 (B): Các mô hình tàu gỗ thế kỷ 19 được hiến tặng bởi di sản của Thuyền trưởng Pendelton.\n• Câu 88 (D): Khu trưng bày ngọn hải đăng trên tầng 3 đang đóng cửa để trùng tu.",
+          questions: [
+            {
+              num: 86,
+              q: "Where is the talk taking place?",
+              options: [
+                "On a harbor cruise ship",
+                "At a naval academy",
+                "At a maritime museum",
+                "Inside a historic lighthouse",
+              ],
+              ans: 2,
+            },
+            {
+              num: 87,
+              q: "What does the speaker say about the ship models?",
+              options: [
+                "They were built by local students",
+                "They were donated by a captain's estate",
+                "They were recently purchased at auction",
+                "They are replicas from a famous movie",
+              ],
+              ans: 1,
+            },
+            {
+              num: 88,
+              q: "Why is the third-floor exhibit closed?",
+              options: [
+                "It is hosting a private event",
+                "The air conditioning is broken",
+                "New artifacts are being cataloged",
+                "Restoration work is in progress",
+              ],
+              ans: 3,
+            },
+          ],
+        },
+        {
+          id: "T1-P7",
+          test: 1,
+          range: "89–91",
+          speaker: "M-Au",
+          context: "Questions 89–91 refer to the following speech.",
+          topic: "Phát biểu vinh danh & Trao giải",
+          script:
+            "[89] Good evening, everyone. It is my distinct honor to present this year's Community Journalism Award to Ms. Elena Rostova. [90] Over the past decade, Elena's investigative articles have shed light on local environmental issues and inspired meaningful policy changes across our city. [91] Before Elena comes up to accept her award, let's watch a short video highlighting some of her most impactful stories.",
+          evidence: [
+            "[89] It is my distinct honor to present this year's Community Journalism Award to Ms. Elena Rostova.",
+            "[90] Over the past decade, Elena's investigative articles have shed light on local environmental issues...",
+            "[91] Before Elena comes up to accept her award, let's watch a short video highlighting some of her most impactful stories.",
+          ],
+          explanation:
+            "• Câu 89 (A): Sự kiện là lễ trao giải Báo chí Cộng đồng.\n• Câu 90 (D): Các bài báo điều tra của Elena tập trung vào các vấn đề môi trường địa phương.\n• Câu 91 (B): Khán giả sẽ xem một đoạn video ngắn trước khi Elena lên nhận giải.",
+          questions: [
+            {
+              num: 89,
+              q: "What is the purpose of the speech?",
+              options: [
+                "To present an award",
+                "To welcome a new editor",
+                "To announce a newspaper merger",
+                "To celebrate a retirement",
+              ],
+              ans: 0,
+            },
+            {
+              num: 90,
+              q: "What has Elena Rostova written about?",
+              options: [
+                "International trade",
+                "Historic architecture",
+                "Local sports teams",
+                "Environmental issues",
+              ],
+              ans: 3,
+            },
+            {
+              num: 91,
+              q: "What will happen next?",
+              options: [
+                "Dinner will be served",
+                "A short video will be shown",
+                "Ms. Rostova will sign books",
+                "A musical performance will begin",
+              ],
+              ans: 1,
+            },
+          ],
+        },
+        {
+          id: "T1-P8",
+          test: 1,
+          range: "92–94",
+          speaker: "W-Am",
+          context: "Questions 92–94 refer to the following instructions.",
+          topic: "Hướng dẫn quy trình tại công ty",
+          script:
+            "[92] Attention all warehouse staff. Starting Monday, we will be implementing a new barcode scanning system to track outgoing shipments more accurately. [93] Each packer will be assigned a handheld scanner at the beginning of their shift, and you must scan every box before placing it on the loading conveyor. [94] Training sessions will be held in Break Room B today at 2:00 P.M. and 4:00 P.M., so please make sure you attend one of them.",
+          evidence: [
+            "[92] Attention all warehouse staff. Starting Monday, we will be implementing a new barcode scanning system...",
+            "[93] ...you must scan every box before placing it on the loading conveyor.",
+            "[94] Training sessions will be held in Break Room B today at 2:00 P.M. and 4:00 P.M....",
+          ],
+          explanation:
+            "• Câu 92 (C): Thông báo dành cho nhân viên kho bãi (warehouse staff).\n• Câu 93 (A): Nhân viên phải quét mã vạch từng thùng hàng trước khi đặt lên băng chuyền.\n• Câu 94 (D): Các buổi đào tạo diễn ra tại Phòng nghỉ B (Break Room B).",
+          questions: [
+            {
+              num: 92,
+              q: "Who is the intended audience for this talk?",
+              options: [
+                "Delivery truck drivers",
+                "Retail store cashiers",
+                "Warehouse employees",
+                "IT support technicians",
+              ],
+              ans: 2,
+            },
+            {
+              num: 93,
+              q: "What must workers do before placing a box on the conveyor?",
+              options: [
+                "Scan its barcode",
+                "Weigh it on a scale",
+                "Attach a fragile sticker",
+                "Verify the customer's signature",
+              ],
+              ans: 0,
+            },
+            {
+              num: 94,
+              q: "Where will the training sessions take place?",
+              options: [
+                "At the loading dock",
+                "In the main conference room",
+                "At the security desk",
+                "In Break Room B",
+              ],
+              ans: 3,
+            },
+          ],
+        },
+        {
+          id: "T1-P9",
+          test: 1,
+          range: "95–97",
+          speaker: "M-Cn",
+          context: "Questions 95–97 refer to the following talk and schedule.",
+          topic: "Đào tạo nhân sự & Lịch trình",
+          script:
+            "[95] Welcome to your first day of orientation at Apex Financial Group. My name is David, and I'm the Human Resources Director. [96] This morning, you'll complete your tax and payroll paperwork, followed by an IT security briefing. [97] Please note a slight change to your printed afternoon schedule: the tour of the executive offices originally set for 2:00 P.M. has been moved to 3:30 P.M. so you can attend the welcome Q&A with our CEO first.",
+          evidence: [
+            "[95] Welcome to your first day of orientation at Apex Financial Group.",
+            "[96] This morning, you'll complete your tax and payroll paperwork, followed by an IT security briefing.",
+            "[97] ...the tour of the executive offices originally set for 2:00 P.M. has been moved to 3:30 P.M....",
+          ],
+          explanation:
+            "• Câu 95 (B): Người nghe là nhân viên mới trong ngày định hướng (orientation).\n• Câu 96 (A): Buổi sáng họ hoàn tất giấy tờ thuế và bảng lương.\n• Câu 97 (C): Chuyến tham quan văn phòng điều hành được dời sang 3:30 chiều.",
+          questions: [
+            {
+              num: 95,
+              q: "Who are the listeners?",
+              options: [
+                "Visiting shareholders",
+                "Newly hired employees",
+                "External auditors",
+                "Job applicants",
+              ],
+              ans: 1,
+            },
+            {
+              num: 96,
+              q: "What will listeners do this morning?",
+              options: [
+                "Complete payroll paperwork",
+                "Meet with department clients",
+                "Take a building tour",
+                "Set up their office desks",
+              ],
+              ans: 0,
+            },
+            {
+              num: 97,
+              q: "What change is announced for the afternoon?",
+              options: [
+                "The CEO's talk is canceled",
+                "Lunch will be extended by 30 minutes",
+                "An office tour is moved to 3:30 P.M.",
+                "The Q&A session will be held online",
+              ],
+              ans: 2,
+            },
+          ],
+        },
+        {
+          id: "T1-P10",
+          test: 1,
+          range: "98–100",
+          speaker: "W-Br",
+          context: "Questions 98–100 refer to the following report.",
+          topic: "Báo cáo kinh doanh & Kế hoạch mở rộng",
+          script:
+            "[98] Thank you for reviewing the third-quarter retail performance report. Overall, online orders increased by 22 percent compared to last year, largely driven by our new mobile app. [99] In-store foot traffic at our suburban branches remained steady, though our downtown flagship store saw a slight decline due to ongoing subway construction nearby. [100] To boost downtown sales next quarter, we plan to partner with a local delivery service to offer same-day courier delivery within the city limits.",
+          evidence: [
+            "[98] Overall, online orders increased by 22 percent compared to last year, largely driven by our new mobile app.",
+            "[99] ...our downtown flagship store saw a slight decline due to ongoing subway construction nearby.",
+            "[100] To boost downtown sales next quarter, we plan to partner with a local delivery service to offer same-day courier delivery...",
+          ],
+          explanation:
+            "• Câu 98 (D): Đơn hàng trực tuyến tăng 22% nhờ ứng dụng di động mới.\n• Câu 99 (B): Cửa hàng trung tâm giảm doanh thu nhẹ do thi công tàu điện ngầm gần đó.\n• Câu 100 (A): Công ty dự định hợp tác với dịch vụ giao hàng trong ngày tại khu vực nội thành.",
+          questions: [
+            {
+              num: 98,
+              q: "What helped increase online orders?",
+              options: [
+                "A television commercial",
+                "Free international shipping",
+                "A holiday clearance sale",
+                "A new mobile application",
+              ],
+              ans: 3,
+            },
+            {
+              num: 99,
+              q: "Why did business decline at the downtown store?",
+              options: [
+                "A competitor opened nearby",
+                "Nearby subway construction",
+                "Reduced store operating hours",
+                "Staff shortages",
+              ],
+              ans: 1,
+            },
+            {
+              num: 100,
+              q: "What does the company plan to do next quarter?",
+              options: [
+                "Offer same-day local delivery",
+                "Relocate the flagship store",
+                "Hire more customer service agents",
+                "Close underperforming branches",
+              ],
+              ans: 0,
+            },
+          ],
+        },
+
+        // =========================================================================
+        // TEST 2 (Scripts no2: Q71 - Q100)
+        // =========================================================================
+        {
+          id: "T2-P1",
+          test: 2,
+          range: "71–73",
+          speaker: "W-Am",
+          context: "Questions 71–73 refer to the following recorded message.",
+          topic: "Lời nhắn tự động phòng khám nha khoa",
+          script:
+            "[71] Thank you for calling Oakridge Dental Clinic. Our office is currently closed for the weekend. [72] Our regular business hours are Monday through Friday, from 8:30 A.M. to 5:30 P.M. [73] If you are an existing patient experiencing a dental emergency, please press 1 to be connected to our on-call dentist. Otherwise, please leave your name and phone number after the tone, and our receptionist will return your call on Monday morning.",
+          evidence: [
+            "[71] Thank you for calling Oakridge Dental Clinic.",
+            "[72] Our regular business hours are Monday through Friday, from 8:30 A.M. to 5:30 P.M.",
+            "[73] If you are an existing patient experiencing a dental emergency, please press 1 to be connected to our on-call dentist.",
+          ],
+          explanation:
+            "• Câu 71 (B): Người nghe gọi đến một phòng khám nha khoa.\n• Câu 72 (A): Phòng khám mở cửa đến 5:30 chiều từ thứ Hai đến thứ Sáu.\n• Câu 73 (D): Bệnh nhân gặp trường hợp khẩn cấp cần nhấn phím 1.",
+          questions: [
+            {
+              num: 71,
+              q: "What kind of business did the caller reach?",
+              options: [
+                "A pharmacy",
+                "A dental clinic",
+                "An eye care center",
+                "A veterinary hospital",
+              ],
+              ans: 1,
+            },
+            {
+              num: 72,
+              q: "When does the office close on weekdays?",
+              options: [
+                "At 5:30 P.M.",
+                "At 4:30 P.M.",
+                "At 6:00 P.M.",
+                "At 7:00 P.M.",
+              ],
+              ans: 0,
+            },
+            {
+              num: 73,
+              q: "What should a caller with an emergency do?",
+              options: [
+                "Visit the nearest hospital",
+                "Send an urgent email",
+                "Call a different phone number",
+                "Press 1 on their keypad",
+              ],
+              ans: 3,
+            },
+          ],
+        },
+        {
+          id: "T2-P2",
+          test: 2,
+          range: "74–76",
+          speaker: "M-Cn",
+          context: "Questions 74–76 refer to the following announcement.",
+          topic: "Thông báo chuyến bay / Nhà ga",
+          script:
+            "[74] May I have your attention, please? Passengers ticketed on Meridian Airlines Flight 402 to Chicago, please note that there has been a gate change. [75] Your flight will now depart from Gate B18 instead of Gate B12 due to late incoming aircraft maintenance. [76] Boarding will begin in approximately twenty minutes, starting with first-class passengers and loyalty program members. Please have your boarding passes and photo identification ready.",
+          evidence: [
+            "[74] Passengers ticketed on Meridian Airlines Flight 402 to Chicago, please note that there has been a gate change.",
+            "[75] Your flight will now depart from Gate B18 instead of Gate B12 due to late incoming aircraft maintenance.",
+            "[76] Boarding will begin in approximately twenty minutes...",
+          ],
+          explanation:
+            "• Câu 74 (C): Thông báo về việc thay đổi cổng khởi hành (gate change).\n• Câu 75 (B): Chuyến bay chuyển sang cổng B18 do bảo trì máy bay đến trễ.\n• Câu 76 (A): Việc lên máy bay sẽ bắt đầu sau khoảng 20 phút nữa.",
+          questions: [
+            {
+              num: 74,
+              q: "What is the main purpose of the announcement?",
+              options: [
+                "To announce a flight cancellation",
+                "To request volunteers for a later flight",
+                "To notify passengers of a gate change",
+                "To report lost luggage",
+              ],
+              ans: 2,
+            },
+            {
+              num: 75,
+              q: "Why was the change made?",
+              options: [
+                "Severe weather in Chicago",
+                "Aircraft maintenance delays",
+                "Gate B12 is under renovation",
+                "Security screening congestion",
+              ],
+              ans: 1,
+            },
+            {
+              num: 76,
+              q: "When will boarding begin?",
+              options: [
+                "In about 20 minutes",
+                "Immediately",
+                "In one hour",
+                "At 4:00 P.M.",
+              ],
+              ans: 0,
+            },
+          ],
+        },
+        {
+          id: "T2-P3",
+          test: 2,
+          range: "77–79",
+          speaker: "W-Br",
+          context:
+            "Questions 77–79 refer to the following excerpt from a workshop.",
+          topic: "Hội thảo kỹ năng nghề nghiệp",
+          script:
+            "[77] Welcome to the second session of our Effective Business Writing workshop. Today, we'll focus on writing concise and persuasive project proposals. [78] Many professionals make the mistake of overwhelming clients with overly technical jargon in the opening paragraph. Instead, you should clearly state the client's problem and your proposed solution right away. [79] I've distributed a sample proposal packet to each table—let's take ten minutes to read through the executive summary and mark areas that could be improved.",
+          evidence: [
+            "[77] Today, we'll focus on writing concise and persuasive project proposals.",
+            "[78] Many professionals make the mistake of overwhelming clients with overly technical jargon in the opening paragraph.",
+            "[79] I've distributed a sample proposal packet to each table—let's take ten minutes to read through the executive summary...",
+          ],
+          explanation:
+            "• Câu 77 (D): Chủ đề buổi học là viết đề xuất dự án (project proposals).\n• Câu 78 (B): Lỗi phổ biến là dùng quá nhiều thuật ngữ chuyên ngành phức tạp.\n• Câu 79 (C): Người tham dự sẽ đọc bản tóm tắt mẫu trong 10 phút.",
+          questions: [
+            {
+              num: 77,
+              q: "What is the topic of today's workshop session?",
+              options: [
+                "Delivering sales presentations",
+                "Negotiating vendor contracts",
+                "Managing remote teams",
+                "Writing project proposals",
+              ],
+              ans: 3,
+            },
+            {
+              num: 78,
+              q: "What common mistake does the speaker mention?",
+              options: [
+                "Forgetting to include a budget",
+                "Using too much technical jargon",
+                "Making proposals too short",
+                "Failing to proofread spelling",
+              ],
+              ans: 1,
+            },
+            {
+              num: 79,
+              q: "What will participants do next?",
+              options: [
+                "Pair up for role-play exercises",
+                "Watch a recorded client pitch",
+                "Review a sample executive summary",
+                "Draft their own introduction",
+              ],
+              ans: 2,
+            },
+          ],
+        },
+        {
+          id: "T2-P4",
+          test: 2,
+          range: "80–82",
+          speaker: "M-Au",
+          context: "Questions 80–82 refer to the following news report.",
+          topic: "Tin tức kinh tế & Đầu tư",
+          script:
+            "[80] In local business news, Sunnyside Solar Energy announced this morning that it will open a new manufacturing facility in the Northside Industrial Park. [81] The $40 million facility is expected to create over 250 full-time engineering and assembly jobs over the next two years. [82] Construction will begin in October, and company executives stated that local residents will be given priority during the hiring process.",
+          evidence: [
+            "[80] ...Sunnyside Solar Energy announced this morning that it will open a new manufacturing facility in the Northside Industrial Park.",
+            "[81] The $40 million facility is expected to create over 250 full-time engineering and assembly jobs...",
+            "[82] ...company executives stated that local residents will be given priority during the hiring process.",
+          ],
+          explanation:
+            "• Câu 80 (A): Công ty năng lượng mặt trời mở nhà máy sản xuất mới.\n• Câu 81 (C): Dự án tạo ra hơn 250 việc làm toàn thời gian.\n• Câu 82 (D): Cư dân địa phương sẽ được ưu tiên tuyển dụng.",
+          questions: [
+            {
+              num: 80,
+              q: "What did Sunnyside Solar Energy announce?",
+              options: [
+                "A new manufacturing plant",
+                "A merger with a utility company",
+                "A breakthrough battery patent",
+                "A reduction in electricity rates",
+              ],
+              ans: 0,
+            },
+            {
+              num: 81,
+              q: "How many jobs is the project expected to create?",
+              options: ["About 40", "Around 100", "More than 250", "Over 500"],
+              ans: 2,
+            },
+            {
+              num: 82,
+              q: "What did company executives say about hiring?",
+              options: [
+                "Applications are only accepted online",
+                "Previous solar experience is required",
+                "Interviews will start next week",
+                "Local residents will get priority",
+              ],
+              ans: 3,
+            },
+          ],
+        },
+        {
+          id: "T2-P5",
+          test: 2,
+          range: "83–85",
+          speaker: "W-Am",
+          context: "Questions 83–85 refer to the following telephone message.",
+          topic: "Tin nhắn xác nhận đặt tiệc / Sự kiện",
+          script:
+            "[83] Hi, Mr. Morales. This is Rachel calling from the Grandview Hotel's event planning office. [84] I'm following up regarding the annual charity gala your organization is hosting in our Crystal Ballroom on November 14th. We need to finalize the seating chart and audio-visual equipment list by this Friday. [85] Also, our head chef wanted to know if any of your 180 guests require vegetarian or gluten-free meals. Please give me a call at your earliest convenience.",
+          evidence: [
+            "[83] This is Rachel calling from the Grandview Hotel's event planning office.",
+            "[84] ...We need to finalize the seating chart and audio-visual equipment list by this Friday.",
+            "[85] Also, our head chef wanted to know if any of your 180 guests require vegetarian or gluten-free meals.",
+          ],
+          explanation:
+            "• Câu 83 (B): Rachel gọi từ văn phòng tổ chức sự kiện của khách sạn Grandview.\n• Câu 84 (C): Họ cần chốt sơ đồ chỗ ngồi và thiết bị nghe nhìn trước thứ Sáu.\n• Câu 85 (A): Bếp trưởng cần biết yêu cầu ăn kiêng/ăn chay của khách.",
+          questions: [
+            {
+              num: 83,
+              q: "Where does Rachel work?",
+              options: [
+                "At a catering supply company",
+                "At a hotel",
+                "At a charity foundation",
+                "At an audio-visual rental firm",
+              ],
+              ans: 1,
+            },
+            {
+              num: 84,
+              q: "What must be finalized by Friday?",
+              options: [
+                "The flower arrangements",
+                "The guest invitation list",
+                "The seating chart and equipment list",
+                "The deposit payment",
+              ],
+              ans: 2,
+            },
+            {
+              num: 85,
+              q: "What information does the head chef need?",
+              options: [
+                "Dietary restrictions of guests",
+                "The exact arrival time of speakers",
+                "Preferred table linen colors",
+                "Beverage brand preferences",
+              ],
+              ans: 0,
+            },
+          ],
+        },
+        {
+          id: "T2-P6",
+          test: 2,
+          range: "86–88",
+          speaker: "M-Cn",
+          context: "Questions 86–88 refer to the following introduction.",
+          topic: "Giới thiệu diễn giả hội nghị",
+          script:
+            "[86] Good morning, everyone, and welcome to the Annual Supply Chain Innovation Summit. [87] Our opening speaker today is Dr. Marcus Vance, Chief Logistics Officer at GlobalFreight Solutions, who recently published a bestselling book on sustainable maritime shipping. [88] Dr. Vance will discuss how artificial intelligence is reducing fuel consumption across international shipping routes. Please join me in giving him a warm welcome.",
+          evidence: [
+            "[86] Good morning, everyone, and welcome to the Annual Supply Chain Innovation Summit.",
+            "[87] Our opening speaker today is Dr. Marcus Vance... who recently published a bestselling book on sustainable maritime shipping.",
+            "[88] Dr. Vance will discuss how artificial intelligence is reducing fuel consumption across international shipping routes.",
+          ],
+          explanation:
+            "• Câu 86 (D): Hội nghị về Đổi mới Chuỗi cung ứng.\n• Câu 87 (A): Tiến sĩ Vance vừa xuất bản một cuốn sách bán chạy.\n• Câu 88 (C): Bài nói chuyện về việc AI giúp giảm tiêu thụ nhiên liệu.",
+          questions: [
+            {
+              num: 86,
+              q: "What event are the listeners attending?",
+              options: [
+                "A software engineering expo",
+                "An environmental policy forum",
+                "An aviation safety conference",
+                "A supply chain summit",
+              ],
+              ans: 3,
+            },
+            {
+              num: 87,
+              q: "What is mentioned about Dr. Marcus Vance?",
+              options: [
+                "He recently wrote a bestselling book",
+                "He founded a shipping startup",
+                "He teaches at a local university",
+                "He won a government grant",
+              ],
+              ans: 0,
+            },
+            {
+              num: 88,
+              q: "What will Dr. Vance talk about?",
+              options: [
+                "Recruiting logistics managers",
+                "Port customs regulations",
+                "Reducing fuel use with AI",
+                "Electric delivery trucks",
+              ],
+              ans: 2,
+            },
+          ],
+        },
+        {
+          id: "T2-P7",
+          test: 2,
+          range: "89–91",
+          speaker: "W-Br",
+          context: "Questions 89–91 refer to the following announcement.",
+          topic: "Thông báo nội bộ cửa hàng bán lẻ",
+          script:
+            "[89] Attention all MetroMart store associates. Our annual inventory audit is scheduled for this Sunday evening after the store closes at 9:00 P.M. [90] All department supervisors are asked to organize their stockrooms and label all clearance merchandise beforehand so the counting process goes smoothly. [91] Pizza and refreshments will be provided in the employee lounge at 10:30 P.M., and everyone working the audit shift will receive overtime pay.",
+          evidence: [
+            "[89] Our annual inventory audit is scheduled for this Sunday evening after the store closes at 9:00 P.M.",
+            "[90] All department supervisors are asked to organize their stockrooms and label all clearance merchandise beforehand...",
+            "[91] Pizza and refreshments will be provided in the employee lounge at 10:30 P.M., and everyone working the audit shift will receive overtime pay.",
+          ],
+          explanation:
+            "• Câu 89 (B): Cuộc kiểm kê hàng tồn kho diễn ra tối Chủ nhật sau 9h tối.\n• Câu 90 (D): Quản lý bộ phận cần sắp xếp kho và dán nhãn hàng giảm giá.\n• Câu 91 (A): Nhân viên tham gia sẽ được nhận lương làm thêm giờ (overtime pay).",
+          questions: [
+            {
+              num: 89,
+              q: "When will the inventory audit take place?",
+              options: [
+                "Monday morning before opening",
+                "Sunday evening after 9:00 P.M.",
+                "Saturday afternoon",
+                "Friday night at midnight",
+              ],
+              ans: 1,
+            },
+            {
+              num: 90,
+              q: "What are department supervisors asked to do?",
+              options: [
+                "Submit staff schedules",
+                "Order extra barcode scanners",
+                "Clean the front display windows",
+                "Organize stockrooms and label items",
+              ],
+              ans: 3,
+            },
+            {
+              num: 91,
+              q: "What will employees working the shift receive?",
+              options: [
+                "Overtime pay",
+                "An extra paid vacation day",
+                "Store gift certificates",
+                "A performance bonus",
+              ],
+              ans: 0,
+            },
+          ],
+        },
+        {
+          id: "T2-P8",
+          test: 2,
+          range: "92–94",
+          speaker: "M-Au",
+          context: "Questions 92–94 refer to the following advertisement.",
+          topic: "Quảng cáo khóa học / Trung tâm",
+          script:
+            "[92] Looking to advance your career or switch to a high-demand tech field? Enroll in Westwood Technical Institute's evening data analytics certificate program! [93] Designed specifically for working adults, our classes meet twice a week online with live instructors and hands-on coding labs. [94] Graduates also gain access to our career placement network, which partners with over 120 regional employers. Visit westwoodtech.edu to register for Tuesday's free info session.",
+          evidence: [
+            "[92] ...Enroll in Westwood Technical Institute's evening data analytics certificate program!",
+            "[93] Designed specifically for working adults, our classes meet twice a week online with live instructors...",
+            "[94] Graduates also gain access to our career placement network, which partners with over 120 regional employers.",
+          ],
+          explanation:
+            "• Câu 92 (C): Quảng cáo chương trình chứng chỉ phân tích dữ liệu buổi tối.\n• Câu 93 (A): Lớp học trực tuyến 2 buổi/tuần có giảng viên dạy trực tiếp.\n• Câu 94 (B): Học viên tốt nghiệp được kết nối với mạng lưới việc làm hơn 120 nhà tuyển dụng.",
+          questions: [
+            {
+              num: 92,
+              q: "What is being advertised?",
+              options: [
+                "A corporate accounting firm",
+                "A software consulting service",
+                "A data analytics certificate program",
+                "An executive coaching seminar",
+              ],
+              ans: 2,
+            },
+            {
+              num: 93,
+              q: "How are the classes conducted?",
+              options: [
+                "Online twice a week with live instructors",
+                "Through self-paced pre-recorded videos",
+                "On campus every Saturday morning",
+                "Via one-on-one weekend tutoring",
+              ],
+              ans: 0,
+            },
+            {
+              num: 94,
+              q: "What benefit do graduates receive?",
+              options: [
+                "Free software licenses for life",
+                "Access to a career placement network",
+                "Tuition reimbursement",
+                "Guaranteed internship stipends",
+              ],
+              ans: 1,
+            },
+          ],
+        },
+        {
+          id: "T2-P9",
+          test: 2,
+          range: "95–97",
+          speaker: "W-Am",
+          context: "Questions 95–97 refer to the following talk.",
+          topic: "Cập nhật chính sách & Phúc lợi nhân viên",
+          script:
+            "[95] Hi everyone, thanks for attending this brief HR update. Beginning next month, our company is expanding its wellness reimbursement program. [96] Previously, employees could only claim expenses for gym memberships, but the updated policy now covers yoga classes, fitness trackers, and nutritional counseling up to $500 per year. [97] To submit a claim, simply upload a photo of your itemized receipt to the employee portal within 30 days of purchase.",
+          evidence: [
+            "[95] Beginning next month, our company is expanding its wellness reimbursement program.",
+            "[96] ...the updated policy now covers yoga classes, fitness trackers, and nutritional counseling up to $500 per year.",
+            "[97] To submit a claim, simply upload a photo of your itemized receipt to the employee portal within 30 days of purchase.",
+          ],
+          explanation:
+            "• Câu 95 (D): Công ty mở rộng chương trình hoàn trả chi phí chăm sóc sức khỏe.\n• Câu 96 (B): Chính sách mới bao gồm cả thiết bị theo dõi sức khỏe (fitness trackers) lên tới $500/năm.\n• Câu 97 (C): Nhân viên tải ảnh hóa đơn chi tiết lên cổng thông tin nội bộ.",
+          questions: [
+            {
+              num: 95,
+              q: "What is the main topic of the talk?",
+              options: [
+                "New health insurance deductibles",
+                "Upcoming office holidays",
+                "Remote work equipment allowances",
+                "An expanded wellness reimbursement policy",
+              ],
+              ans: 3,
+            },
+            {
+              num: 96,
+              q: "What is newly covered under the updated program?",
+              options: [
+                "Dental checkups",
+                "Fitness trackers and yoga classes",
+                "Commuter train passes",
+                "Ergonomic office chairs",
+              ],
+              ans: 1,
+            },
+            {
+              num: 97,
+              q: "How do employees request reimbursement?",
+              options: [
+                "By emailing the accounting manager",
+                "By mailing paper forms to HR",
+                "By uploading a receipt photo to a portal",
+                "By submitting claims at the end of the year",
+              ],
+              ans: 2,
+            },
+          ],
+        },
+        {
+          id: "T2-P10",
+          test: 2,
+          range: "98–100",
+          speaker: "M-Cn",
+          context: "Questions 98–100 refer to the following speech.",
+          topic: "Khai trương & Tri ân khách hàng",
+          script:
+            "[98] Welcome, everyone, to the grand reopening of the Riverside Public Library! After eight months of extensive renovations, we are thrilled to open our doors once again. [99] Thanks to generous community donations, we've added a soundproof digital media lab, doubled the size of our children's reading room, and installed solar panels on the roof. [100] Please help yourselves to coffee and pastries in the courtyard, and don't forget to pick up a bookmark with our updated weekend hours.",
+          evidence: [
+            "[98] Welcome, everyone, to the grand reopening of the Riverside Public Library!",
+            "[99] Thanks to generous community donations, we've added a soundproof digital media lab...",
+            "[100] ...don't forget to pick up a bookmark with our updated weekend hours.",
+          ],
+          explanation:
+            "• Câu 98 (A): Sự kiện là lễ mở cửa trở lại của Thư viện Công cộng Riverside.\n• Câu 99 (C): Thư viện đã bổ sung phòng lab truyền thông kỹ thuật số cách âm.\n• Câu 100 (B): Khách tham dự có thể lấy thẻ đánh dấu sách có in giờ mở cửa cuối tuần mới.",
+          questions: [
+            {
+              num: 98,
+              q: "What is being celebrated?",
+              options: [
+                "The reopening of a public library",
+                "The anniversary of a community center",
+                "The opening of a local bookstore",
+                "The launch of a city reading festival",
+              ],
+              ans: 0,
+            },
+            {
+              num: 99,
+              q: "What new feature was added during renovations?",
+              options: [
+                "An outdoor amphitheater",
+                "A coffee shop on the second floor",
+                "A soundproof digital media lab",
+                "An underground parking garage",
+              ],
+              ans: 2,
+            },
+            {
+              num: 100,
+              q: "What information is printed on the bookmarks?",
+              options: [
+                "Upcoming author events",
+                "Updated weekend hours",
+                "Wi-Fi login instructions",
+                "Library card application steps",
+              ],
+              ans: 1,
+            },
+          ],
+        },
+
+        // =========================================================================
+        // TEST 3 (Scripts no3: Q71 - Q100)
+        // =========================================================================
+        {
+          id: "T3-P1",
+          test: 3,
+          range: "71–73",
+          speaker: "M-Au",
+          context: "Questions 71–73 refer to the following telephone message.",
+          topic: "Tin nhắn sửa chữa & Bảo trì thiết bị",
+          script:
+            "[71] Hello, Ms. Chen. This is Greg from Precision HVAC Services calling about the air conditioning unit at your bakery. [72] Our technician inspected the rooftop compressor this morning and found that a worn-out fan motor needs to be replaced. [73] We have the replacement part in stock at our warehouse, so we can install it tomorrow morning at 8:00 A.M. before your shop opens. Please call me back to confirm if that time works for you.",
+          evidence: [
+            "[71] This is Greg from Precision HVAC Services calling about the air conditioning unit at your bakery.",
+            "[72] Our technician inspected the rooftop compressor this morning and found that a worn-out fan motor needs to be replaced.",
+            "[73] ...we can install it tomorrow morning at 8:00 A.M. before your shop opens.",
+          ],
+          explanation:
+            "• Câu 71 (C): Người nói làm việc tại công ty dịch vụ điều hòa (HVAC).\n• Câu 72 (A): Kỹ thuật viên phát hiện mô-tơ quạt bị mòn cần thay thế.\n• Câu 73 (D): Họ đề xuất lắp đặt vào 8h sáng mai trước khi tiệm bánh mở cửa.",
+          questions: [
+            {
+              num: 71,
+              q: "Who is the speaker?",
+              options: [
+                "A bakery supplier",
+                "A building inspector",
+                "An air conditioning technician",
+                "A commercial real estate agent",
+              ],
+              ans: 2,
+            },
+            {
+              num: 72,
+              q: "What problem was found during the inspection?",
+              options: [
+                "A worn-out fan motor",
+                "A clogged drainage pipe",
+                "A faulty thermostat",
+                "Low refrigerant levels",
+              ],
+              ans: 0,
+            },
+            {
+              num: 73,
+              q: "What does the speaker ask Ms. Chen to confirm?",
+              options: [
+                "The model number of the unit",
+                "The payment method",
+                "The parking location for the van",
+                "An 8:00 A.M. installation appointment",
+              ],
+              ans: 3,
+            },
+          ],
+        },
+        {
+          id: "T3-P2",
+          test: 3,
+          range: "74–76",
+          speaker: "W-Br",
+          context: "Questions 74–76 refer to the following announcement.",
+          topic: "Thông báo tại nhà ga / Tàu hỏa",
+          script:
+            "[74] Good afternoon, passengers. We are currently approaching Central Station, which is the final stop for this express train. [75] Please check the overhead racks and the area around your seat to ensure you have all your personal belongings before exiting. [76] Passengers connecting to regional bus lines should follow the green signs on Platform 1 toward the West Concourse.",
+          evidence: [
+            "[74] We are currently approaching Central Station, which is the final stop for this express train.",
+            "[75] Please check the overhead racks and the area around your seat to ensure you have all your personal belongings...",
+            "[76] Passengers connecting to regional bus lines should follow the green signs on Platform 1 toward the West Concourse.",
+          ],
+          explanation:
+            "• Câu 74 (B): Thông báo được phát trên một chuyến tàu tốc hành.\n• Câu 75 (D): Hành khách được nhắc kiểm tra hành lý cá nhân trước khi xuống tàu.\n• Câu 76 (A): Khách chuyển sang xe buýt liên vùng cần đi theo biển chỉ dẫn màu xanh.",
+          questions: [
+            {
+              num: 74,
+              q: "Where is this announcement being made?",
+              options: [
+                "At an airport terminal",
+                "On an express train",
+                "Inside a ferry terminal",
+                "On a tour bus",
+              ],
+              ans: 1,
+            },
+            {
+              num: 75,
+              q: "What are passengers reminded to do?",
+              options: [
+                "Validate their tickets",
+                "Keep aisles clear of luggage",
+                "Fill out a travel survey",
+                "Check for personal belongings",
+              ],
+              ans: 3,
+            },
+            {
+              num: 76,
+              q: "How should passengers reach the regional bus lines?",
+              options: [
+                "By following the green signs",
+                "By taking the elevator to Level 3",
+                "By exiting through the East Gate",
+                "By asking a station attendant",
+              ],
+              ans: 0,
+            },
+          ],
+        },
+        {
+          id: "T3-P3",
+          test: 3,
+          range: "77–79",
+          speaker: "M-Cn",
+          context:
+            "Questions 77–79 refer to the following excerpt from a meeting.",
+          topic: "Họp marketing & Chiến dịch quảng bá",
+          script:
+            "[77] Let's move on to the marketing campaign for our upcoming line of eco-friendly kitchenware. [78] Instead of relying solely on print magazine ads like we did last year, we're allocating 60 percent of our budget to partnerships with popular cooking vloggers on social media. [79] Sarah has already reached out to twelve content creators, and we'll review their sample video concepts during Friday's creative meeting.",
+          evidence: [
+            "[77] Let's move on to the marketing campaign for our upcoming line of eco-friendly kitchenware.",
+            "[78] ...we're allocating 60 percent of our budget to partnerships with popular cooking vloggers on social media.",
+            "[79] ...we'll review their sample video concepts during Friday's creative meeting.",
+          ],
+          explanation:
+            "• Câu 77 (C): Công ty chuẩn bị ra mắt dòng đồ dùng nhà bếp thân thiện môi trường.\n• Câu 78 (B): 60% ngân sách được dành cho việc hợp tác với các vlogger nấu ăn.\n• Câu 79 (A): Nhóm sẽ xem xét ý tưởng video mẫu vào thứ Sáu.",
+          questions: [
+            {
+              num: 77,
+              q: "What product line is being discussed?",
+              options: [
+                "Smart home appliances",
+                "Organic packaged foods",
+                "Eco-friendly kitchenware",
+                "Outdoor camping gear",
+              ],
+              ans: 2,
+            },
+            {
+              num: 78,
+              q: "How will most of the marketing budget be spent?",
+              options: [
+                "On television commercials",
+                "On social media cooking vloggers",
+                "On print magazine advertisements",
+                "On in-store product displays",
+              ],
+              ans: 1,
+            },
+            {
+              num: 79,
+              q: "What will happen on Friday?",
+              options: [
+                "Sample video concepts will be reviewed",
+                "The new products will launch online",
+                "A press release will be published",
+                "Contract prices will be negotiated",
+              ],
+              ans: 0,
+            },
+          ],
+        },
+        {
+          id: "T3-P4",
+          test: 3,
+          range: "80–82",
+          speaker: "W-Am",
+          context: "Questions 80–82 refer to the following radio broadcast.",
+          topic: "Phỏng vấn & Sự kiện văn hóa",
+          script:
+            "[80] Welcome back to City Arts Radio. This Saturday, the Harborfront Amphitheater will host the annual Jazz by the Bay Festival, featuring twelve regional bands. [81] Gates open at 1:00 P.M., and attendees are welcome to bring folding chairs and picnic blankets, though outside beverages are not permitted. [82] Tickets are $25 at the gate, or you can purchase them online beforehand for $20 using the promo code BAYJAZZ.",
+          evidence: [
+            "[80] This Saturday, the Harborfront Amphitheater will host the annual Jazz by the Bay Festival...",
+            "[81] ...attendees are welcome to bring folding chairs and picnic blankets, though outside beverages are not permitted.",
+            "[82] Tickets are $25 at the gate, or you can purchase them online beforehand for $20...",
+          ],
+          explanation:
+            "• Câu 80 (D): Sự kiện là lễ hội âm nhạc Jazz hàng năm.\n• Câu 81 (B): Khán giả không được mang đồ uống từ bên ngoài vào.\n• Câu 82 (C): Mua vé trực tuyến trước sẽ tiết kiệm được $5 ($20 so với $25).",
+          questions: [
+            {
+              num: 80,
+              q: "What event is taking place on Saturday?",
+              options: [
+                "A food truck rally",
+                "An outdoor film screening",
+                "A classical symphony concert",
+                "An annual jazz festival",
+              ],
+              ans: 3,
+            },
+            {
+              num: 81,
+              q: "What are attendees prohibited from bringing?",
+              options: [
+                "Folding chairs",
+                "Outside beverages",
+                "Picnic blankets",
+                "Digital cameras",
+              ],
+              ans: 1,
+            },
+            {
+              num: 82,
+              q: "How can listeners get a discount on tickets?",
+              options: [
+                "By arriving before 1:00 P.M.",
+                "By showing a student ID",
+                "By buying tickets online in advance",
+                "By purchasing a group package",
+              ],
+              ans: 2,
+            },
+          ],
+        },
+        {
+          id: "T3-P5",
+          test: 3,
+          range: "83–85",
+          speaker: "M-Au",
+          context: "Questions 83–85 refer to the following instructions.",
+          topic: "Hướng dẫn sử dụng hệ thống IT / Văn phòng",
+          script:
+            "[83] Good morning, everyone. As part of our company-wide cybersecurity upgrade, all employees are required to enable two-factor authentication on their work accounts by the end of the day. [84] I've sent an email with a step-by-step setup guide showing how to link your corporate email to the authenticator app on your smartphone. [85] If you run into any technical issues or don't have a company phone, please stop by the IT Help Desk on the fourth floor.",
+          evidence: [
+            "[83] ...all employees are required to enable two-factor authentication on their work accounts by the end of the day.",
+            "[84] I've sent an email with a step-by-step setup guide showing how to link your corporate email to the authenticator app...",
+            "[85] If you run into any technical issues... please stop by the IT Help Desk on the fourth floor.",
+          ],
+          explanation:
+            "• Câu 83 (A): Nhân viên phải bật xác thực hai yếu tố trước cuối ngày hôm nay.\n• Câu 84 (C): Người nói đã gửi email kèm hướng dẫn cài đặt từng bước.\n• Câu 85 (B): Nếu gặp sự cố, nhân viên đến bàn hỗ trợ IT trên tầng 4.",
+          questions: [
+            {
+              num: 83,
+              q: "What are employees required to do today?",
+              options: [
+                "Enable two-factor authentication",
+                "Update their laptop operating systems",
+                "Change their building access PINs",
+                "Complete a cybersecurity quiz",
+              ],
+              ans: 0,
+            },
+            {
+              num: 84,
+              q: "What did the speaker send to employees?",
+              options: [
+                "A link to download new software",
+                "A list of approved passwords",
+                "A step-by-step setup guide",
+                "A schedule for system maintenance",
+              ],
+              ans: 2,
+            },
+            {
+              num: 85,
+              q: "Where should employees go if they need help?",
+              options: [
+                "To the Human Resources office",
+                "To the fourth-floor IT Help Desk",
+                "To the building security desk",
+                "To the main reception area",
+              ],
+              ans: 1,
+            },
+          ],
+        },
+        {
+          id: "T3-P6",
+          test: 3,
+          range: "86–88",
+          speaker: "W-Br",
+          context: "Questions 86–88 refer to the following tour information.",
+          topic: "Tham quan nhà máy / Cơ sở sản xuất",
+          script:
+            "[86] Welcome to ClearSpring Bottling Company! Before we enter the production floor, please put on the safety glasses and hairnets provided on the table to your left. [87] During the tour, you'll see how our automated machines fill, cap, and label over 600 bottles of sparkling mineral water per minute. [88] At the end of our walk, we'll visit our tasting room, where you can sample our newest fruit-infused flavors before they hit supermarket shelves next month.",
+          evidence: [
+            "[86] Before we enter the production floor, please put on the safety glasses and hairnets provided on the table to your left.",
+            "[87] During the tour, you'll see how our automated machines fill, cap, and label over 600 bottles of sparkling mineral water per minute.",
+            "[88] ...we'll visit our tasting room, where you can sample our newest fruit-infused flavors before they hit supermarket shelves...",
+          ],
+          explanation:
+            "• Câu 86 (D): Khách tham quan phải đeo kính bảo hộ và lưới trùm tóc.\n• Câu 87 (B): Nhà máy đóng chai nước khoáng có ga.\n• Câu 88 (C): Khách sẽ được nếm thử các hương vị mới trước khi bán ra siêu thị.",
+          questions: [
+            {
+              num: 86,
+              q: "What must visitors wear before entering the production floor?",
+              options: [
+                "Earplugs and steel-toed boots",
+                "Reflective safety vests",
+                "Disposable lab coats",
+                "Safety glasses and hairnets",
+              ],
+              ans: 3,
+            },
+            {
+              num: 87,
+              q: "What does the factory produce?",
+              options: [
+                "Organic fruit juices",
+                "Sparkling mineral water",
+                "Glass beverage containers",
+                "Dairy products",
+              ],
+              ans: 1,
+            },
+            {
+              num: 88,
+              q: "What will visitors do at the end of the tour?",
+              options: [
+                "Receive a discount coupon",
+                "Watch a company history film",
+                "Sample unreleased beverage flavors",
+                "Meet the factory floor manager",
+              ],
+              ans: 2,
+            },
+          ],
+        },
+        {
+          id: "T3-P7",
+          test: 3,
+          range: "89–91",
+          speaker: "M-Cn",
+          context: "Questions 89–91 refer to the following speech.",
+          topic: "Phát biểu chia tay đồng nghiệp nghỉ hưu",
+          script:
+            "[89] Thank you all for gathering here today to celebrate the retirement of our Senior Accounting Manager, Mr. Arthur Miller. [90] Over his 28 years with Sterling Manufacturing, Arthur has not only guided our finance department through major expansions, but he has also mentored dozens of young accountants. [91] On behalf of the entire company, we'd like to present Arthur with this engraved watch and a travel voucher for his upcoming trip to Italy.",
+          evidence: [
+            "[89] Thank you all for gathering here today to celebrate the retirement of our Senior Accounting Manager, Mr. Arthur Miller.",
+            "[90] Over his 28 years with Sterling Manufacturing, Arthur has not only guided our finance department...",
+            "[91] ...we'd like to present Arthur with this engraved watch and a travel voucher for his upcoming trip to Italy.",
+          ],
+          explanation:
+            "• Câu 89 (A): Buổi tiệc chúc mừng ông Arthur Miller nghỉ hưu.\n• Câu 90 (C): Ông đã làm việc tại công ty được 28 năm.\n• Câu 91 (D): Công ty tặng ông một chiếc đồng hồ khắc tên và phiếu du lịch Ý.",
+          questions: [
+            {
+              num: 89,
+              q: "What is the occasion for the speech?",
+              options: [
+                "A colleague's retirement",
+                "A company anniversary",
+                "A department promotion",
+                "An annual holiday party",
+              ],
+              ans: 0,
+            },
+            {
+              num: 90,
+              q: "How long has Mr. Miller worked at the company?",
+              options: ["15 years", "20 years", "28 years", "35 years"],
+              ans: 2,
+            },
+            {
+              num: 91,
+              q: "What gifts is Mr. Miller receiving?",
+              options: [
+                "A framed portrait and a plaque",
+                "Golf clubs and a club membership",
+                "A laptop and a leather briefcase",
+                "An engraved watch and a travel voucher",
+              ],
+              ans: 3,
+            },
+          ],
+        },
+        {
+          id: "T3-P8",
+          test: 3,
+          range: "92–94",
+          speaker: "W-Am",
+          context: "Questions 92–94 refer to the following telephone message.",
+          topic: "Tin nhắn tuyển dụng & Phỏng vấn",
+          script:
+            "[92] Hello, Mr. Park. This is Vanessa calling from the Human Resources department at Horizon Logistics. [93] We were very impressed with your interview earlier this week for the Supply Chain Analyst position, and we would like to invite you back for a second-round interview with our Vice President of Operations. [94] Are you available this Thursday at 10:30 A.M.? Please call me back at 555-0148 or reply to my email so I can send you the visitor parking pass.",
+          evidence: [
+            "[92] This is Vanessa calling from the Human Resources department at Horizon Logistics.",
+            "[93] ...we would like to invite you back for a second-round interview with our Vice President of Operations.",
+            "[94] Are you available this Thursday at 10:30 A.M.? Please call me back... so I can send you the visitor parking pass.",
+          ],
+          explanation:
+            "• Câu 92 (B): Vanessa gọi từ phòng Nhân sự của Horizon Logistics.\n• Câu 93 (D): Ông Park được mời phỏng vấn vòng 2 với Phó chủ tịch Vận hành.\n• Câu 94 (A): Cô ấy sẽ gửi thẻ đỗ xe khách sau khi ông xác nhận lịch hẹn.",
+          questions: [
+            {
+              num: 92,
+              q: "Why is Vanessa calling Mr. Park?",
+              options: [
+                "To offer him a job immediately",
+                "To schedule a second interview",
+                "To request his references",
+                "To confirm his start date",
+              ],
+              ans: 1,
+            },
+            {
+              num: 93,
+              q: "Who will Mr. Park meet next?",
+              options: [
+                "The Chief Executive Officer",
+                "The HR Director",
+                "A team of software engineers",
+                "The Vice President of Operations",
+              ],
+              ans: 3,
+            },
+            {
+              num: 94,
+              q: "What will Vanessa send after Mr. Park confirms?",
+              options: [
+                "A visitor parking pass",
+                "A skills assessment test",
+                "A benefits package brochure",
+                "Directions to the train station",
+              ],
+              ans: 0,
+            },
+          ],
+        },
+        {
+          id: "T3-P9",
+          test: 3,
+          range: "95–97",
+          speaker: "M-Au",
+          context: "Questions 95–97 refer to the following report.",
+          topic: "Báo cáo khảo sát hài lòng khách hàng",
+          script:
+            "[95] Let's look at the results of our recent hotel guest satisfaction survey. Overall, guests rated our room cleanliness and front-desk hospitality at 4.8 out of 5 stars. [96] However, our lowest scores were in the Wi-Fi speed and breakfast variety categories. [97] To address these concerns, we've already contracted an internet provider to upgrade our routers next week, and our kitchen staff is adding hot made-to-order egg dishes to the morning buffet.",
+          evidence: [
+            "[95] Overall, guests rated our room cleanliness and front-desk hospitality at 4.8 out of 5 stars.",
+            "[96] However, our lowest scores were in the Wi-Fi speed and breakfast variety categories.",
+            "[97] ...we've already contracted an internet provider to upgrade our routers next week...",
+          ],
+          explanation:
+            "• Câu 95 (C): Khách hàng đánh giá cao sự sạch sẽ của phòng và sự hiếu khách của lễ tân.\n• Câu 96 (A): Điểm thấp nhất là tốc độ Wi-Fi và sự đa dạng của bữa sáng.\n• Câu 97 (B): Khách sạn sẽ nâng cấp bộ định tuyến (routers) Wi-Fi vào tuần tới.",
+          questions: [
+            {
+              num: 95,
+              q: "What did hotel guests rate highly?",
+              options: [
+                "Pool and gym facilities",
+                "Airport shuttle punctuality",
+                "Room cleanliness and hospitality",
+                "Room service delivery speed",
+              ],
+              ans: 2,
+            },
+            {
+              num: 96,
+              q: "Which area received low survey scores?",
+              options: [
+                "Wi-Fi connection speed",
+                "Bathroom water pressure",
+                "Air conditioning noise",
+                "Parking availability",
+              ],
+              ans: 0,
+            },
+            {
+              num: 97,
+              q: "What will happen next week?",
+              options: [
+                "Room rates will be adjusted",
+                "Internet routers will be upgraded",
+                "A new head chef will be hired",
+                "The lobby will be repainted",
+              ],
+              ans: 1,
+            },
+          ],
+        },
+        {
+          id: "T3-P10",
+          test: 3,
+          range: "98–100",
+          speaker: "W-Br",
+          context: "Questions 98–100 refer to the following talk.",
+          topic: "Hướng dẫn tham gia sự kiện tình nguyện",
+          script:
+            "[98] Good morning, volunteers! Thank you for coming out to help with the Oakwood Park Reforestation Project. [99] Today, we'll be planting over 300 native oak and maple saplings along the northern creek trail to prevent soil erosion. [100] Please grab a shovel, a pair of work gloves, and a reusable water bottle from the supply tent before joining your team leader at the trailhead.",
+          evidence: [
+            "[98] Thank you for coming out to help with the Oakwood Park Reforestation Project.",
+            "[99] Today, we'll be planting over 300 native oak and maple saplings along the northern creek trail to prevent soil erosion.",
+            "[100] Please grab a shovel, a pair of work gloves, and a reusable water bottle from the supply tent...",
+          ],
+          explanation:
+            "• Câu 98 (D): Người nghe là tình nguyện viên tham gia dự án trồng rừng công viên.\n• Câu 99 (B): Mục đích trồng cây là để ngăn ngừa xói mòn đất.\n• Câu 100 (C): Tình nguyện viên lấy xẻng, găng tay và bình nước tại lều vật tư.",
+          questions: [
+            {
+              num: 98,
+              q: "Who are the listeners?",
+              options: [
+                "Park rangers",
+                "Botany students",
+                "Landscaping contractors",
+                "Community volunteers",
+              ],
+              ans: 3,
+            },
+            {
+              num: 99,
+              q: "Why are the trees being planted?",
+              options: [
+                "To provide shade for picnic areas",
+                "To prevent soil erosion",
+                "To replace trees damaged by a fire",
+                "To create a windbreak",
+              ],
+              ans: 1,
+            },
+            {
+              num: 100,
+              q: "Where should listeners pick up gloves and shovels?",
+              options: [
+                "At the park visitor center",
+                "From their team leaders",
+                "At the supply tent",
+                "Near the main parking lot",
+              ],
+              ans: 2,
+            },
+          ],
+        },
+      ];
+
+      // =========================================================================
+      // APPLICATION STATE & STORAGE
+      // =========================================================================
+      const STORAGE_KEY = "toeic_part4_master_state_v1";
+
+      let state = {
+        mode: "practice", // 'practice' | 'exam'
+        currentTest: 1, // 1 | 2 | 3 | 'mistakes'
+        currentPassageIdx: 0,
+        userAnswers: {}, // { "71": 2, ... } keyed by passageId + "_" + qNum
+        checkedPassages: {}, // { "T1-P1": true }
+        mistakes: [], // array of passage IDs that had at least 1 wrong answer
+        playbackRate: 1.0,
+        showTranscript: false,
+        examSubmitted: false,
+        examSecondsLeft: 15 * 60,
+        examTimerInterval: null,
+      };
+
+      // Load saved progress from localStorage
+      function loadState() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            state.userAnswers = parsed.userAnswers || {};
+            state.checkedPassages = parsed.checkedPassages || {};
+            state.mistakes = parsed.mistakes || [];
+          }
+        } catch (e) {
+          console.error("Failed to load saved state:", e);
+        }
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify({
+              userAnswers: state.userAnswers,
+              checkedPassages: state.checkedPassages,
+              mistakes: state.mistakes,
+            }),
+          );
+        } catch (e) {
+          console.error("Failed to save state:", e);
+        }
+      }
+
+      // Helper: Get filtered passages for current tab
+      function getActivePassages() {
+        if (state.currentTest === "mistakes") {
+          return TOEIC_DATA.filter((p) => state.mistakes.includes(p.id));
+        }
+        return TOEIC_DATA.filter((p) => p.test === state.currentTest);
+      }
+
+      function getCurrentPassage() {
+        const list = getActivePassages();
+        if (list.length === 0) return null;
+        if (state.currentPassageIdx >= list.length) {
+          state.currentPassageIdx = 0;
+        }
+        return list[state.currentPassageIdx];
+      }
+
+      // =========================================================================
+      // WEB SPEECH API (TTS AUDIO SIMULATOR WITH SPEAKER ACCENT MAPPING)
+      // =========================================================================
+      let isSpeaking = false;
+      let availableVoices = [];
+
+      function initVoices() {
+        if ("speechSynthesis" in window) {
+          availableVoices = window.speechSynthesis.getVoices();
+        }
+      }
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.onvoiceschanged = initVoices;
+        initVoices();
+      }
+
+      function getVoiceForSpeakerTag(tag) {
+        if (!availableVoices.length) initVoices();
+        const enVoices = availableVoices.filter((v) => v.lang.startsWith("en"));
+        if (!enVoices.length) return null;
+
+        // Map TOEIC speaker tags: M-Cn (Male North American), W-Br (Female British), M-Au (Male Australian), W-Am (Female American)
+        if (tag === "W-Br") {
+          return (
+            enVoices.find(
+              (v) =>
+                v.lang.includes("GB") &&
+                (v.name.includes("Female") ||
+                  v.name.includes("Hazel") ||
+                  v.name.includes("Libby") ||
+                  v.name.includes("Google UK English Female")),
+            ) ||
+            enVoices.find((v) => v.lang.includes("GB")) ||
+            enVoices[0]
+          );
+        }
+        if (tag === "W-Am") {
+          return (
+            enVoices.find(
+              (v) =>
+                v.lang.includes("US") &&
+                (v.name.includes("Female") ||
+                  v.name.includes("Zira") ||
+                  v.name.includes("Samantha") ||
+                  v.name.includes("Google US English")),
+            ) ||
+            enVoices.find((v) => v.lang.includes("US")) ||
+            enVoices[0]
+          );
+        }
+        if (tag === "M-Au") {
+          return (
+            enVoices.find((v) => v.lang.includes("AU")) ||
+            enVoices.find(
+              (v) =>
+                v.name.includes("Male") ||
+                v.name.includes("Daniel") ||
+                v.name.includes("David"),
+            ) ||
+            enVoices[0]
+          );
+        }
+        // Default M-Cn (Male North American)
+        return (
+          enVoices.find(
+            (v) =>
+              (v.lang.includes("US") || v.lang.includes("CA")) &&
+              (v.name.includes("Male") ||
+                v.name.includes("David") ||
+                v.name.includes("Mark") ||
+                v.name.includes("Google UK English Male")),
+          ) ||
+          enVoices.find((v) => v.lang.includes("US")) ||
+          enVoices[0]
+        );
+      }
+
+      function stopAudio() {
+        if ("speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+        }
+        isSpeaking = false;
+        updateAudioUI(false);
+      }
+
+      function togglePlayAudio() {
+        if (!("speechSynthesis" in window)) {
+          showToast(
+            "Trình duyệt không hỗ trợ đọc giọng nói AI. Hãy dùng nút Load MP3.",
+          );
+          return;
+        }
+
+        if (isSpeaking) {
+          stopAudio();
+          return;
+        }
+
+        const passage = getCurrentPassage();
+        if (!passage) return;
+
+        // Clean [71], [72], [73] markers for natural speech
+        let textToSpeak =
+          passage.context + ". " + passage.script.replace(/\[\d+\]\s*/g, "");
+
+        if (document.getElementById("chkReadQuestions").checked) {
+          passage.questions.forEach((q) => {
+            textToSpeak += ` Number ${q.num}. ${q.q}`;
+          });
+        }
+
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        const selectedVoice = getVoiceForSpeakerTag(passage.speaker);
+        if (selectedVoice) utterance.voice = selectedVoice;
+        utterance.lang = selectedVoice ? selectedVoice.lang : "en-US";
+        utterance.rate = state.playbackRate;
+
+        utterance.onstart = () => {
+          isSpeaking = true;
+          updateAudioUI(true);
+        };
+        utterance.onend = () => {
+          isSpeaking = false;
+          updateAudioUI(false);
+        };
+        utterance.onerror = () => {
+          isSpeaking = false;
+          updateAudioUI(false);
+        };
+
+        window.speechSynthesis.speak(utterance);
+      }
+
+      function replayAudio() {
+        stopAudio();
+        setTimeout(() => togglePlayAudio(), 120);
+      }
+
+      function setPlaybackRate(rate) {
+        state.playbackRate = rate;
+        document.querySelectorAll(".rate-btn").forEach((btn) => {
+          const r = parseFloat(btn.dataset.rate);
+          if (r === rate) {
+            btn.className =
+              "rate-btn px-2 py-0.5 rounded font-semibold bg-white text-blue-600 shadow-sm";
+          } else {
+            btn.className =
+              "rate-btn px-2 py-0.5 rounded font-semibold text-slate-600 hover:bg-white";
+          }
+        });
+        if (isSpeaking) {
+          replayAudio();
+        }
+      }
+
+      function updateAudioUI(playing) {
+        const icon = document.getElementById("iconPlayPause");
+        const statusText = document.getElementById("audioStatusText");
+        const wave = document.getElementById("audioWave");
+        if (playing) {
+          icon.setAttribute("data-lucide", "square");
+          statusText.textContent = "Đang phát bài nghe...";
+          wave.classList.remove("hidden");
+        } else {
+          icon.setAttribute("data-lucide", "play");
+          statusText.textContent = "Sẵn sàng phát";
+          wave.classList.add("hidden");
+        }
+        lucide.createIcons();
+      }
+
+      // Local MP3 Upload Handlers
+      function triggerMp3Upload() {
+        document.getElementById("mp3FileInput").click();
+      }
+
+      function handleMp3Upload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        stopAudio();
+        const url = URL.createObjectURL(file);
+        const audioEl = document.getElementById("htmlAudioPlayer");
+        audioEl.src = url;
+        document.getElementById("mp3FileName").textContent = file.name;
+        document.getElementById("localMp3Container").classList.remove("hidden");
+        document.getElementById("ttsPlayerContainer").classList.add("hidden");
+        showToast(`Đã tải file âm thanh: ${file.name}`);
+      }
+
+      function removeLocalMp3() {
+        const audioEl = document.getElementById("htmlAudioPlayer");
+        audioEl.pause();
+        audioEl.src = "";
+        document.getElementById("localMp3Container").classList.add("hidden");
+        document
+          .getElementById("ttsPlayerContainer")
+          .classList.remove("hidden");
+      }
+
+      // =========================================================================
+      // MODE & NAVIGATION LOGIC
+      // =========================================================================
+      function setMode(newMode) {
+        if (state.mode === newMode) return;
+        stopAudio();
+        state.mode = newMode;
+        state.showTranscript = false;
+
+        const btnPrac = document.getElementById("btnModePractice");
+        const btnExam = document.getElementById("btnModeExam");
+        const timerPanel = document.getElementById("examTimerPanel");
+        const checkBtn = document.getElementById("btnCheckPassage");
+        const resultBanner = document.getElementById("examResultBanner");
+
+        if (newMode === "practice") {
+          btnPrac.className =
+            "px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-blue-600 shadow-sm";
+          btnExam.className =
+            "px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 hover:text-slate-900";
+          timerPanel.classList.add("hidden");
+          checkBtn.classList.remove("hidden");
+          resultBanner.classList.add("hidden");
+          clearInterval(state.examTimerInterval);
+        } else {
+          if (state.currentTest === "mistakes") {
+            state.currentTest = 1;
+          }
+          btnExam.className =
+            "px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-blue-600 shadow-sm";
+          btnPrac.className =
+            "px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 hover:text-slate-900";
+          timerPanel.classList.remove("hidden");
+          checkBtn.classList.add("hidden");
+          startExamSession();
+        }
+
+        renderAll();
+      }
+
+      function startExamSession() {
+        state.examSubmitted = false;
+        state.examSecondsLeft = 15 * 60;
+        state.currentPassageIdx = 0;
+        document.getElementById("examResultBanner").classList.add("hidden");
+        document.getElementById("btnSubmitExam").disabled = false;
+        document.getElementById("btnSubmitExam").classList.remove("opacity-50");
+
+        // Clear previous answers for this test so user can take a fresh timed exam
+        const testPassages = TOEIC_DATA.filter(
+          (p) => p.test === state.currentTest,
+        );
+        testPassages.forEach((p) => {
+          delete state.checkedPassages[p.id];
+          p.questions.forEach((q) => {
+            delete state.userAnswers[`${p.id}_${q.num}`];
+          });
+        });
+
+        clearInterval(state.examTimerInterval);
+        updateTimerDisplay();
+        state.examTimerInterval = setInterval(() => {
+          state.examSecondsLeft--;
+          updateTimerDisplay();
+          if (state.examSecondsLeft <= 0) {
+            clearInterval(state.examTimerInterval);
+            submitExam();
+          }
+        }, 1000);
+      }
+
+      function updateTimerDisplay() {
+        const mins = Math.floor(state.examSecondsLeft / 60)
+          .toString()
+          .padStart(2, "0");
+        const secs = (state.examSecondsLeft % 60).toString().padStart(2, "0");
+        const el = document.getElementById("examTimerDisplay");
+        el.textContent = `${mins}:${secs}`;
+        if (state.examSecondsLeft < 120) {
+          el.classList.add("text-rose-600");
+        } else {
+          el.classList.remove("text-rose-600");
+        }
+      }
+
+      function submitExam() {
+        clearInterval(state.examTimerInterval);
+        stopAudio();
+        state.examSubmitted = true;
+        document.getElementById("btnSubmitExam").disabled = true;
+        document.getElementById("btnSubmitExam").classList.add("opacity-50");
+
+        const testPassages = TOEIC_DATA.filter(
+          (p) => p.test === state.currentTest,
+        );
+        let correctCount = 0;
+        const totalQuestions = testPassages.length * 3;
+
+        testPassages.forEach((p) => {
+          state.checkedPassages[p.id] = true;
+          let hasMistake = false;
+          p.questions.forEach((q) => {
+            const chosen = state.userAnswers[`${p.id}_${q.num}`];
+            if (chosen === q.ans) {
+              correctCount++;
+            } else {
+              hasMistake = true;
+            }
+          });
+          updateMistakeList(p.id, hasMistake);
+        });
+
+        saveState();
+
+        const pct = Math.round((correctCount / totalQuestions) * 100);
+        document.getElementById("examScoreHeadline").textContent =
+          `Bạn đạt ${correctCount} / ${totalQuestions} câu (${pct}%)`;
+        document.getElementById("examScoreSubtext").textContent =
+          pct >= 80
+            ? "Xuất sắc! Kỹ năng nghe hiểu TOEIC Part 4 của bạn rất vững vàng."
+            : "Hãy xem lại các câu sai và bật Transcript để kiểm tra vùng từ khóa bị bỏ lỡ.";
+        document.getElementById("examResultBanner").classList.remove("hidden");
+
+        renderAll();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function restartExam() {
+        startExamSession();
+        renderAll();
+      }
+
+      function selectTest(testId) {
+        stopAudio();
+        state.currentTest = testId;
+        state.currentPassageIdx = 0;
+        state.showTranscript = false;
+
+        if (state.mode === "exam" && testId === "mistakes") {
+          setMode("practice");
+          return;
+        }
+
+        if (state.mode === "exam") {
+          startExamSession();
+        }
+
+        renderAll();
+      }
+
+      function jumpToPassage(idx) {
+        stopAudio();
+        state.currentPassageIdx = idx;
+        state.showTranscript = false;
+        renderAll();
+      }
+
+      function prevPassage() {
+        if (state.currentPassageIdx > 0) {
+          jumpToPassage(state.currentPassageIdx - 1);
+        }
+      }
+
+      function nextPassage() {
+        const list = getActivePassages();
+        if (state.currentPassageIdx < list.length - 1) {
+          jumpToPassage(state.currentPassageIdx + 1);
+        } else {
+          showToast("Bạn đã hoàn thành đoạn cuối cùng trong danh sách này!");
+        }
+      }
+
+      // =========================================================================
+      // ANSWERING & EVALUATION LOGIC
+      // =========================================================================
+      function selectOption(passageId, qNum, optIndex) {
+        // Lock changes if already checked in practice mode or submitted in exam mode
+        if (state.mode === "practice" && state.checkedPassages[passageId]) {
+          return;
+        }
+        if (state.mode === "exam" && state.examSubmitted) {
+          return;
+        }
+
+        state.userAnswers[`${passageId}_${qNum}`] = optIndex;
+        saveState();
+
+        // In practice mode, auto-check once all 3 questions of the passage are answered
+        if (state.mode === "practice") {
+          const passage = TOEIC_DATA.find((p) => p.id === passageId);
+          const allAnswered = passage.questions.every(
+            (q) => state.userAnswers[`${passageId}_${q.num}`] !== undefined,
+          );
+          if (allAnswered) {
+            checkCurrentPassage();
+            return;
+          }
+        }
+
+        renderAll();
+      }
+
+      function checkCurrentPassage() {
+        const passage = getCurrentPassage();
+        if (!passage) return;
+
+        const answeredCount = passage.questions.filter(
+          (q) => state.userAnswers[`${passage.id}_${q.num}`] !== undefined,
+        ).length;
+        if (answeredCount === 0) {
+          showToast("Hãy chọn ít nhất 1 đáp án trước khi kiểm tra!");
+          return;
+        }
+
+        state.checkedPassages[passage.id] = true;
+        state.showTranscript = true;
+
+        let hasMistake = false;
+        passage.questions.forEach((q) => {
+          const chosen = state.userAnswers[`${passage.id}_${q.num}`];
+          if (chosen !== q.ans) {
+            hasMistake = true;
+          }
+        });
+
+        updateMistakeList(passage.id, hasMistake);
+        saveState();
+        renderAll();
+      }
+
+      function updateMistakeList(passageId, hasMistake) {
+        const idx = state.mistakes.indexOf(passageId);
+        if (hasMistake && idx === -1) {
+          state.mistakes.push(passageId);
+        } else if (!hasMistake && idx !== -1) {
+          state.mistakes.splice(idx, 1);
+        }
+      }
+
+      function toggleTranscript() {
+        state.showTranscript = !state.showTranscript;
+        renderPassageDetails();
+      }
+
+      // =========================================================================
+      // RENDERING UI
+      // =========================================================================
+      function renderAll() {
+        renderHeaderTabs();
+        renderStats();
+        renderNavigationPalette();
+        renderPassageDetails();
+        lucide.createIcons();
+      }
+
+      function renderHeaderTabs() {
+        const tabs = [
+          { id: 1, el: document.getElementById("tabTest1") },
+          { id: 2, el: document.getElementById("tabTest2") },
+          { id: 3, el: document.getElementById("tabTest3") },
+        ];
+        tabs.forEach((t) => {
+          if (state.currentTest === t.id) {
+            t.el.className =
+              "test-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold border transition-all bg-blue-600 text-white border-blue-600 shadow-sm";
+          } else {
+            t.el.className =
+              "test-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold border transition-all bg-white text-slate-600 border-slate-200 hover:bg-slate-50";
+          }
+        });
+
+        const mistakeTab = document.getElementById("tabTestMistakes");
+        document.getElementById("mistakeCountBadge").textContent =
+          state.mistakes.length;
+        if (state.currentTest === "mistakes") {
+          mistakeTab.className =
+            "test-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold border transition-all bg-rose-600 text-white border-rose-600 shadow-sm flex items-center gap-1.5";
+        } else {
+          mistakeTab.className =
+            "test-tab px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold border transition-all bg-white text-rose-600 border-rose-200 hover:bg-rose-50 flex items-center gap-1.5";
+        }
+      }
+
+      function renderStats() {
+        let totalAnswered = 0;
+        let totalCorrect = 0;
+
+        TOEIC_DATA.forEach((p) => {
+          p.questions.forEach((q) => {
+            const ans = state.userAnswers[`${p.id}_${q.num}`];
+            if (ans !== undefined) {
+              totalAnswered++;
+              if (ans === q.ans) totalCorrect++;
+            }
+          });
+        });
+
+        document.getElementById("statCompleted").textContent =
+          `${totalAnswered}/90`;
+        const acc =
+          totalAnswered > 0
+            ? Math.round((totalCorrect / totalAnswered) * 100)
+            : 0;
+        document.getElementById("statAccuracy").textContent = `${acc}%`;
+      }
+
+      function renderNavigationPalette() {
+        const passages = getActivePassages();
+        const passageGrid = document.getElementById("passageNavGrid");
+        const qGrid = document.getElementById("questionStatusGrid");
+        const paletteTitle = document.getElementById("paletteTitle");
+
+        paletteTitle.textContent =
+          state.currentTest === "mistakes"
+            ? "Câu làm sai"
+            : `Test ${state.currentTest}`;
+        passageGrid.innerHTML = "";
+        qGrid.innerHTML = "";
+
+        passages.forEach((p, idx) => {
+          const isCurrent = idx === state.currentPassageIdx;
+          const btn = document.createElement("button");
+          btn.onclick = () => jumpToPassage(idx);
+          btn.textContent = `Q${p.range.split("–")[0]}`;
+          btn.className = isCurrent
+            ? "py-1.5 rounded-lg text-xs font-bold bg-blue-600 text-white shadow-sm"
+            : "py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors";
+          passageGrid.appendChild(btn);
+
+          // Render individual question pills (71..100)
+          const showEval =
+            (state.mode === "practice" && state.checkedPassages[p.id]) ||
+            (state.mode === "exam" && state.examSubmitted);
+          p.questions.forEach((q) => {
+            const chosen = state.userAnswers[`${p.id}_${q.num}`];
+            const pill = document.createElement("button");
+            pill.onclick = () => jumpToPassage(idx);
+            pill.textContent = q.num;
+
+            let pillClass =
+              "py-1 rounded-md text-xs font-semibold border transition-all ";
+            if (isCurrent) {
+              pillClass += "ring-2 ring-blue-500 ring-offset-1 ";
+            }
+
+            if (showEval) {
+              if (chosen === q.ans) {
+                pillClass += "bg-emerald-500 text-white border-emerald-600";
+              } else {
+                pillClass += "bg-rose-500 text-white border-rose-600";
+              }
+            } else if (chosen !== undefined) {
+              pillClass += "bg-blue-100 text-blue-800 border-blue-300";
+            } else {
+              pillClass +=
+                "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100";
+            }
+
+            pill.className = pillClass;
+            qGrid.appendChild(pill);
+          });
+        });
+      }
+
+      function renderPassageDetails() {
+        const passages = getActivePassages();
+        const emptyState = document.getElementById("emptyMistakesState");
+        const passageContainer = document.getElementById("passageContainer");
+
+        if (passages.length === 0) {
+          emptyState.classList.remove("hidden");
+          passageContainer.classList.add("hidden");
+          return;
+        }
+
+        emptyState.classList.add("hidden");
+        passageContainer.classList.remove("hidden");
+
+        const passage = getCurrentPassage();
+        const isEvaluated =
+          (state.mode === "practice" && state.checkedPassages[passage.id]) ||
+          (state.mode === "exam" && state.examSubmitted);
+
+        // Update Left Audio Card Badges
+        document.getElementById("passageBadge").textContent =
+          `Test ${passage.test} • Q${passage.range}`;
+        const speakerNames = {
+          "M-Cn": "M-Cn (Nam Bắc Mỹ)",
+          "W-Br": "W-Br (Nữ Anh-Anh)",
+          "M-Au": "M-Au (Nam Úc)",
+          "W-Am": "W-Am (Nữ Mỹ)",
+        };
+        document.getElementById("speakerTagBadge").textContent =
+          speakerNames[passage.speaker] || passage.speaker;
+
+        // Update Right Card Header
+        document.getElementById("passageTitle").textContent = passage.context;
+        document.getElementById("passageTopicTag").innerHTML =
+          `<i data-lucide="tag" class="w-3.5 h-3.5 text-blue-500"></i><span>Chủ đề: ${passage.topic}</span>`;
+
+        // Render 3 Questions
+        const qList = document.getElementById("questionsList");
+        qList.innerHTML = "";
+        const letters = ["A", "B", "C", "D"];
+
+        passage.questions.forEach((q) => {
+          const chosen = state.userAnswers[`${passage.id}_${q.num}`];
+          const qBlock = document.createElement("div");
+          qBlock.className = "space-y-2.5";
+
+          // Question Header
+          let statusBadge = "";
+          if (isEvaluated) {
+            if (chosen === q.ans) {
+              statusBadge = `<span class="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">✓ Chính xác</span>`;
+            } else {
+              statusBadge = `<span class="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200">✕ Đáp án đúng: ${letters[q.ans]}</span>`;
+            }
+          }
+
+          qBlock.innerHTML = `
+          <div class="flex items-start gap-2.5">
+            <span class="w-7 h-7 rounded-lg bg-slate-900 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">${q.num}</span>
+            <p class="font-semibold text-slate-900 text-sm sm:text-base leading-snug">${q.q}${statusBadge}</p>
+          </div>
+        `;
+
+          // Options Grid
+          const optsGrid = document.createElement("div");
+          optsGrid.className =
+            "grid grid-cols-1 sm:grid-cols-2 gap-2.5 pl-0 sm:pl-9";
+
+          q.options.forEach((optText, optIdx) => {
+            const btn = document.createElement("button");
+            btn.onclick = () => selectOption(passage.id, q.num, optIdx);
+
+            let btnStyle =
+              "w-full text-left p-3 rounded-xl border text-sm transition-all flex items-center gap-2.5 ";
+            let badgeStyle =
+              "w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center shrink-0 border ";
+
+            if (isEvaluated) {
+              if (optIdx === q.ans) {
+                btnStyle +=
+                  "bg-emerald-50 border-emerald-500 text-emerald-950 font-semibold";
+                badgeStyle += "bg-emerald-600 text-white border-emerald-600";
+              } else if (chosen === optIdx && chosen !== q.ans) {
+                btnStyle += "bg-rose-50 border-rose-500 text-rose-950";
+                badgeStyle += "bg-rose-600 text-white border-rose-600";
+              } else {
+                btnStyle +=
+                  "bg-white border-slate-200 text-slate-500 opacity-75";
+                badgeStyle += "bg-slate-100 text-slate-500 border-slate-200";
+              }
+            } else {
+              if (chosen === optIdx) {
+                btnStyle +=
+                  "bg-blue-50 border-blue-600 text-blue-950 font-semibold shadow-sm";
+                badgeStyle += "bg-blue-600 text-white border-blue-600";
+              } else {
+                btnStyle +=
+                  "bg-white border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-slate-50";
+                badgeStyle += "bg-slate-100 text-slate-600 border-slate-200";
+              }
+            }
+
+            btn.className = btnStyle;
+            btn.innerHTML = `
+            <span class="${badgeStyle}">${letters[optIdx]}</span>
+            <span>${optText}</span>
+          `;
+            optsGrid.appendChild(btn);
+          });
+
+          qBlock.appendChild(optsGrid);
+          qList.appendChild(qBlock);
+        });
+
+        // Transcript & Explanation Visibility
+        const transcriptBox = document.getElementById("transcriptBox");
+        const btnToggleTranscript = document.getElementById(
+          "btnToggleTranscript",
+        );
+        const transcriptBtnLabel =
+          document.getElementById("transcriptBtnLabel");
+
+        // Hide transcript toggle during active unsubmitted exam
+        if (state.mode === "exam" && !state.examSubmitted) {
+          btnToggleTranscript.classList.add("hidden");
+          transcriptBox.classList.add("hidden");
+        } else {
+          btnToggleTranscript.classList.remove("hidden");
+          if (state.showTranscript) {
+            transcriptBox.classList.remove("hidden");
+            transcriptBtnLabel.textContent = "Ẩn Transcript";
+          } else {
+            transcriptBox.classList.add("hidden");
+            transcriptBtnLabel.textContent = "Xem Transcript & Giải thích";
+          }
+        }
+
+        // Highlight evidence sentences inside script
+        let formattedScript = passage.script;
+        formattedScript = formattedScript.replace(
+          /(\[\d+\][^.?!]+[.?!])/g,
+          '<span class="evidence-highlight">$1</span>',
+        );
+        document.getElementById("transcriptContent").innerHTML =
+          `<p>${formattedScript}</p>`;
+
+        // Vietnamese Explanation
+        const expLines = passage.explanation
+          .split("\n")
+          .map((line) => `<p>${line}</p>`)
+          .join("");
+        document.getElementById("explanationContent").innerHTML = `
+        <p class="font-bold text-blue-900 flex items-center gap-1.5">
+          <i data-lucide="lightbulb" class="w-4 h-4 text-amber-500"></i>
+          <span>Phân tích đáp án chi tiết:</span>
+        </p>
+        ${expLines}
+      `;
+
+        // Prev / Next buttons state
+        document.getElementById("btnPrevPassage").disabled =
+          state.currentPassageIdx === 0;
+        document.getElementById("btnNextPassage").disabled =
+          state.currentPassageIdx >= passages.length - 1;
+      }
+
+      // =========================================================================
+      // MODALS & TOAST HELPERS
+      // =========================================================================
+      function showToast(msg) {
+        const toast = document.getElementById("toast");
+        document.getElementById("toastMessage").textContent = msg;
+        toast.classList.remove("translate-y-20", "opacity-0");
+        setTimeout(() => {
+          toast.classList.add("translate-y-20", "opacity-0");
+        }, 3000);
+      }
+
+      function openImportModal() {
+        document.getElementById("importModal").classList.remove("hidden");
+      }
+
+      function closeImportModal() {
+        document.getElementById("importModal").classList.add("hidden");
+      }
+
+      function resetProgressConfirm() {
+        document.getElementById("confirmTitle").textContent =
+          "Đặt lại toàn bộ tiến độ?";
+        document.getElementById("confirmDesc").textContent =
+          "Tất cả câu đã làm và danh sách câu làm sai sẽ được xóa về 0.";
+        document.getElementById("confirmOkBtn").onclick = () => {
+          state.userAnswers = {};
+          state.checkedPassages = {};
+          state.mistakes = [];
+          state.currentPassageIdx = 0;
+          saveState();
+          closeConfirmModal();
+          renderAll();
+          showToast("Đã đặt lại toàn bộ dữ liệu luyện tập.");
+        };
+        document.getElementById("confirmModal").classList.remove("hidden");
+      }
+
+      function closeConfirmModal() {
+        document.getElementById("confirmModal").classList.add("hidden");
+      }
+
+      // Initialize Application
+      window.addEventListener("DOMContentLoaded", () => {
+        loadState();
+        renderAll();
+      });
+    </script>
+  </body>
+</html>

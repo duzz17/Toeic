@@ -1,0 +1,4681 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>TOEIC Part 1 Master - Luyện Đề, Từ Vựng & Ngữ Pháp</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- PDF.js để tự động cắt 50 ảnh từ Part 1.pdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+      if (window.pdfjsLib) {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+          "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+      }
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        overscroll-behavior-y: none;
+      }
+      /* 3D Flashcard Flip */
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .transform-style-3d {
+        transform-style: preserve-3d;
+        transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+      }
+      .backface-hidden {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+      .rotate-y-180 {
+        transform: rotateY(180deg);
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(148, 163, 184, 0.4);
+        border-radius: 9999px;
+      }
+      .safe-pb {
+        padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200"
+  >
+    <!-- TOP HEADER (Sticky, gọn gàng cho điện thoại) -->
+    <header
+      class="sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-3 sm:px-6 py-2.5"
+    >
+      <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div
+            class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600 text-white flex items-center justify-center font-extrabold text-base shadow-md shadow-indigo-500/20 shrink-0"
+          >
+            P1
+          </div>
+          <div class="truncate">
+            <h1
+              class="text-sm sm:text-base font-extrabold tracking-tight text-slate-900 dark:text-white truncate"
+            >
+              TOEIC Part 1 Master
+            </h1>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 truncate">
+              50 Câu Đề Gốc • 36 Từ Vựng • 12 Ngữ Pháp
+            </p>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation Tabs -->
+        <nav
+          class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl gap-1"
+        >
+          <button
+            onclick="switchTab('quiz')"
+            data-tab="quiz"
+            class="nav-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition"
+          >
+            🎧 Luyện Đề (50)
+          </button>
+          <button
+            onclick="switchTab('vocab')"
+            data-tab="vocab"
+            class="nav-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition"
+          >
+            🗂️ Từ Vựng (36)
+          </button>
+          <button
+            onclick="switchTab('grammar')"
+            data-tab="grammar"
+            class="nav-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition"
+          >
+            📐 Ngữ Pháp (12)
+          </button>
+          <button
+            onclick="switchTab('json')"
+            data-tab="json"
+            class="nav-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition"
+          >
+            📦 Xuất JSON
+          </button>
+        </nav>
+
+        <!-- Quick Controls: Score + Dark Mode -->
+        <div class="flex items-center gap-1.5 shrink-0">
+          <div
+            id="score-pill"
+            class="px-2.5 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-extrabold"
+          >
+            0/50 Đúng
+          </div>
+          <button
+            onclick="toggleDarkMode()"
+            aria-label="Đổi giao diện Sáng/Tối"
+            class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition"
+          >
+            <span id="theme-icon" class="text-sm">🌙</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main
+      class="flex-1 w-full max-w-6xl mx-auto px-3 sm:px-6 pt-3 sm:pt-5 safe-pb md:pb-10"
+    >
+      <!-- =================================================================== -->
+      <!-- TAB 1: LUYỆN ĐỀ TOEIC PART 1 (50 CÂU)                               -->
+      <!-- =================================================================== -->
+      <section id="tab-quiz" class="space-y-3 sm:space-y-5">
+        <!-- Filter & Action Toolbar -->
+        <div
+          class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 sm:p-4 shadow-sm space-y-3"
+        >
+          <!-- Test Selector Pills (Horizontal scroll on mobile) -->
+          <div class="flex items-center gap-1.5 overflow-x-auto pb-1">
+            <button
+              onclick="filterByTest(0)"
+              data-test="0"
+              class="test-filter-btn shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition"
+            >
+              Tất cả (50)
+            </button>
+            <button
+              onclick="filterByTest(1)"
+              data-test="1"
+              class="test-filter-btn shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition"
+            >
+              Đề 01 (1-10)
+            </button>
+            <button
+              onclick="filterByTest(2)"
+              data-test="2"
+              class="test-filter-btn shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition"
+            >
+              Đề 02 (11-20)
+            </button>
+            <button
+              onclick="filterByTest(3)"
+              data-test="3"
+              class="test-filter-btn shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition"
+            >
+              Đề 03 (21-30)
+            </button>
+            <button
+              onclick="filterByTest(4)"
+              data-test="4"
+              class="test-filter-btn shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition"
+            >
+              Đề 04 (31-40)
+            </button>
+            <button
+              onclick="filterByTest(5)"
+              data-test="5"
+              class="test-filter-btn shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition"
+            >
+              Đề 05 (41-50)
+            </button>
+          </div>
+
+          <!-- Secondary Controls -->
+          <div
+            class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-slate-800"
+          >
+            <div class="flex items-center gap-2 flex-wrap">
+              <!-- Blind Mode Toggle -->
+              <label
+                class="inline-flex items-center gap-1.5 cursor-pointer bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl text-xs font-semibold select-none"
+              >
+                <input
+                  type="checkbox"
+                  id="blind-listening-toggle"
+                  onchange="renderCurrentQuestion()"
+                  class="rounded text-indigo-600 focus:ring-indigo-500 w-3.5 h-3.5"
+                />
+                <span>🙈 Ẩn chữ (Nghe thuần)</span>
+              </label>
+
+              <!-- Speech Speed -->
+              <select
+                id="tts-rate"
+                class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-2.5 py-1.5 text-xs font-semibold focus:outline-none"
+              >
+                <option value="0.8">Tốc độ: 0.8x</option>
+                <option value="0.95" selected>Tốc độ: 1.0x</option>
+                <option value="1.15">Tốc độ: 1.2x</option>
+              </select>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <label
+                class="cursor-pointer px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-bold shadow-sm transition flex items-center gap-1"
+              >
+                <span>📂 Nạp Part 1.pdf</span>
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  onchange="extractImagesFromPdf(event)"
+                  class="hidden"
+                />
+              </label>
+              <button
+                onclick="resetQuizProgress()"
+                class="px-2.5 py-1.5 rounded-xl bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 text-xs font-semibold hover:bg-rose-100 transition"
+              >
+                Làm lại
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Extraction Progress Banner -->
+        <div
+          id="pdf-extract-banner"
+          class="hidden bg-indigo-600 text-white rounded-2xl p-3.5 shadow-md space-y-2"
+        >
+          <div class="flex items-center justify-between text-xs font-bold">
+            <span id="pdf-extract-status"
+              >⏳ Đang tự động cắt 50 bức ảnh từ file Part 1.pdf...</span
+            >
+            <span id="pdf-extract-percent">0%</span>
+          </div>
+          <div class="w-full h-2 bg-indigo-900/50 rounded-full overflow-hidden">
+            <div
+              id="pdf-extract-bar"
+              class="h-full bg-amber-300 transition-all duration-150"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Main Question Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+          <!-- Left: Photo + Audio Controls -->
+          <div class="lg:col-span-5 space-y-3">
+            <div
+              class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3.5 sm:p-5 shadow-sm"
+            >
+              <!-- Question Meta Header -->
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span
+                  id="q-badge"
+                  class="px-2.5 py-1 rounded-lg text-xs font-extrabold bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300"
+                >
+                  Đề 01 • Câu 01
+                </span>
+                <div class="flex items-center gap-1.5">
+                  <span
+                    id="q-type-tag"
+                    class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
+                  >
+                    Tranh tả người
+                  </span>
+                  <button
+                    onclick="openZoomModal()"
+                    id="btn-zoom-img"
+                    class="hidden px-2 py-1 rounded-lg text-xs font-bold bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300"
+                  >
+                    🔍
+                  </button>
+                </div>
+              </div>
+
+              <!-- Real Photo Display (when loaded from PDF/Upload) -->
+              <div
+                id="real-image-wrapper"
+                class="hidden relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-950"
+              >
+                <img
+                  id="q-real-img"
+                  src=""
+                  alt="TOEIC Part 1 Photo"
+                  onclick="openZoomModal()"
+                  class="w-full h-auto max-h-[300px] sm:max-h-[340px] object-contain mx-auto cursor-zoom-in"
+                />
+                <div
+                  class="bg-slate-900/85 text-white px-3 py-1.5 flex items-center justify-between text-[11px]"
+                >
+                  <span class="text-emerald-300 font-semibold"
+                    >✓ Ảnh gốc đã lưu</span
+                  >
+                  <div class="flex items-center gap-2.5">
+                    <label
+                      class="cursor-pointer underline hover:text-amber-300"
+                    >
+                      Đổi ảnh
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onchange="uploadSingleQuestionImage(event)"
+                        class="hidden"
+                      />
+                    </label>
+                    <button
+                      onclick="clearCurrentQuestionImage()"
+                      class="text-rose-300 underline"
+                    >
+                      Xóa
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Placeholder + Scene Description (when PDF hasn't been uploaded yet) -->
+              <div
+                id="no-image-placeholder"
+                class="rounded-xl bg-gradient-to-br from-slate-100 via-indigo-50/60 to-slate-100 dark:from-slate-800 dark:via-indigo-950/40 dark:to-slate-900 border-2 border-dashed border-indigo-300 dark:border-indigo-700/70 p-4 flex flex-col items-center text-center"
+              >
+                <div id="q-emoji" class="text-4xl sm:text-5xl mb-2 select-none">
+                  🧳🚶‍♀️
+                </div>
+                <p
+                  id="q-scene-desc"
+                  class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 leading-relaxed"
+                >
+                  Mô tả bối cảnh tranh...
+                </p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-2">
+                  Chọn file <b>Part 1.pdf</b> 1 lần để tự động cắt toàn bộ 50
+                  ảnh thật vào đúng từng câu:
+                </p>
+                <div
+                  class="mt-3 flex flex-wrap items-center justify-center gap-2"
+                >
+                  <label
+                    class="cursor-pointer px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-bold shadow-sm transition"
+                  >
+                    📂 Chọn Part 1.pdf (50 ảnh)
+                    <input
+                      type="file"
+                      accept="application/pdf"
+                      onchange="extractImagesFromPdf(event)"
+                      class="hidden"
+                    />
+                  </label>
+                  <label
+                    class="cursor-pointer px-3 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold"
+                  >
+                    🖼️ Tải 1 ảnh lẻ
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onchange="uploadSingleQuestionImage(event)"
+                      class="hidden"
+                    />
+                  </label>
+                </div>
+              </div>
+
+              <!-- Audio Control Bar -->
+              <div
+                class="mt-3.5 pt-3.5 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2"
+              >
+                <button
+                  onclick="playAllOptions()"
+                  id="btn-play-all"
+                  class="flex-1 py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-[0.99] text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center justify-center gap-2"
+                >
+                  <span>🔊 Nghe cả 4 câu (A-B-C-D)</span>
+                </button>
+                <button
+                  onclick="stopSpeech()"
+                  class="py-2.5 px-3.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs sm:text-sm transition"
+                  title="Dừng đọc"
+                >
+                  ⏹️
+                </button>
+              </div>
+            </div>
+
+            <!-- Question Navigation Card -->
+            <div
+              class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 shadow-sm flex items-center justify-between gap-2"
+            >
+              <button
+                onclick="prevQuestion()"
+                class="px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs sm:text-sm font-bold transition"
+              >
+                ← Câu trước
+              </button>
+              <span
+                id="nav-counter"
+                class="text-xs sm:text-sm font-extrabold text-slate-700 dark:text-slate-200"
+              >
+                1 / 50
+              </span>
+              <button
+                onclick="nextQuestion()"
+                class="px-3.5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold transition"
+              >
+                Câu tiếp →
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: 4 Options (A, B, C, D) + Detailed Explanation -->
+          <div class="lg:col-span-7 space-y-3">
+            <div id="options-container" class="space-y-2.5">
+              <!-- Options rendered dynamically via JS -->
+            </div>
+
+            <!-- Show Answer Button (for Blind Mode or before answering) -->
+            <div class="flex justify-end">
+              <button
+                onclick="revealCurrentAnswer()"
+                id="btn-reveal"
+                class="px-3.5 py-2 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300 text-xs font-bold hover:bg-amber-100 transition"
+              >
+                👁️ Hiện đáp án & Giải thích
+              </button>
+            </div>
+
+            <!-- Explanation Box -->
+            <div
+              id="explanation-box"
+              class="hidden bg-white dark:bg-slate-900 border-l-4 border-indigo-600 border-y border-r border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm space-y-2"
+            >
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400"
+                >
+                  💡 Phân tích đáp án & Bẫy TOEIC
+                </span>
+                <span
+                  id="exp-grammar-tag"
+                  class="px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-[11px] font-bold"
+                >
+                  Hiện tại tiếp diễn
+                </span>
+              </div>
+              <p
+                id="exp-text"
+                class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed"
+              ></p>
+            </div>
+
+            <!-- Quick Question Number Grid -->
+            <div
+              class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3.5 shadow-sm"
+            >
+              <div class="flex items-center justify-between mb-2.5">
+                <span
+                  class="text-xs font-bold text-slate-600 dark:text-slate-400"
+                  >Bảng chuyển nhanh câu hỏi</span
+                >
+                <div
+                  class="flex items-center gap-2 text-[10px] font-semibold text-slate-500"
+                >
+                  <span class="inline-flex items-center gap-1"
+                    ><i
+                      class="w-2 h-2 rounded-full bg-emerald-500 inline-block"
+                    ></i
+                    >Đúng</span
+                  >
+                  <span class="inline-flex items-center gap-1"
+                    ><i
+                      class="w-2 h-2 rounded-full bg-rose-500 inline-block"
+                    ></i
+                    >Sai</span
+                  >
+                </div>
+              </div>
+              <div id="question-grid" class="grid grid-cols-10 gap-1.5">
+                <!-- 1..50 buttons rendered dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- TAB 2: TỪ VỰNG FLASHCARD 3D (36 TỪ TRỌNG TÂM)                       -->
+      <!-- =================================================================== -->
+      <section id="tab-vocab" class="hidden space-y-4">
+        <!-- Filter & Progress Header -->
+        <div
+          class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3.5 sm:p-4 shadow-sm flex flex-wrap items-center justify-between gap-3"
+        >
+          <div class="flex items-center gap-2 flex-wrap">
+            <select
+              id="vocab-category-filter"
+              onchange="filterVocab()"
+              class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none"
+            >
+              <option value="all">Tất cả chủ đề (36 từ)</option>
+            </select>
+            <select
+              id="vocab-status-filter"
+              onchange="filterVocab()"
+              class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none"
+            >
+              <option value="all">Tất cả trạng thái</option>
+              <option value="unlearned">Chưa thuộc</option>
+              <option value="learned">Đã thuộc</option>
+            </select>
+          </div>
+          <div
+            id="vocab-progress-label"
+            class="text-xs font-extrabold text-indigo-600 dark:text-indigo-400"
+          >
+            Đã thuộc: 0 / 36 từ
+          </div>
+        </div>
+
+        <!-- 3D Flashcard Stage -->
+        <div class="max-w-xl mx-auto">
+          <div
+            onclick="flipFlashcard()"
+            class="perspective-1000 cursor-pointer select-none"
+          >
+            <div
+              id="flashcard-inner"
+              class="transform-style-3d relative w-full min-h-[340px] sm:min-h-[370px]"
+            >
+              <!-- FRONT SIDE -->
+              <div
+                class="backface-hidden absolute inset-0 bg-white dark:bg-slate-900 border-2 border-indigo-100 dark:border-slate-800 rounded-3xl p-6 shadow-md flex flex-col items-center justify-between text-center"
+              >
+                <div class="w-full flex items-center justify-between">
+                  <span
+                    id="fc-category"
+                    class="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 text-[11px] font-bold uppercase"
+                  >
+                    travel
+                  </span>
+                  <span
+                    id="fc-type"
+                    class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold"
+                  >
+                    noun
+                  </span>
+                </div>
+
+                <div class="my-auto space-y-2">
+                  <div id="fc-emoji" class="text-5xl sm:text-6xl mb-2">🧳</div>
+                  <h2
+                    id="fc-word"
+                    class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white"
+                  >
+                    luggage
+                  </h2>
+                  <p
+                    id="fc-ipa"
+                    class="text-base sm:text-lg font-medium text-indigo-600 dark:text-indigo-400"
+                  >
+                    /ˈlʌɡɪdʒ/
+                  </p>
+                  <button
+                    onclick="
+                      event.stopPropagation();
+                      speakText(currentVocabItem().text);
+                    "
+                    class="mt-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950 hover:bg-indigo-100 text-indigo-700 dark:text-indigo-300 text-xs font-bold transition"
+                  >
+                    <span>🔊 Nghe phát âm</span>
+                  </button>
+                </div>
+
+                <p class="text-[11px] text-slate-400 font-medium">
+                  👆 Chạm vào thẻ để lật xem nghĩa & 3 câu ví dụ Part 1
+                </p>
+              </div>
+
+              <!-- BACK SIDE -->
+              <div
+                class="backface-hidden rotate-y-180 absolute inset-0 bg-white dark:bg-slate-900 border-2 border-indigo-500/40 rounded-3xl p-5 sm:p-6 shadow-md flex flex-col justify-between overflow-y-auto"
+              >
+                <div>
+                  <div
+                    class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2.5 mb-3"
+                  >
+                    <div>
+                      <span
+                        id="fc-back-word"
+                        class="text-lg font-extrabold text-indigo-600 dark:text-indigo-400"
+                        >luggage</span
+                      >
+                      <span
+                        id="fc-back-translation"
+                        class="ml-2 text-base font-extrabold text-slate-900 dark:text-white"
+                        >— hành lý</span
+                      >
+                    </div>
+                    <button
+                      onclick="
+                        event.stopPropagation();
+                        speakText(currentVocabItem().text);
+                      "
+                      class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs"
+                    >
+                      🔊
+                    </button>
+                  </div>
+
+                  <div
+                    class="bg-slate-50 dark:bg-slate-800/70 rounded-xl p-3 mb-3 space-y-1"
+                  >
+                    <p
+                      id="fc-desc-vi"
+                      class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200"
+                    ></p>
+                    <p
+                      id="fc-desc-en"
+                      class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 italic"
+                    ></p>
+                  </div>
+
+                  <div class="space-y-2">
+                    <p
+                      class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400"
+                    >
+                      Ví dụ trong đề Part 1:
+                    </p>
+                    <div id="fc-examples" class="space-y-2">
+                      <!-- 3 examples rendered here -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flashcard Controls -->
+          <div class="mt-4 flex items-center justify-between gap-2">
+            <button
+              onclick="prevVocab()"
+              class="px-4 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-bold shadow-sm"
+            >
+              ← Trước
+            </button>
+
+            <button
+              onclick="toggleLearnedVocab()"
+              id="btn-mark-learned"
+              class="flex-1 py-3 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-sm transition"
+            >
+              ✓ Đánh dấu đã thuộc
+            </button>
+
+            <button
+              onclick="nextVocab()"
+              class="px-4 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-bold shadow-sm"
+            >
+              Tiếp →
+            </button>
+          </div>
+          <p
+            id="fc-counter"
+            class="text-center text-xs font-bold text-slate-500 mt-2"
+          >
+            Thẻ 1 / 36
+          </p>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- TAB 3: NGỮ PHÁP & QUY TẮC BẪY PART 1 (12 CẤU TRÚC)                 -->
+      <!-- =================================================================== -->
+      <section id="tab-grammar" class="hidden space-y-4">
+        <div
+          class="bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-2xl p-4 sm:p-5 shadow-md"
+        >
+          <h2 class="text-base sm:text-lg font-extrabold">
+            📐 12 Cấu Trúc Ngữ Pháp & Quy Tắc Tránh Bẫy Part 1
+          </h2>
+          <p class="text-xs sm:text-sm text-indigo-100 mt-1">
+            Tổng hợp toàn bộ công thức xuất hiện trong 5 đề TOEIC Part 1 (No.01
+            – No.05) giúp phân biệt nhanh đáp án đúng và bẫy bị động tiếp diễn.
+          </p>
+        </div>
+
+        <div id="grammar-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- 12 Grammar cards rendered via JS -->
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- TAB 4: XUẤT DỮ LIỆU JSON CHUẨN SEA-VOCA                             -->
+      <!-- =================================================================== -->
+      <section id="tab-json" class="hidden space-y-4">
+        <div
+          class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm space-y-3"
+        >
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <button
+                onclick="setExportType('vocab')"
+                id="btn-exp-vocab"
+                class="px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white"
+              >
+                JSON Từ Vựng (36 từ)
+              </button>
+              <button
+                onclick="setExportType('grammar')"
+                id="btn-exp-grammar"
+                class="px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
+              >
+                JSON Ngữ Pháp (12 mẫu)
+              </button>
+            </div>
+            <div class="flex items-center gap-2">
+              <button
+                onclick="copyJsonOutput()"
+                class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm"
+              >
+                📋 Copy JSON
+              </button>
+              <button
+                onclick="downloadJsonFile()"
+                class="px-3.5 py-2 rounded-xl bg-slate-800 dark:bg-slate-700 text-white text-xs font-bold shadow-sm"
+              >
+                ⬇️ Tải file .json
+              </button>
+            </div>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            Dữ liệu được chuẩn hóa đúng schema
+            <code class="text-indigo-600 dark:text-indigo-400 font-mono"
+              >text, pronunciation, type, description, translation, examples,
+              category, icon</code
+            >
+            để bạn import trực tiếp vào ứng dụng học từ vựng.
+          </p>
+          <textarea
+            id="json-output-area"
+            readonly
+            class="w-full h-96 p-3.5 rounded-xl bg-slate-950 text-emerald-400 font-mono text-xs leading-relaxed border border-slate-800 focus:outline-none"
+          ></textarea>
+        </div>
+      </section>
+    </main>
+
+    <!-- MOBILE BOTTOM NAVIGATION BAR (Cố định dưới đáy cho điện thoại) -->
+    <nav
+      class="md:hidden fixed bottom-0 inset-x-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 grid grid-cols-4 py-1.5 px-1"
+    >
+      <button
+        onclick="switchTab('quiz')"
+        data-tab="quiz"
+        class="mobile-nav-btn flex flex-col items-center justify-center py-1 rounded-xl text-[11px] font-bold"
+      >
+        <span class="text-lg leading-none mb-0.5">🎧</span>
+        <span>Luyện Đề</span>
+      </button>
+      <button
+        onclick="switchTab('vocab')"
+        data-tab="vocab"
+        class="mobile-nav-btn flex flex-col items-center justify-center py-1 rounded-xl text-[11px] font-bold"
+      >
+        <span class="text-lg leading-none mb-0.5">🗂️</span>
+        <span>Từ Vựng</span>
+      </button>
+      <button
+        onclick="switchTab('grammar')"
+        data-tab="grammar"
+        class="mobile-nav-btn flex flex-col items-center justify-center py-1 rounded-xl text-[11px] font-bold"
+      >
+        <span class="text-lg leading-none mb-0.5">📐</span>
+        <span>Ngữ Pháp</span>
+      </button>
+      <button
+        onclick="switchTab('json')"
+        data-tab="json"
+        class="mobile-nav-btn flex flex-col items-center justify-center py-1 rounded-xl text-[11px] font-bold"
+      >
+        <span class="text-lg leading-none mb-0.5">📦</span>
+        <span>JSON</span>
+      </button>
+    </nav>
+
+    <!-- IMAGE ZOOM MODAL -->
+    <div
+      id="image-zoom-modal"
+      onclick="closeZoomModal()"
+      class="hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-3 cursor-zoom-out"
+    >
+      <div
+        class="relative max-w-4xl w-full flex flex-col items-center"
+        onclick="event.stopPropagation()"
+      >
+        <img
+          id="zoomed-img"
+          src=""
+          alt="Zoomed Photo"
+          class="max-h-[82vh] w-auto rounded-2xl shadow-2xl border border-white/20"
+        />
+        <button
+          onclick="closeZoomModal()"
+          class="mt-3 px-4 py-2 rounded-xl bg-white/20 text-white text-xs font-bold"
+        >
+          Đóng ảnh ✕
+        </button>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div
+      id="toast-box"
+      class="fixed top-16 right-3 left-3 sm:left-auto sm:max-w-sm z-50 pointer-events-none flex flex-col gap-2"
+    ></div>
+
+    <script>
+      // =========================================================================
+      // 1. TOÀN BỘ DỮ LIỆU 50 CÂU HỎI TOEIC PART 1 (ĐỀ 01 - ĐỀ 05)
+      // =========================================================================
+      const QUESTIONS_DATA = [
+        // --- TEST 01 (1 - 10) ---
+        {
+          id: 1,
+          test: 1,
+          num: 1,
+          answer: "B",
+          type: "Tranh tả người",
+          emoji: "🧳🚶‍♀️",
+          scene:
+            "Một người phụ nữ mặc áo sơ mi trắng và chân váy tối màu đang đi bộ trong nhà ga và kéo theo chiếc vali có tay kéo bên cạnh lối đi băng chuyền.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "She is riding a moving walk.",
+              vi: "Cô ấy đang đứng trên băng chuyền đi bộ.",
+            },
+            {
+              key: "B",
+              en: "She is pulling her luggage along.",
+              vi: "Cô ấy đang kéo hành lý của mình đi dọc theo lối đi.",
+            },
+            {
+              key: "C",
+              en: "She is packing her bags for a trip.",
+              vi: "Cô ấy đang đóng gói hành lý cho chuyến đi.",
+            },
+            {
+              key: "D",
+              en: "She is lining up at the check-in desk.",
+              vi: "Cô ấy đang xếp hàng tại quầy làm thủ tục.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): Trong ảnh người phụ nữ đang bước đi trên sàn cạnh băng chuyền (chứ không đứng trên băng chuyền - loại A) và tay đang kéo vali.",
+        },
+        {
+          id: 2,
+          test: 1,
+          num: 2,
+          answer: "C",
+          type: "Tranh tả nhiều người",
+          emoji: "🗣️💼",
+          scene:
+            "Bốn đồng nghiệp đang đứng và ngồi quanh bàn họp cạnh cửa kính văn phòng, mỉm cười và trò chuyện sôi nổi với nhau.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "They're enjoying the view.",
+              vi: "Họ đang ngắm nhìn quang cảnh bên ngoài.",
+            },
+            {
+              key: "B",
+              en: "They're reviewing some documents.",
+              vi: "Họ đang xem lại một vài tài liệu.",
+            },
+            {
+              key: "C",
+              en: "They're having a discussion.",
+              vi: "Họ đang có một cuộc thảo luận.",
+            },
+            {
+              key: "D",
+              en: "They're sitting in a circle.",
+              vi: "Họ đang ngồi thành một vòng tròn.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Hai người đứng và hai người ngồi đang hướng mặt về nhau cười nói (loại A vì không nhìn ra cửa sổ; loại B vì không ai cầm tài liệu xem; loại D vì có 2 người đang đứng).",
+        },
+        {
+          id: 3,
+          test: 1,
+          num: 3,
+          answer: "C",
+          type: "Tranh tả người",
+          emoji: "📰📱",
+          scene:
+            "Một người đàn ông mặc vest đang mỉm cười, một tay nghe điện thoại di động và một tay cầm tờ báo mở sẵn trước tòa nhà.",
+          grammarTag: "Động từ chỉ tư thế & cầm nắm",
+          options: [
+            {
+              key: "A",
+              en: "He's buying a newspaper.",
+              vi: "Anh ấy đang mua một tờ báo.",
+            },
+            {
+              key: "B",
+              en: "He's sending a text message.",
+              vi: "Anh ấy đang gửi một tin nhắn văn bản.",
+            },
+            {
+              key: "C",
+              en: "He's holding a publication.",
+              vi: "Anh ấy đang cầm một tờ ấn phẩm (báo/tạp chí).",
+            },
+            {
+              key: "D",
+              en: "He's adjusting his tie.",
+              vi: "Anh ấy đang chỉnh lại cà vạt.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): 'publication' là từ thay thế (paraphrase) chuẩn mực của TOEIC cho 'newspaper' (tờ báo). Loại A vì không có hành động mua bán.",
+        },
+        {
+          id: 4,
+          test: 1,
+          num: 4,
+          answer: "B",
+          type: "Tranh tả vật (Không người)",
+          emoji: "🍞🗄️",
+          scene:
+            "Nhiều ổ bánh mì nướng chín vàng được xếp gọn gàng trên các tầng kệ kim loại trong tiệm bánh, không có người trong ảnh.",
+          grammarTag: "Hiện tại hoàn thành (Bị động)",
+          options: [
+            {
+              key: "A",
+              en: "The loaves are being taken out of the oven.",
+              vi: "Những ổ bánh mì đang được lấy ra khỏi lò.",
+            },
+            {
+              key: "B",
+              en: "The loaves have been arranged on the shelves.",
+              vi: "Những ổ bánh mì đã được sắp xếp trên các kệ.",
+            },
+            {
+              key: "C",
+              en: "The loaves are being prepared by the baker.",
+              vi: "Những ổ bánh mì đang được người thợ làm bánh chuẩn bị.",
+            },
+            {
+              key: "D",
+              en: "The loaves have been displayed on the table.",
+              vi: "Những ổ bánh mì đã được bày trên bàn.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): Tranh không có người nên loại ngay (A) và (C) chứa 'being + V3/ed'. Các ổ bánh nằm trên kệ (shelves) chứ không phải bàn (table - loại D).",
+        },
+        {
+          id: 5,
+          test: 1,
+          num: 5,
+          answer: "C",
+          type: "Tranh tả cảnh & kiến trúc",
+          emoji: "🗼🏠",
+          scene:
+            "Một ngọn hải đăng trắng đứng cạnh ngôi nhà hai tầng và hai nhà kho nhỏ ven biển, phía trước là cánh đồng hoa dại.",
+          grammarTag: "So sánh hơn (One... than the others)",
+          options: [
+            {
+              key: "A",
+              en: "The lighthouse is under construction.",
+              vi: "Ngọn hải đăng đang được xây dựng.",
+            },
+            {
+              key: "B",
+              en: "The beach house is being torn down.",
+              vi: "Ngôi nhà bên bãi biển đang bị phá dỡ.",
+            },
+            {
+              key: "C",
+              en: "One structure is taller than the others.",
+              vi: "Một công trình cao hơn những công trình còn lại.",
+            },
+            {
+              key: "D",
+              en: "There is a path through the field.",
+              vi: "Có một lối đi xuyên qua cánh đồng.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Ngọn hải đăng (one structure) cao vượt lên hẳn so với các ngôi nhà bên cạnh (the others). Loại A và B vì các công trình đều nguyên vẹn.",
+        },
+        {
+          id: 6,
+          test: 1,
+          num: 6,
+          answer: "A",
+          type: "Tranh tả người",
+          emoji: "📓✍️",
+          scene:
+            "Một nhân viên văn phòng đang ngồi tại bàn làm việc, tay cầm bút ghi chép vào cuốn sổ kế hoạch mở sẵn trước mặt.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "He's making notes in his planner.",
+              vi: "Anh ấy đang ghi chú vào sổ kế hoạch của mình.",
+            },
+            {
+              key: "B",
+              en: "He's typing on the keyboard.",
+              vi: "Anh ấy đang gõ phím trên bàn phím.",
+            },
+            {
+              key: "C",
+              en: "He's facing the monitor.",
+              vi: "Anh ấy đang ngồi đối diện màn hình máy tính.",
+            },
+            {
+              key: "D",
+              en: "He's turning the computer on.",
+              vi: "Anh ấy đang bật máy tính lên.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (A): Mắt anh ấy nhìn xuống sổ và tay đang cầm bút viết vào cuốn sổ kế hoạch (planner).",
+        },
+        {
+          id: 7,
+          test: 1,
+          num: 7,
+          answer: "B",
+          type: "Tranh tả cảnh thiên nhiên",
+          emoji: "🌳🛤️",
+          scene:
+            "Một con đường nhỏ chạy xuyên qua vùng quê vào mùa đông với hàng cây cao trụi lá mọc dọc theo hai bên đường, có ít tuyết đọng trên mặt đất.",
+          grammarTag: "Cấu trúc tồn tại (There are + along)",
+          options: [
+            {
+              key: "A",
+              en: "All of the flowers are blooming.",
+              vi: "Tất cả các bông hoa đều đang nở rộ.",
+            },
+            {
+              key: "B",
+              en: "There are trees along the path.",
+              vi: "Có hàng cây dọc theo lối đi.",
+            },
+            {
+              key: "C",
+              en: "It's snowing in the forest.",
+              vi: "Tuyết đang rơi trong khu rừng.",
+            },
+            {
+              key: "D",
+              en: "There are piles of logs on the road.",
+              vi: "Có những đống khúc gỗ ở trên đường.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): Hàng cây lớn đứng dọc theo lối đi (along the path). Loại C vì tuyết chỉ đọng trên đất chứ không đang rơi.",
+        },
+        {
+          id: 8,
+          test: 1,
+          num: 8,
+          answer: "C",
+          type: "Tranh tả người",
+          emoji: "📖👉",
+          scene:
+            "Một người đàn ông cầm cuốn sách mở trước giá sách thư viện và dùng ngón tay trỏ chỉ vào một dòng trên trang sách cho người phụ nữ đứng cạnh xem.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "He's entering a library.",
+              vi: "Anh ấy đang bước vào thư viện.",
+            },
+            {
+              key: "B",
+              en: "She's fixing a bookcase.",
+              vi: "Cô ấy đang sửa chữa một tủ sách.",
+            },
+            {
+              key: "C",
+              en: "He's indicating something on a page.",
+              vi: "Anh ấy đang chỉ vào một chi tiết trên trang sách.",
+            },
+            {
+              key: "D",
+              en: "She's turning the pages.",
+              vi: "Cô ấy đang lật giở các trang sách.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): 'indicating' đồng nghĩa với 'pointing at' — ngón tay anh ấy đang chỉ thẳng vào trang sách.",
+        },
+        {
+          id: 9,
+          test: 1,
+          num: 9,
+          answer: "D",
+          type: "Tranh tả nội thất (Không người)",
+          emoji: "🪑💡",
+          scene:
+            "Một gian bếp hiện đại với 4 chiếc đèn thả trần bật sáng phía trên đảo bếp và các chiếc ghế cao được xếp xung quanh bàn, không có người.",
+          grammarTag: "Hiện tại đơn (Bị động)",
+          options: [
+            {
+              key: "A",
+              en: "The lamps are being installed.",
+              vi: "Những chiếc đèn đang được lắp đặt.",
+            },
+            {
+              key: "B",
+              en: "The windows have been left open.",
+              vi: "Các cửa sổ đang được để mở.",
+            },
+            {
+              key: "C",
+              en: "The kitchen table is being set.",
+              vi: "Bàn ăn trong bếp đang được dọn ra.",
+            },
+            {
+              key: "D",
+              en: "The chairs are placed around the table.",
+              vi: "Những chiếc ghế được đặt xung quanh bàn.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (D): Tranh không có người nên loại (A) và (C) có 'being + V3/ed'. Các ghế được đặt quanh bàn đảo bếp.",
+        },
+        {
+          id: 10,
+          test: 1,
+          num: 10,
+          answer: "C",
+          type: "Tranh tả nơi công cộng",
+          emoji: "🛫🪑",
+          scene:
+            "Nhiều hành khách đang ngồi trên các dãy ghế chờ bên trong khu vực nhà ga sân bay rộng lớn có cửa kính cao.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "The people are meeting with a travel agent.",
+              vi: "Mọi người đang gặp gỡ nhân viên đại lý du lịch.",
+            },
+            {
+              key: "B",
+              en: "The people are boarding an airplane.",
+              vi: "Mọi người đang bước lên máy bay.",
+            },
+            {
+              key: "C",
+              en: "The people are waiting in a terminal.",
+              vi: "Mọi người đang ngồi chờ trong nhà ga.",
+            },
+            {
+              key: "D",
+              en: "The people are booking their flights.",
+              vi: "Mọi người đang đặt vé máy bay.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Hành khách đang ngồi ở hàng ghế chờ tại cửa ra máy bay trong nhà ga sân bay (terminal).",
+        },
+
+        // --- TEST 02 (11 - 20) ---
+        {
+          id: 11,
+          test: 2,
+          num: 1,
+          answer: "B",
+          type: "Tranh tả người",
+          emoji: "📄👥",
+          scene:
+            "Một người phụ nữ và một người đàn ông mặc vest đang đứng cạnh nhau, cùng nhìn vào tập tài liệu cầm trên tay và mỉm cười trao đổi.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "They're copying some papers.",
+              vi: "Họ đang photo một vài tờ giấy.",
+            },
+            {
+              key: "B",
+              en: "They're discussing a document.",
+              vi: "Họ đang thảo luận về một tài liệu.",
+            },
+            {
+              key: "C",
+              en: "They're writing a book.",
+              vi: "Họ đang viết một cuốn sách.",
+            },
+            {
+              key: "D",
+              en: "They're looking for a folder.",
+              vi: "Họ đang tìm kiếm một bìa kẹp hồ sơ.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): Cả hai đang cùng xem và trao đổi về tập tài liệu trên tay.",
+        },
+        {
+          id: 12,
+          test: 2,
+          num: 2,
+          answer: "C",
+          type: "Tranh tả người",
+          emoji: "📞🪑",
+          scene:
+            "Một doanh nhân mặc vest ngồi trên ghế băng ngoài trời, đặt cặp tài liệu và laptop bên cạnh, tay cầm điện thoại áp vào tai nói chuyện.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "He's eating lunch outside.",
+              vi: "Anh ấy đang ăn trưa ở ngoài trời.",
+            },
+            {
+              key: "B",
+              en: "He's working at his desk.",
+              vi: "Anh ấy đang làm việc tại bàn làm việc.",
+            },
+            {
+              key: "C",
+              en: "He's making a phone call.",
+              vi: "Anh ấy đang gọi điện thoại.",
+            },
+            {
+              key: "D",
+              en: "He's sitting on the grass.",
+              vi: "Anh ấy đang ngồi trên bãi cỏ.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Anh ấy đang nghe/gọi điện thoại ngoài trời trên ghế băng (loại D vì ngồi trên ghế gỗ, không phải bãi cỏ).",
+        },
+        {
+          id: 13,
+          test: 2,
+          num: 3,
+          answer: "B",
+          type: "Tranh tả người",
+          emoji: "🍽️🧼",
+          scene:
+            "Một người phụ nữ đứng trước bồn rửa trong bếp, tay cầm miếng bọt biển rửa chiếc đĩa trắng dưới vòi nước đang chảy.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "She's washing her clothes.",
+              vi: "Cô ấy đang giặt quần áo.",
+            },
+            {
+              key: "B",
+              en: "She's doing the dishes.",
+              vi: "Cô ấy đang rửa bát đĩa.",
+            },
+            {
+              key: "C",
+              en: "She's cleaning her bedroom.",
+              vi: "Cô ấy đang dọn dẹp phòng ngủ.",
+            },
+            {
+              key: "D",
+              en: "She's preparing dinner.",
+              vi: "Cô ấy đang chuẩn bị bữa tối.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): 'doing the dishes' = rửa bát đĩa tại bồn rửa chén.",
+        },
+        {
+          id: 14,
+          test: 2,
+          num: 4,
+          answer: "B",
+          type: "Tranh tả người",
+          emoji: "📊👩‍🏫",
+          scene:
+            "Một người phụ nữ đứng cạnh bảng lật có vẽ biểu đồ tròn, tay cầm bút hướng dẫn cho hai đồng nghiệp đang ngồi nghe tại bàn họp.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "A woman is giving out presents.",
+              vi: "Một người phụ nữ đang phát quà.",
+            },
+            {
+              key: "B",
+              en: "A woman is leading a workshop.",
+              vi: "Một người phụ nữ đang chủ trì buổi hội thảo/tập huấn.",
+            },
+            {
+              key: "C",
+              en: "A woman is distributing handouts.",
+              vi: "Một người phụ nữ đang phát tài liệu phát tay.",
+            },
+            {
+              key: "D",
+              en: "A woman is registering for a seminar.",
+              vi: "Một người phụ nữ đang đăng ký tham gia hội thảo.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): Cô ấy đang đứng thuyết trình bên bảng biểu đồ cho nhóm người ngồi nghe ('leading a workshop').",
+        },
+        {
+          id: 15,
+          test: 2,
+          num: 5,
+          answer: "C",
+          type: "Tranh tả cảnh công viên",
+          emoji: "⛲🌳",
+          scene:
+            "Giữa một hồ nước tĩnh lặng trong công viên có nhiều cây xanh bao quanh, một đài phun nước đang phun cột nước trắng lên cao.",
+          grammarTag: "Cấu trúc tồn tại (There's + in)",
+          options: [
+            {
+              key: "A",
+              en: "The waves are crashing against the rocks.",
+              vi: "Những con sóng đang vỗ vào ghềnh đá.",
+            },
+            {
+              key: "B",
+              en: "The park is surrounded by water.",
+              vi: "Công viên được bao quanh bởi nước.",
+            },
+            {
+              key: "C",
+              en: "There's a fountain in the water.",
+              vi: "Có một đài phun nước ở dưới hồ nước.",
+            },
+            {
+              key: "D",
+              en: "The lake is being used for recreation.",
+              vi: "Hồ nước đang được sử dụng cho hoạt động giải trí.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Đài phun nước đang hoạt động ngay giữa mặt hồ. Loại B vì nước nằm trong công viên chứ không bao quanh công viên.",
+        },
+        {
+          id: 16,
+          test: 2,
+          num: 6,
+          answer: "B",
+          type: "Tranh tả người (Y tế)",
+          emoji: "🩺👩‍⚕️",
+          scene:
+            "Một nhân viên y tế đeo ống nghe đang đo huyết áp và thăm khám cánh tay cho một nữ bệnh nhân ngồi trên giường khám.",
+          grammarTag: "Hiện tại tiếp diễn (Bị động)",
+          options: [
+            {
+              key: "A",
+              en: "The woman is making an appointment.",
+              vi: "Người phụ nữ đang đặt lịch hẹn khám.",
+            },
+            {
+              key: "B",
+              en: "The woman is being examined.",
+              vi: "Người phụ nữ đang được thăm khám.",
+            },
+            {
+              key: "C",
+              en: "The doctor is looking at the chart.",
+              vi: "Bác sĩ đang nhìn vào biểu đồ bệnh án.",
+            },
+            {
+              key: "D",
+              en: "The doctor is being paged.",
+              vi: "Bác sĩ đang được gọi qua máy nhắn tin.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): Có nhân viên y tế đang trực tiếp thăm khám cho bệnh nhân nên cấu trúc bị động tiếp diễn 'is being examined' hoàn toàn chính xác.",
+        },
+        {
+          id: 17,
+          test: 2,
+          num: 7,
+          answer: "A",
+          type: "Tranh tả cảnh & phương tiện",
+          emoji: "⛴️🏘️",
+          scene:
+            "Một chiếc tàu chở khách (phà du lịch) đang chạy dọc theo con kênh đào phẳng lặng, một bên bờ là dãy nhà mái dốc san sát nhau.",
+          grammarTag: "Cấu trúc tồn tại (There is + on)",
+          options: [
+            {
+              key: "A",
+              en: "There is a ferry on the canal.",
+              vi: "Có một chiếc phà đang chạy trên kênh đào.",
+            },
+            {
+              key: "B",
+              en: "People are diving into the water.",
+              vi: "Mọi người đang lặn xuống nước.",
+            },
+            {
+              key: "C",
+              en: "Most of the houses are being restored.",
+              vi: "Hầu hết các ngôi nhà đang được trùng tu.",
+            },
+            {
+              key: "D",
+              en: "There are houses on both sides of the river.",
+              vi: "Có những ngôi nhà ở cả hai bên bờ sông.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (A): Chiếc phà đang di chuyển trên kênh đào. Loại D vì chỉ thấy nhà ở một phía bờ kênh, phía còn lại là bãi cỏ.",
+        },
+        {
+          id: 18,
+          test: 2,
+          num: 8,
+          answer: "A",
+          type: "Tranh tả người",
+          emoji: "🤵🚆",
+          scene:
+            "Một người đàn ông mặc bộ đồ vest công sở thắt cà vạt đang bước đi vội vã trên sân ga bên cạnh đoàn tàu hỏa, tay kéo theo vali.",
+          grammarTag: "Động từ chỉ trang phục (wearing)",
+          options: [
+            {
+              key: "A",
+              en: "He's wearing a business suit.",
+              vi: "Anh ấy đang mặc một bộ vest công sở.",
+            },
+            {
+              key: "B",
+              en: "He's getting on the train.",
+              vi: "Anh ấy đang bước lên tàu hỏa.",
+            },
+            {
+              key: "C",
+              en: "He's unloading the bags.",
+              vi: "Anh ấy đang dỡ các túi hành lý xuống.",
+            },
+            {
+              key: "D",
+              en: "He's buying a train ticket.",
+              vi: "Anh ấy đang mua vé tàu.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (A): Anh ấy mặc bộ vest hoàn chỉnh và đang đi dọc sân ga (cửa tàu đóng nên loại B).",
+        },
+        {
+          id: 19,
+          test: 2,
+          num: 9,
+          answer: "A",
+          type: "Tranh tả nhiều người",
+          emoji: "🎺🎼",
+          scene:
+            "Một dàn nhạc gồm nhiều nhạc công mặc áo trắng đang thổi sáo, kèn, chơi trống dưới sự chỉ huy của nhạc trưởng quay lưng về phía khán giả.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "They're putting on a performance.",
+              vi: "Họ đang trình diễn một buổi biểu diễn.",
+            },
+            {
+              key: "B",
+              en: "They're singing in a choir.",
+              vi: "Họ đang hát trong một dàn hợp xướng.",
+            },
+            {
+              key: "C",
+              en: "They're unpacking their instruments.",
+              vi: "Họ đang lấy nhạc cụ ra khỏi hộp.",
+            },
+            {
+              key: "D",
+              en: "They're going to a concert.",
+              vi: "Họ đang đi đến một buổi hòa nhạc.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (A): 'putting on a performance' = đang biểu diễn trên sân khấu (họ đang chơi nhạc cụ chứ không hát - loại B).",
+        },
+        {
+          id: 20,
+          test: 2,
+          num: 10,
+          answer: "C",
+          type: "Tranh tả cửa hàng ăn uống",
+          emoji: "🥖🪟",
+          scene:
+            "Tại một quầy bán đồ ăn ngoài trời, nhiều loại bánh mì kẹp và thực phẩm được bày bên trong tủ kính, người bán đứng sau quầy phục vụ khách.",
+          grammarTag: "Hiện tại đơn (Bị động)",
+          options: [
+            {
+              key: "A",
+              en: "The waiter is carrying plates of food.",
+              vi: "Người phục vụ đang bưng các đĩa thức ăn.",
+            },
+            {
+              key: "B",
+              en: "The cafeteria has been closed down.",
+              vi: "Quán ăn tự phục vụ đã bị đóng cửa.",
+            },
+            {
+              key: "C",
+              en: "The food is displayed in glass cabinets.",
+              vi: "Thức ăn được trưng bày trong các tủ kính.",
+            },
+            {
+              key: "D",
+              en: "The cafe is inside a shopping mall.",
+              vi: "Quán cà phê nằm bên trong trung tâm mua sắm.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Đồ ăn được bày trong tủ kính để khách chọn (loại D vì quầy nằm ngoài trời có cây cối).",
+        },
+
+        // --- TEST 03 (21 - 30) ---
+        {
+          id: 21,
+          test: 3,
+          num: 1,
+          answer: "B",
+          type: "Tranh tả người",
+          emoji: "🪜🚶‍♀️",
+          scene:
+            "Một người phụ nữ mặc áo trắng quần sáng màu đang đứng trên bậc thang cuốn tự động bên trong một tòa nhà thương mại.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "She's coming down the stairs.",
+              vi: "Cô ấy đang đi xuống cầu thang bộ.",
+            },
+            {
+              key: "B",
+              en: "She's riding the escalator.",
+              vi: "Cô ấy đang đi thang cuốn.",
+            },
+            {
+              key: "C",
+              en: "She's taking the elevator.",
+              vi: "Cô ấy đang đi thang máy.",
+            },
+            {
+              key: "D",
+              en: "She's going up the ladder.",
+              vi: "Cô ấy đang trèo lên chiếc thang.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): Trong ảnh là hệ thống thang cuốn kim loại ('escalator'), không phải cầu thang bộ ('stairs') hay thang máy ('elevator').",
+        },
+        {
+          id: 22,
+          test: 3,
+          num: 2,
+          answer: "C",
+          type: "Tranh tả nhiều người",
+          emoji: "📦🍽️",
+          scene:
+            "Một người đàn ông và một người phụ nữ ngồi trên sàn nhà xung quanh nhiều thùng các-tông mở nắp, tay đang lấy bát đĩa từ trong thùng ra.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "They're doing the dishes.",
+              vi: "Họ đang rửa bát đĩa.",
+            },
+            {
+              key: "B",
+              en: "They're moving the furniture.",
+              vi: "Họ đang di chuyển đồ nội thất.",
+            },
+            {
+              key: "C",
+              en: "They're unpacking some boxes.",
+              vi: "Họ đang dỡ đồ ra khỏi các thùng các-tông.",
+            },
+            {
+              key: "D",
+              en: "They're installing some equipment.",
+              vi: "Họ đang lắp đặt một vài thiết bị.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): 'unpacking some boxes' = mở thùng và lấy đồ đạc (bát đĩa) bên trong ra.",
+        },
+        {
+          id: 23,
+          test: 3,
+          num: 3,
+          answer: "D",
+          type: "Tranh tả người",
+          emoji: "📖🧍‍♂️",
+          scene:
+            "Một người đàn ông lớn tuổi mặc áo vest đứng cạnh chiếc bàn trải khăn trắng có xếp các chồng sách, tay cầm một cuốn sách mỏng đang cúi đầu đọc.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "A man is registering for a conference.",
+              vi: "Một người đàn ông đang đăng ký dự hội nghị.",
+            },
+            {
+              key: "B",
+              en: "A man is signing some books.",
+              vi: "Một người đàn ông đang ký tặng sách.",
+            },
+            {
+              key: "C",
+              en: "A man is browsing around the library.",
+              vi: "Một người đàn ông đang đi dạo xem sách quanh thư viện.",
+            },
+            {
+              key: "D",
+              en: "A man is reading a pamphlet.",
+              vi: "Một người đàn ông đang đọc một cuốn sách mỏng/tờ giới thiệu.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (D): Ông ấy đang đứng yên cầm và đọc cuốn sách mỏng ('pamphlet') bên bàn trưng bày.",
+        },
+        {
+          id: 24,
+          test: 3,
+          num: 4,
+          answer: "A",
+          type: "Tranh tả vật & cảnh",
+          emoji: "🪑🌳",
+          scene:
+            "Một chiếc ghế băng gỗ màu trắng đặt trên lối đi trong công viên, ngay phía sau chiếc ghế là thân cây cọ và hàng rào cây xanh.",
+          grammarTag: "Cấu trúc tồn tại (There is + behind)",
+          options: [
+            {
+              key: "A",
+              en: "There is a tree behind the bench.",
+              vi: "Có một cái cây ở phía sau chiếc ghế dài.",
+            },
+            {
+              key: "B",
+              en: "The sidewalk is being repaved.",
+              vi: "Vỉa hè đang được lát lại.",
+            },
+            {
+              key: "C",
+              en: "The hedge is being trimmed.",
+              vi: "Hàng rào cây đang được cắt tỉa.",
+            },
+            {
+              key: "D",
+              en: "The bench is positioned next to a house.",
+              vi: "Chiếc ghế dài được đặt ngay cạnh một ngôi nhà.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (A): Có cây lớn đứng ngay phía sau ghế băng. Loại B và C vì không có người làm việc (bẫy bị động tiếp diễn).",
+        },
+        {
+          id: 25,
+          test: 3,
+          num: 5,
+          answer: "B",
+          type: "Tranh tả nơi công cộng",
+          emoji: "🚇👥",
+          scene:
+            "Nhiều hành khách mang theo túi xách đang bước qua cửa tàu điện ngầm đang mở tại sân ga dưới lòng đất.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "People are buying train tickets.",
+              vi: "Mọi người đang mua vé tàu.",
+            },
+            {
+              key: "B",
+              en: "People are using public transportation.",
+              vi: "Mọi người đang sử dụng phương tiện giao thông công cộng.",
+            },
+            {
+              key: "C",
+              en: "People are waiting at a bus terminal.",
+              vi: "Mọi người đang đợi ở bến xe buýt.",
+            },
+            {
+              key: "D",
+              en: "People are looking at a subway map.",
+              vi: "Mọi người đang nhìn vào bản đồ tàu điện ngầm.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): 'public transportation' (giao thông công cộng) là cách diễn đạt bao quát chuẩn cho việc đi tàu điện ngầm.",
+        },
+        {
+          id: 26,
+          test: 3,
+          num: 6,
+          answer: "D",
+          type: "Tranh tả không gian ngoài trời",
+          emoji: "⛱️☕",
+          scene:
+            "Một khu vực ngồi uống nước ngoài trời với các bộ bàn ghế kim loại được xếp quanh khoảng sân, phía trên có các dù che nắng mở rộng và hàng cây cọ.",
+          grammarTag: "Hiện tại đơn (Bị động)",
+          options: [
+            {
+              key: "A",
+              en: "The café is closed for business.",
+              vi: "Quán cà phê đã đóng cửa ngừng kinh doanh.",
+            },
+            {
+              key: "B",
+              en: "Some of the trees are losing their leaves.",
+              vi: "Một vài cái cây đang rụng lá.",
+            },
+            {
+              key: "C",
+              en: "All of the parasols are being put away.",
+              vi: "Tất cả các ô che nắng đang được cất đi.",
+            },
+            {
+              key: "D",
+              en: "The tables are arranged around the courtyard.",
+              vi: "Những chiếc bàn được sắp xếp xung quanh khoảng sân.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (D): Các bàn ghế được bố trí quanh khoảng sân ('courtyard'). Loại A vì có khách đang ngồi.",
+        },
+        {
+          id: 27,
+          test: 3,
+          num: 7,
+          answer: "C",
+          type: "Tranh tả người",
+          emoji: "🎒🧍‍♀️",
+          scene:
+            "Một người phụ nữ đeo ba lô trên vai đang đứng nói chuyện với nhân viên lễ tân tại quầy, bên cạnh chân cô có một chiếc túi du lịch lớn đặt dưới sàn.",
+          grammarTag: "Hiện tại hoàn thành (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "The woman has checked out of the hotel.",
+              vi: "Người phụ nữ đã làm thủ tục trả phòng khách sạn.",
+            },
+            {
+              key: "B",
+              en: "The woman is ordering room service.",
+              vi: "Người phụ nữ đang gọi dịch vụ ăn uống tại phòng.",
+            },
+            {
+              key: "C",
+              en: "The woman has left her bag on the ground.",
+              vi: "Người phụ nữ đã đặt chiếc túi của mình trên mặt đất.",
+            },
+            {
+              key: "D",
+              en: "The woman is weighing her luggage.",
+              vi: "Người phụ nữ đang cân hành lý của mình.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Chiếc túi hành lý của cô ấy đang đặt dưới sàn ngay bên cạnh chân ('left her bag on the ground').",
+        },
+        {
+          id: 28,
+          test: 3,
+          num: 8,
+          answer: "A",
+          type: "Tranh tả vật (Không người)",
+          emoji: "🗑️🏷️",
+          scene:
+            "Ba thùng đựng rác bằng kim loại đặt thành hàng trên khung đỡ, phía trước có dán các nhãn phân loại 'Litter' (Rác thường) và 'Recycle' (Tái chế).",
+          grammarTag: "Hiện tại đơn (Bị động)",
+          options: [
+            {
+              key: "A",
+              en: "The waste containers are labeled.",
+              vi: "Các thùng chứa rác được dán nhãn.",
+            },
+            {
+              key: "B",
+              en: "The garbage is being collected.",
+              vi: "Rác thải đang được thu gom.",
+            },
+            {
+              key: "C",
+              en: "The trash cans are being emptied.",
+              vi: "Các thùng rác đang được đổ đi.",
+            },
+            {
+              key: "D",
+              en: "The litter is lying on the floor.",
+              vi: "Rác rưởi đang vương vãi trên sàn.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (A): Các thùng rác ('waste containers') được dán nhãn phân loại rõ ràng. Loại B và C vì không có người thu gom.",
+        },
+        {
+          id: 29,
+          test: 3,
+          num: 9,
+          answer: "D",
+          type: "Tranh tả nội thất nhà hàng",
+          emoji: "🍽️🏮",
+          scene:
+            "Một phòng tiệc nhà hàng kiểu Á được bày biện gọn gàng với các bàn tròn phủ khăn trắng, xếp sẵn bát đĩa, ấm trà và ghế ngồi xung quanh, chưa có khách.",
+          grammarTag: "Hiện tại hoàn thành (Bị động)",
+          options: [
+            {
+              key: "A",
+              en: "The tables have been stacked up.",
+              vi: "Những chiếc bàn đã được xếp chồng lên nhau.",
+            },
+            {
+              key: "B",
+              en: "The leftovers have been cleared away.",
+              vi: "Thức ăn thừa đã được dọn sạch đi.",
+            },
+            {
+              key: "C",
+              en: "The restaurant is full of customers.",
+              vi: "Nhà hàng chật kín khách hàng.",
+            },
+            {
+              key: "D",
+              en: "The dining hall has been set up.",
+              vi: "Phòng ăn đã được bày biện sẵn sàng.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (D): Phòng tiệc đã được sắp xếp bàn ghế và bát đĩa hoàn chỉnh ('has been set up').",
+        },
+        {
+          id: 30,
+          test: 3,
+          num: 10,
+          answer: "D",
+          type: "Tranh tả nhiều người",
+          emoji: "🥾🌲",
+          scene:
+            "Một nam và một nữ mặc quần short, đeo ba lô trên vai đang mỉm cười đi bộ cạnh nhau trên lối mòn xuyên qua khu rừng nhiều cây cối.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "They're working in the mall.",
+              vi: "Họ đang làm việc trong trung tâm thương mại.",
+            },
+            {
+              key: "B",
+              en: "They're holding hands.",
+              vi: "Họ đang nắm tay nhau.",
+            },
+            {
+              key: "C",
+              en: "They're putting on their backpacks.",
+              vi: "Họ đang đeo ba lô lên vai.",
+            },
+            {
+              key: "D",
+              en: "They're hiking through the woods.",
+              vi: "Họ đang đi bộ đường dài xuyên qua khu rừng.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (D): Hai người đeo ba lô đi dã ngoại trong rừng ('hiking through the woods'). Loại B vì tay họ buông tự nhiên, không nắm tay.",
+        },
+
+        // --- TEST 04 (31 - 40) ---
+        {
+          id: 31,
+          test: 4,
+          num: 1,
+          answer: "C",
+          type: "Tranh tả người",
+          emoji: "🚗🔧",
+          scene:
+            "Một người đàn ông cúi người xuống trước đầu chiếc ô tô đang mở nắp ca-pô, hai tay chạm vào các bộ phận bên trong khoang động cơ.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "He's changing the tires.",
+              vi: "Anh ấy đang thay lốp xe.",
+            },
+            {
+              key: "B",
+              en: "He's washing the vehicle.",
+              vi: "Anh ấy đang rửa xe.",
+            },
+            {
+              key: "C",
+              en: "He's checking the engine.",
+              vi: "Anh ấy đang kiểm tra động cơ.",
+            },
+            {
+              key: "D",
+              en: "He's pushing the car.",
+              vi: "Anh ấy đang đẩy chiếc xe ô tô.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Nắp ca-pô mở lên và hai tay anh ấy đang kiểm tra khoang máy ('checking the engine').",
+        },
+        {
+          id: 32,
+          test: 4,
+          num: 2,
+          answer: "B",
+          type: "Tranh tả phương tiện",
+          emoji: "🚕🚕",
+          scene:
+            "Nhiều chiếc xe taxi màu trắng có biển hiệu trên nóc đang đỗ nối đuôi nhau thành một hàng thẳng dọc theo lề đường dưới mái che nhà ga.",
+          grammarTag: "Cụm giới từ cố định (in a row)",
+          options: [
+            {
+              key: "A",
+              en: "The taxis are stuck in traffic.",
+              vi: "Những chiếc taxi đang bị kẹt xe.",
+            },
+            {
+              key: "B",
+              en: "The taxis are lined up in a row.",
+              vi: "Những chiếc taxi xếp thành một hàng thẳng.",
+            },
+            {
+              key: "C",
+              en: "The taxis have stopped at an intersection.",
+              vi: "Những chiếc taxi đã dừng lại tại một ngã tư.",
+            },
+            {
+              key: "D",
+              en: "The taxis are being serviced.",
+              vi: "Những chiếc taxi đang được bảo dưỡng.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): Các xe taxi xếp thành hàng ngay ngắn tại điểm đón khách ('lined up in a row').",
+        },
+        {
+          id: 33,
+          test: 4,
+          num: 3,
+          answer: "D",
+          type: "Tranh tả nhiều người",
+          emoji: "💻👉",
+          scene:
+            "Ba người phụ nữ đang tập trung nhìn vào một màn hình máy tính trên bàn, một người ngồi dùng ngón tay trỏ chỉ thẳng vào màn hình.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "The workers are installing the computer.",
+              vi: "Các nhân viên đang lắp đặt máy tính.",
+            },
+            {
+              key: "B",
+              en: "One woman is drinking from a glass.",
+              vi: "Một người phụ nữ đang uống nước từ cốc thủy tinh.",
+            },
+            {
+              key: "C",
+              en: "The workers are attending a presentation.",
+              vi: "Các nhân viên đang tham dự một buổi thuyết trình.",
+            },
+            {
+              key: "D",
+              en: "One woman is pointing at the screen.",
+              vi: "Một người phụ nữ đang chỉ tay vào màn hình.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (D): Người phụ nữ ngồi bên phải đang giơ tay chỉ vào màn hình máy tính. Loại B vì cốc nước đặt trên bàn chứ không ai cầm uống.",
+        },
+        {
+          id: 34,
+          test: 4,
+          num: 4,
+          answer: "C",
+          type: "Tranh tả nhiều người",
+          emoji: "📸👫",
+          scene:
+            "Hai người đứng tạo dáng mỉm cười trước hàng rào và hàng cây trong công viên, đối diện họ là một người đàn ông đang giơ máy ảnh lên chụp.",
+          grammarTag: "Cấu trúc truyền khiến (having... taken)",
+          options: [
+            {
+              key: "A",
+              en: "They're looking at a photograph.",
+              vi: "Họ đang nhìn vào một bức ảnh.",
+            },
+            {
+              key: "B",
+              en: "They're walking along the path.",
+              vi: "Họ đang đi bộ dọc theo lối đi.",
+            },
+            {
+              key: "C",
+              en: "They're having their picture taken.",
+              vi: "Họ đang được chụp ảnh.",
+            },
+            {
+              key: "D",
+              en: "They're buying a camera.",
+              vi: "Họ đang mua một chiếc máy ảnh.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Hai người đứng tạo dáng cho người kia chụp ảnh ('having their picture taken').",
+        },
+        {
+          id: 35,
+          test: 4,
+          num: 5,
+          answer: "B",
+          type: "Tranh tả cảnh cảng biển",
+          emoji: "⛵⚓",
+          scene:
+            "Nhiều chiếc thuyền đánh cá và tàu nhỏ đang neo đậu trên mặt nước tại một bến cảng có đồi núi ở phía xa.",
+          grammarTag: "Cấu trúc tồn tại (There are + in)",
+          options: [
+            {
+              key: "A",
+              en: "The yachts are facing in the same direction.",
+              vi: "Các du thuyền đang hướng về cùng một phía.",
+            },
+            {
+              key: "B",
+              en: "There are several boats in the harbor.",
+              vi: "Có một vài chiếc thuyền ở trong bến cảng.",
+            },
+            {
+              key: "C",
+              en: "There are many ships tied up together.",
+              vi: "Có nhiều con tàu được buộc lại với nhau.",
+            },
+            {
+              key: "D",
+              en: "The wharf is being constructed.",
+              vi: "Cầu cảng đang được xây dựng.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): Có nhiều tàu thuyền neo trong bến cảng ('harbor'). Loại A vì các thuyền hướng theo nhiều chiều khác nhau.",
+        },
+        {
+          id: 36,
+          test: 4,
+          num: 6,
+          answer: "D",
+          type: "Tranh tả đường phố",
+          emoji: "🧥🚶",
+          scene:
+            "Nhiều người đi bộ mặc áo khoác ấm mùa đông đang băng qua vạch kẻ đường trên một con phố đô thị sầm uất.",
+          grammarTag: "Lượng từ (Most of) + wearing",
+          options: [
+            {
+              key: "A",
+              en: "There is a bus terminal across the street.",
+              vi: "Có một bến xe buýt ở phía bên kia đường.",
+            },
+            {
+              key: "B",
+              en: "The pedestrians are using the underpass.",
+              vi: "Những người đi bộ đang đi qua đường hầm chui.",
+            },
+            {
+              key: "C",
+              en: "Some of the buildings are being renovated.",
+              vi: "Một số tòa nhà đang được cải tạo.",
+            },
+            {
+              key: "D",
+              en: "Most of the people are wearing coats.",
+              vi: "Hầu hết mọi người đều đang mặc áo khoác.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (D): Hầu hết người đi bộ trên phố đều mặc áo khoác dày ('wearing coats').",
+        },
+        {
+          id: 37,
+          test: 4,
+          num: 7,
+          answer: "D",
+          type: "Tranh tả vật (Không người)",
+          emoji: "📚🏛️",
+          scene:
+            "Các dãy giá sách gỗ trong thư viện được xếp đầy sách vở ngăn nắp theo từng hàng, không có độc giả hay nhân viên nào.",
+          grammarTag: "Hiện tại hoàn thành (Bị động)",
+          options: [
+            {
+              key: "A",
+              en: "The library is full of visitors.",
+              vi: "Thư viện chật kín khách tham quan.",
+            },
+            {
+              key: "B",
+              en: "The shelves are being restocked.",
+              vi: "Các kệ sách đang được xếp thêm hàng.",
+            },
+            {
+              key: "C",
+              en: "The books have been left lying around.",
+              vi: "Sách vở bị bỏ vương vãi khắp nơi.",
+            },
+            {
+              key: "D",
+              en: "The reading materials have been assembled.",
+              vi: "Các tài liệu đọc đã được tập hợp trên kệ.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (D): 'reading materials' là cách diễn đạt thay thế cho sách báo, đã được tập hợp đầy đủ trên giá ('have been assembled'). Loại B vì không có người.",
+        },
+        {
+          id: 38,
+          test: 4,
+          num: 8,
+          answer: "C",
+          type: "Tranh tả nhiều người",
+          emoji: "📌🗣️",
+          scene:
+            "Một nhóm người đang đứng trò chuyện phía trước một bảng thông báo lớn có dán nhiều tài liệu và tiêu đề 'Literature Circles...'.",
+          grammarTag: "Hiện tại tiếp diễn + Giới từ (beside)",
+          options: [
+            {
+              key: "A",
+              en: "The people are leaning against the wall.",
+              vi: "Mọi người đang tựa lưng vào tường.",
+            },
+            {
+              key: "B",
+              en: "The woman is posting a notice on the wall.",
+              vi: "Người phụ nữ đang dán một thông báo lên tường.",
+            },
+            {
+              key: "C",
+              en: "The people are talking beside a bulletin board.",
+              vi: "Mọi người đang nói chuyện bên cạnh một bảng thông báo.",
+            },
+            {
+              key: "D",
+              en: "The woman is indicating something on a chart.",
+              vi: "Người phụ nữ đang chỉ vào một chi tiết trên biểu đồ.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Họ đang đứng trao đổi ngay cạnh bảng tin ('bulletin board').",
+        },
+        {
+          id: 39,
+          test: 4,
+          num: 9,
+          answer: "B",
+          type: "Tranh tả ăn uống",
+          emoji: "🍽️🥂",
+          scene:
+            "Một người đàn ông và một người phụ nữ ngồi đối diện nhau tại bàn ăn trong nhà hàng có cốc, đĩa, bình nước và nhân viên đang rót đồ uống.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "They're preparing breakfast.",
+              vi: "Họ đang tự chuẩn bị bữa sáng.",
+            },
+            {
+              key: "B",
+              en: "They're eating out together.",
+              vi: "Họ đang cùng nhau đi ăn ở nhà hàng.",
+            },
+            {
+              key: "C",
+              en: "They're reading the menu.",
+              vi: "Họ đang đọc thực đơn.",
+            },
+            {
+              key: "D",
+              en: "They're pointing at the waiter.",
+              vi: "Họ đang chỉ tay vào người phục vụ.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): 'eating out' = đi ăn ngoài hàng quán (có nhân viên phục vụ rót nước bên cạnh).",
+        },
+        {
+          id: 40,
+          test: 4,
+          num: 10,
+          answer: "C",
+          type: "Tranh tả người",
+          emoji: "🚲🧢",
+          scene:
+            "Một người đàn ông đội mũ lưỡi trai, đeo ba lô đang đạp xe trên đường, hai tay nắm chặt lấy phần ghi-đông (tay lái) xe đạp.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "He's repairing his bicycle.",
+              vi: "Anh ấy đang sửa chiếc xe đạp của mình.",
+            },
+            {
+              key: "B",
+              en: "He's riding a motorcycle.",
+              vi: "Anh ấy đang lái một chiếc xe mô-tô.",
+            },
+            {
+              key: "C",
+              en: "He's holding the handlebars.",
+              vi: "Anh ấy đang nắm lấy tay lái xe đạp.",
+            },
+            {
+              key: "D",
+              en: "He's adjusting the bike seat.",
+              vi: "Anh ấy đang điều chỉnh yên xe đạp.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Anh ấy đang đi xe đạp ('bicycle', không phải 'motorcycle') và hai tay nắm ghi-đông ('handlebars').",
+        },
+
+        // --- TEST 05 (41 - 50) ---
+        {
+          id: 41,
+          test: 5,
+          num: 1,
+          answer: "D",
+          type: "Tranh tả nhiều người",
+          emoji: "🚉🚶‍♂️",
+          scene:
+            "Bốn người mặc trang phục công sở xách cặp đi ngang hàng nhau dọc theo sân ga bên cạnh một đoàn tàu đang dừng.",
+          grammarTag: "Hiện tại tiếp diễn + Giới từ (along)",
+          options: [
+            {
+              key: "A",
+              en: "They're holding tickets for the train.",
+              vi: "Họ đang cầm vé tàu trên tay.",
+            },
+            {
+              key: "B",
+              en: "They're walking through the train.",
+              vi: "Họ đang đi bộ xuyên qua bên trong tàu.",
+            },
+            {
+              key: "C",
+              en: "They're doing some window-shopping.",
+              vi: "Họ đang đi dạo ngắm đồ qua cửa kính.",
+            },
+            {
+              key: "D",
+              en: "They're strolling along the platform.",
+              vi: "Họ đang tản bộ dọc theo sân ga.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (D): Họ đang đi bộ dọc sân ga ('platform') bên ngoài đoàn tàu.",
+        },
+        {
+          id: 42,
+          test: 5,
+          num: 2,
+          answer: "D",
+          type: "Tranh tả cảnh biển",
+          emoji: "🏖️🎣",
+          scene:
+            "Một người đàn ông cầm cần câu đứng bên mép nước trên bãi biển cát phẳng, bên cạnh có một em nhỏ cùng nhìn ra phía biển.",
+          grammarTag: "Hiện tại tiếp diễn + Giới từ (on)",
+          options: [
+            {
+              key: "A",
+              en: "A man is swimming in the ocean.",
+              vi: "Một người đàn ông đang bơi ở dưới biển.",
+            },
+            {
+              key: "B",
+              en: "A man is facing his child.",
+              vi: "Một người đàn ông đang đứng đối mặt với con mình.",
+            },
+            {
+              key: "C",
+              en: "A man is sharing some fish.",
+              vi: "Một người đàn ông đang chia sẻ vài con cá.",
+            },
+            {
+              key: "D",
+              en: "A man is standing on the beach.",
+              vi: "Một người đàn ông đang đứng trên bãi biển.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (D): Người đàn ông đang đứng câu cá trên bãi biển ('standing on the beach'), cùng hướng mắt ra biển với đứa trẻ (loại B).",
+        },
+        {
+          id: 43,
+          test: 5,
+          num: 3,
+          answer: "A",
+          type: "Tranh tả phương tiện",
+          emoji: "🚌🚏",
+          scene:
+            "Một hàng dài xe buýt khách cỡ lớn đang đỗ ngay ngắn cạnh nhau bên trong bến xe có mái che.",
+          grammarTag: "Hiện tại hoàn thành (Bị động)",
+          options: [
+            {
+              key: "A",
+              en: "The buses have been parked at the terminal.",
+              vi: "Những chiếc xe buýt đã được đỗ tại bến.",
+            },
+            {
+              key: "B",
+              en: "The buses are filled with passengers.",
+              vi: "Những chiếc xe buýt chật kín hành khách.",
+            },
+            {
+              key: "C",
+              en: "The buses have left the station.",
+              vi: "Những chiếc xe buýt đã rời khỏi trạm.",
+            },
+            {
+              key: "D",
+              en: "The buses are being washed off.",
+              vi: "Những chiếc xe buýt đang được rửa sạch.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (A): Các xe buýt đang đỗ yên trong bến ('have been parked at the terminal').",
+        },
+        {
+          id: 44,
+          test: 5,
+          num: 4,
+          answer: "B",
+          type: "Tranh tả người",
+          emoji: "💻🪜",
+          scene:
+            "Một thanh niên mặc áo phông đen ngồi trên bậc cầu thang, đặt chiếc ba lô bên cạnh và chăm chú nhìn vào chiếc laptop mở trên đùi.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "He's holding onto the handrail.",
+              vi: "Anh ấy đang nắm chặt tay vịn cầu thang.",
+            },
+            {
+              key: "B",
+              en: "He's focusing on his laptop.",
+              vi: "Anh ấy đang tập trung vào chiếc máy tính xách tay.",
+            },
+            {
+              key: "C",
+              en: "He's setting down his backpack.",
+              vi: "Anh ấy đang đặt chiếc ba lô xuống.",
+            },
+            {
+              key: "D",
+              en: "He's coming down the stairs.",
+              vi: "Anh ấy đang bước xuống cầu thang.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): Anh ấy ngồi yên trên bậc thang và tập trung làm việc trên laptop ('focusing on his laptop').",
+        },
+        {
+          id: 45,
+          test: 5,
+          num: 5,
+          answer: "B",
+          type: "Tranh tả cảnh & kiến trúc",
+          emoji: "🏘️🌉",
+          scene:
+            "Một cây cầu đá vòm cổ bắc qua dòng sông, ngay sát mép bờ sông là dãy nhà cổ mái ngói dốc san sát nhau.",
+          grammarTag: "Hiện tại hoàn thành (Bị động)",
+          options: [
+            {
+              key: "A",
+              en: "Renovations are underway in the town.",
+              vi: "Hoạt động cải tạo đang diễn ra trong thị trấn.",
+            },
+            {
+              key: "B",
+              en: "The houses have been built close to the river.",
+              vi: "Những ngôi nhà được xây dựng sát ngay bờ sông.",
+            },
+            {
+              key: "C",
+              en: "Three roadways run under the bridge.",
+              vi: "Ba làn đường chạy bên dưới cây cầu.",
+            },
+            {
+              key: "D",
+              en: "Buildings stand on both sides of the water.",
+              vi: "Các tòa nhà nằm ở cả hai bên bờ nước.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (B): Các ngôi nhà cổ nằm ngay sát mép nước con sông ('built close to the river'). Loại C vì bên dưới cầu là dòng sông, không phải đường bộ.",
+        },
+        {
+          id: 46,
+          test: 5,
+          num: 6,
+          answer: "A",
+          type: "Tranh tả người (Phòng tập)",
+          emoji: "🏋️‍♀️💪",
+          scene:
+            "Trong phòng tập gym, một huấn luyện viên nam đứng bên cạnh đỡ tay giúp một người phụ nữ nâng quả tạ tay.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "The man is helping her exercise.",
+              vi: "Người đàn ông đang hỗ trợ cô ấy tập thể dục.",
+            },
+            {
+              key: "B",
+              en: "The woman is walking out of the room.",
+              vi: "Người phụ nữ đang bước ra khỏi phòng.",
+            },
+            {
+              key: "C",
+              en: "The woman is weighing herself.",
+              vi: "Người phụ nữ đang tự cân trọng lượng.",
+            },
+            {
+              key: "D",
+              en: "The man is lifting a dumbbell.",
+              vi: "Người đàn ông đang tự nâng một quả tạ tay.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (A): Người phụ nữ cầm tạ tập còn huấn luyện viên nam đặt tay hỗ trợ cô ấy ('helping her exercise').",
+        },
+        {
+          id: 47,
+          test: 5,
+          num: 7,
+          answer: "D",
+          type: "Tranh tả ăn uống",
+          emoji: "🍷🌿",
+          scene:
+            "Một người phụ nữ và một người đàn ông ngồi đối diện nhau mỉm cười trò chuyện tại bàn ăn đặt ngoài trời có cây xanh xung quanh.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "The restaurant is crowded with diners.",
+              vi: "Nhà hàng đông nghịt thực khách.",
+            },
+            {
+              key: "B",
+              en: "Food has been served at a party.",
+              vi: "Thức ăn đã được dọn ra tại một bữa tiệc.",
+            },
+            {
+              key: "C",
+              en: "The customer is setting the table.",
+              vi: "Khách hàng đang tự bày biện bàn ăn.",
+            },
+            {
+              key: "D",
+              en: "Two people are eating outdoors.",
+              vi: "Hai người đang dùng bữa ở ngoài trời.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (D): Hai người ngồi dùng bữa ở không gian sân vườn ngoài trời ('eating outdoors').",
+        },
+        {
+          id: 48,
+          test: 5,
+          num: 8,
+          answer: "A",
+          type: "Tranh tả cửa hàng",
+          emoji: "🍎🍌",
+          scene:
+            "Tại một quầy bán hoa quả, rất nhiều loại táo, lê, cam được xếp thành từng ngăn đầy đặn kèm bảng giá, phía trên treo các nải chuối và túi cam.",
+          grammarTag: "Cụm giới từ cố định (on display)",
+          options: [
+            {
+              key: "A",
+              en: "There are many types of fruit on display.",
+              vi: "Có nhiều loại trái cây đang được trưng bày.",
+            },
+            {
+              key: "B",
+              en: "There are signs hanging from the ceiling.",
+              vi: "Có những tấm biển treo từ trên trần xuống.",
+            },
+            {
+              key: "C",
+              en: "There are fruit bins near the register.",
+              vi: "Có những thùng trái cây đặt gần quầy thu ngân.",
+            },
+            {
+              key: "D",
+              en: "There are pieces of fruit being eaten.",
+              vi: "Có những miếng trái cây đang được ăn.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (A): Nhiều loại trái cây khác nhau được bày bán ngăn nắp ('on display'). Loại D vì không có người ăn.",
+        },
+        {
+          id: 49,
+          test: 5,
+          num: 9,
+          answer: "C",
+          type: "Tranh tả công trường",
+          emoji: "🚜🏗️",
+          scene:
+            "Tại công trường ngoài trời, một chiếc máy xúc bánh lốp cỡ lớn đang nâng gầu đổ đất đá vào thùng của một chiếc xe ben tải nặng đứng bên cạnh.",
+          grammarTag: "Hiện tại tiếp diễn (Chủ động)",
+          options: [
+            {
+              key: "A",
+              en: "Construction equipment has been loaded onto a truck.",
+              vi: "Thiết bị xây dựng đã được chất lên xe tải.",
+            },
+            {
+              key: "B",
+              en: "The farmers are digging in the field.",
+              vi: "Những người nông dân đang đào đất ngoài đồng.",
+            },
+            {
+              key: "C",
+              en: "One machine is dumping dirt into the other.",
+              vi: "Một chiếc máy đang đổ đất vào thùng chiếc xe kia.",
+            },
+            {
+              key: "D",
+              en: "The highway has been closed for maintenance work.",
+              vi: "Đường cao tốc đã bị đóng để bảo trì.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Gầu của máy xúc đang nghiêng xuống đổ đất đá ('dumping dirt') vào thùng xe tải ben bên cạnh.",
+        },
+        {
+          id: 50,
+          test: 5,
+          num: 10,
+          answer: "C",
+          type: "Tranh tả nơi làm việc",
+          emoji: "🏥👩‍⚕️",
+          scene:
+            "Hai nhân viên y tế mặc áo blouse và đồng phục bệnh viện đang đứng phía sau một quầy lễ tân bằng gỗ cao và xem tài liệu cùng nhau.",
+          grammarTag: "Cấu trúc giới từ (behind a counter)",
+          options: [
+            {
+              key: "A",
+              en: "They are seeing a patient.",
+              vi: "Họ đang khám cho một bệnh nhân.",
+            },
+            {
+              key: "B",
+              en: "They are wearing masks.",
+              vi: "Họ đang đeo khẩu trang.",
+            },
+            {
+              key: "C",
+              en: "They are behind a counter.",
+              vi: "Họ đang đứng phía sau một chiếc quầy.",
+            },
+            {
+              key: "D",
+              en: "They are in a laboratory.",
+              vi: "Họ đang ở trong phòng thí nghiệm.",
+            },
+          ],
+          explanation:
+            "Đáp án đúng là (C): Cả hai đang đứng làm việc phía sau quầy tiếp đón bằng gỗ ('behind a counter'). Loại A và B vì không có bệnh nhân và không đeo khẩu trang.",
+        },
+      ];
+
+      // =========================================================================
+      // 2. DỮ LIỆU 36 TỪ VỰNG TRỌNG TÂM TOEIC PART 1 (SCHEMA CHUẨN)
+      // =========================================================================
+      const DEFAULT_VOCAB_DATA = [
+        {
+          text: "luggage",
+          pronunciation: "/ˈlʌɡɪdʒ/",
+          type: "noun",
+          description: {
+            en: "Bags, cases, and containers that hold a traveler's belongings.",
+            vi: "Hành lý, vali mang theo khi đi du lịch hoặc công tác.",
+          },
+          translation: "hành lý",
+          examples: [
+            {
+              en: "She is pulling her luggage along at the terminal.",
+              vi: "Cô ấy đang kéo hành lý dọc theo nhà ga.",
+            },
+            {
+              en: "The woman is weighing her luggage at the counter.",
+              vi: "Người phụ nữ đang cân hành lý của mình tại quầy.",
+            },
+            {
+              en: "Passengers are unloading their luggage from the train.",
+              vi: "Hành khách đang dỡ hành lý xuống khỏi tàu.",
+            },
+          ],
+          category: "travel",
+          icon: { type: "emoji", value: "🧳" },
+        },
+        {
+          text: "publication",
+          pronunciation: "/ˌpʌblɪˈkeɪʃn/",
+          type: "noun",
+          description: {
+            en: "A printed work such as a newspaper, magazine, or book.",
+            vi: "Ấn phẩm in ấn nói chung như báo, tạp chí hoặc sách.",
+          },
+          translation: "ấn phẩm (báo, tạp chí)",
+          examples: [
+            {
+              en: "He's holding a publication while talking on the phone.",
+              vi: "Anh ấy đang cầm một tờ ấn phẩm trong khi nói chuyện điện thoại.",
+            },
+            {
+              en: "Several publications are displayed on the table.",
+              vi: "Một vài ấn phẩm được trưng bày trên bàn.",
+            },
+            {
+              en: "She is reading a publication in the waiting area.",
+              vi: "Cô ấy đang đọc một ấn phẩm ở khu vực chờ.",
+            },
+          ],
+          category: "office & media",
+          icon: { type: "emoji", value: "📰" },
+        },
+        {
+          text: "loaf",
+          pronunciation: "/loʊf/",
+          type: "noun",
+          description: {
+            en: "Bread that is shaped and baked in a single piece (plural: loaves).",
+            vi: "Ổ bánh mì nguyên khối (số nhiều: loaves).",
+          },
+          translation: "ổ bánh mì",
+          examples: [
+            {
+              en: "The loaves have been arranged on the shelves.",
+              vi: "Những ổ bánh mì đã được sắp xếp ngay ngắn trên kệ.",
+            },
+            {
+              en: "Fresh loaves are being taken out of the oven.",
+              vi: "Những ổ bánh mì mới ra lò đang được lấy ra.",
+            },
+            {
+              en: "The baker has displayed the loaves on the table.",
+              vi: "Người thợ làm bánh đã bày các ổ bánh mì lên bàn.",
+            },
+          ],
+          category: "food & dining",
+          icon: { type: "emoji", value: "🍞" },
+        },
+        {
+          text: "arrange",
+          pronunciation: "/əˈreɪndʒ/",
+          type: "verb",
+          description: {
+            en: "To put things in a neat, attractive, or required order.",
+            vi: "Sắp xếp, bài trí đồ vật theo trật tự gọn gàng.",
+          },
+          translation: "sắp xếp, bài trí",
+          examples: [
+            {
+              en: "The tables are arranged around the courtyard.",
+              vi: "Những chiếc bàn được sắp xếp xung quanh khoảng sân.",
+            },
+            {
+              en: "The loaves have been arranged on the bakery shelves.",
+              vi: "Những ổ bánh mì đã được xếp lên kệ của tiệm bánh.",
+            },
+            {
+              en: "Chairs are arranged in rows for the seminar.",
+              vi: "Ghế được xếp thành từng hàng cho buổi hội thảo.",
+            },
+          ],
+          category: "action & state",
+          icon: { type: "emoji", value: "🪑" },
+        },
+        {
+          text: "indicate",
+          pronunciation: "/ˈɪndɪkeɪt/",
+          type: "verb",
+          description: {
+            en: "To point out or direct attention to something.",
+            vi: "Chỉ vào, chỉ ra một chi tiết trên tài liệu, biểu đồ hoặc màn hình.",
+          },
+          translation: "chỉ vào, chỉ ra",
+          examples: [
+            {
+              en: "He's indicating something on a page.",
+              vi: "Anh ấy đang chỉ tay vào một nội dung trên trang sách.",
+            },
+            {
+              en: "The woman is indicating something on a chart.",
+              vi: "Người phụ nữ đang chỉ vào một chi tiết trên biểu đồ.",
+            },
+            {
+              en: "She is indicating a location on the map.",
+              vi: "Cô ấy đang chỉ một vị trí trên bản đồ.",
+            },
+          ],
+          category: "office & study",
+          icon: { type: "emoji", value: "👉" },
+        },
+        {
+          text: "terminal",
+          pronunciation: "/ˈtɜːrmɪnl/",
+          type: "noun",
+          description: {
+            en: "A building at an airport or station where passengers arrive and depart.",
+            vi: "Nhà ga (sân bay), bến xe buýt hoặc trạm trung chuyển.",
+          },
+          translation: "nhà ga, bến xe",
+          examples: [
+            {
+              en: "The people are waiting in an airport terminal.",
+              vi: "Mọi người đang ngồi chờ trong nhà ga sân bay.",
+            },
+            {
+              en: "The buses have been parked at the terminal.",
+              vi: "Những chiếc xe buýt đã được đỗ tại bến.",
+            },
+            {
+              en: "Passengers are waiting at a bus terminal.",
+              vi: "Hành khách đang đợi ở bến xe buýt.",
+            },
+          ],
+          category: "transportation",
+          icon: { type: "emoji", value: "🚏" },
+        },
+        {
+          text: "handout",
+          pronunciation: "/ˈhændaʊt/",
+          type: "noun",
+          description: {
+            en: "A printed sheet of information given out free at a meeting or class.",
+            vi: "Tài liệu phát tay trong cuộc họp, hội thảo hoặc lớp học.",
+          },
+          translation: "tài liệu phát tay",
+          examples: [
+            {
+              en: "A woman is distributing handouts to the attendees.",
+              vi: "Một người phụ nữ đang phát tài liệu cho người tham dự.",
+            },
+            {
+              en: "The participants are reviewing the handouts.",
+              vi: "Những người tham gia đang xem lại tài liệu phát tay.",
+            },
+            {
+              en: "He placed a stack of handouts on the conference table.",
+              vi: "Anh ấy đặt một chồng tài liệu phát tay lên bàn họp.",
+            },
+          ],
+          category: "business & meeting",
+          icon: { type: "emoji", value: "📄" },
+        },
+        {
+          text: "examine",
+          pronunciation: "/ɪɡˈzæmɪn/",
+          type: "verb",
+          description: {
+            en: "To inspect something carefully or check a patient's health.",
+            vi: "Kiểm tra kỹ lưỡng (đồ vật/tài liệu) hoặc khám bệnh (y tế).",
+          },
+          translation: "khám bệnh, kiểm tra kỹ",
+          examples: [
+            {
+              en: "The woman is being examined by a medical worker.",
+              vi: "Người phụ nữ đang được nhân viên y tế thăm khám.",
+            },
+            {
+              en: "He is examining the car engine under the hood.",
+              vi: "Anh ấy đang kiểm tra động cơ ô tô dưới nắp ca-pô.",
+            },
+            {
+              en: "They are examining a document together.",
+              vi: "Họ đang cùng nhau kiểm tra một tài liệu.",
+            },
+          ],
+          category: "medical & work",
+          icon: { type: "emoji", value: "🩺" },
+        },
+        {
+          text: "escalator",
+          pronunciation: "/ˈeskəleɪtər/",
+          type: "noun",
+          description: {
+            en: "A moving staircase that carries people between floors of a building.",
+            vi: "Thang cuốn tự động trong trung tâm thương mại, sân bay, nhà ga.",
+          },
+          translation: "thang cuốn",
+          examples: [
+            {
+              en: "She's riding the escalator in a shopping center.",
+              vi: "Cô ấy đang đi thang cuốn trong trung tâm thương mại.",
+            },
+            {
+              en: "Passengers are standing on the escalator.",
+              vi: "Hành khách đang đứng trên thang cuốn.",
+            },
+            {
+              en: "He is holding the handrail while riding the escalator.",
+              vi: "Anh ấy đang vịn tay vịn khi đi thang cuốn.",
+            },
+          ],
+          category: "public places",
+          icon: { type: "emoji", value: "🪜" },
+        },
+        {
+          text: "unpack",
+          pronunciation: "/ˌʌnˈpæk/",
+          type: "verb",
+          description: {
+            en: "To open a box, bag, or suitcase and remove its contents.",
+            vi: "Mở thùng, vali và lấy đồ đạc bên trong ra.",
+          },
+          translation: "dỡ đồ ra (khỏi thùng/vali)",
+          examples: [
+            {
+              en: "They're unpacking some boxes on the floor.",
+              vi: "Họ đang dỡ đồ từ các thùng các-tông trên sàn nhà.",
+            },
+            {
+              en: "The musicians are unpacking their instruments.",
+              vi: "Các nhạc công đang lấy nhạc cụ ra khỏi hộp.",
+            },
+            {
+              en: "She is unpacking dishes from a cardboard box.",
+              vi: "Cô ấy đang lấy bát đĩa ra khỏi thùng bìa cứng.",
+            },
+          ],
+          category: "action & state",
+          icon: { type: "emoji", value: "📦" },
+        },
+        {
+          text: "pamphlet",
+          pronunciation: "/ˈpæmflət/",
+          type: "noun",
+          description: {
+            en: "A small, thin book with paper covers giving information about something.",
+            vi: "Tờ rơi gấp, sách mỏng giới thiệu thông tin.",
+          },
+          translation: "sách mỏng, tờ rơi thông tin",
+          examples: [
+            {
+              en: "A man is reading a pamphlet beside a display table.",
+              vi: "Một người đàn ông đang đọc tờ thông tin cạnh bàn trưng bày.",
+            },
+            {
+              en: "Visitors can pick up a pamphlet at the entrance.",
+              vi: "Khách tham quan có thể lấy sách hướng dẫn mỏng ở lối vào.",
+            },
+            {
+              en: "Pamphlets are stacked neatly on the counter.",
+              vi: "Các tờ giới thiệu được xếp gọn gàng trên quầy.",
+            },
+          ],
+          category: "office & media",
+          icon: { type: "emoji", value: "📖" },
+        },
+        {
+          text: "pedestrian",
+          pronunciation: "/pəˈdestriən/",
+          type: "noun",
+          description: {
+            en: "A person walking along a road or in a developed area.",
+            vi: "Người đi bộ trên đường phố hoặc vỉa hè.",
+          },
+          translation: "người đi bộ",
+          examples: [
+            {
+              en: "Most of the pedestrians are wearing coats.",
+              vi: "Hầu hết những người đi bộ đều đang mặc áo khoác.",
+            },
+            {
+              en: "Pedestrians are crossing the street at the crosswalk.",
+              vi: "Người đi bộ đang băng qua đường tại vạch kẻ đường.",
+            },
+            {
+              en: "The pedestrians are using the underpass.",
+              vi: "Những người đi bộ đang đi qua đường hầm dành cho người đi bộ.",
+            },
+          ],
+          category: "street & traffic",
+          icon: { type: "emoji", value: "🚶" },
+        },
+        {
+          text: "harbor",
+          pronunciation: "/ˈhɑːrbər/",
+          type: "noun",
+          description: {
+            en: "A sheltered area of water where ships and boats can dock safely.",
+            vi: "Bến cảng, nơi tàu thuyền neo đậu.",
+          },
+          translation: "bến cảng",
+          examples: [
+            {
+              en: "There are several boats in the harbor.",
+              vi: "Có một vài chiếc thuyền đang neo đậu ở bến cảng.",
+            },
+            {
+              en: "Fishing boats are tied up in the harbor.",
+              vi: "Tàu đánh cá được neo buộc tại bến cảng.",
+            },
+            {
+              en: "The harbor is surrounded by hills.",
+              vi: "Bến cảng được bao quanh bởi những ngọn đồi.",
+            },
+          ],
+          category: "transportation",
+          icon: { type: "emoji", value: "⚓" },
+        },
+        {
+          text: "stroll",
+          pronunciation: "/stroʊl/",
+          type: "verb",
+          description: {
+            en: "To walk in a slow, relaxed way.",
+            vi: "Đi dạo, tản bộ thong thả.",
+          },
+          translation: "đi dạo, tản bộ",
+          examples: [
+            {
+              en: "They're strolling along the train platform.",
+              vi: "Họ đang tản bộ dọc theo sân ga tàu hỏa.",
+            },
+            {
+              en: "A couple is strolling through the park.",
+              vi: "Một cặp đôi đang đi dạo trong công viên.",
+            },
+            {
+              en: "People are strolling along the waterfront.",
+              vi: "Mọi người đang đi dạo dọc bờ sông.",
+            },
+          ],
+          category: "action & state",
+          icon: { type: "emoji", value: "🚶‍♂️" },
+        },
+        {
+          text: "handrail",
+          pronunciation: "/ˈhændreɪl/",
+          type: "noun",
+          description: {
+            en: "A narrow rail for people to hold onto for support, such as on stairs.",
+            vi: "Tay vịn cầu thang hoặc lan can.",
+          },
+          translation: "tay vịn (cầu thang)",
+          examples: [
+            {
+              en: "He's holding onto the handrail while walking down.",
+              vi: "Anh ấy đang nắm chặt tay vịn khi bước xuống cầu thang.",
+            },
+            {
+              en: "A metal handrail runs along the staircase.",
+              vi: "Một tay vịn bằng kim loại chạy dọc theo cầu thang.",
+            },
+            {
+              en: "She has one hand on the handrail.",
+              vi: "Cô ấy đặt một tay lên tay vịn.",
+            },
+          ],
+          category: "architecture & scenery",
+          icon: { type: "emoji", value: "🪜" },
+        },
+        {
+          text: "dumbbell",
+          pronunciation: "/ˈdʌmbel/",
+          type: "noun",
+          description: {
+            en: "A short bar with a weight at each end, used for exercise.",
+            vi: "Quả tạ tay tập thể hình.",
+          },
+          translation: "tạ tay",
+          examples: [
+            {
+              en: "The man is lifting a dumbbell in the gym.",
+              vi: "Người đàn ông đang nâng tạ tay trong phòng tập.",
+            },
+            {
+              en: "The trainer is helping her lift a dumbbell.",
+              vi: "Huấn luyện viên đang hỗ trợ cô ấy nâng tạ tay.",
+            },
+            {
+              en: "Dumbbells are arranged on a rack.",
+              vi: "Những quả tạ tay được xếp ngay ngắn trên giá.",
+            },
+          ],
+          category: "sports & fitness",
+          icon: { type: "emoji", value: "🏋️" },
+        },
+        {
+          text: "dump",
+          pronunciation: "/dʌmp/",
+          type: "verb",
+          description: {
+            en: "To drop or unload a mass of material from a container or vehicle.",
+            vi: "Đổ vật liệu (đất, đá, cát) từ gầu xúc hoặc xe tải xuống.",
+          },
+          translation: "đổ xuống (đất, đá, hàng)",
+          examples: [
+            {
+              en: "One machine is dumping dirt into the other.",
+              vi: "Một chiếc máy xúc đang đổ đất vào thùng chiếc xe kia.",
+            },
+            {
+              en: "A truck is dumping gravel at a construction site.",
+              vi: "Một chiếc xe tải đang đổ sỏi tại công trường xây dựng.",
+            },
+            {
+              en: "Workers are dumping waste into a large container.",
+              vi: "Công nhân đang đổ rác thải vào thùng chứa lớn.",
+            },
+          ],
+          category: "construction",
+          icon: { type: "emoji", value: "🚜" },
+        },
+        {
+          text: "adjust",
+          pronunciation: "/əˈdʒʌst/",
+          type: "verb",
+          description: {
+            en: "To alter or move something slightly in order to achieve the desired fit.",
+            vi: "Điều chỉnh, chỉnh sửa nhẹ vị trí hoặc trang phục.",
+          },
+          translation: "điều chỉnh, chỉnh lại",
+          examples: [
+            {
+              en: "He's adjusting his tie in front of the building.",
+              vi: "Anh ấy đang chỉnh lại cà vạt phía trước tòa nhà.",
+            },
+            {
+              en: "He's adjusting the bike seat before riding.",
+              vi: "Anh ấy đang điều chỉnh yên xe đạp trước khi chạy.",
+            },
+            {
+              en: "She is adjusting her glasses while reading.",
+              vi: "Cô ấy đang chỉnh lại kính trong lúc đọc sách.",
+            },
+          ],
+          category: "action & state",
+          icon: { type: "emoji", value: "👔" },
+        },
+        {
+          text: "display",
+          pronunciation: "/dɪˈspleɪ/",
+          type: "verb",
+          description: {
+            en: "To put something in a prominent place in order that it may readily be seen.",
+            vi: "Trưng bày, bày biện hàng hóa hoặc thực phẩm.",
+          },
+          translation: "trưng bày, bày ra",
+          examples: [
+            {
+              en: "The food is displayed in glass cabinets.",
+              vi: "Thức ăn được trưng bày bên trong các tủ kính.",
+            },
+            {
+              en: "The loaves have been displayed on the table.",
+              vi: "Những ổ bánh mì đã được bày biện trên bàn.",
+            },
+            {
+              en: "Various fruits are displayed at the market stall.",
+              vi: "Nhiều loại trái cây được trưng bày tại quầy chợ.",
+            },
+          ],
+          category: "food & dining",
+          icon: { type: "emoji", value: "🪟" },
+        },
+        {
+          text: "lighthouse",
+          pronunciation: "/ˈlaɪthaʊs/",
+          type: "noun",
+          description: {
+            en: "A tower containing a beacon light to warn or guide ships at sea.",
+            vi: "Ngọn hải đăng ven biển.",
+          },
+          translation: "ngọn hải đăng",
+          examples: [
+            {
+              en: "The lighthouse stands beside a house near the ocean.",
+              vi: "Ngọn hải đăng nằm cạnh một ngôi nhà gần biển.",
+            },
+            {
+              en: "The lighthouse is taller than the surrounding buildings.",
+              vi: "Ngọn hải đăng cao hơn các tòa nhà xung quanh.",
+            },
+            {
+              en: "Wildflowers are blooming in the field near the lighthouse.",
+              vi: "Hoa dại đang nở rộ trên cánh đồng gần ngọn hải đăng.",
+            },
+          ],
+          category: "architecture & scenery",
+          icon: { type: "emoji", value: "🗼" },
+        },
+        {
+          text: "structure",
+          pronunciation: "/ˈstrʌktʃər/",
+          type: "noun",
+          description: {
+            en: "A building or other object constructed from several parts.",
+            vi: "Công trình kiến trúc, tòa nhà.",
+          },
+          translation: "công trình kiến trúc",
+          examples: [
+            {
+              en: "One structure is taller than the others.",
+              vi: "Một công trình cao hơn những công trình còn lại.",
+            },
+            {
+              en: "Several small structures have been built along the coast.",
+              vi: "Một vài công trình nhỏ đã được xây dựng dọc bờ biển.",
+            },
+            {
+              en: "People are walking past a stone structure.",
+              vi: "Mọi người đang đi ngang qua một công trình bằng đá.",
+            },
+          ],
+          category: "architecture & scenery",
+          icon: { type: "emoji", value: "🏛️" },
+        },
+        {
+          text: "tear down",
+          pronunciation: "/ter daʊn/",
+          type: "verb",
+          description: {
+            en: "To demolish or destroy a building or structure.",
+            vi: "Phá dỡ, dỡ bỏ một công trình hoặc ngôi nhà.",
+          },
+          translation: "phá dỡ, dỡ bỏ",
+          examples: [
+            {
+              en: "The beach house is being torn down.",
+              vi: "Ngôi nhà bên bãi biển đang bị phá dỡ.",
+            },
+            {
+              en: "Workers are tearing down an old wooden fence.",
+              vi: "Công nhân đang dỡ bỏ hàng rào gỗ cũ.",
+            },
+            {
+              en: "The abandoned building was torn down last month.",
+              vi: "Tòa nhà bỏ hoang đã bị phá dỡ vào tháng trước.",
+            },
+          ],
+          category: "construction",
+          icon: { type: "emoji", value: "🏗️" },
+        },
+        {
+          text: "planner",
+          pronunciation: "/ˈplænər/",
+          type: "noun",
+          description: {
+            en: "A notebook or calendar used for recording appointments and tasks.",
+            vi: "Sổ tay kế hoạch, lịch ghi chú công việc.",
+          },
+          translation: "sổ kế hoạch, lịch ghi chú",
+          examples: [
+            {
+              en: "He's making notes in his planner at his desk.",
+              vi: "Anh ấy đang ghi chú vào sổ kế hoạch tại bàn làm việc.",
+            },
+            {
+              en: "A monthly planner is hanging on the office partition.",
+              vi: "Một tấm lịch kế hoạch tháng được treo trên vách ngăn văn phòng.",
+            },
+            {
+              en: "She opened her planner to check her schedule.",
+              vi: "Cô ấy mở sổ kế hoạch để kiểm tra lịch trình.",
+            },
+          ],
+          category: "office & study",
+          icon: { type: "emoji", value: "📓" },
+        },
+        {
+          text: "bloom",
+          pronunciation: "/bluːm/",
+          type: "verb",
+          description: {
+            en: "To produce flowers; to be in flower.",
+            vi: "Nở hoa, ra hoa.",
+          },
+          translation: "nở hoa",
+          examples: [
+            {
+              en: "White flowers are blooming across the field.",
+              vi: "Hoa trắng đang nở rộ khắp cánh đồng.",
+            },
+            {
+              en: "Not all of the flowers in the garden are blooming.",
+              vi: "Không phải tất cả các loài hoa trong vườn đều đang nở.",
+            },
+            {
+              en: "Trees are blooming along the quiet path.",
+              vi: "Cây cối đang ra hoa dọc theo lối đi yên tĩnh.",
+            },
+          ],
+          category: "nature",
+          icon: { type: "emoji", value: "🌼" },
+        },
+        {
+          text: "log",
+          pronunciation: "/lɔːɡ/",
+          type: "noun",
+          description: {
+            en: "A thick piece of wood cut from a tree trunk or branch.",
+            vi: "Khúc gỗ tròn chưa xẻ.",
+          },
+          translation: "khúc gỗ",
+          examples: [
+            {
+              en: "There are piles of logs stacked beside the road.",
+              vi: "Có những đống khúc gỗ được chất cạnh con đường.",
+            },
+            {
+              en: "A wooden log is lying across the forest path.",
+              vi: "Một khúc gỗ nằm chắn ngang lối mòn trong rừng.",
+            },
+            {
+              en: "Logs have been loaded onto the back of a truck.",
+              vi: "Các khúc gỗ đã được chất lên thùng xe tải.",
+            },
+          ],
+          category: "nature",
+          icon: { type: "emoji", value: "🪵" },
+        },
+        {
+          text: "bookcase",
+          pronunciation: "/ˈbʊkkeɪs/",
+          type: "noun",
+          description: {
+            en: "A piece of furniture with shelves for storing books.",
+            vi: "Tủ sách, giá sách.",
+          },
+          translation: "tủ sách, giá sách",
+          examples: [
+            {
+              en: "They are standing in front of a wooden bookcase.",
+              vi: "Họ đang đứng phía trước một tủ sách bằng gỗ.",
+            },
+            {
+              en: "The bookcase is filled with books of various sizes.",
+              vi: "Tủ sách chứa đầy sách với nhiều kích cỡ khác nhau.",
+            },
+            {
+              en: "She is taking a volume down from the bookcase.",
+              vi: "Cô ấy đang lấy một cuốn sách từ trên tủ sách xuống.",
+            },
+          ],
+          category: "office & study",
+          icon: { type: "emoji", value: "📚" },
+        },
+        {
+          text: "install",
+          pronunciation: "/ɪnˈstɔːl/",
+          type: "verb",
+          description: {
+            en: "To place or fix equipment or machinery in position ready for use.",
+            vi: "Lắp đặt thiết bị, đèn, máy móc.",
+          },
+          translation: "lắp đặt",
+          examples: [
+            {
+              en: "The lamps are being installed above the kitchen island.",
+              vi: "Những chiếc đèn đang được lắp đặt phía trên bàn bếp.",
+            },
+            {
+              en: "Technicians are installing new computer equipment.",
+              vi: "Các kỹ thuật viên đang lắp đặt thiết bị máy tính mới.",
+            },
+            {
+              en: "Light fixtures have been installed in the ceiling.",
+              vi: "Các thiết bị chiếu sáng đã được lắp trên trần nhà.",
+            },
+          ],
+          category: "construction",
+          icon: { type: "emoji", value: "🔧" },
+        },
+        {
+          text: "board",
+          pronunciation: "/bɔːrd/",
+          type: "verb",
+          description: {
+            en: "To get on or into a ship, aircraft, train, or other vehicle.",
+            vi: "Lên tàu, lên máy bay, lên xe buýt.",
+          },
+          translation: "lên (tàu, xe, máy bay)",
+          examples: [
+            {
+              en: "Passengers are boarding a subway train at the station.",
+              vi: "Hành khách đang bước lên tàu điện ngầm tại nhà ga.",
+            },
+            {
+              en: "The people are waiting to board an airplane.",
+              vi: "Mọi người đang chờ để lên máy bay.",
+            },
+            {
+              en: "Commuters are boarding a bus at the curb.",
+              vi: "Người đi làm đang lên xe buýt ở lề đường.",
+            },
+          ],
+          category: "transportation",
+          icon: { type: "emoji", value: "🚆" },
+        },
+        {
+          text: "fountain",
+          pronunciation: "/ˈfaʊntn/",
+          type: "noun",
+          description: {
+            en: "A structure that sends a stream of water into the air.",
+            vi: "Đài phun nước trong công viên hoặc hồ nước.",
+          },
+          translation: "đài phun nước",
+          examples: [
+            {
+              en: "There's a fountain spraying water in the middle of the pond.",
+              vi: "Có một đài phun nước đang phun lên giữa hồ.",
+            },
+            {
+              en: "People are sitting around a stone fountain.",
+              vi: "Mọi người đang ngồi xung quanh một đài phun nước bằng đá.",
+            },
+            {
+              en: "The fountain is surrounded by green trees.",
+              vi: "Đài phun nước được bao quanh bởi hàng cây xanh.",
+            },
+          ],
+          category: "architecture & scenery",
+          icon: { type: "emoji", value: "⛲" },
+        },
+        {
+          text: "ferry",
+          pronunciation: "/ˈferi/",
+          type: "noun",
+          description: {
+            en: "A boat or ship for conveying passengers and goods across a body of water.",
+            vi: "Phà hoặc tàu chở khách trên sông, kênh đào.",
+          },
+          translation: "phà, tàu chở khách",
+          examples: [
+            {
+              en: "There is a ferry moving along the canal.",
+              vi: "Có một chiếc phà đang di chuyển dọc theo kênh đào.",
+            },
+            {
+              en: "Passengers are standing on the deck of a ferry.",
+              vi: "Hành khách đang đứng trên boong của một chiếc phà.",
+            },
+            {
+              en: "A ferry is docked near the waterfront buildings.",
+              vi: "Một chiếc phà đang neo đậu gần các tòa nhà ven sông.",
+            },
+          ],
+          category: "transportation",
+          icon: { type: "emoji", value: "⛴️" },
+        },
+        {
+          text: "parasol",
+          pronunciation: "/ˈpærəsɔːl/",
+          type: "noun",
+          description: {
+            en: "A large umbrella used to provide shade from the sun at outdoor cafes.",
+            vi: "Ô che nắng cỡ lớn ngoài trời (ở quán cà phê, bãi biển).",
+          },
+          translation: "ô che nắng ngoài trời",
+          examples: [
+            {
+              en: "Parasols have been opened over the outdoor tables.",
+              vi: "Những chiếc ô che nắng đã được mở phía trên các bàn ngoài trời.",
+            },
+            {
+              en: "All of the parasols are being put away for the night.",
+              vi: "Tất cả ô che nắng đang được cất đi khi tối xuống.",
+            },
+            {
+              en: "Customers are sitting beneath a large parasol.",
+              vi: "Khách hàng đang ngồi bên dưới một chiếc ô che nắng lớn.",
+            },
+          ],
+          category: "public places",
+          icon: { type: "emoji", value: "⛱️" },
+        },
+        {
+          text: "courtyard",
+          pronunciation: "/ˈkɔːrtjɑːrd/",
+          type: "noun",
+          description: {
+            en: "An unroofed area that is completely or mostly enclosed by walls or buildings.",
+            vi: "Khoảng sân trong, sân ngoài trời của quán cà phê hoặc tòa nhà.",
+          },
+          translation: "khoảng sân, sân trong",
+          examples: [
+            {
+              en: "The tables are arranged around the courtyard.",
+              vi: "Những chiếc bàn được sắp xếp xung quanh khoảng sân.",
+            },
+            {
+              en: "Pedestrians are walking across a paved courtyard.",
+              vi: "Người đi bộ đang băng qua một khoảng sân lát đá.",
+            },
+            {
+              en: "Palm trees are planted in the center of the courtyard.",
+              vi: "Cây cọ được trồng ở chính giữa khoảng sân.",
+            },
+          ],
+          category: "architecture & scenery",
+          icon: { type: "emoji", value: "🏛️" },
+        },
+        {
+          text: "label",
+          pronunciation: "/ˈleɪbl/",
+          type: "verb",
+          description: {
+            en: "To attach a label or sign to something to classify or identify it.",
+            vi: "Dán nhãn, gắn biển phân loại.",
+          },
+          translation: "dán nhãn",
+          examples: [
+            {
+              en: "The waste containers are clearly labeled for recycling.",
+              vi: "Các thùng rác được dán nhãn phân loại tái chế rõ ràng.",
+            },
+            {
+              en: "Folders have been labeled and placed in a cabinet.",
+              vi: "Các tập hồ sơ đã được dán nhãn và xếp vào tủ.",
+            },
+            {
+              en: "She is labeling boxes before moving.",
+              vi: "Cô ấy đang dán nhãn các thùng đồ trước khi chuyển nhà.",
+            },
+          ],
+          category: "public places",
+          icon: { type: "emoji", value: "🏷️" },
+        },
+        {
+          text: "intersection",
+          pronunciation: "/ˌɪntərˈsekʃn/",
+          type: "noun",
+          description: {
+            en: "A point at which two or more roads meet and cross each other.",
+            vi: "Ngã tư, giao lộ.",
+          },
+          translation: "ngã tư, giao lộ",
+          examples: [
+            {
+              en: "The taxis have stopped at a busy intersection.",
+              vi: "Những chiếc taxi đã dừng lại tại một ngã tư đông đúc.",
+            },
+            {
+              en: "Pedestrians are waiting to cross at the intersection.",
+              vi: "Người đi bộ đang chờ sang đường tại giao lộ.",
+            },
+            {
+              en: "Traffic lights hang above the intersection.",
+              vi: "Đèn giao thông treo phía trên ngã tư.",
+            },
+          ],
+          category: "street & traffic",
+          icon: { type: "emoji", value: "🚦" },
+        },
+        {
+          text: "underpass",
+          pronunciation: "/ˈʌndərpæs/",
+          type: "noun",
+          description: {
+            en: "A road or pedestrian tunnel passing underneath another road or railway.",
+            vi: "Đường hầm dành cho người đi bộ hoặc xe cộ chui qua đường lớn.",
+          },
+          translation: "đường hầm chui",
+          examples: [
+            {
+              en: "The pedestrians are using the underpass to cross safely.",
+              vi: "Người đi bộ đang đi qua đường hầm để sang đường an toàn.",
+            },
+            {
+              en: "Cars are driving through a concrete underpass.",
+              vi: "Ô tô đang chạy qua một đường hầm bê tông.",
+            },
+            {
+              en: "Stairs lead down to the pedestrian underpass.",
+              vi: "Cầu thang dẫn xuống hầm chui dành cho người đi bộ.",
+            },
+          ],
+          category: "street & traffic",
+          icon: { type: "emoji", value: "🚇" },
+        },
+        {
+          text: "bulletin board",
+          pronunciation: "/ˈbʊlətɪn bɔːrd/",
+          type: "noun",
+          description: {
+            en: "A board on a wall on which notices can be pinned.",
+            vi: "Bảng thông báo, bảng tin treo tường.",
+          },
+          translation: "bảng thông báo, bảng tin",
+          examples: [
+            {
+              en: "The people are talking beside a bulletin board.",
+              vi: "Mọi người đang nói chuyện bên cạnh một bảng thông báo.",
+            },
+            {
+              en: "Several notices are posted on the bulletin board.",
+              vi: "Một vài thông báo được ghim trên bảng tin.",
+            },
+            {
+              en: "She is reading flyers pinned to a bulletin board.",
+              vi: "Cô ấy đang đọc các tờ thông báo ghim trên bảng tin.",
+            },
+          ],
+          category: "office & study",
+          icon: { type: "emoji", value: "📌" },
+        },
+      ];
+
+      // =========================================================================
+      // 3. DỮ LIỆU 12 CÔNG THỨC NGỮ PHÁP & QUY TẮC BẪY PART 1 (SCHEMA CHUẨN)
+      // =========================================================================
+      const GRAMMAR_DATA = [
+        {
+          text: "Present Continuous (Active)",
+          pronunciation: "/ˈpreznt kənˈtɪnjuəs/",
+          type: "grammar",
+          description: {
+            en: "Formula: S + am/is/are + V-ing. Describes an action a person is actively performing in the photo.",
+            vi: "Công thức: S + am/is/are + V-ing. Miêu tả hành động người đang trực tiếp thực hiện trong tranh (lưu ý tránh bẫy suy diễn hành động không thấy rõ).",
+          },
+          translation: "Thì Hiện tại tiếp diễn (Chủ động)",
+          examples: [
+            {
+              en: "She is pulling her luggage along.",
+              vi: "Cô ấy đang kéo hành lý đi dọc theo lối đi.",
+            },
+            {
+              en: "He's making notes in his planner.",
+              vi: "Anh ấy đang ghi chú vào sổ kế hoạch.",
+            },
+            {
+              en: "One woman is pointing at the screen.",
+              vi: "Một người phụ nữ đang chỉ tay vào màn hình.",
+            },
+          ],
+          category: "TOEIC Part 1 Grammar",
+          icon: { type: "emoji", value: "🏃" },
+        },
+        {
+          text: "Posture & Clothing Verbs",
+          pronunciation: "/ˈpɑːstʃər vɜːrbz/",
+          type: "grammar",
+          description: {
+            en: "Formula: S + am/is/are + wearing/holding/sitting/standing/leaning. Describes static postures or clothes.",
+            vi: "Công thức: S + am/is/are + wearing/holding/leaning... Tả tư thế tĩnh hoặc trang phục đang mặc sẵn (khác với 'putting on' là đang xỏ vào).",
+          },
+          translation: "Động từ chỉ tư thế & trang phục",
+          examples: [
+            {
+              en: "He's holding a publication.",
+              vi: "Anh ấy đang cầm một tờ ấn phẩm.",
+            },
+            {
+              en: "Most of the people are wearing coats.",
+              vi: "Hầu hết mọi người đều đang mặc áo khoác.",
+            },
+            {
+              en: "The people are leaning against the wall.",
+              vi: "Mọi người đang tựa lưng vào tường.",
+            },
+          ],
+          category: "TOEIC Part 1 Grammar",
+          icon: { type: "emoji", value: "🧥" },
+        },
+        {
+          text: "Causative Form (have + O + V3/ed)",
+          pronunciation: "/ˈkɔːzətɪv fɔːrm/",
+          type: "grammar",
+          description: {
+            en: "Formula: S + am/is/are + having + Object + V3/ed. Someone is receiving a service done by another person.",
+            vi: "Công thức: S + is/are + having + O + V3/ed. Diễn tả việc ai đó đang được người khác làm cho việc gì (ví dụ: đang được chụp ảnh).",
+          },
+          translation: "Cấu trúc truyền khiến (bị động)",
+          examples: [
+            {
+              en: "They're having their picture taken.",
+              vi: "Họ đang được chụp ảnh.",
+            },
+            {
+              en: "She is having her hair styled.",
+              vi: "Cô ấy đang được tạo kiểu tóc.",
+            },
+            {
+              en: "He is having his car repaired.",
+              vi: "Anh ấy đang được sửa xe ô tô.",
+            },
+          ],
+          category: "TOEIC Part 1 Grammar",
+          icon: { type: "emoji", value: "📸" },
+        },
+        {
+          text: "Present Continuous (Passive)",
+          pronunciation: "/ˈpæsɪv kənˈtɪnjuəs/",
+          type: "grammar",
+          description: {
+            en: "Formula: S + is/are + being + V3/ed. Requires a visible person acting on the object in the photo.",
+            vi: "Công thức: S (vật) + is/are + being + V3/ed. BẮT BUỘC phải có người đang tác động lên vật trong tranh; tranh không người dùng cấu trúc này là sai.",
+          },
+          translation: "Thì Hiện tại tiếp diễn (Bị động)",
+          examples: [
+            {
+              en: "The woman is being examined.",
+              vi: "Người phụ nữ đang được thăm khám (Đúng vì có bác sĩ).",
+            },
+            {
+              en: "The lamps are being installed.",
+              vi: "Những chiếc đèn đang được lắp (Bẫy vì tranh không có người).",
+            },
+            {
+              en: "The trash cans are being emptied.",
+              vi: "Các thùng rác đang được đổ đi (Bẫy vì tranh không có người).",
+            },
+          ],
+          category: "TOEIC Part 1 Grammar",
+          icon: { type: "emoji", value: "⚠️" },
+        },
+        {
+          text: "Present Perfect (Passive)",
+          pronunciation: "/ˈpreznt ˈpɜːrfɪkt/",
+          type: "grammar",
+          description: {
+            en: "Formula: S (object) + has/have + been + V3/ed. Describes the completed state of objects without people.",
+            vi: "Công thức: S (vật) + has/have + been + V3/ed. Miêu tả kết quả/trạng thái đã hoàn tất của đồ vật (rất hay đúng cho tranh tả vật không có người).",
+          },
+          translation: "Thì Hiện tại hoàn thành (Bị động)",
+          examples: [
+            {
+              en: "The loaves have been arranged on the shelves.",
+              vi: "Những ổ bánh mì đã được sắp xếp trên kệ.",
+            },
+            {
+              en: "The buses have been parked at the terminal.",
+              vi: "Những chiếc xe buýt đã được đỗ tại bến.",
+            },
+            {
+              en: "The dining hall has been set up.",
+              vi: "Phòng ăn đã được bày biện sẵn sàng.",
+            },
+          ],
+          category: "TOEIC Part 1 Grammar",
+          icon: { type: "emoji", value: "✅" },
+        },
+        {
+          text: "Present Simple (Passive)",
+          pronunciation: "/ˈpreznt ˈsɪmpl/",
+          type: "grammar",
+          description: {
+            en: "Formula: S (object) + is/are + V3/ed + Preposition. Describes static positions and arrangements of items.",
+            vi: "Công thức: S (vật) + is/are + V3/ed + Giới từ. Tả vị trí cố định, bố cục hoặc đặc điểm tĩnh của đồ vật (không nhầm với 'being + V3/ed').",
+          },
+          translation: "Thì Hiện tại đơn (Bị động)",
+          examples: [
+            {
+              en: "The chairs are placed around the table.",
+              vi: "Những chiếc ghế được đặt xung quanh bàn.",
+            },
+            {
+              en: "The tables are arranged around the courtyard.",
+              vi: "Các bàn được bố trí xung quanh sân.",
+            },
+            {
+              en: "The waste containers are labeled.",
+              vi: "Các thùng rác được dán nhãn phân loại.",
+            },
+          ],
+          category: "TOEIC Part 1 Grammar",
+          icon: { type: "emoji", value: "🪑" },
+        },
+        {
+          text: "There is / There are + Preposition",
+          pronunciation: "/ðer ɪz ðer ɑːr/",
+          type: "grammar",
+          description: {
+            en: "Formula: There + is/are + Noun + Prepositional Phrase. States the existence and location of scenery/objects.",
+            vi: "Công thức: There + is/are + Danh từ + Cụm giới từ. Giới thiệu sự tồn tại và vị trí của đồ vật, cây cối, công trình trong khung cảnh.",
+          },
+          translation: "Cấu trúc tồn tại (There is / There are)",
+          examples: [
+            {
+              en: "There are trees along the path.",
+              vi: "Có hàng cây dọc theo lối đi.",
+            },
+            {
+              en: "There is a tree behind the bench.",
+              vi: "Có một cái cây phía sau chiếc ghế dài.",
+            },
+            {
+              en: "There are houses on both sides of the river.",
+              vi: "Có những ngôi nhà ở cả hai bên bờ sông.",
+            },
+          ],
+          category: "TOEIC Part 1 Grammar",
+          icon: { type: "emoji", value: "🏞️" },
+        },
+        {
+          text: "Reduced Relative Clause (V-ing / V3)",
+          pronunciation: "/rɪˈduːst ˈrelətɪv klɔːz/",
+          type: "grammar",
+          description: {
+            en: "Formula: There + is/are + Noun + V-ing / V3-ed. Modifies the noun's current state or action.",
+            vi: "Công thức: There + is/are + N + V-ing / V3-ed. Rút gọn mệnh đề quan hệ sau danh từ để bổ sung trạng thái của sự vật.",
+          },
+          translation: "Rút gọn mệnh đề quan hệ",
+          examples: [
+            {
+              en: "There are signs hanging from the ceiling.",
+              vi: "Có những tấm biển treo từ trên trần xuống.",
+            },
+            {
+              en: "There are many ships tied up together.",
+              vi: "Có nhiều con tàu được neo buộc lại với nhau.",
+            },
+            {
+              en: "There are pieces of fruit being eaten.",
+              vi: "Có những miếng trái cây đang được ăn (Bẫy nếu không có người).",
+            },
+          ],
+          category: "TOEIC Part 1 Grammar",
+          icon: { type: "emoji", value: "🔗" },
+        },
+        {
+          text: "Stative Location Verbs (stand / run / face)",
+          pronunciation: "/ˈsteɪtɪv vɜːrbz/",
+          type: "grammar",
+          description: {
+            en: "Formula: S (building/road/boat) + stand/run/face + Place. Describes fixed positions of structures.",
+            vi: "Công thức: S (công trình/đường sá) + stand/run/face + Vị trí. Dùng động từ tĩnh tả vị trí nhà cửa (stand = tọa lạc), đường (run = chạy qua), thuyền (face = hướng về).",
+          },
+          translation: "Động từ tĩnh chỉ vị trí & hướng",
+          examples: [
+            {
+              en: "Buildings stand on both sides of the water.",
+              vi: "Các tòa nhà nằm ở cả hai bên bờ nước.",
+            },
+            {
+              en: "Three roadways run under the bridge.",
+              vi: "Ba làn đường chạy bên dưới cây cầu.",
+            },
+            {
+              en: "The yachts are facing in the same direction.",
+              vi: "Các du thuyền đang hướng về cùng một phía.",
+            },
+          ],
+          category: "TOEIC Part 1 Grammar",
+          icon: { type: "emoji", value: "🧭" },
+        },
+        {
+          text: "Fixed State Phrases (on display / in a row)",
+          pronunciation: "/fɪkst freɪzɪz/",
+          type: "grammar",
+          description: {
+            en: "Formula: S + is/are + on display / under construction / in a row. Describes fixed states of objects.",
+            vi: "Công thức: S + is/are + on display (được trưng bày) / under construction (đang thi công) / in a row (xếp thành hàng).",
+          },
+          translation: "Cụm giới từ cố định chỉ trạng thái",
+          examples: [
+            {
+              en: "The taxis are lined up in a row.",
+              vi: "Những chiếc taxi xếp thành một hàng thẳng.",
+            },
+            {
+              en: "There are many types of fruit on display.",
+              vi: "Có nhiều loại trái cây đang được trưng bày.",
+            },
+            {
+              en: "The lighthouse is under construction.",
+              vi: "Ngọn hải đăng đang được xây dựng.",
+            },
+          ],
+          category: "TOEIC Part 1 Grammar",
+          icon: { type: "emoji", value: "🏷️" },
+        },
+        {
+          text: "Comparatives & Quantifiers (Most / Some / All)",
+          pronunciation: "/ˈkwɑːntɪfaɪərz/",
+          type: "grammar",
+          description: {
+            en: "Formula: One + N + is + Adj-er + than the others | Most/Some/All of + the + N(s).",
+            vi: "Công thức: So sánh hơn (taller than the others) hoặc lượng từ (Most/Some/All of). Lưu ý từ 'All of' (tất cả) rất hay là bẫy nếu có 1 vật ngoại lệ.",
+          },
+          translation: "So sánh hơn & Lượng từ phân bổ",
+          examples: [
+            {
+              en: "One structure is taller than the others.",
+              vi: "Một công trình cao hơn những công trình còn lại.",
+            },
+            {
+              en: "Some of the trees are losing their leaves.",
+              vi: "Một vài cái cây đang rụng lá.",
+            },
+            {
+              en: "Most of the people are wearing coats.",
+              vi: "Hầu hết mọi người đều đang mặc áo khoác.",
+            },
+          ],
+          category: "TOEIC Part 1 Grammar",
+          icon: { type: "emoji", value: "📊" },
+        },
+        {
+          text: "Spatial Prepositions (along / beside / onto)",
+          pronunciation: "/ˌprepəˈzɪʃnz/",
+          type: "grammar",
+          description: {
+            en: "Key prepositions: along, around, across, beside, behind, next to, against, onto, through.",
+            vi: "Hệ thống giới từ định vị không gian cốt lõi trong Part 1 (dọc theo, xung quanh, băng qua, bên cạnh, phía sau, tựa vào, lên trên, xuyên qua).",
+          },
+          translation: "Giới từ chỉ vị trí & chuyển động",
+          examples: [
+            {
+              en: "The bench is positioned next to a house.",
+              vi: "Chiếc ghế dài được đặt ngay cạnh một ngôi nhà.",
+            },
+            {
+              en: "They're hiking through the woods.",
+              vi: "Họ đang đi bộ đường dài xuyên qua khu rừng.",
+            },
+            {
+              en: "Construction equipment has been loaded onto a truck.",
+              vi: "Thiết bị xây dựng đã được chất lên xe tải.",
+            },
+          ],
+          category: "TOEIC Part 1 Grammar",
+          icon: { type: "emoji", value: "📍" },
+        },
+      ];
+
+      // =========================================================================
+      // 4. APPLICATION STATE & INDEXEDDB IMAGE CACHE
+      // =========================================================================
+      let state = {
+        currentTab: "quiz",
+        selectedTest: 0,
+        currentQuestionIndex: 0,
+        userAnswers: JSON.parse(
+          localStorage.getItem("toeic_p1_answers") || "{}",
+        ),
+        revealedIds: {},
+        questionImages: {},
+        learnedVocab: JSON.parse(
+          localStorage.getItem("toeic_p1_learned") || "{}",
+        ),
+        filteredVocab: [...DEFAULT_VOCAB_DATA],
+        currentVocabIdx: 0,
+        isCardFlipped: false,
+        exportType: "vocab",
+      };
+
+      const DB_NAME = "ToeicPart1ImagesDB_v2";
+      const STORE_NAME = "images";
+
+      function openImageDB() {
+        return new Promise((resolve, reject) => {
+          const req = indexedDB.open(DB_NAME, 1);
+          req.onupgradeneeded = (e) => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains(STORE_NAME)) {
+              db.createObjectStore(STORE_NAME);
+            }
+          };
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => reject(req.error);
+        });
+      }
+
+      async function saveImageToDB(questionId, dataUrl) {
+        state.questionImages[questionId] = dataUrl;
+        try {
+          const db = await openImageDB();
+          const tx = db.transaction(STORE_NAME, "readwrite");
+          tx.objectStore(STORE_NAME).put(dataUrl, String(questionId));
+        } catch (e) {
+          console.warn("IndexedDB save failed:", e);
+        }
+      }
+
+      async function deleteImageFromDB(questionId) {
+        delete state.questionImages[questionId];
+        try {
+          const db = await openImageDB();
+          const tx = db.transaction(STORE_NAME, "readwrite");
+          tx.objectStore(STORE_NAME).delete(String(questionId));
+        } catch (e) {
+          console.warn("IndexedDB delete failed:", e);
+        }
+      }
+
+      async function loadAllImagesFromDB() {
+        try {
+          const db = await openImageDB();
+          return new Promise((resolve) => {
+            const tx = db.transaction(STORE_NAME, "readonly");
+            const req = tx.objectStore(STORE_NAME).openCursor();
+            req.onsuccess = (e) => {
+              const cursor = e.target.result;
+              if (cursor) {
+                state.questionImages[parseInt(cursor.key, 10)] = cursor.value;
+                cursor.continue();
+              } else {
+                resolve();
+              }
+            };
+            req.onerror = () => resolve();
+          });
+        } catch (e) {
+          console.warn("IndexedDB load failed:", e);
+        }
+      }
+
+      function saveLocalState() {
+        localStorage.setItem(
+          "toeic_p1_answers",
+          JSON.stringify(state.userAnswers),
+        );
+        localStorage.setItem(
+          "toeic_p1_learned",
+          JSON.stringify(state.learnedVocab),
+        );
+        updateScorePill();
+      }
+
+      // =========================================================================
+      // 5. NAVIGATION, THEME & TOAST
+      // =========================================================================
+      function switchTab(tabName) {
+        state.currentTab = tabName;
+        ["quiz", "vocab", "grammar", "json"].forEach((t) => {
+          document
+            .getElementById(`tab-${t}`)
+            .classList.toggle("hidden", t !== tabName);
+        });
+
+        // Desktop nav styling
+        document.querySelectorAll(".nav-btn").forEach((btn) => {
+          const active = btn.dataset.tab === tabName;
+          btn.className = active
+            ? "nav-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm transition"
+            : "nav-btn px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 transition";
+        });
+
+        // Mobile bottom nav styling
+        document.querySelectorAll(".mobile-nav-btn").forEach((btn) => {
+          const active = btn.dataset.tab === tabName;
+          btn.className = active
+            ? "mobile-nav-btn flex flex-col items-center justify-center py-1 rounded-xl text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-50/80 dark:bg-indigo-950/60"
+            : "mobile-nav-btn flex flex-col items-center justify-center py-1 rounded-xl text-[11px] font-semibold text-slate-500 dark:text-slate-400";
+        });
+
+        if (tabName === "vocab") renderFlashcard();
+        if (tabName === "grammar") renderGrammarList();
+        if (tabName === "json") renderJsonArea();
+      }
+
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        const isDark = html.classList.toggle("dark");
+        document.getElementById("theme-icon").textContent = isDark
+          ? "☀️"
+          : "🌙";
+        localStorage.setItem("toeic_p1_dark", isDark ? "1" : "0");
+      }
+
+      function showToast(msg, type = "info") {
+        const box = document.getElementById("toast-box");
+        const el = document.createElement("div");
+        const colors = {
+          success: "bg-emerald-600 text-white",
+          error: "bg-rose-600 text-white",
+          info: "bg-slate-900 dark:bg-slate-800 text-white border border-slate-700",
+        };
+        el.className = `${colors[type] || colors.info} px-4 py-2.5 rounded-xl text-xs font-bold shadow-lg transition-all duration-300`;
+        el.textContent = msg;
+        box.appendChild(el);
+        setTimeout(() => {
+          el.style.opacity = "0";
+          setTimeout(() => el.remove(), 300);
+        }, 3200);
+      }
+
+      // =========================================================================
+      // 6. QUIZ ENGINE (50 QUESTIONS)
+      // =========================================================================
+      function getFilteredQuestions() {
+        if (state.selectedTest === 0) return QUESTIONS_DATA;
+        return QUESTIONS_DATA.filter((q) => q.test === state.selectedTest);
+      }
+
+      function filterByTest(testNum) {
+        state.selectedTest = testNum;
+        state.currentQuestionIndex = 0;
+        document.querySelectorAll(".test-filter-btn").forEach((btn) => {
+          const active = parseInt(btn.dataset.test, 10) === testNum;
+          btn.className = active
+            ? "test-filter-btn shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm transition"
+            : "test-filter-btn shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition";
+        });
+        renderCurrentQuestion();
+      }
+
+      function updateScorePill() {
+        let correct = 0;
+        QUESTIONS_DATA.forEach((q) => {
+          if (state.userAnswers[q.id] === q.answer) correct++;
+        });
+        document.getElementById("score-pill").textContent =
+          `${correct}/50 Đúng`;
+      }
+
+      function renderCurrentQuestion() {
+        const list = getFilteredQuestions();
+        const q = list[state.currentQuestionIndex];
+        if (!q) return;
+
+        const userAns = state.userAnswers[q.id];
+        const isRevealed = Boolean(userAns) || Boolean(state.revealedIds[q.id]);
+        const isBlind = document.getElementById(
+          "blind-listening-toggle",
+        ).checked;
+        const realImgUrl = state.questionImages[q.id];
+
+        document.getElementById("q-badge").textContent =
+          `Đề 0${q.test} • Câu ${String(q.num).padStart(2, "0")}`;
+        document.getElementById("q-type-tag").textContent = q.type;
+        document.getElementById("nav-counter").textContent =
+          `${state.currentQuestionIndex + 1} / ${list.length}`;
+
+        // Image or Scene Placeholder
+        const realWrapper = document.getElementById("real-image-wrapper");
+        const placeholder = document.getElementById("no-image-placeholder");
+        const zoomBtn = document.getElementById("btn-zoom-img");
+
+        if (realImgUrl) {
+          realWrapper.classList.remove("hidden");
+          placeholder.classList.add("hidden");
+          zoomBtn.classList.remove("hidden");
+          document.getElementById("q-real-img").src = realImgUrl;
+        } else {
+          realWrapper.classList.add("hidden");
+          placeholder.classList.remove("hidden");
+          zoomBtn.classList.add("hidden");
+          document.getElementById("q-emoji").textContent = q.emoji;
+          document.getElementById("q-scene-desc").textContent = q.scene;
+        }
+
+        // Render Options A, B, C, D
+        const optContainer = document.getElementById("options-container");
+        optContainer.innerHTML = q.options
+          .map((opt) => {
+            const isCorrect = opt.key === q.answer;
+            const isChosen = opt.key === userAns;
+
+            let cardClass =
+              "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-indigo-400";
+            let badgeClass =
+              "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300";
+
+            if (isRevealed) {
+              if (isCorrect) {
+                cardClass =
+                  "bg-emerald-50/90 dark:bg-emerald-950/50 border-emerald-500 ring-1 ring-emerald-500";
+                badgeClass = "bg-emerald-600 text-white";
+              } else if (isChosen && !isCorrect) {
+                cardClass = "bg-rose-50/90 dark:bg-rose-950/50 border-rose-500";
+                badgeClass = "bg-rose-600 text-white";
+              }
+            }
+
+            const hideText = isBlind && !isRevealed;
+
+            return `
+          <div onclick="selectOption('${opt.key}')" class="cursor-pointer border rounded-2xl p-3.5 transition flex items-start justify-between gap-3 ${cardClass}">
+            <div class="flex items-start gap-3 min-w-0 flex-1">
+              <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-extrabold shrink-0 mt-0.5 ${badgeClass}">
+                ${opt.key}
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-snug">
+                  ${hideText ? '<span class="text-slate-400 italic">[Đã ẩn chữ - Bấm loa để nghe]</span>' : opt.en}
+                </p>
+                ${isRevealed ? `<p class="text-xs text-slate-600 dark:text-slate-300 mt-1">${opt.vi}</p>` : ""}
+              </div>
+            </div>
+            <button onclick="event.stopPropagation(); speakText('${opt.en.replace(/'/g, "\\'")}')" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-900 text-slate-700 dark:text-slate-200 text-xs font-bold shrink-0" title="Nghe câu này">
+              🔊
+            </button>
+          </div>
+        `;
+          })
+          .join("");
+
+        // Explanation Box
+        const expBox = document.getElementById("explanation-box");
+        if (isRevealed) {
+          expBox.classList.remove("hidden");
+          document.getElementById("exp-grammar-tag").textContent = q.grammarTag;
+          document.getElementById("exp-text").textContent = q.explanation;
+        } else {
+          expBox.classList.add("hidden");
+        }
+
+        renderQuestionGrid();
+      }
+
+      function selectOption(key) {
+        const q = getFilteredQuestions()[state.currentQuestionIndex];
+        if (!q) return;
+        state.userAnswers[q.id] = key;
+        saveLocalState();
+        renderCurrentQuestion();
+      }
+
+      function revealCurrentAnswer() {
+        const q = getFilteredQuestions()[state.currentQuestionIndex];
+        if (!q) return;
+        state.revealedIds[q.id] = true;
+        renderCurrentQuestion();
+      }
+
+      function prevQuestion() {
+        const list = getFilteredQuestions();
+        state.currentQuestionIndex =
+          (state.currentQuestionIndex - 1 + list.length) % list.length;
+        stopSpeech();
+        renderCurrentQuestion();
+      }
+
+      function nextQuestion() {
+        const list = getFilteredQuestions();
+        state.currentQuestionIndex =
+          (state.currentQuestionIndex + 1) % list.length;
+        stopSpeech();
+        renderCurrentQuestion();
+      }
+
+      function jumpToQuestion(idx) {
+        state.currentQuestionIndex = idx;
+        stopSpeech();
+        renderCurrentQuestion();
+      }
+
+      function renderQuestionGrid() {
+        const list = getFilteredQuestions();
+        const grid = document.getElementById("question-grid");
+        grid.innerHTML = list
+          .map((q, idx) => {
+            const ans = state.userAnswers[q.id];
+            const isCurrent = idx === state.currentQuestionIndex;
+            let btnClass =
+              "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300";
+            if (ans === q.answer) btnClass = "bg-emerald-500 text-white";
+            else if (ans && ans !== q.answer)
+              btnClass = "bg-rose-500 text-white";
+
+            if (isCurrent)
+              btnClass +=
+                " ring-2 ring-indigo-600 ring-offset-1 dark:ring-offset-slate-900";
+
+            return `
+          <button onclick="jumpToQuestion(${idx})" class="h-8 rounded-lg text-[11px] font-bold transition ${btnClass}">
+            ${q.id}
+          </button>
+        `;
+          })
+          .join("");
+      }
+
+      function resetQuizProgress() {
+        state.userAnswers = {};
+        state.revealedIds = {};
+        saveLocalState();
+        renderCurrentQuestion();
+        showToast("Đã đặt lại toàn bộ kết quả 50 câu!", "info");
+      }
+
+      // =========================================================================
+      // 7. TEXT-TO-SPEECH (AI VOICE EN-US)
+      // =========================================================================
+      let speechSequenceActive = false;
+
+      function stopSpeech() {
+        speechSequenceActive = false;
+        if ("speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+
+      function speakText(text, onEndCallback = null) {
+        if (!("speechSynthesis" in window)) {
+          showToast("Trình duyệt không hỗ trợ giọng đọc AI.", "error");
+          return;
+        }
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = "en-US";
+        utter.rate = parseFloat(
+          document.getElementById("tts-rate").value || "0.95",
+        );
+
+        const voices = window.speechSynthesis.getVoices();
+        const enVoice =
+          voices.find((v) => v.lang.includes("en-US")) ||
+          voices.find((v) => v.lang.startsWith("en"));
+        if (enVoice) utter.voice = enVoice;
+
+        if (onEndCallback) utter.onend = onEndCallback;
+        window.speechSynthesis.speak(utter);
+      }
+
+      function playAllOptions() {
+        const q = getFilteredQuestions()[state.currentQuestionIndex];
+        if (!q) return;
+        stopSpeech();
+        speechSequenceActive = true;
+
+        let step = 0;
+        const playNext = () => {
+          if (!speechSequenceActive || step >= q.options.length) {
+            speechSequenceActive = false;
+            return;
+          }
+          const opt = q.options[step];
+          step++;
+          speakText(`${opt.key}. ${opt.en}`, () => {
+            if (speechSequenceActive) {
+              setTimeout(playNext, 550);
+            }
+          });
+        };
+        playNext();
+      }
+
+      // =========================================================================
+      // 8. PDF.JS AUTO-CROP 50 IMAGES + SINGLE UPLOAD + PASTE
+      // =========================================================================
+      async function extractImagesFromPdf(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (!window.pdfjsLib) {
+          showToast(
+            "Thư viện đọc PDF đang tải, vui lòng thử lại sau 2 giây.",
+            "error",
+          );
+          return;
+        }
+
+        const banner = document.getElementById("pdf-extract-banner");
+        const statusText = document.getElementById("pdf-extract-status");
+        const percentText = document.getElementById("pdf-extract-percent");
+        const bar = document.getElementById("pdf-extract-bar");
+
+        banner.classList.remove("hidden");
+        bar.style.width = "5%";
+        percentText.textContent = "5%";
+
+        try {
+          const arrayBuffer = await file.arrayBuffer();
+          const pdf = await window.pdfjsLib.getDocument({ data: arrayBuffer })
+            .promise;
+          const totalPages = Math.min(pdf.numPages, 25);
+          let count = 0;
+
+          for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+            const page = await pdf.getPage(pageNum);
+            const viewport = page.getViewport({ scale: 1.7 });
+
+            const fullCanvas = document.createElement("canvas");
+            fullCanvas.width = viewport.width;
+            fullCanvas.height = viewport.height;
+            const ctx = fullCanvas.getContext("2d");
+            await page.render({ canvasContext: ctx, viewport }).promise;
+
+            const cropX = Math.floor(fullCanvas.width * 0.14);
+            const cropW = Math.floor(fullCanvas.width * 0.72);
+            const topY = Math.floor(fullCanvas.height * 0.08);
+            const topH = Math.floor(fullCanvas.height * 0.4);
+            const botY = Math.floor(fullCanvas.height * 0.51);
+            const botH = Math.floor(fullCanvas.height * 0.4);
+
+            const oddId = (pageNum - 1) * 2 + 1;
+            const evenId = (pageNum - 1) * 2 + 2;
+
+            const cTop = document.createElement("canvas");
+            cTop.width = cropW;
+            cTop.height = topH;
+            cTop
+              .getContext("2d")
+              .drawImage(
+                fullCanvas,
+                cropX,
+                topY,
+                cropW,
+                topH,
+                0,
+                0,
+                cropW,
+                topH,
+              );
+            await saveImageToDB(oddId, cTop.toDataURL("image/jpeg", 0.85));
+            count++;
+
+            if (evenId <= 50) {
+              const cBot = document.createElement("canvas");
+              cBot.width = cropW;
+              cBot.height = botH;
+              cBot
+                .getContext("2d")
+                .drawImage(
+                  fullCanvas,
+                  cropX,
+                  botY,
+                  cropW,
+                  botH,
+                  0,
+                  0,
+                  cropW,
+                  botH,
+                );
+              await saveImageToDB(evenId, cBot.toDataURL("image/jpeg", 0.85));
+              count++;
+            }
+
+            const pct = Math.round((pageNum / totalPages) * 100);
+            bar.style.width = `${pct}%`;
+            percentText.textContent = `${pct}%`;
+            statusText.textContent = `⏳ Đang cắt trang ${pageNum}/${totalPages} (${count}/50 bức ảnh)...`;
+
+            if (pageNum === 1) renderCurrentQuestion();
+          }
+
+          banner.classList.add("hidden");
+          renderCurrentQuestion();
+          showToast(
+            `🎉 Đã tự động cắt và lưu ${count} bức ảnh từ "${file.name}"!`,
+            "success",
+          );
+        } catch (err) {
+          console.error(err);
+          banner.classList.add("hidden");
+          showToast(
+            "Không thể đọc file PDF này. Hãy chọn đúng file Part 1.pdf.",
+            "error",
+          );
+        } finally {
+          event.target.value = "";
+        }
+      }
+
+      function uploadSingleQuestionImage(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const q = getFilteredQuestions()[state.currentQuestionIndex];
+        if (!q) return;
+
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          await saveImageToDB(q.id, e.target.result);
+          renderCurrentQuestion();
+          showToast(`Đã cập nhật ảnh cho Câu ${q.id}!`, "success");
+        };
+        reader.readAsDataURL(file);
+        event.target.value = "";
+      }
+
+      async function clearCurrentQuestionImage() {
+        const q = getFilteredQuestions()[state.currentQuestionIndex];
+        if (!q) return;
+        await deleteImageFromDB(q.id);
+        renderCurrentQuestion();
+        showToast("Đã xóa ảnh của câu này.", "info");
+      }
+
+      function openZoomModal() {
+        const q = getFilteredQuestions()[state.currentQuestionIndex];
+        const src = q && state.questionImages[q.id];
+        if (!src) return;
+        document.getElementById("zoomed-img").src = src;
+        document.getElementById("image-zoom-modal").classList.remove("hidden");
+      }
+
+      function closeZoomModal() {
+        document.getElementById("image-zoom-modal").classList.add("hidden");
+      }
+
+      // =========================================================================
+      // 9. VOCABULARY FLASHCARDS (36 ITEMS)
+      // =========================================================================
+      function populateVocabCategories() {
+        const cats = [...new Set(DEFAULT_VOCAB_DATA.map((v) => v.category))];
+        const sel = document.getElementById("vocab-category-filter");
+        cats.forEach((c) => {
+          const opt = document.createElement("option");
+          opt.value = c;
+          opt.textContent = `Chủ đề: ${c}`;
+          sel.appendChild(opt);
+        });
+      }
+
+      function filterVocab() {
+        const cat = document.getElementById("vocab-category-filter").value;
+        const status = document.getElementById("vocab-status-filter").value;
+
+        state.filteredVocab = DEFAULT_VOCAB_DATA.filter((item) => {
+          const matchCat = cat === "all" || item.category === cat;
+          const isLearned = Boolean(state.learnedVocab[item.text]);
+          const matchStatus =
+            status === "all" ||
+            (status === "learned" && isLearned) ||
+            (status === "unlearned" && !isLearned);
+          return matchCat && matchStatus;
+        });
+
+        state.currentVocabIdx = 0;
+        state.isCardFlipped = false;
+        renderFlashcard();
+      }
+
+      function currentVocabItem() {
+        return (
+          state.filteredVocab[state.currentVocabIdx] || DEFAULT_VOCAB_DATA[0]
+        );
+      }
+
+      function flipFlashcard() {
+        state.isCardFlipped = !state.isCardFlipped;
+        document
+          .getElementById("flashcard-inner")
+          .classList.toggle("rotate-y-180", state.isCardFlipped);
+      }
+
+      function renderFlashcard() {
+        const learnedCount = Object.values(state.learnedVocab).filter(
+          Boolean,
+        ).length;
+        document.getElementById("vocab-progress-label").textContent =
+          `Đã thuộc: ${learnedCount} / ${DEFAULT_VOCAB_DATA.length} từ`;
+
+        const list = state.filteredVocab;
+        if (list.length === 0) {
+          document.getElementById("fc-word").textContent = "Không có từ nào";
+          document.getElementById("fc-ipa").textContent = "";
+          document.getElementById("fc-counter").textContent = "0 / 0";
+          return;
+        }
+
+        const item = list[state.currentVocabIdx];
+        document
+          .getElementById("flashcard-inner")
+          .classList.toggle("rotate-y-180", state.isCardFlipped);
+
+        document.getElementById("fc-category").textContent = item.category;
+        document.getElementById("fc-type").textContent = item.type;
+        document.getElementById("fc-emoji").textContent = item.icon.value;
+        document.getElementById("fc-word").textContent = item.text;
+        document.getElementById("fc-ipa").textContent = item.pronunciation;
+
+        document.getElementById("fc-back-word").textContent = item.text;
+        document.getElementById("fc-back-translation").textContent =
+          `— ${item.translation}`;
+        document.getElementById("fc-desc-vi").textContent = item.description.vi;
+        document.getElementById("fc-desc-en").textContent = item.description.en;
+
+        document.getElementById("fc-examples").innerHTML = item.examples
+          .map(
+            (ex) => `
+        <div class="bg-slate-50 dark:bg-slate-800/60 rounded-xl p-2.5 flex items-start justify-between gap-2">
+          <div>
+            <p class="text-xs font-bold text-slate-800 dark:text-slate-100">${ex.en}</p>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">${ex.vi}</p>
+          </div>
+          <button onclick="event.stopPropagation(); speakText('${ex.en.replace(/'/g, "\\'")}')" class="p-1.5 rounded-lg bg-white dark:bg-slate-700 text-xs shrink-0">
+            🔊
+          </button>
+        </div>
+      `,
+          )
+          .join("");
+
+        const isLearned = Boolean(state.learnedVocab[item.text]);
+        const markBtn = document.getElementById("btn-mark-learned");
+        markBtn.textContent = isLearned
+          ? "✅ Đã thuộc từ này"
+          : "✓ Đánh dấu đã thuộc";
+        markBtn.className = isLearned
+          ? "flex-1 py-3 px-4 rounded-2xl bg-slate-800 dark:bg-slate-700 text-emerald-400 text-xs sm:text-sm font-bold shadow-sm transition"
+          : "flex-1 py-3 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-sm transition";
+
+        document.getElementById("fc-counter").textContent =
+          `Thẻ ${state.currentVocabIdx + 1} / ${list.length}`;
+      }
+
+      function prevVocab() {
+        if (!state.filteredVocab.length) return;
+        state.currentVocabIdx =
+          (state.currentVocabIdx - 1 + state.filteredVocab.length) %
+          state.filteredVocab.length;
+        state.isCardFlipped = false;
+        renderFlashcard();
+      }
+
+      function nextVocab() {
+        if (!state.filteredVocab.length) return;
+        state.currentVocabIdx =
+          (state.currentVocabIdx + 1) % state.filteredVocab.length;
+        state.isCardFlipped = false;
+        renderFlashcard();
+      }
+
+      function toggleLearnedVocab() {
+        const item = currentVocabItem();
+        if (!item) return;
+        state.learnedVocab[item.text] = !state.learnedVocab[item.text];
+        saveLocalState();
+        renderFlashcard();
+      }
+
+      // =========================================================================
+      // 10. GRAMMAR LIST (12 RULES)
+      // =========================================================================
+      function renderGrammarList() {
+        const container = document.getElementById("grammar-list");
+        container.innerHTML = GRAMMAR_DATA.map(
+          (g, i) => `
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm space-y-2.5">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">${g.icon.value}</span>
+              <div>
+                <h3 class="text-sm font-extrabold text-slate-900 dark:text-white">${i + 1}. ${g.translation}</h3>
+                <p class="text-xs font-semibold text-indigo-600 dark:text-indigo-400">${g.text}</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-800/70 p-3 rounded-xl">
+            ${g.description.vi}
+          </p>
+          <div class="space-y-1.5">
+            ${g.examples
+              .map(
+                (ex) => `
+              <div class="flex items-center justify-between gap-2 text-xs bg-indigo-50/50 dark:bg-indigo-950/30 px-3 py-2 rounded-xl">
+                <div>
+                  <p class="font-bold text-slate-800 dark:text-slate-100">${ex.en}</p>
+                  <p class="text-[11px] text-slate-500 dark:text-slate-400">${ex.vi}</p>
+                </div>
+                <button onclick="speakText('${ex.en.replace(/'/g, "\\'")}')" class="p-1.5 rounded-lg bg-white dark:bg-slate-800 text-xs shrink-0">🔊</button>
+              </div>
+            `,
+              )
+              .join("")}
+          </div>
+        </div>
+      `,
+        ).join("");
+      }
+
+      // =========================================================================
+      // 11. JSON EXPORT & CLIPBOARD
+      // =========================================================================
+      function setExportType(type) {
+        state.exportType = type;
+        document.getElementById("btn-exp-vocab").className =
+          type === "vocab"
+            ? "px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white"
+            : "px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300";
+        document.getElementById("btn-exp-grammar").className =
+          type === "grammar"
+            ? "px-3.5 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white"
+            : "px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300";
+        renderJsonArea();
+      }
+
+      function renderJsonArea() {
+        const data =
+          state.exportType === "vocab" ? DEFAULT_VOCAB_DATA : GRAMMAR_DATA;
+        document.getElementById("json-output-area").value = JSON.stringify(
+          data,
+          null,
+          2,
+        );
+      }
+
+      function copyJsonOutput() {
+        const area = document.getElementById("json-output-area");
+        area.select();
+        area.setSelectionRange(0, 999999);
+        document.execCommand("copy");
+        showToast("📋 Đã sao chép toàn bộ JSON vào bộ nhớ tạm!", "success");
+      }
+
+      function downloadJsonFile() {
+        const data =
+          state.exportType === "vocab" ? DEFAULT_VOCAB_DATA : GRAMMAR_DATA;
+        const filename =
+          state.exportType === "vocab"
+            ? "toeic_part1_vocab.json"
+            : "toeic_part1_grammar.json";
+        const blob = new Blob([JSON.stringify(data, null, 2)], {
+          type: "application/json",
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast(`⬇️ Đang tải xuống ${filename}...`, "success");
+      }
+      // =========================================================================
+      // 12. INITIALIZE APP
+      // =========================================================================
+      window.addEventListener("DOMContentLoaded", async () => {
+        if (localStorage.getItem("toeic_p1_dark") === "1") {
+          document.documentElement.classList.add("dark");
+          document.getElementById("theme-icon").textContent = "☀️";
+        }
+        if ("speechSynthesis" in window) {
+          window.speechSynthesis.getVoices();
+        }
+        await loadAllImagesFromDB();
+        populateVocabCategories();
+        updateScorePill();
+        filterByTest(0);
+        switchTab("quiz");
+      });
+    </script>
+  </body>
+</html>

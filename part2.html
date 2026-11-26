@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEIC Part 2 Master - Trọn Bộ 90 Câu (Test 1 - 2 - 3)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes pulse-bar {
+            0%, 100% { height: 6px; }
+            50% { height: 22px; }
+        }
+        .visualizer-bar {
+            animation: pulse-bar 0.75s ease-in-out infinite;
+        }
+        .visualizer-bar:nth-child(2) { animation-delay: 0.15s; }
+        .visualizer-bar:nth-child(3) { animation-delay: 0.3s; }
+        .visualizer-bar:nth-child(4) { animation-delay: 0.45s; }
+        .visualizer-bar:nth-child(5) { animation-delay: 0.2s; }
+        .option-btn { transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2">
+            <!-- Brand -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-base shadow-md">
+                    90Q
+                </div>
+                <div>
+                    <h1 class="font-bold text-base sm:text-lg leading-tight text-slate-900 dark:text-white">TOEIC Part 2 Studio</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">Linh Cani TOEIC Online • Test 1, 2 & 3</p>
+                </div>
+            </div>
+
+            <!-- Right Controls -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="openSummaryModal()" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:hover:bg-emerald-900/60 dark:text-emerald-300 font-semibold text-xs sm:text-sm transition border border-emerald-200 dark:border-emerald-800">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Tổng kết & Phân tích</span>
+                </button>
+
+                <button onclick="toggleDarkMode()" title="Giao diện Sáng/Tối" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 flex items-center justify-center text-slate-600 dark:text-slate-300 transition">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-5 flex flex-col gap-5">
+
+        <!-- Test Selector & Mode Bar -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+            
+            <!-- Dataset / Test Selection Pills -->
+            <div class="flex flex-wrap items-center gap-1.5 bg-slate-100 dark:bg-slate-900 p-1.5 rounded-xl">
+                <button onclick="selectDeck('TEST1')" id="deck-TEST1" class="deck-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 shadow-sm">
+                    Test 1 (11–40)
+                </button>
+                <button onclick="selectDeck('TEST2')" id="deck-TEST2" class="deck-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                    Test 2 (11–40)
+                </button>
+                <button onclick="selectDeck('TEST3')" id="deck-TEST3" class="deck-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                    Test 3 (11–40)
+                </button>
+                <button onclick="selectDeck('ALL')" id="deck-ALL" class="deck-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                    Tất cả 90 câu
+                </button>
+                <button onclick="selectDeck('WRONG')" id="deck-WRONG" class="deck-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-900/30 flex items-center gap-1.5">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>Câu sai (<span id="wrongCountBadge">0</span>)</span>
+                </button>
+            </div>
+
+            <!-- Study vs Exam Mode Switcher -->
+            <div class="flex items-center justify-between sm:justify-end gap-3">
+                <div class="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-xl w-full sm:w-auto">
+                    <button id="btnModeExam" onclick="setMode('exam')" class="flex-1 sm:flex-none px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 shadow-sm">
+                        <i class="fa-solid fa-ear-listen"></i>
+                        <span>Thi thật (Ẩn chữ)</span>
+                    </button>
+                    <button id="btnModeStudy" onclick="setMode('study')" class="flex-1 sm:flex-none px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <span>Học & Transcript</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workspace Grid: Left (Practice Card) + Right (Question Palette) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+            
+            <!-- Left Column: Main Question & Audio Card (8 cols) -->
+            <div class="lg:col-span-8 bg-white dark:bg-slate-800 rounded-3xl shadow-md border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col">
+                
+                <!-- Progress Bar -->
+                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2">
+                    <div id="progressBar" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-2 transition-all duration-300" style="width: 3.3%"></div>
+                </div>
+
+                <!-- Card Top Metadata -->
+                <div class="px-5 sm:px-6 pt-4 pb-3 flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-700/70">
+                    <div class="flex items-center gap-2.5">
+                        <span id="testBadge" class="text-xs font-extrabold uppercase tracking-wider text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/40 px-2.5 py-1 rounded-lg">
+                            Test 1
+                        </span>
+                        <span id="questionCounter" class="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-lg">
+                            Câu 11 (1/30)
+                        </span>
+                        <span id="questionTypeTag" class="hidden text-xs font-semibold px-2.5 py-1 rounded-lg bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">
+                            Where
+                        </span>
+                    </div>
+
+                    <!-- Speed & Flag Controls -->
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center bg-slate-100 dark:bg-slate-700 rounded-xl p-1 text-xs font-semibold">
+                            <button onclick="setSpeed(0.8)" id="speed-0.8" class="speed-btn px-2 py-1 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-600 transition">0.8x</button>
+                            <button onclick="setSpeed(1.0)" id="speed-1.0" class="speed-btn px-2 py-1 rounded-lg bg-white dark:bg-slate-600 text-blue-600 dark:text-blue-300 shadow-sm transition">1.0x</button>
+                            <button onclick="setSpeed(1.15)" id="speed-1.15" class="speed-btn px-2 py-1 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-600 transition">1.15x</button>
+                            <button onclick="setSpeed(1.25)" id="speed-1.25" class="speed-btn px-2 py-1 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-600 transition">1.25x</button>
+                        </div>
+                        <button id="flagBtn" onclick="toggleFlag()" title="Đánh dấu câu cần xem lại" class="w-9 h-9 rounded-xl border border-slate-200 dark:border-slate-600 flex items-center justify-center text-slate-400 hover:text-amber-500 transition">
+                            <i class="fa-regular fa-flag"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Audio Console & Question Prompt -->
+                <div class="p-6 flex flex-col items-center text-center bg-gradient-to-b from-slate-50/70 to-white dark:from-slate-800/60 dark:to-slate-800">
+                    
+                    <!-- Main Audio Buttons -->
+                    <div class="flex items-center gap-4 mb-3">
+                        <button id="playAudioBtn" onclick="toggleAudioPlayback()" class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center text-2xl shadow-lg shadow-blue-500/30 transition">
+                            <i id="playIcon" class="fa-solid fa-play ml-1"></i>
+                        </button>
+                        <button onclick="playFullQuestionSequence()" title="Nghe lại từ đầu (Phím Space)" class="px-4 py-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-xs sm:text-sm font-semibold flex items-center gap-2 transition">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>Nghe lại câu</span>
+                        </button>
+                    </div>
+
+                    <!-- Visualizer & Status -->
+                    <div class="h-7 flex items-center justify-center gap-2 mb-3">
+                        <div id="audioVisualizer" class="hidden items-center gap-1 h-6">
+                            <span class="visualizer-bar w-1 bg-blue-500 rounded-full"></span>
+                            <span class="visualizer-bar w-1 bg-indigo-500 rounded-full"></span>
+                            <span class="visualizer-bar w-1 bg-blue-600 rounded-full"></span>
+                            <span class="visualizer-bar w-1 bg-indigo-500 rounded-full"></span>
+                            <span class="visualizer-bar w-1 bg-blue-500 rounded-full"></span>
+                        </div>
+                        <span id="audioStatusText" class="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
+                            Nhấn Play hoặc phím Space để bắt đầu nghe
+                        </span>
+                    </div>
+
+                    <!-- Question Transcript Box -->
+                    <div class="w-full max-w-2xl mt-1">
+                        <div id="hiddenPromptPlaceholder" class="py-3.5 px-4 rounded-2xl bg-slate-100/90 dark:bg-slate-700/40 border border-dashed border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 text-xs sm:text-sm">
+                            <i class="fa-solid fa-eye-slash mr-1.5"></i> Chế độ Thi thật: Văn bản câu hỏi và đáp án đang được ẩn. Hãy lắng nghe và chọn A, B hoặc C!
+                        </div>
+                        <div id="revealedQuestionBox" class="hidden text-left bg-blue-50/80 dark:bg-slate-700/60 p-4 rounded-2xl border border-blue-100 dark:border-slate-600">
+                            <div class="flex items-center justify-between gap-3">
+                                <p id="questionEnglish" class="text-base sm:text-lg font-bold text-slate-900 dark:text-white"></p>
+                                <button onclick="speakSingleText('question')" title="Nghe riêng câu hỏi" class="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-600 text-blue-600 dark:text-blue-300 hover:bg-blue-100 text-xs font-semibold flex items-center gap-1.5 shrink-0 shadow-xs transition">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                    <span class="hidden sm:inline">Câu hỏi</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Answer Choices (A, B, C) -->
+                <div class="px-5 sm:px-8 pb-6 flex flex-col gap-3 max-w-3xl w-full mx-auto">
+                    <!-- Option A -->
+                    <button id="optBtn-0" onclick="selectOption(0)" class="option-btn w-full text-left p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-blue-400 bg-white dark:bg-slate-800/80 flex items-center justify-between gap-4 group">
+                        <div class="flex items-center gap-4 flex-1">
+                            <span id="optBadge-0" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 font-bold flex items-center justify-center shrink-0 transition">A</span>
+                            <p id="optText-0" class="font-semibold text-slate-800 dark:text-slate-100 text-sm sm:text-base">Lựa chọn (A)</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span id="optStatusIcon-0" class="text-lg"></span>
+                            <span id="optAudioBtn-0" onclick="event.stopPropagation(); speakSingleText(0)" title="Nghe riêng đáp án A" class="hidden w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 items-center justify-center text-slate-400 hover:text-blue-600">
+                                <i class="fa-solid fa-volume-low"></i>
+                            </span>
+                        </div>
+                    </button>
+
+                    <!-- Option B -->
+                    <button id="optBtn-1" onclick="selectOption(1)" class="option-btn w-full text-left p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-blue-400 bg-white dark:bg-slate-800/80 flex items-center justify-between gap-4 group">
+                        <div class="flex items-center gap-4 flex-1">
+                            <span id="optBadge-1" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 font-bold flex items-center justify-center shrink-0 transition">B</span>
+                            <p id="optText-1" class="font-semibold text-slate-800 dark:text-slate-100 text-sm sm:text-base">Lựa chọn (B)</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span id="optStatusIcon-1" class="text-lg"></span>
+                            <span id="optAudioBtn-1" onclick="event.stopPropagation(); speakSingleText(1)" title="Nghe riêng đáp án B" class="hidden w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 items-center justify-center text-slate-400 hover:text-blue-600">
+                                <i class="fa-solid fa-volume-low"></i>
+                            </span>
+                        </div>
+                    </button>
+
+                    <!-- Option C -->
+                    <button id="optBtn-2" onclick="selectOption(2)" class="option-btn w-full text-left p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-blue-400 bg-white dark:bg-slate-800/80 flex items-center justify-between gap-4 group">
+                        <div class="flex items-center gap-4 flex-1">
+                            <span id="optBadge-2" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 font-bold flex items-center justify-center shrink-0 transition">C</span>
+                            <p id="optText-2" class="font-semibold text-slate-800 dark:text-slate-100 text-sm sm:text-base">Lựa chọn (C)</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span id="optStatusIcon-2" class="text-lg"></span>
+                            <span id="optAudioBtn-2" onclick="event.stopPropagation(); speakSingleText(2)" title="Nghe riêng đáp án C" class="hidden w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 items-center justify-center text-slate-400 hover:text-blue-600">
+                                <i class="fa-solid fa-volume-low"></i>
+                            </span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Smart Explanation Box (Revealed after answering) -->
+                <div id="explanationBox" class="hidden mx-5 sm:mx-8 mb-6 p-4 sm:p-5 rounded-2xl bg-amber-50/95 dark:bg-slate-700/70 border border-amber-200 dark:border-slate-600">
+                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                        <div class="flex items-center gap-2 text-amber-800 dark:text-amber-300 font-bold text-xs sm:text-sm">
+                            <i class="fa-solid fa-lightbulb"></i>
+                            <span>Phân tích cấu trúc & Bẫy TOEIC Part 2</span>
+                        </div>
+                        <span id="trapBadge" class="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-200/70 dark:bg-amber-900/50 text-amber-900 dark:text-amber-200"></span>
+                    </div>
+                    <p id="explanationText" class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed"></p>
+                </div>
+
+                <!-- Card Navigation Footer -->
+                <div class="px-5 sm:px-6 py-4 bg-slate-50 dark:bg-slate-800/90 border-t border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center gap-2">
+                        <button id="prevBtn" onclick="prevQuestion()" class="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 transition disabled:opacity-40">
+                            <i class="fa-solid fa-arrow-left mr-1"></i> Trước
+                        </button>
+                        <button onclick="shuffleCurrentDeck()" title="Trộn ngẫu nhiên thứ tự câu hỏi" class="px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-shuffle"></i>
+                            <span class="hidden sm:inline">Trộn câu</span>
+                        </button>
+                    </div>
+
+                    <label class="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300 cursor-pointer select-none">
+                        <input type="checkbox" id="autoPlayCheckbox" checked class="w-4 h-4 rounded text-blue-600 focus:ring-blue-500">
+                        <span>Tự động đọc khi chuyển câu</span>
+                    </label>
+
+                    <button id="nextBtn" onclick="nextQuestion()" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold shadow-sm transition flex items-center gap-2">
+                        <span>Câu tiếp</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Column: Question Grid Palette & Live Stats (4 cols) -->
+            <div class="lg:col-span-4 bg-white dark:bg-slate-800 rounded-3xl p-5 shadow-md border border-slate-200 dark:border-slate-700 flex flex-col gap-4">
+                <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-3">
+                    <div>
+                        <h2 class="font-bold text-sm text-slate-900 dark:text-white">Danh sách câu hỏi</h2>
+                        <p id="paletteSubtitle" class="text-xs text-slate-500 dark:text-slate-400">Test 1 (Câu 11 – 40)</p>
+                    </div>
+                    <button onclick="resetDeckProgress()" class="text-xs font-semibold text-rose-600 hover:underline">
+                        Làm lại từ đầu
+                    </button>
+                </div>
+
+                <!-- Score Summary Mini Cards -->
+                <div class="grid grid-cols-3 gap-2 text-center">
+                    <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/50 rounded-xl p-2">
+                        <div id="statCorrect" class="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">0</div>
+                        <div class="text-[11px] font-medium text-emerald-800 dark:text-emerald-300">Đúng</div>
+                    </div>
+                    <div class="bg-rose-50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-800/50 rounded-xl p-2">
+                        <div id="statWrong" class="text-lg font-extrabold text-rose-600 dark:text-rose-400">0</div>
+                        <div class="text-[11px] font-medium text-rose-800 dark:text-rose-300">Sai</div>
+                    </div>
+                    <div class="bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl p-2">
+                        <div id="statRemain" class="text-lg font-extrabold text-slate-700 dark:text-slate-200">30</div>
+                        <div class="text-[11px] font-medium text-slate-500 dark:text-slate-400">Chưa làm</div>
+                    </div>
+                </div>
+
+                <!-- Question Grid Buttons (11 - 40) -->
+                <div id="questionGrid" class="grid grid-cols-6 gap-2 max-h-[340px] overflow-y-auto pr-1">
+                    <!-- Populated via JS -->
+                </div>
+
+                <!-- Legend -->
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-slate-700 text-[11px] text-slate-500 dark:text-slate-400">
+                    <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-xs bg-emerald-500 inline-block"></span> Đúng</span>
+                    <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-xs bg-rose-500 inline-block"></span> Sai</span>
+                    <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-xs bg-slate-200 dark:bg-slate-700 inline-block"></span> Chưa làm</span>
+                    <span class="flex items-center gap-1"><i class="fa-solid fa-flag text-amber-500"></i> Đánh dấu</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keyboard Shortcuts Footer -->
+        <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-slate-500 dark:text-slate-400 pb-4">
+            <span><kbd class="px-1.5 py-0.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded font-mono">Space</kbd> Nghe lại</span>
+            <span><kbd class="px-1.5 py-0.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded font-mono">A/1</kbd> <kbd class="px-1.5 py-0.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded font-mono">B/2</kbd> <kbd class="px-1.5 py-0.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded font-mono">C/3</kbd> Chọn đáp án</span>
+            <span><kbd class="px-1.5 py-0.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded font-mono">Enter</kbd> / <kbd class="px-1.5 py-0.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded font-mono">→</kbd> Câu tiếp theo</span>
+            <span><kbd class="px-1.5 py-0.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded font-mono">←</kbd> Câu trước</span>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toastBox" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-3 rounded-xl shadow-xl text-sm font-medium flex items-center gap-2.5">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600"></i>
+        <span id="toastMessage">Thông báo</span>
+    </div>
+
+    <!-- Summary & Analytics Modal -->
+    <div id="summaryModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-2xl w-full shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col max-h-[90vh]">
+            <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                <h3 class="font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-chart-column text-blue-600"></i>
+                    <span>Tổng kết & Phân tích điểm yếu</span>
+                </h3>
+                <button onclick="closeSummaryModal()" class="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-center text-slate-500">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto flex flex-col gap-5">
+                <!-- Overall Accuracy Banner -->
+                <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-5 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                        <p class="text-blue-100 text-xs uppercase font-bold tracking-wider">Tỷ lệ chính xác tổng thể (90 câu)</p>
+                        <div class="flex items-baseline gap-3 mt-1">
+                            <span id="summaryAccuracy" class="text-4xl font-extrabold">0%</span>
+                            <span id="summaryScoreFraction" class="text-sm text-blue-100">(0 / 0 câu đã làm)</span>
+                        </div>
+                    </div>
+                    <button onclick="closeSummaryModal(); selectDeck('WRONG');" class="px-4 py-2.5 rounded-xl bg-white text-blue-700 hover:bg-blue-50 font-bold text-xs sm:text-sm shadow-sm transition shrink-0">
+                        <i class="fa-solid fa-rotate-left mr-1.5"></i>Làm lại các câu sai (<span id="modalWrongCount">0</span>)
+                    </button>
+                </div>
+
+                <!-- Breakdown by Question Category -->
+                <div>
+                    <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200 mb-3">Thống kê chi tiết theo từng dạng câu hỏi Part 2:</h4>
+                    <div id="categoryBreakdownList" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <!-- Dynamically rendered -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 py-3.5 bg-slate-50 dark:bg-slate-800/90 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <button onclick="clearAllHistory()" class="text-xs font-semibold text-rose-600 hover:underline">
+                    Xóa toàn bộ lịch sử làm bài
+                </button>
+                <button onclick="closeSummaryModal()" class="px-5 py-2 rounded-xl bg-slate-900 dark:bg-slate-700 text-white text-sm font-semibold">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =========================================================================
+        // 1. FULL HARDCODED DATASET: 90 QUESTIONS (TEST 1, TEST 2, TEST 3)
+        // =========================================================================
+        const RAW_TEST_DATA = [
+            // ================= TEST 1: PART 2 TOEIC no1 (11-40) =================
+            { id: "T1-11", test: 1, num: 11, q: "Where did you put the file?", options: ["Sometime last week.", "No, he hasn't filed it yet.", "In the office cabinet."], answer: 2 },
+            { id: "T1-12", test: 1, num: 12, q: "Could you give me a copy of the report?", options: ["No, thanks. I don't need one.", "Sure, here you are.", "The photocopier is on the 2nd floor."], answer: 1 },
+            { id: "T1-13", test: 1, num: 13, q: "Why is Penny going to Washington?", options: ["I heard she can't come until tomorrow.", "She has a conference to attend.", "Yes, she'll stay at a hotel in town."], answer: 1 },
+            { id: "T1-14", test: 1, num: 14, q: "Is Ms. Jones back from her lunch break?", options: ["No, not yet.", "It's always breaking down.", "Go forward a few steps."], answer: 0 },
+            { id: "T1-15", test: 1, num: 15, q: "What did you give Kyle for his birthday?", options: ["I forgot, sorry. Happy birthday!", "Yes, he gave it to me.", "I got him a book."], answer: 2 },
+            { id: "T1-16", test: 1, num: 16, q: "Would you rather rent the apartment for 6 months or a year?", options: ["No, it wasn't very long ago.", "My rent is $150 a week.", "A shorter lease would be better."], answer: 2 },
+            { id: "T1-17", test: 1, num: 17, q: "Have you seen my cell phone anywhere?", options: ["I wouldn't have looked for it.", "Yes, it's on the kitchen bench.", "How much did you sell it for?"], answer: 1 },
+            { id: "T1-18", test: 1, num: 18, q: "Did Ms. Jenkins tell you why she lost the client?", options: ["Actually, she found him.", "It happened yesterday, I think.", "They had a dispute about the payment."], answer: 2 },
+            { id: "T1-19", test: 1, num: 19, q: "How much did that digital camera cost?", options: ["It was about $500.", "Around 3 months ago.", "Yes, the company is cutting costs."], answer: 0 },
+            { id: "T1-20", test: 1, num: 20, q: "Let's go away for the weekend.", options: ["No, I don't have any special plans.", "He's been away for a long time.", "Did you have anywhere in mind?"], answer: 2 },
+            { id: "T1-21", test: 1, num: 21, q: "When is your dental appointment scheduled for?", options: ["9:30 tomorrow, I think.", "Yes, he's a dentist.", "I was appointed last month."], answer: 0 },
+            { id: "T1-22", test: 1, num: 22, q: "Why don't you join me for dinner tonight?", options: ["I've already had lunch.", "Sorry, I have other plans.", "Because it's raining."], answer: 1 },
+            { id: "T1-23", test: 1, num: 23, q: "Would you mind helping me shift this table?", options: ["Where are we putting it?", "My shift doesn't finish for an hour.", "It's not mine."], answer: 0 },
+            { id: "T1-24", test: 1, num: 24, q: "Where are these supplies headed for?", options: ["They're being shipped to Florida.", "He's the head of the marketing division.", "I'm not surprised."], answer: 0 },
+            { id: "T1-25", test: 1, num: 25, q: "You went to the sales promotion, didn't you?", options: ["You mean the one in Georgia Mall?", "No, I didn't get promoted.", "It's already gone."], answer: 0 },
+            { id: "T1-26", test: 1, num: 26, q: "Which firm did the new recruit use to work for?", options: ["We don't need to recruit any new workers.", "Yes, I'm firmly against it.", "I'm not sure. You should ask her yourself."], answer: 2 },
+            { id: "T1-27", test: 1, num: 27, q: "Shouldn't we attend the training session as well?", options: ["I take the train to work.", "Well, I made my intentions clear.", "No, I don't think that's necessary."], answer: 2 },
+            { id: "T1-28", test: 1, num: 28, q: "When are you catching the bus to San Diego?", options: ["Because of the traffic jam.", "It'll pick me up outside the hotel.", "First thing tomorrow morning."], answer: 2 },
+            { id: "T1-29", test: 1, num: 29, q: "Do you want to meet at your apartment or somewhere else?", options: ["My place is fine.", "For the financial department.", "I feel like having something else."], answer: 0 },
+            { id: "T1-30", test: 1, num: 30, q: "How long does your daily commute normally take?", options: ["I go by bus.", "Around half an hour.", "He's a communications expert."], answer: 1 },
+            { id: "T1-31", test: 1, num: 31, q: "Do you know where the town hall is?", options: ["Yes, it is a big town.", "Sorry, I'm not from around here.", "Just down the hall."], answer: 1 },
+            { id: "T1-32", test: 1, num: 32, q: "Rita hasn't come in today, has she?", options: ["Sure, she can come in, too.", "I saw her yesterday as well.", "No, she called in sick this morning."], answer: 2 },
+            { id: "T1-33", test: 1, num: 33, q: "Haven't you closed any sales deals yet?", options: ["Yes, we're open 24 hours.", "That item is not for sale, I'm afraid.", "No, I haven't had any luck so far."], answer: 2 },
+            { id: "T1-34", test: 1, num: 34, q: "Who's responsible for the company picnic?", options: ["Mr. Kim is.", "Yes, I enjoyed it.", "He is very responsible."], answer: 0 },
+            { id: "T1-35", test: 1, num: 35, q: "How would you like your coffee? Black, or with cream?", options: ["Cream and two sugars, please.", "Thanks. It's really delicious.", "That's my favorite flavor, too."], answer: 0 },
+            { id: "T1-36", test: 1, num: 36, q: "Didn't Mr. Clyde return your call?", options: ["He's not returning till tomorrow.", "Was your cell phone on?", "Yes, he left me a voicemail message."], answer: 2 },
+            { id: "T1-37", test: 1, num: 37, q: "What are we going to discuss at the staff meeting?", options: ["I wasn't part of the discussions.", "The company's new medical plan.", "Yes, it's tomorrow at the end of the day."], answer: 1 },
+            { id: "T1-38", test: 1, num: 38, q: "The movie's set to start at 5 o'clock, right?", options: ["We can go to another screening if you'd like.", "It was fantastic, wasn't it?", "I've never visited a movie set before."], answer: 0 },
+            { id: "T1-39", test: 1, num: 39, q: "Can you load the luggage by yourself, or do you need my help?", options: ["If it's not too much trouble.", "Yes, I packed my own bags.", "No, it's not loaded."], answer: 0 },
+            { id: "T1-40", test: 1, num: 40, q: "Ms. Smith filed a complaint about our customer service.", options: ["Just fill out these forms, please.", "No, I completed it.", "I'll look into it right away."], answer: 2 },
+
+            // ================= TEST 2: PART 2 TOEIC no2 (11-40) =================
+            { id: "T2-11", test: 2, num: 11, q: "Who wrote the memo?", options: ["It came from the accounting office.", "I think you'll have to memorize it.", "On the company intranet."], answer: 0 },
+            { id: "T2-12", test: 2, num: 12, q: "Do I have to pay to park here?", options: ["Yes, it's a lovely park.", "Yes, it's two dollars an hour.", "No, please mail the payment."], answer: 1 },
+            { id: "T2-13", test: 2, num: 13, q: "May I take your jacket?", options: ["No, thanks. I'm feeling cold.", "Yes, I'll take it.", "It's the wrong size."], answer: 0 },
+            { id: "T2-14", test: 2, num: 14, q: "Do you like the brown pants or the tan ones?", options: ["The plants need to be watered.", "Yes, ten dollars cheaper.", "They're both a little tight."], answer: 2 },
+            { id: "T2-15", test: 2, num: 15, q: "Where is the meeting going to be held?", options: ["At the downtown office.", "By car.", "In just a few minutes."], answer: 0 },
+            { id: "T2-16", test: 2, num: 16, q: "How often does the firm hire new workers?", options: ["Yes, I can confirm that.", "Once every other month.", "Through an agency."], answer: 1 },
+            { id: "T2-17", test: 2, num: 17, q: "There's a very friendly atmosphere in the office.", options: ["Yes, I've known him for a long time.", "That's why our employees perform so well.", "The office is at the end of the hall."], answer: 1 },
+            { id: "T2-18", test: 2, num: 18, q: "The electric bill seems awfully high this month.", options: ["I thought so, too.", "Isn't the drill broken?", "Maybe last month."], answer: 0 },
+            { id: "T2-19", test: 2, num: 19, q: "Has your employer changed healthcare providers?", options: ["No, but it's going to happen next month.", "Yes, the doctor said I'm improving.", "Walker Realty, Inc."], answer: 0 },
+            { id: "T2-20", test: 2, num: 20, q: "When will the copy machine be fixed?", options: ["In the hallway.", "Let's make some more.", "By the end of the day."], answer: 2 },
+            { id: "T2-21", test: 2, num: 21, q: "Our boss gave a great speech, didn't he?", options: ["Yes, I liked it.", "Ms. Flannigan.", "I haven't spoken to him."], answer: 0 },
+            { id: "T2-22", test: 2, num: 22, q: "Why don't you move to a nicer apartment?", options: ["Yes, that's my favorite part, too.", "It's very heavy.", "No, I can't afford to right now."], answer: 2 },
+            { id: "T2-23", test: 2, num: 23, q: "Was the television ad received well?", options: ["Yes, it was added.", "No, I lost the receipt.", "Yes, I think it was a big hit."], answer: 2 },
+            { id: "T2-24", test: 2, num: 24, q: "What would you say to taking the subway instead?", options: ["Yes, I'll send it right away.", "That sounds fine.", "No, thank you. I don't need one."], answer: 1 },
+            { id: "T2-25", test: 2, num: 25, q: "Have the suppliers faxed us the bill, or are they going to do it later?", options: ["We received it this morning.", "They'll fix it tomorrow.", "Yes, the supplies are here."], answer: 0 },
+            { id: "T2-26", test: 2, num: 26, q: "Am I supposed to interview the applicants?", options: ["The entrance is around the corner.", "Do you mind?", "Yes, there's quite a view."], answer: 1 },
+            { id: "T2-27", test: 2, num: 27, q: "What product should we feature in this month's sale?", options: ["One of the raincoats.", "It's a great deal.", "I've never sailed before."], answer: 0 },
+            { id: "T2-28", test: 2, num: 28, q: "Shouldn't we get to the restaurant before the dinner rush?", options: ["No, let's eat out.", "Sorry, I don't have a menu.", "Yes, we'd better leave now."], answer: 2 },
+            { id: "T2-29", test: 2, num: 29, q: "Can you drive me to the airport tomorrow morning?", options: ["Yes, I'd rather fly.", "That shouldn't be a problem.", "The fresh air is really great."], answer: 1 },
+            { id: "T2-30", test: 2, num: 30, q: "Would you mind filling in for Rick while he's on vacation?", options: ["Really? How was it?", "I'll fill in the form during lunch.", "I don't know. I'm behind schedule already."], answer: 2 },
+            { id: "T2-31", test: 2, num: 31, q: "Which class are you taking at the community college?", options: ["Don't drop it, or it'll break.", "An introduction to computer science.", "It's located on Monson Boulevard."], answer: 1 },
+            { id: "T2-32", test: 2, num: 32, q: "How about going to the coffee shop on First Street?", options: ["No, I'll take the third one.", "I usually go shopping there.", "I don't like the service there."], answer: 2 },
+            { id: "T2-33", test: 2, num: 33, q: "Isn't there a vacant office on the fourth floor?", options: ["It was leased yesterday.", "No, just take the elevator.", "The floors are hardwood."], answer: 0 },
+            { id: "T2-34", test: 2, num: 34, q: "Haven't you seen a doctor about your sore wrist yet?", options: ["He can see you in just a few minutes.", "I have an appointment tomorrow.", "I haven't completed the list yet."], answer: 1 },
+            { id: "T2-35", test: 2, num: 35, q: "How long do you need to finish the report?", options: ["It should take around a week.", "It was very interesting.", "A little more than five feet."], answer: 0 },
+            { id: "T2-36", test: 2, num: 36, q: "The weather has been wonderful lately, hasn't it?", options: ["I missed the forecast.", "It's been a nice summer.", "Yes, he's running late again."], answer: 1 },
+            { id: "T2-37", test: 2, num: 37, q: "Could you tell me where I can find an outdoor equipment store?", options: ["It seems to be malfunctioning.", "No, please put it inside.", "There's one just down the road."], answer: 2 },
+            { id: "T2-38", test: 2, num: 38, q: "Why didn't Leanne give you the message?", options: ["I'll give it to you later.", "She must have forgotten.", "Thank you. What did she say?"], answer: 1 },
+            { id: "T2-39", test: 2, num: 39, q: "I'm considering hiring a maid.", options: ["No, I've got one.", "You mean you haven't made it?", "Can't you do the cleaning yourself?"], answer: 2 },
+            { id: "T2-40", test: 2, num: 40, q: "Did Ms. Fullerton tell you that the shipment has arrived?", options: ["She's taking a cruise.", "That's news to me.", "I hope she will arrive safely."], answer: 1 },
+
+            // ================= TEST 3: PART 2 TOEIC no3 (11-40) =================
+            { id: "T3-11", test: 3, num: 11, q: "What is the soup of the day?", options: ["It's tomorrow.", "Clam chowder.", "No, I'll get something else."], answer: 1 },
+            { id: "T3-12", test: 3, num: 12, q: "How long is the flight from Santiago?", options: ["To New York.", "10 hours.", "No, not really."], answer: 1 },
+            { id: "T3-13", test: 3, num: 13, q: "Did anyone call for me while I was away?", options: ["How long will you be gone?", "Well, it has been a while.", "Nothing important."], answer: 2 },
+            { id: "T3-14", test: 3, num: 14, q: "Could you give me a wake-up call at 7 A.M.?", options: ["I've already woken up.", "No, he didn't call.", "No problem, sir."], answer: 2 },
+            { id: "T3-15", test: 3, num: 15, q: "I see you bought a new cell phone.", options: ["Yes, I lost my old one.", "A little under $200.", "Where did you buy it?"], answer: 0 },
+            { id: "T3-16", test: 3, num: 16, q: "What kind of skirt are you looking for?", options: ["Yes, it was very kind of her.", "Preferably something in silk.", "It looks all right."], answer: 1 },
+            { id: "T3-17", test: 3, num: 17, q: "Isn't Mr. Knight retiring at the end of the year?", options: ["Yes, I'm very tired as well.", "Not that I know of.", "Yes, he did."], answer: 1 },
+            { id: "T3-18", test: 3, num: 18, q: "The work schedule has been revised, right?", options: ["He's my advisor.", "Yes, I'll send it to you now.", "By next weekend at the latest."], answer: 1 },
+            { id: "T3-19", test: 3, num: 19, q: "Where did you end up going on vacation? Miami or Las Vegas?", options: ["I finally decided on Miami.", "Yes, they're both interesting destinations.", "I know! Our vacation is nearly over."], answer: 0 },
+            { id: "T3-20", test: 3, num: 20, q: "Would you mind if I changed the channel?", options: ["I didn't change it.", "Sure, go ahead.", "No, the tunnel isn't that long."], answer: 1 },
+            { id: "T3-21", test: 3, num: 21, q: "Why is the senator arranging a press conference?", options: ["On a wide range of products.", "It was very impressive.", "To discuss the new legislation."], answer: 2 },
+            { id: "T3-22", test: 3, num: 22, q: "Can I have a look at your concert program?", options: ["I'm afraid I didn't get one either.", "I'm very concerned about it, too.", "It's a computer program."], answer: 0 },
+            { id: "T3-23", test: 3, num: 23, q: "When should we gather at the tour bus?", options: ["At 12:30 sharp.", "The gathering was last month.", "At the main entrance."], answer: 0 },
+            { id: "T3-24", test: 3, num: 24, q: "How did Mr. Johnson react to the news?", options: ["I never watch the news.", "He was very relieved.", "He is an actor."], answer: 1 },
+            { id: "T3-25", test: 3, num: 25, q: "Ms. Watson is flying in from New Jersey for a meeting.", options: ["Isn't that the old version?", "No, she wasn't on my flight either.", "You'd better collect her from the airport."], answer: 2 },
+            { id: "T3-26", test: 3, num: 26, q: "Who gave you permission to park there?", options: ["The assistant in the booth.", "Admission is $2.", "Don't worry. I gave it back."], answer: 0 },
+            { id: "T3-27", test: 3, num: 27, q: "What did you do with the handouts?", options: ["I distributed them to the participants.", "No, it's inside.", "Sorry, I can't help you at the moment."], answer: 0 },
+            { id: "T3-28", test: 3, num: 28, q: "Where is the team lunch being held?", options: ["I think it's Friday next week.", "At the Indian restaurant across the road.", "Yes, the launch was very successful."], answer: 1 },
+            { id: "T3-29", test: 3, num: 29, q: "Will all employees receive a bonus this year, or just a few?", options: ["Only the top performers will be rewarded.", "Yes, that's what I heard as well.", "I worked extra hours."], answer: 0 },
+            { id: "T3-30", test: 3, num: 30, q: "Which seminar are you going to attend?", options: ["The one on asset management.", "I didn't go there.", "Because he tends to change his mind."], answer: 0 },
+            { id: "T3-31", test: 3, num: 31, q: "Human Resources haven't found a replacement for Mr. Allen, have they?", options: ["No, but there are some promising candidates.", "It was founded several years ago.", "My place isn't far from here."], answer: 0 },
+            { id: "T3-32", test: 3, num: 32, q: "Haven't you been to the new shopping mall yet?", options: ["Yes, it has been.", "Small size, please.", "I'm planning to go there next weekend."], answer: 2 },
+            { id: "T3-33", test: 3, num: 33, q: "We're thinking about renovating our kitchen and bathroom.", options: ["No, I think we should put it in the living room.", "Relocating can be very expensive.", "I can introduce a great builder."], answer: 2 },
+            { id: "T3-34", test: 3, num: 34, q: "Is your office on the 1st floor or the 2nd?", options: ["Actually it's on the 5th floor.", "In the large office complex downtown.", "Thank you for visiting."], answer: 0 },
+            { id: "T3-35", test: 3, num: 35, q: "Have you seen Andrew around the office lately?", options: ["I saw him just this morning.", "Were you late again this morning?", "In the official guidelines."], answer: 0 },
+            { id: "T3-36", test: 3, num: 36, q: "You're staying at the Pembridge Hotel, aren't you?", options: ["I thought it was very comfortable.", "I'm not going yet.", "Yes, it's quite close to the station."], answer: 2 },
+            { id: "T3-37", test: 3, num: 37, q: "Who is going to make the opening speech at the conference?", options: ["At the Hyatt Hotel.", "A partner from Worrell and Jones.", "Before the event starts on the first day."], answer: 1 },
+            { id: "T3-38", test: 3, num: 38, q: "Why did the marketing team fail to meet the project deadline?", options: ["Because the test was extremely difficult.", "On or before the 15th of July.", "Do you think they might be understaffed?"], answer: 2 },
+            { id: "T3-39", test: 3, num: 39, q: "I haven't been to the movie theater in ages.", options: ["18 years and over.", "Me neither.", "Last week."], answer: 1 },
+            { id: "T3-40", test: 3, num: 40, q: "Did you hear anything about when the museum will reopen?", options: ["Sometime next month.", "No, I don't listen to music.", "That place often closes early."], answer: 0 }
+        ];
+
+        // Enrich dataset automatically with Question Category & TOEIC Trap Analysis
+        function classifyAndAnalyze(item) {
+            const lower = item.q.toLowerCase();
+            let category = "Statement";
+            let ruleTip = "Câu trần thuật (Statement): Lắng nghe ngữ cảnh/vấn đề được nêu ra để chọn lời đề nghị, đồng tình hoặc giải pháp hợp lý.";
+
+            if (lower.includes(" or ") && lower.endsWith("?")) {
+                category = "Choice";
+                ruleTip = "Câu hỏi lựa chọn (Choice Question - có 'or'): Tuyệt đối loại các đáp án bắt đầu bằng Yes/No. Đáp án đúng sẽ chọn 1 trong 2, chọn cả 2, hoặc từ chối cả 2.";
+            } else if (/^who\b|^whose\b/.test(lower)) {
+                category = "Who";
+                ruleTip = "Câu hỏi Who/Whose: Hỏi về người, chức danh, phòng ban hoặc quyền sở hữu. Loại ngay đáp án Yes/No và bẫy lặp từ.";
+            } else if (/^where\b/.test(lower) || lower.includes("where the ")) {
+                category = "Where";
+                ruleTip = "Câu hỏi Where: Tìm địa điểm, vị trí, phương hướng (hoặc câu trả lời gián tiếp 'Tôi không biết / Không phải người ở đây').";
+            } else if (/^when\b/.test(lower) || lower.includes("when the ")) {
+                category = "When";
+                ruleTip = "Câu hỏi When: Tìm mốc thời gian, khoảng thời gian hoặc mệnh đề chỉ thời điểm.";
+            } else if (/^why don't you\b|^how about\b|^what would you say to\b|^let's\b/.test(lower)) {
+                category = "Suggestion/Request";
+                ruleTip = "Câu đề nghị / rủ rê (Suggestion): Đáp án đúng thường là lời đồng ý ('Sure / Sounds fine') hoặc từ chối khéo kèm lý do.";
+            } else if (/^why\b/.test(lower)) {
+                category = "Why";
+                ruleTip = "Câu hỏi Why: Hỏi lý do/mục đích -> Thường trả lời bằng 'Because...', 'To + V', hoặc nêu trực tiếp nguyên nhân.";
+            } else if (/^what\b|^which\b/.test(lower)) {
+                category = "What/Which";
+                ruleTip = "Câu hỏi What/Which: Hỏi thông tin cụ thể hoặc sự lựa chọn xác định. Cảnh giác bẫy lặp từ và từ đồng âm.";
+            } else if (/^how\b/.test(lower)) {
+                category = "How";
+                ruleTip = "Câu hỏi How (How long / How much / How often / How did...): Xác định đúng từ đi kèm sau 'How' (thời lượng, giá tiền, tần suất hay cảm xúc).";
+            } else if (/(isn't it|has she|didn't you|didn't he|hasn't it|have they|aren't you|right\?)\s*$/i.test(lower) || /^(haven't|didn't|isn't|aren't|shouldn't)\b/.test(lower)) {
+                category = "Tag/Negative";
+                ruleTip = "Câu hỏi đuôi / Phủ định (Tag/Negative): Trả lời dựa vào sự thật (Yes nếu đúng, No nếu không), thường kèm thông tin giải thích thêm.";
+            } else if (lower.endsWith("?")) {
+                category = "Yes/No";
+                ruleTip = "Câu hỏi Yes/No hoặc Yêu cầu lịch sự (Could you / Would you mind...): Trong TOEIC hiện đại, rất nhiều câu trả lời đúng là dạng gián tiếp (không có Yes/No).";
+            }
+
+            // Detect common traps in wrong options
+            const qWords = lower.replace(/[^a-z\s]/g, '').split(/\s+/).filter(w => w.length > 3 && !['what','where','when','which','have','your','this','that','with','from','about','going','would','could','should'].includes(w));
+            let repeatedTrap = false;
+            item.options.forEach((opt, idx) => {
+                if (idx !== item.answer) {
+                    const optLower = opt.toLowerCase();
+                    if (qWords.some(qw => optLower.includes(qw))) {
+                        repeatedTrap = true;
+                    }
+                }
+            });
+
+            const ansLetter = ['A', 'B', 'C'][item.answer];
+            const trapLabel = repeatedTrap ? "Bẫy lặp từ / Đồng âm" : "Bẫy lạc đề / Trả lời gián tiếp";
+            const explanation = `Đáp án đúng là (${ansLetter}): "${item.options[item.answer]}". ${ruleTip}`;
+
+            return { ...item, category, trapLabel, explanation };
+        }
+
+        const ALL_QUESTIONS = RAW_TEST_DATA.map(classifyAndAnalyze);
+
+        // =========================================================================
+        // 2. APPLICATION STATE & STORAGE
+        // =========================================================================
+        let activeDeckKey = 'TEST1'; // 'TEST1' | 'TEST2' | 'TEST3' | 'ALL' | 'WRONG'
+        let currentDeck = [];
+        let currentIndex = 0;
+        let currentMode = 'exam'; // 'exam' | 'study'
+        let speechRate = 1.0;
+
+        // Persistent state in localStorage
+        let userAnswers = {}; // { "T1-11": 2 }
+        let wrongIds = new Set();
+        let flaggedIds = new Set();
+
+        // Audio Engine state
+        const synth = window.speechSynthesis;
+        let voices = [];
+        let isPlayingSequence = false;
+        let abortSignal = null;
+
+        const NUMBER_WORDS = {
+            11: "eleven", 12: "twelve", 13: "thirteen", 14: "fourteen", 15: "fifteen",
+            16: "sixteen", 17: "seventeen", 18: "eighteen", 19: "nineteen", 20: "twenty",
+            21: "twenty-one", 22: "twenty-two", 23: "twenty-three", 24: "twenty-four", 25: "twenty-five",
+            26: "twenty-six", 27: "twenty-seven", 28: "twenty-eight", 29: "twenty-nine", 30: "thirty",
+            31: "thirty-one", 32: "thirty-two", 33: "thirty-three", 34: "thirty-four", 35: "thirty-five",
+            36: "thirty-six", 37: "thirty-seven", 38: "thirty-eight", 39: "thirty-nine", 40: "forty"
+        };
+
+        // =========================================================================
+        // 3. INITIALIZATION
+        // =========================================================================
+        window.onload = function() {
+            // Restore saved progress
+            try {
+                const savedAns = JSON.parse(localStorage.getItem('toeic90_answers') || '{}');
+                const savedWrong = JSON.parse(localStorage.getItem('toeic90_wrong') || '[]');
+                const savedFlags = JSON.parse(localStorage.getItem('toeic90_flags') || '[]');
+                userAnswers = savedAns;
+                wrongIds = new Set(savedWrong);
+                flaggedIds = new Set(savedFlags);
+            } catch (e) {
+                console.warn("Could not restore progress:", e);
+            }
+
+            // Theme check
+            if (localStorage.getItem('toeic_theme') === 'dark' ||
+               (!localStorage.getItem('toeic_theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('themeIcon').className = 'fa-solid fa-sun text-amber-400';
+            }
+
+            // Load English voices
+            loadVoices();
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+
+            updateWrongBadge();
+            selectDeck('TEST1', false);
+        };
+
+        function loadVoices() {
+            voices = synth.getVoices().filter(v => v.lang.startsWith('en'));
+        }
+
+        function saveState() {
+            localStorage.setItem('toeic90_answers', JSON.stringify(userAnswers));
+            localStorage.setItem('toeic90_wrong', JSON.stringify([...wrongIds]));
+            localStorage.setItem('toeic90_flags', JSON.stringify([...flaggedIds]));
+            updateWrongBadge();
+        }
+
+        function updateWrongBadge() {
+            document.getElementById('wrongCountBadge').textContent = wrongIds.size;
+        }
+
+        // =========================================================================
+        // 4. DECK SELECTION & NAVIGATION
+        // =========================================================================
+        function selectDeck(deckKey, autoPlay = false) {
+            stopAudio();
+            activeDeckKey = deckKey;
+
+            // Update Deck Pill UI
+            document.querySelectorAll('.deck-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-blue-600', 'dark:text-blue-400', 'shadow-sm', 'font-bold');
+                btn.classList.add('font-semibold');
+            });
+            const activeBtn = document.getElementById(`deck-${deckKey}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-white', 'dark:bg-slate-800', 'shadow-sm', 'font-bold');
+                if (deckKey !== 'WRONG') {
+                    activeBtn.classList.add('text-blue-600', 'dark:text-blue-400');
+                }
+            }
+
+            // Filter dataset
+            if (deckKey === 'TEST1') {
+                currentDeck = ALL_QUESTIONS.filter(q => q.test === 1);
+                document.getElementById('paletteSubtitle').textContent = "Test 1 (Câu 11 – 40)";
+            } else if (deckKey === 'TEST2') {
+                currentDeck = ALL_QUESTIONS.filter(q => q.test === 2);
+                document.getElementById('paletteSubtitle').textContent = "Test 2 (Câu 11 – 40)";
+            } else if (deckKey === 'TEST3') {
+                currentDeck = ALL_QUESTIONS.filter(q => q.test === 3);
+                document.getElementById('paletteSubtitle').textContent = "Test 3 (Câu 11 – 40)";
+            } else if (deckKey === 'ALL') {
+                currentDeck = [...ALL_QUESTIONS];
+                document.getElementById('paletteSubtitle').textContent = "Trọn bộ 90 câu (Test 1–3)";
+            } else if (deckKey === 'WRONG') {
+                currentDeck = ALL_QUESTIONS.filter(q => wrongIds.has(q.id));
+                if (currentDeck.length === 0) {
+                    showToast("Tuyệt vời! Bạn chưa có câu làm sai nào.");
+                    selectDeck('TEST1', false);
+                    return;
+                }
+                document.getElementById('paletteSubtitle').textContent = `Ôn tập câu sai (${currentDeck.length} câu)`;
+            }
+
+            currentIndex = 0;
+            renderAll();
+
+            if (autoPlay && document.getElementById('autoPlayCheckbox').checked) {
+                playFullQuestionSequence();
+            }
+        }
+
+        function shuffleCurrentDeck() {
+            stopAudio();
+            for (let i = currentDeck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentDeck[i], currentDeck[j]] = [currentDeck[j], currentDeck[i]];
+            }
+            currentIndex = 0;
+            renderAll();
+            showToast("Đã xáo trộn ngẫu nhiên thứ tự câu hỏi!");
+        }
+
+        function jumpToQuestion(idx) {
+            stopAudio();
+            currentIndex = idx;
+            renderAll();
+            if (document.getElementById('autoPlayCheckbox').checked) {
+                playFullQuestionSequence();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < currentDeck.length - 1) {
+                jumpToQuestion(currentIndex + 1);
+            } else {
+                showToast("Bạn đã hoàn thành câu cuối cùng! Mở Tổng kết để xem điểm nhé.");
+                openSummaryModal();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                jumpToQuestion(currentIndex - 1);
+            }
+        }
+
+        // =========================================================================
+        // 5. TOEIC EXAM AUDIO ENGINE (WEB SPEECH API)
+        // =========================================================================
+        function stopAudio() {
+            if (abortSignal) abortSignal.aborted = true;
+            synth.cancel();
+            isPlayingSequence = false;
+            updateAudioVisuals(false, "Nhấn Play hoặc phím Space để nghe");
+        }
+
+        function updateAudioVisuals(playing, statusMsg) {
+            const playIcon = document.getElementById('playIcon');
+            const visualizer = document.getElementById('audioVisualizer');
+            const statusText = document.getElementById('audioStatusText');
+
+            if (playing) {
+                playIcon.className = 'fa-solid fa-stop';
+                visualizer.classList.remove('hidden');
+                visualizer.classList.add('flex');
+            } else {
+                playIcon.className = 'fa-solid fa-play ml-1';
+                visualizer.classList.add('hidden');
+                visualizer.classList.remove('flex');
+            }
+            if (statusMsg) statusText.textContent = statusMsg;
+        }
+
+        function speakText(text, speakerRole, signal) {
+            return new Promise((resolve) => {
+                if (signal && signal.aborted) {
+                    resolve();
+                    return;
+                }
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.lang = 'en-US';
+                utter.rate = speechRate;
+
+                if (voices.length > 0) {
+                    const usVoices = voices.filter(v => v.lang === 'en-US' || v.lang === 'en-GB');
+                    const pool = usVoices.length > 0 ? usVoices : voices;
+                    if (speakerRole === 'narrator') {
+                        utter.voice = pool[0];
+                        utter.pitch = 1.0;
+                    } else if (speakerRole === 'question') {
+                        utter.voice = pool[0];
+                        utter.pitch = 1.08;
+                    } else {
+                        utter.voice = pool[pool.length > 1 ? 1 : 0];
+                        utter.pitch = 0.90;
+                    }
+                } else {
+                    utter.pitch = speakerRole === 'question' ? 1.08 : 0.90;
+                }
+
+                utter.onend = () => resolve();
+                utter.onerror = () => resolve();
+                synth.speak(utter);
+            });
+        }
+
+        function pauseMs(ms, signal) {
+            return new Promise(resolve => {
+                const timer = setTimeout(resolve, ms);
+                if (signal) {
+                    const checker = setInterval(() => {
+                        if (signal.aborted) {
+                            clearTimeout(timer);
+                            clearInterval(checker);
+                            resolve();
+                        }
+                    }, 40);
+                }
+            });
+        }
+
+        async function playFullQuestionSequence() {
+            if (currentDeck.length === 0) return;
+            stopAudio();
+
+            const item = currentDeck[currentIndex];
+            const signal = { aborted: false };
+            abortSignal = signal;
+            isPlayingSequence = true;
+
+            try {
+                // 1. Narrator announces question number ("Question eleven.")
+                const numWord = NUMBER_WORDS[item.num] || item.num;
+                updateAudioVisuals(true, `Question ${item.num}...`);
+                await speakText(`Number ${numWord}.`, 'narrator', signal);
+                if (signal.aborted) return;
+
+                await pauseMs(750, signal);
+                if (signal.aborted) return;
+
+                // 2. Question prompt
+                updateAudioVisuals(true, "Đang đọc câu hỏi...");
+                await speakText(item.q, 'question', signal);
+                if (signal.aborted) return;
+
+                await pauseMs(950, signal);
+                if (signal.aborted) return;
+
+                // 3. Options (A), (B), (C)
+                const letters = ['A', 'B', 'C'];
+                for (let i = 0; i < 3; i++) {
+                    updateAudioVisuals(true, `Đang đọc đáp án (${letters[i]})...`);
+                    await speakText(`(${letters[i]})`, 'option', signal);
+                    await pauseMs(220, signal);
+                    await speakText(item.options[i], 'option', signal);
+                    if (signal.aborted) return;
+
+                    if (i < 2) {
+                        await pauseMs(680, signal);
+                        if (signal.aborted) return;
+                    }
+                }
+
+                isPlayingSequence = false;
+                updateAudioVisuals(false, "Đã đọc xong! Hãy chọn đáp án A, B hoặc C.");
+            } catch (e) {
+                isPlayingSequence = false;
+                updateAudioVisuals(false, "Sẵn sàng phát âm thanh");
+            }
+        }
+
+        function toggleAudioPlayback() {
+            if (isPlayingSequence) {
+                stopAudio();
+            } else {
+                playFullQuestionSequence();
+            }
+        }
+
+        async function speakSingleText(target) {
+            if (currentDeck.length === 0) return;
+            stopAudio();
+            const item = currentDeck[currentIndex];
+            const signal = { aborted: false };
+            abortSignal = signal;
+            isPlayingSequence = true;
+
+            if (target === 'question') {
+                updateAudioVisuals(true, "Đang đọc lại câu hỏi...");
+                await speakText(item.q, 'question', signal);
+            } else {
+                const letter = ['A', 'B', 'C'][target];
+                updateAudioVisuals(true, `Đang đọc lại đáp án (${letter})...`);
+                await speakText(`${letter}. ${item.options[target]}`, 'option', signal);
+            }
+            isPlayingSequence = false;
+            updateAudioVisuals(false, "Nhấn Nghe lại câu để nghe toàn bộ");
+        }
+
+        function setSpeed(rate) {
+            speechRate = rate;
+            document.querySelectorAll('.speed-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'dark:bg-slate-600', 'text-blue-600', 'dark:text-blue-300', 'shadow-sm');
+                btn.classList.add('text-slate-600', 'dark:text-slate-300');
+            });
+            const idStr = rate === 1 ? '1.0' : String(rate);
+            const activeBtn = document.getElementById(`speed-${idStr}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-white', 'dark:bg-slate-600', 'text-blue-600', 'dark:text-blue-300', 'shadow-sm');
+                activeBtn.classList.remove('text-slate-600', 'dark:text-slate-300');
+            }
+            showToast(`Tốc độ đọc: ${rate}x`);
+        }
+
+        // =========================================================================
+        // 6. RENDERING UI & ANSWERING
+        // =========================================================================
+        function renderAll() {
+            renderCurrentQuestion();
+            renderQuestionGrid();
+            updateDeckStats();
+        }
+
+        function renderCurrentQuestion() {
+            if (currentDeck.length === 0) return;
+
+            const item = currentDeck[currentIndex];
+            const selectedIdx = userAnswers[item.id];
+            const isAnswered = selectedIdx !== undefined;
+            const revealTranscript = currentMode === 'study' || isAnswered;
+
+            // Header badges
+            document.getElementById('testBadge').textContent = `Test ${item.test}`;
+            document.getElementById('questionCounter').textContent = `Câu ${item.num} (${currentIndex + 1}/${currentDeck.length})`;
+
+            const progressPct = ((currentIndex + 1) / currentDeck.length) * 100;
+            document.getElementById('progressBar').style.width = `${progressPct}%`;
+
+            // Category tag
+            const typeTag = document.getElementById('questionTypeTag');
+            typeTag.textContent = item.category;
+            if (revealTranscript) {
+                typeTag.classList.remove('hidden');
+            } else {
+                typeTag.classList.add('hidden');
+            }
+
+            // Flag button
+            const flagBtn = document.getElementById('flagBtn');
+            if (flaggedIds.has(item.id)) {
+                flagBtn.innerHTML = '<i class="fa-solid fa-flag text-amber-500"></i>';
+            } else {
+                flagBtn.innerHTML = '<i class="fa-regular fa-flag"></i>';
+            }
+
+            // Question transcript box
+            const hiddenPlaceholder = document.getElementById('hiddenPromptPlaceholder');
+            const revealedBox = document.getElementById('revealedQuestionBox');
+            if (revealTranscript) {
+                hiddenPlaceholder.classList.add('hidden');
+                revealedBox.classList.remove('hidden');
+                document.getElementById('questionEnglish').textContent = `${item.num}. ${item.q}`;
+            } else {
+                hiddenPlaceholder.classList.remove('hidden');
+                revealedBox.classList.add('hidden');
+            }
+
+            // Options A, B, C
+            const letters = ['A', 'B', 'C'];
+            for (let i = 0; i < 3; i++) {
+                const btn = document.getElementById(`optBtn-${i}`);
+                const badge = document.getElementById(`optBadge-${i}`);
+                const textEl = document.getElementById(`optText-${i}`);
+                const statusIcon = document.getElementById(`optStatusIcon-${i}`);
+                const audioBtn = document.getElementById(`optAudioBtn-${i}`);
+
+                btn.className = "option-btn w-full text-left p-4 rounded-2xl border-2 bg-white dark:bg-slate-800/80 flex items-center justify-between gap-4 group ";
+                badge.className = "w-10 h-10 rounded-full font-bold flex items-center justify-center shrink-0 transition ";
+                statusIcon.innerHTML = "";
+
+                if (revealTranscript) {
+                    textEl.textContent = item.options[i];
+                    audioBtn.classList.remove('hidden');
+                    audioBtn.classList.add('flex');
+                } else {
+                    textEl.textContent = `Đáp án (${letters[i]})`;
+                    audioBtn.classList.add('hidden');
+                    audioBtn.classList.remove('flex');
+                }
+
+                if (isAnswered) {
+                    if (i === item.answer) {
+                        btn.classList.add('border-emerald-500', 'bg-emerald-50/70', 'dark:bg-emerald-900/25');
+                        badge.classList.add('bg-emerald-500', 'text-white');
+                        statusIcon.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-500"></i>';
+                    } else if (i === selectedIdx) {
+                        btn.classList.add('border-rose-500', 'bg-rose-50/70', 'dark:bg-rose-900/25');
+                        badge.classList.add('bg-rose-500', 'text-white');
+                        statusIcon.innerHTML = '<i class="fa-solid fa-circle-xmark text-rose-500"></i>';
+                    } else {
+                        btn.classList.add('border-slate-200', 'dark:border-slate-700', 'opacity-65');
+                        badge.classList.add('bg-slate-100', 'dark:bg-slate-700', 'text-slate-500');
+                    }
+                } else {
+                    btn.classList.add('border-slate-200', 'dark:border-slate-700', 'hover:border-blue-400', 'dark:hover:border-blue-500');
+                    badge.classList.add('bg-slate-100', 'dark:bg-slate-700', 'group-hover:bg-blue-100', 'dark:group-hover:bg-blue-900/50', 'text-slate-700', 'dark:text-slate-200');
+                }
+            }
+
+            // Explanation Box
+            const expBox = document.getElementById('explanationBox');
+            if (isAnswered) {
+                expBox.classList.remove('hidden');
+                document.getElementById('trapBadge').textContent = item.trapLabel;
+                document.getElementById('explanationText').textContent = item.explanation;
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+        }
+
+        function selectOption(optIdx) {
+            if (currentDeck.length === 0) return;
+            const item = currentDeck[currentIndex];
+            stopAudio();
+
+            const isFirstAttempt = userAnswers[item.id] === undefined;
+            userAnswers[item.id] = optIdx;
+
+            if (optIdx === item.answer) {
+                wrongIds.delete(item.id);
+                if (isFirstAttempt) showToast("Chính xác! (+1 điểm)");
+            } else {
+                wrongIds.add(item.id);
+                if (isFirstAttempt) showToast("Sai rồi! Đã lưu vào mục Câu sai để ôn tập.", "error");
+            }
+
+            saveState();
+            renderAll();
+        }
+
+        function renderQuestionGrid() {
+            const grid = document.getElementById('questionGrid');
+            grid.innerHTML = "";
+
+            currentDeck.forEach((item, idx) => {
+                const btn = document.createElement('button');
+                const ans = userAnswers[item.id];
+                const isCurrent = idx === currentIndex;
+                const isFlagged = flaggedIds.has(item.id);
+
+                let styleClass = "relative h-9 rounded-lg text-xs font-bold flex items-center justify-center transition border ";
+                if (ans === undefined) {
+                    styleClass += "bg-slate-100 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-600 hover:bg-slate-200 ";
+                } else if (ans === item.answer) {
+                    styleClass += "bg-emerald-500 text-white border-emerald-600 ";
+                } else {
+                    styleClass += "bg-rose-500 text-white border-rose-600 ";
+                }
+
+                if (isCurrent) {
+                    styleClass += "ring-2 ring-blue-600 ring-offset-1 dark:ring-offset-slate-800 scale-105 z-10 ";
+                }
+
+                btn.className = styleClass;
+                btn.textContent = item.num;
+                btn.title = `Test ${item.test} - Câu ${item.num}`;
+                btn.onclick = () => jumpToQuestion(idx);
+
+                if (isFlagged) {
+                    const dot = document.createElement('span');
+                    dot.className = "absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 border border-white dark:border-slate-800";
+                    btn.appendChild(dot);
+                }
+
+                grid.appendChild(btn);
+            });
+        }
+
+        function updateDeckStats() {
+            let correct = 0;
+            let wrong = 0;
+            currentDeck.forEach(item => {
+                const ans = userAnswers[item.id];
+                if (ans !== undefined) {
+                    if (ans === item.answer) correct++;
+                    else wrong++;
+                }
+            });
+            const remain = currentDeck.length - correct - wrong;
+            document.getElementById('statCorrect').textContent = correct;
+            document.getElementById('statWrong').textContent = wrong;
+            document.getElementById('statRemain').textContent = remain;
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            const btnExam = document.getElementById('btnModeExam');
+            const btnStudy = document.getElementById('btnModeStudy');
+
+            if (mode === 'exam') {
+                btnExam.className = "flex-1 sm:flex-none px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 shadow-sm";
+                btnStudy.className = "flex-1 sm:flex-none px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+            } else {
+                btnStudy.className = "flex-1 sm:flex-none px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5 bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 shadow-sm";
+                btnExam.className = "flex-1 sm:flex-none px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+            }
+            renderCurrentQuestion();
+        }
+
+        function toggleFlag() {
+            if (currentDeck.length === 0) return;
+            const id = currentDeck[currentIndex].id;
+            if (flaggedIds.has(id)) {
+                flaggedIds.delete(id);
+                showToast("Đã bỏ đánh dấu câu hỏi");
+            } else {
+                flaggedIds.add(id);
+                showToast("Đã đánh dấu câu hỏi để xem lại");
+            }
+            saveState();
+            renderAll();
+        }
+
+        function resetDeckProgress() {
+            stopAudio();
+            currentDeck.forEach(item => {
+                delete userAnswers[item.id];
+            });
+            currentIndex = 0;
+            saveState();
+            renderAll();
+            showToast("Đã đặt lại trạng thái của bộ đề hiện tại!");
+        }
+
+        // =========================================================================
+        // 7. SUMMARY & ANALYTICS MODAL
+        // =========================================================================
+        function openSummaryModal() {
+            stopAudio();
+            let totalAnswered = 0;
+            let totalCorrect = 0;
+            const catStats = {};
+
+            ALL_QUESTIONS.forEach(item => {
+                if (!catStats[item.category]) {
+                    catStats[item.category] = { total: 0, answered: 0, correct: 0 };
+                }
+                catStats[item.category].total++;
+
+                const ans = userAnswers[item.id];
+                if (ans !== undefined) {
+                    totalAnswered++;
+                    catStats[item.category].answered++;
+                    if (ans === item.answer) {
+                        totalCorrect++;
+                        catStats[item.category].correct++;
+                    }
+                }
+            });
+
+            const pct = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+            document.getElementById('summaryAccuracy').textContent = `${pct}%`;
+            document.getElementById('summaryScoreFraction').textContent = `(${totalCorrect}/${totalAnswered} câu đã làm • Tổng 90 câu)`;
+            document.getElementById('modalWrongCount').textContent = wrongIds.size;
+
+            const listEl = document.getElementById('categoryBreakdownList');
+            listEl.innerHTML = "";
+
+            Object.entries(catStats).forEach(([cat, data]) => {
+                const catPct = data.answered > 0 ? Math.round((data.correct / data.answered) * 100) : 0;
+                const barColor = data.answered === 0 ? "bg-slate-300" : (catPct >= 75 ? "bg-emerald-500" : (catPct >= 50 ? "bg-amber-500" : "bg-rose-500"));
+
+                const card = document.createElement('div');
+                card.className = "p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-900/40";
+                card.innerHTML = `
+                    <div class="flex items-center justify-between text-xs font-bold mb-1.5">
+                        <span class="text-slate-800 dark:text-slate-200">${cat}</span>
+                        <span class="text-slate-600 dark:text-slate-400">${data.correct}/${data.answered} đúng (Tổng ${data.total})</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div class="${barColor} h-full transition-all duration-300" style="width: ${data.answered > 0 ? catPct : 0}%"></div>
+                    </div>
+                `;
+                listEl.appendChild(card);
+            });
+
+            document.getElementById('summaryModal').classList.remove('hidden');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.add('hidden');
+        }
+
+        function clearAllHistory() {
+            userAnswers = {};
+            wrongIds.clear();
+            flaggedIds.clear();
+            saveState();
+            closeSummaryModal();
+            selectDeck('TEST1', false);
+            showToast("Đã xóa toàn bộ lịch sử làm bài!");
+        }
+
+        // =========================================================================
+        // 8. THEME, TOAST & KEYBOARD SHORTCUTS
+        // =========================================================================
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('toeic_theme', 'light');
+                icon.className = 'fa-solid fa-moon';
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('toeic_theme', 'dark');
+                icon.className = 'fa-solid fa-sun text-amber-400';
+            }
+        }
+
+        let toastTimer;
+        function showToast(msg, type = 'success') {
+            const box = document.getElementById('toastBox');
+            const icon = document.getElementById('toastIcon');
+            const text = document.getElementById('toastMessage');
+
+            text.textContent = msg;
+            icon.className = type === 'error'
+                ? 'fa-solid fa-circle-exclamation text-rose-400 dark:text-rose-600'
+                : 'fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600';
+
+            box.classList.remove('translate-y-20', 'opacity-0');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                box.classList.add('translate-y-20', 'opacity-0');
+            }, 2800);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('summaryModal').classList.contains('hidden')) {
+                if (e.key === 'Escape') closeSummaryModal();
+                return;
+            }
+            if (e.code === 'Space') {
+                e.preventDefault();
+                playFullQuestionSequence();
+            } else if (e.key === '1' || e.key.toLowerCase() === 'a') {
+                selectOption(0);
+            } else if (e.key === '2' || e.key.toLowerCase() === 'b') {
+                selectOption(1);
+            } else if (e.key === '3' || e.key.toLowerCase() === 'c') {
+                selectOption(2);
+            } else if (e.key === 'Enter' || e.key === 'ArrowRight') {
+                nextQuestion();
+            } else if (e.key === 'ArrowLeft') {
+                prevQuestion();
+            }
+        });
+    </script>
+</body>
+</html>

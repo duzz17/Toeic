@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Luyện tập đầy đủ 7 phần TOEIC Listening và Reading."
+    />
+    <title>TOEIC Master — Luyện tập 7 Part</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        color: #172033;
+        background: #f5f7ff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        background:
+          radial-gradient(ellipse at 15% 0%, #e0e7ff 0, transparent 38%),
+          #f5f7ff;
+      }
+      .container {
+        width: min(100% - 32px, 1040px);
+        margin: 0 auto;
+      }
+      header {
+        padding: 64px 0 42px;
+        text-align: center;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 13px;
+        border: 1px solid #dfe4ff;
+        border-radius: 999px;
+        background: #fff;
+        color: #4f46e5;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      h1 {
+        margin: 20px 0 12px;
+        font-size: clamp(32px, 6vw, 52px);
+        letter-spacing: -0.045em;
+      }
+      .intro {
+        max-width: 620px;
+        margin: 0 auto;
+        color: #64708a;
+        font-size: 16px;
+        line-height: 1.7;
+      }
+      .section-title {
+        margin: 0 0 16px;
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #667085;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+        gap: 16px;
+        padding-bottom: 56px;
+      }
+      .card {
+        display: flex;
+        min-height: 174px;
+        flex-direction: column;
+        padding: 20px;
+        border: 1px solid #e6e9f2;
+        border-radius: 20px;
+        background: rgb(255 255 255 / 92%);
+        color: inherit;
+        text-decoration: none;
+        box-shadow: 0 8px 24px rgb(34 48 90 / 5%);
+        transition:
+          transform 160ms ease,
+          border-color 160ms ease,
+          box-shadow 160ms ease;
+      }
+      .card:hover,
+      .card:focus-visible {
+        transform: translateY(-3px);
+        border-color: #a5b4fc;
+        outline: none;
+        box-shadow: 0 14px 30px rgb(79 70 229 / 12%);
+      }
+      .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .number {
+        display: grid;
+        width: 44px;
+        height: 44px;
+        place-items: center;
+        border-radius: 14px;
+        background: #eef2ff;
+        color: #4338ca;
+        font-size: 16px;
+        font-weight: 800;
+      }
+      .arrow {
+        color: #818ba2;
+        font-size: 21px;
+      }
+      .card h2 {
+        margin: 18px 0 5px;
+        font-size: 18px;
+      }
+      .card p {
+        margin: 0;
+        color: #69758b;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      footer {
+        padding: 0 0 28px;
+        color: #8992a5;
+        font-size: 12px;
+        text-align: center;
+      }
+      @media (max-width: 520px) {
+        header {
+          padding: 44px 0 32px;
+        }
+        .card {
+          min-height: 150px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <span class="badge">📚 TOEIC LISTENING &amp; READING</span>
+        <h1>Luyện TOEIC theo từng Part</h1>
+        <p class="intro">
+          Chọn một phần để bắt đầu luyện tập. Tiến độ và tính năng học tập của
+          từng phần được lưu riêng trên trình duyệt của bạn.
+        </p>
+      </header>
+
+      <h2 class="section-title">Chọn phần luyện tập</h2>
+      <nav class="grid" aria-label="Các phần luyện TOEIC">
+        <a class="card" href="./part1.html">
+          <span class="card-top"><span class="number">01</span><span class="arrow">→</span></span>
+          <h2>Part 1 — Photographs</h2>
+          <p>Mô tả tranh, từ vựng và ngữ pháp.</p>
+        </a>
+        <a class="card" href="./part2.html">
+          <span class="card-top"><span class="number">02</span><span class="arrow">→</span></span>
+          <h2>Part 2 — Question-Response</h2>
+          <p>Luyện nghe câu hỏi và chọn câu trả lời phù hợp.</p>
+        </a>
+        <a class="card" href="./part3.html">
+          <span class="card-top"><span class="number">03</span><span class="arrow">→</span></span>
+          <h2>Part 3 — Conversations</h2>
+          <p>Luyện nghe hội thoại, xem script và giải thích.</p>
+        </a>
+        <a class="card" href="./part4.html">
+          <span class="card-top"><span class="number">04</span><span class="arrow">→</span></span>
+          <h2>Part 4 — Talks</h2>
+          <p>Luyện nghe bài nói ngắn và trả lời câu hỏi.</p>
+        </a>
+        <a class="card" href="./part5.html">
+          <span class="card-top"><span class="number">05</span><span class="arrow">→</span></span>
+          <h2>Part 5 — Incomplete Sentences</h2>
+          <p>Ôn ngữ pháp, từ vựng và hoàn thành câu.</p>
+        </a>
+        <a class="card" href="./part6.html">
+          <span class="card-top"><span class="number">06</span><span class="arrow">→</span></span>
+          <h2>Part 6 — Text Completion</h2>
+          <p>Luyện điền từ và câu vào các đoạn văn.</p>
+        </a>
+        <a class="card" href="./part7.html">
+          <span class="card-top"><span class="number">07</span><span class="arrow">→</span></span>
+          <h2>Part 7 — Reading Comprehension</h2>
+          <p>Luyện đọc hiểu thông báo, email và văn bản.</p>
+        </a>
+      </nav>
+      <footer>TOEIC Master · Học theo tiến độ của riêng bạn</footer>
+    </main>
+  </body>
+</html>

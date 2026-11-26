@@ -1,0 +1,3559 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOEIC Part 6 Master — Luyện Đề & Giải Chi Tiết (Unit 1–8)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                50: "#eef2ff",
+                100: "#e0e7ff",
+                200: "#c7d2fe",
+                500: "#6366f1",
+                600: "#4f46e5",
+                700: "#4338ca",
+                900: "#1e1b4b",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Tùy chỉnh thanh cuộn tinh tế cho giao diện đọc hiểu chia đôi màn hình */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 9999px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+      .blank-pill {
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      @keyframes pulseSubtle {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+      .animate-pulse-subtle {
+        animation: pulseSubtle 2s infinite;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-indigo-100 selection:text-indigo-900"
+  >
+    <!-- Top Navigation Bar -->
+    <header
+      class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 shadow-xs"
+    >
+      <div
+        class="max-w-7xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2"
+      >
+        <!-- Logo & Title -->
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div
+            class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-blue-700 text-white flex items-center justify-center font-extrabold text-base sm:text-lg shadow-sm shrink-0"
+          >
+            P6
+          </div>
+          <div class="min-w-0">
+            <h1
+              class="font-bold text-slate-900 text-sm sm:text-lg leading-tight truncate"
+            >
+              TOEIC Part 6 Master
+            </h1>
+            <p class="text-[11px] sm:text-xs text-slate-500 truncate">
+              Text Completion • 8 Units (128 câu hỏi)
+            </p>
+          </div>
+        </div>
+
+        <!-- Mode Switcher & Timer -->
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <!-- Timer Display (Visible in Exam Mode) -->
+          <div
+            id="examTimerBox"
+            class="hidden items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 font-mono text-xs sm:text-sm font-bold"
+          >
+            <svg
+              class="w-4 h-4 text-amber-600 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span id="timerText">08:00</span>
+          </div>
+
+          <!-- Mode Toggle Pill -->
+          <div
+            class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200"
+          >
+            <button
+              id="btnModePractice"
+              onclick="switchMode('practice')"
+              class="px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-indigo-700 shadow-xs"
+            >
+              Luyện tập
+            </button>
+            <button
+              id="btnModeExam"
+              onclick="switchMode('exam')"
+              class="px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 hover:text-slate-900"
+            >
+              Thi thử
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unit Selector Strip -->
+      <div class="bg-slate-50/80 border-t border-slate-200/80">
+        <div
+          class="max-w-7xl mx-auto px-3 sm:px-6 py-2 flex items-center justify-between gap-3 overflow-x-auto"
+        >
+          <div
+            id="unitTabsContainer"
+            class="flex items-center gap-1.5 sm:gap-2"
+          >
+            <!-- Unit buttons rendered by JS -->
+          </div>
+          <div
+            class="hidden md:flex items-center gap-3 text-xs text-slate-500 shrink-0"
+          >
+            <span id="overallStatsText" class="font-medium"
+              >Tổng tiến độ: 0/128 câu</span
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-6">
+      <!-- Unit Header & Toolbar -->
+      <div
+        class="bg-white rounded-2xl border border-slate-200 p-3.5 sm:p-5 mb-4 sm:mb-5 shadow-xs"
+      >
+        <div
+          class="flex flex-col lg:flex-row lg:items-center justify-between gap-3.5"
+        >
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-1">
+              <span
+                id="currentUnitBadge"
+                class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700"
+                >UNIT 1</span
+              >
+              <span
+                id="modeDescriptionBadge"
+                class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200"
+              >
+                Chế độ Luyện tập: Xem giải thích từng câu
+              </span>
+            </div>
+            <h2
+              id="currentUnitTitle"
+              class="text-base sm:text-xl font-bold text-slate-900"
+            >
+              TOEIC Part 6 — Đề số 1 (Câu 131 – 146)
+            </h2>
+          </div>
+
+          <!-- Action Controls -->
+          <div class="flex flex-wrap items-center gap-2">
+            <!-- Filter Wrong Answers Toggle -->
+            <button
+              id="btnFilterWrong"
+              onclick="toggleFilterWrong()"
+              class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition"
+            >
+              <svg
+                class="w-4 h-4 text-rose-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                />
+              </svg>
+              <span id="filterWrongLabel">Chỉ ôn câu sai</span>
+            </button>
+
+            <!-- Submit Exam Button (Exam Mode) -->
+            <button
+              id="btnSubmitExam"
+              onclick="submitExamUnit()"
+              class="hidden inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 shadow-xs transition"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>Nộp bài & Chấm điểm</span>
+            </button>
+
+            <!-- Reset Unit Button -->
+            <button
+              onclick="openResetModal()"
+              class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium border border-slate-200 bg-white text-slate-600 hover:text-rose-600 hover:border-rose-200 hover:bg-rose-50/50 transition"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+              <span>Làm lại Unit</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Unit Score & Progress Bar -->
+        <div
+          class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+        >
+          <div class="flex items-center gap-4 text-xs sm:text-sm">
+            <span class="text-slate-600"
+              >Đã làm:
+              <strong id="unitAnsweredCount" class="text-slate-900"
+                >0/16</strong
+              ></span
+            >
+            <span class="text-emerald-600"
+              >Đúng: <strong id="unitCorrectCount">0</strong></span
+            >
+            <span class="text-rose-600"
+              >Sai: <strong id="unitWrongCount">0</strong></span
+            >
+            <span class="text-indigo-600"
+              >Chính xác: <strong id="unitAccuracyText">0%</strong></span
+            >
+          </div>
+          <div
+            class="w-full sm:w-56 h-2.5 bg-slate-100 rounded-full overflow-hidden"
+          >
+            <div
+              id="unitProgressBar"
+              class="h-full bg-indigo-600 rounded-full transition-all duration-300"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exam Summary Banner (Shown after submitting in Exam Mode) -->
+      <div
+        id="examResultBanner"
+        class="hidden mb-5 bg-gradient-to-r from-indigo-900 via-indigo-800 to-blue-900 text-white rounded-2xl p-5 shadow-md"
+      >
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+        >
+          <div>
+            <span
+              class="inline-block px-2.5 py-0.5 rounded-full bg-white/15 text-indigo-100 text-xs font-semibold mb-2"
+              >KẾT QUẢ BÀI THI THỬ</span
+            >
+            <h3
+              id="examResultHeading"
+              class="text-xl sm:text-2xl font-extrabold"
+            >
+              Bạn đạt 0/16 câu đúng (0%)
+            </h3>
+            <p id="examResultSubtext" class="text-indigo-200 text-sm mt-1">
+              Thời gian hoàn thành: 00:00. Xem giải thích chi tiết từng câu ở
+              bên dưới.
+            </p>
+          </div>
+          <div class="flex items-center gap-2.5 shrink-0">
+            <button
+              onclick="resetCurrentUnit()"
+              class="px-4 py-2.5 rounded-xl bg-white text-indigo-900 font-semibold text-sm hover:bg-indigo-50 transition shadow-xs"
+            >
+              Thi lại Unit này
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passage Selector Tabs (4 Passages per Unit) -->
+      <div
+        class="flex items-center justify-between gap-2 mb-4 overflow-x-auto pb-1"
+      >
+        <div id="passageTabsContainer" class="flex items-center gap-2">
+          <!-- Rendered by JS -->
+        </div>
+        <div
+          class="hidden sm:flex items-center gap-1.5 text-xs text-slate-500 shrink-0"
+        >
+          <span
+            >Mẹo: Nhấn vào ô trống
+            <span
+              class="px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700 font-semibold"
+              >[131]</span
+            >
+            trên bài đọc để nhảy tới câu hỏi</span
+          >
+        </div>
+      </div>
+
+      <!-- Mobile View Toggle (Passage vs Questions) -->
+      <div
+        class="lg:hidden grid grid-cols-2 gap-1.5 p-1 bg-slate-200/80 rounded-xl mb-4"
+      >
+        <button
+          id="mobileTabPassage"
+          onclick="setMobilePane('passage')"
+          class="py-2 rounded-lg text-xs font-bold bg-white text-indigo-700 shadow-xs"
+        >
+          📄 Đoạn văn đọc hiểu
+        </button>
+        <button
+          id="mobileTabQuestions"
+          onclick="setMobilePane('questions')"
+          class="py-2 rounded-lg text-xs font-bold text-slate-600"
+        >
+          ✍️ Câu hỏi (4 câu)
+        </button>
+      </div>
+
+      <!-- Split-Screen Content Area -->
+      <div
+        id="workspaceGrid"
+        class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start"
+      >
+        <!-- Left Column: Reading Passage Card (7 cols on lg) -->
+        <section
+          id="passagePane"
+          class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden lg:sticky lg:top-32"
+        >
+          <!-- Passage Card Header -->
+          <div
+            class="px-4 sm:px-6 py-3.5 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2"
+          >
+            <div>
+              <span
+                id="passageMetaBadge"
+                class="text-xs font-bold uppercase tracking-wider text-indigo-600"
+                >Questions 131–134 • Notice</span
+              >
+              <h3
+                id="passageHeading"
+                class="text-sm sm:text-base font-bold text-slate-900 mt-0.5"
+              >
+                Urgent! Journeyman Plumber Needed
+              </h3>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <!-- Toggle Translation Button -->
+              <button
+                id="btnToggleTranslation"
+                onclick="toggleTranslation()"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition"
+              >
+                <svg
+                  class="w-3.5 h-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                  />
+                </svg>
+                <span id="translationBtnText">Dịch đoạn văn</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Passage Body -->
+          <div class="p-4 sm:p-6 max-h-[calc(100vh-14rem)] overflow-y-auto">
+            <div
+              id="passageContent"
+              class="text-[15px] sm:text-base leading-relaxed sm:leading-8 text-slate-800 space-y-4 font-normal"
+            >
+              <!-- Passage text with interactive blanks rendered here -->
+            </div>
+
+            <!-- Vietnamese Translation Panel -->
+            <div
+              id="translationBox"
+              class="hidden mt-6 pt-5 border-t border-dashed border-slate-300"
+            >
+              <div
+                class="bg-amber-50/70 border border-amber-200/80 rounded-xl p-4"
+              >
+                <div
+                  class="flex items-center gap-2 text-amber-800 font-bold text-xs uppercase tracking-wider mb-2"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>Bản dịch tham khảo (Tiếng Việt)</span>
+                </div>
+                <div
+                  id="translationContent"
+                  class="text-sm leading-relaxed text-slate-700 space-y-2.5"
+                >
+                  <!-- Translation text rendered here -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Passage Footer Navigation -->
+          <div
+            class="px-4 sm:px-6 py-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between"
+          >
+            <button
+              id="btnPrevPassage"
+              onclick="navigatePassage(-1)"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-700 bg-white border border-slate-200 hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none transition"
+            >
+              ← Đoạn trước
+            </button>
+            <span
+              id="passagePageIndicator"
+              class="text-xs font-semibold text-slate-500"
+              >Đoạn 1 / 4</span
+            >
+            <button
+              id="btnNextPassage"
+              onclick="navigatePassage(1)"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200 hover:bg-indigo-100 disabled:opacity-40 disabled:pointer-events-none transition"
+            >
+              Đoạn tiếp theo →
+            </button>
+          </div>
+        </section>
+
+        <!-- Right Column: Questions List (5 cols on lg) -->
+        <section id="questionsPane" class="lg:col-span-5 space-y-4">
+          <!-- Passage Quick Action Header -->
+          <div
+            class="bg-white rounded-xl border border-slate-200 px-4 py-2.5 flex items-center justify-between shadow-xs"
+          >
+            <span class="text-xs sm:text-sm font-bold text-slate-700"
+              >Danh sách câu hỏi đoạn này</span
+            >
+            <button
+              id="btnCheckPassage"
+              onclick="checkCurrentPassage()"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 text-white hover:bg-emerald-700 transition shadow-xs"
+            >
+              <svg
+                class="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              <span>Kiểm tra cả 4 câu</span>
+            </button>
+          </div>
+
+          <!-- Questions Container -->
+          <div id="questionsContainer" class="space-y-4">
+            <!-- Question cards rendered here -->
+          </div>
+
+          <!-- Bottom Navigation for Mobile & Convenience -->
+          <div class="flex items-center justify-between pt-2">
+            <button
+              onclick="navigatePassage(-1)"
+              id="btnPrevPassageBottom"
+              class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 disabled:opacity-40 transition"
+            >
+              ← Đoạn trước
+            </button>
+            <button
+              onclick="navigatePassage(1)"
+              id="btnNextPassageBottom"
+              class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-40 transition shadow-xs"
+            >
+              Đoạn tiếp theo →
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Custom Reset Confirmation Modal (No native confirm/alert) -->
+    <div
+      id="resetModal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4"
+    >
+      <div
+        class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-200"
+      >
+        <div
+          class="w-11 h-11 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mb-4"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+            />
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900">Làm lại Unit này?</h3>
+        <p class="text-sm text-slate-600 mt-1.5">
+          Toàn bộ đáp án đã chọn và trạng thái kiểm tra của
+          <strong id="resetModalUnitName">Unit 1</strong> sẽ được xóa để bạn
+          luyện lại từ đầu.
+        </p>
+        <div class="mt-6 flex items-center justify-end gap-2.5">
+          <button
+            onclick="closeResetModal()"
+            class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition"
+          >
+            Hủy bỏ
+          </button>
+          <button
+            onclick="confirmResetUnit()"
+            class="px-4 py-2 rounded-xl text-sm font-semibold text-white bg-rose-600 hover:bg-rose-700 transition"
+          >
+            Xác nhận làm lại
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div
+      id="toastBox"
+      class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none"
+    >
+      <div
+        class="bg-slate-900 text-white text-xs sm:text-sm font-medium px-4 py-3 rounded-xl shadow-lg flex items-center gap-2"
+      >
+        <span id="toastMessage">Thông báo</span>
+      </div>
+    </div>
+
+    <script>
+      /**
+       * DỮ LIỆU ĐẦY ĐỦ 8 UNIT TOEIC PART 6 (128 CÂU HỎI TỪ 131 ĐẾN 146)
+       * Kèm bản dịch tiếng Việt từng đoạn văn và giải thích chi tiết từng câu hỏi.
+       */
+      const TOEIC_DATA = [
+        // ==================== UNIT 1 ====================
+        {
+          unit: 1,
+          title: "TOEIC Part 6 — Unit 1",
+          source: "Part 6 01.pdf",
+          passages: [
+            {
+              id: "u1p1",
+              range: "131–134",
+              type: "Notice",
+              heading: "Urgent! Journeyman Plumber Needed",
+              paragraphs: [
+                "Ace Plumbing is looking for an experienced plumber to join our {{131}} business here in Columbia. {{132}} We have always been a family-owned-and-run business, but with the {{133}} increase in Columbia's population over the last three years, we have an opportunity to welcome in a new journeyman plumber. The candidate should have experience with all {{134}} of plumbing, both commercial and residential. Please send your resume to aceplumbing@gmail.com and we will schedule an interview.",
+              ],
+              translation: [
+                "Tuyển gấp! Cần thợ sửa ống nước lành nghề",
+                "Công ty Ace Plumbing đang tìm kiếm một thợ sửa ống nước có kinh nghiệm để gia nhập doanh nghiệp đang mở rộng của chúng tôi tại Columbia. Ace Plumbing đã phục vụ khu vực Columbia từ năm 1954. Chúng tôi luôn là một doanh nghiệp do gia đình sở hữu và điều hành, nhưng với sự gia tăng đáng kể dân số ở Columbia trong ba năm qua, chúng tôi có cơ hội chào đón thêm một thợ sửa ống nước lành nghề mới. Ứng viên cần có kinh nghiệm với tất cả các loại hình hệ thống ống nước, cả thương mại và dân dụng. Vui lòng gửi hồ sơ xin việc của bạn tới địa chỉ aceplumbing@gmail.com và chúng tôi sẽ sắp xếp một buổi phỏng vấn.",
+              ],
+              questions: [
+                {
+                  number: 131,
+                  options: {
+                    A: "expanding",
+                    B: "expecting",
+                    C: "contracting",
+                    D: "controlling",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Cần một tính từ bổ nghĩa cho danh từ 'business'. Dựa vào ngữ cảnh dân số tăng và công ty cần tuyển thêm thợ, 'expanding' (đang mở rộng/phát triển) là hợp lý nhất.",
+                },
+                {
+                  number: 132,
+                  options: {
+                    A: "Ace Plumbing has been servicing the Columbia area since 1954.",
+                    B: "We have little connection to the community.",
+                    C: "We have been struggling to pay our bills.",
+                    D: "Ace Plumbing is in financial trouble.",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Câu giới thiệu bối cảnh lịch sử lâu đời của công ty ('Ace Plumbing đã phục vụ khu vực Columbia từ năm 1954') nối tiếp mạch văn tự nhiên với câu sau ('Chúng tôi luôn là doanh nghiệp gia đình...').",
+                },
+                {
+                  number: 133,
+                  options: {
+                    A: "monstrous",
+                    B: "dramatic",
+                    C: "impossible",
+                    D: "insane",
+                  },
+                  answer: "B",
+                  explanation:
+                    "'Dramatic increase' là cụm từ cố định (collocation) mang nghĩa 'sự gia tăng đáng kể/mạnh mẽ'.",
+                },
+                {
+                  number: 134,
+                  options: {
+                    A: "pieces",
+                    B: "flows",
+                    C: "installations",
+                    D: "types",
+                  },
+                  answer: "D",
+                  explanation:
+                    "'All types of plumbing, both commercial and residential' (tất cả các loại hình hệ thống ống nước, bao gồm cả thương mại và dân dụng).",
+                },
+              ],
+            },
+            {
+              id: "u1p2",
+              range: "135–138",
+              type: "Notice",
+              heading:
+                "Learn social media marketing tactics only at Genius Marketing's Power Conference",
+              paragraphs: [
+                "Are you ready to take your social media marketing to the next level? Then {{135}} Genius Marketing's Power Conference and learn cutting-edge social media marketing tactics. {{136}} This could be the most educational two days of your year. Genius Marketing will give you real-world tactics to boost your paid and organic social media marketing efforts. {{137}} you buy social media advertising or focus on organic social media engagement, Genius Marketing's Power Conference is the conference you need to attend this year. You'll be inspired by experts, meet others with your challenges, and get actionable tactics to drive traffic, increase sales and customer {{138}} satisfaction.",
+                "To apply, just click the link below.",
+              ],
+              translation: [
+                "Học chiến thuật tiếp thị truyền thông xã hội chỉ có tại Hội nghị Power của Genius Marketing",
+                "Bạn đã sẵn sàng đưa hoạt động tiếp thị truyền thông xã hội của mình lên một tầm cao mới chưa? Vậy thì hãy tham dự Hội nghị Power của Genius Marketing và học hỏi các chiến thuật tiếp thị mạng xã hội tiên tiến nhất. Hội nghị sẽ diễn ra tại Houston vào ngày 3 và 4 tháng 5. Đây có thể là hai ngày bổ ích nhất trong năm của bạn. Genius Marketing sẽ mang đến cho bạn những chiến thuật thực tế để thúc đẩy cả nỗ lực tiếp thị trả phí lẫn tự nhiên. Cho dù bạn mua quảng cáo mạng xã hội hay tập trung vào tương tác tự nhiên, Hội nghị Power của Genius Marketing chính là sự kiện bạn cần tham dự trong năm nay. Bạn sẽ được truyền cảm hứng từ các chuyên gia, gặp gỡ những người cùng chung thách thức và nhận được các chiến thuật thiết thực để thu hút lưu lượng truy cập, tăng doanh số và gắn kết khách hàng. Để đăng ký, chỉ cần nhấp vào liên kết bên dưới.",
+              ],
+              questions: [
+                {
+                  number: 135,
+                  options: {
+                    A: "attend",
+                    B: "attends",
+                    C: "attended",
+                    D: "attending",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Câu mệnh lệnh/khuyên nhủ bắt đầu bằng động từ nguyên mẫu không 'to' ('Then attend...').",
+                },
+                {
+                  number: 136,
+                  options: {
+                    A: "Guide people in the industry to greatness by joining today.",
+                    B: "The conference will be in Houston on May 3 and 4.",
+                    C: "Registration for this two-week course will be on November 20.",
+                    D: "Classes will be held throughout the month of March.",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Câu liền sau nhắc đến 'This could be the most educational two days of your year' (hai ngày bổ ích nhất), khớp hoàn toàn với thông tin hội nghị diễn ra trong 2 ngày 'May 3 and 4' ở đáp án B.",
+                },
+                {
+                  number: 137,
+                  options: {
+                    A: "Either",
+                    B: "Whether",
+                    C: "Rather",
+                    D: "Not only",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Cấu trúc liên từ tương quan 'Whether A or B' (Cho dù là A hay B).",
+                },
+                {
+                  number: 138,
+                  options: {
+                    A: "divide",
+                    B: "engage",
+                    C: "devalue",
+                    D: "endure",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Ngữ cảnh tích cực về marketing: thúc đẩy lưu lượng truy cập, tăng doanh số và thu hút/gắn kết khách hàng ('engage'). (Ghi chú: từ 'satisfaction' ở cuối câu là lỗi đánh máy từ tài liệu gốc, 'engage' là đáp án đúng theo ngữ cảnh).",
+                },
+              ],
+            },
+            {
+              id: "u1p3",
+              range: "139–142",
+              type: "Memo",
+              heading: "Pre-shipping Procedures",
+              paragraphs: [
+                "To: Nancy Craft | From: Omar Patel | Date: January 16 | Subject: Pre-shipping Procedures",
+                "At the manufacturing team meeting, {{139}} was raised that inventory wasn't always being properly stored before being shipped. {{140}} to that concern, the team decided to review the written procedure to determine if additional steps should be added. {{141}} Please try to arrange the schedules of the team in the packaging and storage wing so a majority of the managers can attend this meeting.",
+                "I am confident that the packaging and storage team management {{142}} that the written procedure leaves no room for any inventory to accidentally be improperly stored. Any suggestions made by the packaging and storage team will only enhance a superior checklist.",
+              ],
+              translation: [
+                "Gửi: Nancy Craft | Từ: Omar Patel | Ngày: 16 tháng 1 | Chủ đề: Quy trình trước khi giao hàng",
+                "Tại cuộc họp của đội ngũ sản xuất, một mối lo ngại đã được nêu ra rằng hàng tồn kho không phải lúc nào cũng được lưu trữ đúng cách trước khi vận chuyển. Do mối lo ngại đó, cả nhóm đã quyết định xem xét lại quy trình bằng văn bản để xác định xem có cần bổ sung thêm các bước nào không. Một cuộc họp của nhóm đóng gói và lưu kho đã được ấn định vào thứ Ba, ngày 23 tháng 1. Vui lòng cố gắng sắp xếp lịch trình của nhóm tại khu vực đóng gói và lưu kho để phần lớn các quản lý có thể tham dự cuộc họp này.",
+                "Tôi tin tưởng rằng ban quản lý đội đóng gói và lưu kho sẽ nhận thấy quy trình bằng văn bản hiện tại không hề có kẽ hở nào khiến hàng tồn kho vô tình bị lưu trữ sai cách. Bất kỳ đề xuất nào từ đội đóng gói và lưu kho sẽ chỉ giúp hoàn thiện thêm một danh mục kiểm tra vốn đã rất tối ưu.",
+              ],
+              questions: [
+                {
+                  number: 139,
+                  options: {
+                    A: "understanding",
+                    B: "concern",
+                    C: "challenges",
+                    D: "patience",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Cụm từ 'concern was raised' (mối lo ngại đã được nêu ra), đồng thời câu sau cũng nhắc lại 'that concern'. Động từ chia số ít 'was' nên loại C (số nhiều).",
+                },
+                {
+                  number: 140,
+                  options: {
+                    A: "So",
+                    B: "Due",
+                    C: "Regardless",
+                    D: "Provided",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Kết hợp với giới từ 'to' phía sau tạo thành cụm 'Due to that concern' (Do mối lo ngại đó).",
+                },
+                {
+                  number: 141,
+                  options: {
+                    A: "A meeting of the packaging and storage team has been set for Tuesday, January 23.",
+                    B: "All employees should be asked to review the procedure before starting work on Tuesday.",
+                    C: "The meeting will investigate the possibility of redundancies in the packaging process.",
+                    D: "Additional training sessions plan to be added sometime at the end of December.",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Câu liền sau nhắc tới 'attend this meeting' (tham dự cuộc họp này), nên câu 141 phải giới thiệu lịch họp cụ thể đã được ấn định vào thứ Ba, ngày 23/1.",
+                },
+                {
+                  number: 142,
+                  options: {
+                    A: "is discovering",
+                    B: "have been discovered",
+                    C: "will discover",
+                    D: "has discovered",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Cuộc họp chưa diễn ra (vào ngày 23/1 trong tương lai), nên người viết tin rằng ban quản lý 'sẽ nhận thấy' (will discover) quy trình hiện tại rất chặt chẽ.",
+                },
+              ],
+            },
+            {
+              id: "u1p4",
+              range: "143–146",
+              type: "Letter",
+              heading: "Hannover Design — Summer Intern Program Interview",
+              paragraphs: [
+                "June 3, 2016 | Yui Minakuchi | 143 Dean St. Apt. 3 | Brooklyn, NY 10787",
+                "Dear Ms. Minakuchi,",
+                "It is my pleasure to inform you that Hannover Design would like {{143}} you to interview for our summer intern program. We are only interviewing fifteen candidates this year for the six positions we have available. You will be pleased to know that you were selected out of a group of over 200 people {{144}} applied for an interview. We will be holding interviews on March 6 and 7 from 1:00 to 6:00 P.M. We would like for you to come on the 6th at 1:30 P.M. if you are able to. If not, we can {{145}} for you to come on the 7th. {{146}}",
+                "If you have any questions, feel free to call our office (212-347-9919) and the human resources department will be able to assist you. We look forward to hearing from you soon.",
+                "Sincerely, Max Wright — Office Manager, Hannover Design",
+              ],
+              translation: [
+                "Kính gửi cô Minakuchi,",
+                "Tôi rất hân hạnh thông báo rằng Hannover Design muốn mời cô tham gia phỏng vấn cho chương trình thực tập sinh mùa hè của chúng tôi. Năm nay chúng tôi chỉ phỏng vấn 15 ứng viên cho 6 vị trí hiện có. Cô sẽ rất vui khi biết rằng mình đã được chọn trong số hơn 200 người nộp đơn xin phỏng vấn. Chúng tôi sẽ tổ chức phỏng vấn vào ngày 6 và 7 tháng 3 từ 1:00 đến 6:00 chiều. Chúng tôi muốn mời cô đến vào ngày 6 lúc 1:30 chiều nếu cô thu xếp được. Nếu không, chúng tôi có thể sắp xếp để cô đến vào ngày 7. Vui lòng cho chúng tôi biết sớm nhất có thể liệu cô có thể tham dự được hay không.",
+                "Nếu cô có bất kỳ câu hỏi nào, đừng ngần ngại gọi cho văn phòng chúng tôi (212-347-9919) và bộ phận nhân sự sẽ hỗ trợ cô. Chúng tôi mong sớm nhận được phản hồi từ cô.",
+                "Trân trọng, Max Wright — Quản lý Văn phòng, Hannover Design",
+              ],
+              questions: [
+                {
+                  number: 143,
+                  options: {
+                    A: "to invite",
+                    B: "will invite",
+                    C: "has invited",
+                    D: "will be inviting",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Cấu trúc 'would like + to V' (muốn làm gì) -> 'would like to invite'.",
+                },
+                {
+                  number: 144,
+                  options: { A: "whom", B: "that", C: "whose", D: "which" },
+                  answer: "B",
+                  explanation:
+                    "Đại từ quan hệ thay thế cho danh từ chỉ người 'people' và làm chủ ngữ cho động từ 'applied', dùng 'that' (hoặc who).",
+                },
+                {
+                  number: 145,
+                  options: {
+                    A: "order",
+                    B: "arrange",
+                    C: "oblige",
+                    D: "attend",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Cấu trúc 'arrange for someone to do something' (sắp xếp cho ai làm gì).",
+                },
+                {
+                  number: 146,
+                  options: {
+                    A: "You will need to bring a completed application and some type of identification card.",
+                    B: "Please let us know as soon as possible if you will be able to attend.",
+                    C: "We wish we were able to accept your offer, but we must decline it.",
+                    D: "Please RSVP and indicate if you plan on bringing a guest.",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Ngay trước đó thư đưa ra 2 lựa chọn ngày phỏng vấn (mùng 6 hoặc mùng 7), nên câu tiếp theo yêu cầu ứng viên phản hồi sớm xem có thể tham dự được không.",
+                },
+              ],
+            },
+          ],
+        },
+
+        // ==================== UNIT 2 ====================
+        {
+          unit: 2,
+          title: "TOEIC Part 6 — Unit 2",
+          source: "Part 6 02.pdf",
+          passages: [
+            {
+              id: "u2p1",
+              range: "131–134",
+              type: "Advertisement",
+              heading: "Wild Water Parks",
+              paragraphs: [
+                "Come visit Wild Water Parks, your summer destination for family and friends of all ages. We have kiddie pools, we have outdoor pools, we have indoor pools, we have waves, and we have {{131}} water slides, including our Death Fall, the largest slide in the state. We have everything for everyone in {{132}} group. Don't forget our delicious snack stands and restaurants. We also have gift shops and playgrounds. {{133}} You can get tickets by calling 123-5555 or a season's pass for a {{134}} of the price. Call now and experience the fun!",
+              ],
+              translation: [
+                "Hãy đến thăm Công viên Nước Wild Water, điểm đến mùa hè dành cho gia đình và bạn bè ở mọi lứa tuổi. Chúng tôi có hồ bơi trẻ em, hồ bơi ngoài trời, hồ bơi trong nhà, bể tạo sóng và những đường trượt nước đầy phấn khích, bao gồm cả Death Fall — đường trượt lớn nhất bang. Chúng tôi có mọi thứ dành cho tất cả mọi người trong nhóm của bạn. Đừng quên các quầy đồ ăn nhẹ và nhà hàng ngon tuyệt của chúng tôi. Chúng tôi cũng có cửa hàng quà tặng và sân chơi. Chúng tôi thậm chí còn có một công viên dành cho chú cún cưng của bạn nữa. Bạn có thể mua vé bằng cách gọi 123-5555 hoặc mua vé theo mùa với mức giá chỉ bằng một phần nhỏ. Hãy gọi ngay và tận hưởng niềm vui!",
+              ],
+              questions: [
+                {
+                  number: 131,
+                  options: {
+                    A: "excite",
+                    B: "excited",
+                    C: "exciting",
+                    D: "excitement",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Tính từ đuôi -ing ('exciting') mô tả tính chất thú vị/hấp dẫn của danh từ 'water slides' (đường trượt nước).",
+                },
+                {
+                  number: 132,
+                  options: { A: "their", B: "his", C: "our", D: "your" },
+                  answer: "D",
+                  explanation:
+                    "Quảng cáo hướng trực tiếp đến người đọc ('your summer destination' -> 'everyone in your group').",
+                },
+                {
+                  number: 133,
+                  options: {
+                    A: "The pools are the best place to stay.",
+                    B: "We even have a dog park for that furry companion of yours.",
+                    C: "The chefs are top notch and the food is second to none.",
+                    D: "Hurry before the season is over and the promotion is finished.",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Đoạn văn đang liệt kê các tiện ích đa dạng cho mọi đối tượng trong nhóm (hồ bơi, quầy ăn nhẹ, cửa hàng quà tặng, sân chơi) nên thêm tiện ích công viên cho thú cưng là mạch lạc nhất.",
+                },
+                {
+                  number: 134,
+                  options: {
+                    A: "fraction",
+                    B: "section",
+                    C: "division",
+                    D: "total",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Thành ngữ 'a fraction of the price' nghĩa là 'một phần nhỏ của mức giá' (giá cực kỳ ưu đãi/rẻ).",
+                },
+              ],
+            },
+            {
+              id: "u2p2",
+              range: "135–138",
+              type: "Advertisement",
+              heading: "Part-time Cook Needed — Paradise Café",
+              paragraphs: [
+                "Paradise Café is looking {{135}} a part-time line cook. Applicants must be able to work in a fast-paced environment and be familiar with all standard breakfast fare. {{136}} This weekend schedule could change in the future. Ideally we are looking for an applicant that has {{137}} one year of experience working as a short-order cook. Paradise Café is located right next to the post office in downtown Millstown. Please apply in person with a resume and be prepared to cook an egg dish to order. We {{138}} forward to welcoming you to our team!",
+              ],
+              translation: [
+                "Cần tuyển Đầu bếp bán thời gian — Paradise Café",
+                "Paradise Café đang tìm tuyển một đầu bếp đứng bếp bán thời gian. Ứng viên phải có khả năng làm việc trong môi trường nhịp độ nhanh và thông thạo tất cả các món ăn sáng tiêu chuẩn. Hiện tại, chúng tôi chỉ có thể sắp xếp các ca làm việc trong tuần nhưng ứng viên phải sẵn sàng làm việc cuối tuần nếu được yêu cầu. Lịch làm việc cuối tuần này có thể thay đổi trong tương lai. Lý tưởng nhất là chúng tôi đang tìm kiếm ứng viên có ít nhất một năm kinh nghiệm làm đầu bếp chế biến món nhanh. Paradise Café tọa lạc ngay cạnh bưu điện ở trung tâm thị trấn Millstown. Vui lòng nộp hồ sơ trực tiếp và chuẩn bị sẵn sàng để nấu một món trứng theo yêu cầu. Chúng tôi rất mong được chào đón bạn gia nhập đội ngũ!",
+              ],
+              questions: [
+                {
+                  number: 135,
+                  options: {
+                    A: "hiring",
+                    B: "hire",
+                    C: "to hire",
+                    D: "to hiring",
+                  },
+                  answer: "C",
+                  explanation:
+                    "'Looking to hire' = đang tìm kiếm để thuê/tuyển dụng.",
+                },
+                {
+                  number: 136,
+                  options: {
+                    A: "Applicants should know how to make scrambled eggs.",
+                    B: "People applying should know how to wash dishes.",
+                    C: "Anyone applying should be able to work nights.",
+                    D: "Currently, we can only offer weekday shifts but the applicant must be willing to work weekends if required.",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Câu liền sau nhắc đến 'This weekend schedule could change in the future' (Lịch làm cuối tuần này có thể thay đổi), khớp trực tiếp với việc đề cập ca làm cuối tuần ở đáp án D.",
+                },
+                {
+                  number: 137,
+                  options: {
+                    A: "at most",
+                    B: "below",
+                    C: "at least",
+                    D: "the least",
+                  },
+                  answer: "C",
+                  explanation:
+                    "'At least one year of experience' (ít nhất một năm kinh nghiệm).",
+                },
+                {
+                  number: 138,
+                  options: { A: "look", B: "looking", C: "looked", D: "looks" },
+                  answer: "A",
+                  explanation:
+                    "Chủ ngữ 'We' đi với động từ hiện tại đơn nguyên mẫu 'look' ('We look forward to...').",
+                },
+              ],
+            },
+            {
+              id: "u2p3",
+              range: "139–142",
+              type: "Notice",
+              heading: "Outbound Sales Lead Specialist / Telemarketer",
+              paragraphs: [
+                "Location: Atlanta, GA | Job Code: 3766 | # of openings: 4",
+                "The Sales Lead Specialist will place outbound calls to {{139}} customers seeking to purchase various services such as insurance, tax help, financial help, telecommunications, or transportation. They will also call on leads from our existing customer base. Cold calls are required.",
+                "You will work directly with customers via the telephone and e-mail to describe products and services in order to persuade potential and current customers to purchase new products and services. The job will also require you to educate customers on product and service offerings. {{140}} There is also a minimum requirement for monthly sales that is set at $7,500 in net revenue. {{141}} the job calls for all employees to continually be taking product education courses that will help you better serve our customers.",
+                "To be eligible for the position, you must have one or more years in telesales, strong customer service skills, and superior closing skills. If you feel you {{142}} these requirements and are looking for a lucrative exciting experience, please click below.",
+              ],
+              translation: [
+                "Chuyên viên Phát triển Khách hàng Tiềm năng / Tiếp thị qua Điện thoại",
+                "Chuyên viên Phát triển Khách hàng sẽ thực hiện các cuộc gọi đi tới các khách hàng tiềm năng đang tìm mua nhiều dịch vụ khác nhau như bảo hiểm, hỗ trợ thuế, tài chính, viễn thông hoặc vận tải. Họ cũng sẽ gọi cho các khách hàng từ tệp khách hàng hiện tại của chúng tôi. Bắt buộc phải thực hiện cuộc gọi chào hàng ngẫu nhiên (cold calls).",
+                "Bạn sẽ làm việc trực tiếp với khách hàng qua điện thoại và email để mô tả sản phẩm, dịch vụ nhằm thuyết phục khách hàng tiềm năng và hiện tại mua sản phẩm mới. Công việc cũng yêu cầu bạn tư vấn cho khách hàng về các gói sản phẩm. Điều quan trọng là bạn phải thực hiện tối thiểu 150 cuộc gọi đi mỗi ngày. Ngoài ra còn có yêu cầu doanh số tối thiểu hàng tháng là 7.500 đô la doanh thu ròng. Thêm vào đó, công việc yêu cầu tất cả nhân viên liên tục tham gia các khóa đào tạo sản phẩm để phục vụ khách hàng tốt hơn.",
+                "Để đủ điều kiện ứng tuyển, bạn phải có từ một năm kinh nghiệm bán hàng qua điện thoại trở lên, kỹ năng chăm sóc khách hàng tốt và kỹ năng chốt đơn xuất sắc. Nếu bạn cảm thấy mình đáp ứng các yêu cầu này và đang tìm kiếm một trải nghiệm thú vị với thu nhập hấp dẫn, vui lòng nhấp vào bên dưới.",
+              ],
+              questions: [
+                {
+                  number: 139,
+                  options: {
+                    A: "substantial",
+                    B: "potential",
+                    C: "optimal",
+                    D: "logical",
+                  },
+                  answer: "B",
+                  explanation:
+                    "'Potential customers' (khách hàng tiềm năng), đối chiếu với câu sau 'existing customer base' (tệp khách hàng hiện tại).",
+                },
+                {
+                  number: 140,
+                  options: {
+                    A: "The more you purchase, the more opportunity you'll have for advancement.",
+                    B: "This managerial position will require an organized and highly motivated individual.",
+                    C: "If you could help find your replacement, it would be much appreciated.",
+                    D: "It will be crucial for you to place a minimum of 150 outbound calls each day.",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Đoạn văn đang mô tả chỉ tiêu công việc gọi điện bán hàng và câu sau nêu tiếp 'There is also a minimum requirement for monthly sales...', nên câu D nêu chỉ tiêu tối thiểu 150 cuộc gọi mỗi ngày rất logic.",
+                },
+                {
+                  number: 141,
+                  options: {
+                    A: "Actually",
+                    B: "However",
+                    C: "Additionally",
+                    D: "Therefore",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Bổ sung thêm một yêu cầu công việc ('Ngoài ra / Thêm vào đó, công việc còn yêu cầu nhân viên tham gia khóa học kiến thức sản phẩm').",
+                },
+                {
+                  number: 142,
+                  options: { A: "meet", B: "to meet", C: "meeting", D: "met" },
+                  answer: "A",
+                  explanation:
+                    "Mệnh đề điều kiện ở hiện tại với chủ ngữ 'you' -> động từ chia hiện tại đơn 'meet' ('meet these requirements' = đáp ứng các yêu cầu này).",
+                },
+              ],
+            },
+            {
+              id: "u2p4",
+              range: "143–146",
+              type: "Website Posting",
+              heading:
+                "Employee Message Board — Holiday Office Party's Success and Appreciation",
+              paragraphs: [
+                "Posted by Julie Norton",
+                "I want to thank everyone who {{143}} make this party a success. {{144}} We had some ups and downs as we started preparing for this, but the final result has been extraordinary. In fact, the {{145}} consensus seems to be that this year's party was the best yet. We had the highest turnout ever and many seem to agree that this year's activities contributed to the party's success. It was a joy to see everyone get along so well and participate in all the events. We even {{146}} our children's charity fundraising goals by over $1000. Once again, I would like to thank everyone.",
+              ],
+              translation: [
+                "Bảng tin Nhân viên — Thành công và Lời cảm ơn cho Bữa tiệc Cuối năm của Văn phòng",
+                "Đăng bởi Julie Norton",
+                "Tôi muốn cảm ơn tất cả mọi người đã giúp làm nên thành công cho bữa tiệc này. Đặc biệt cảm ơn Keith, Grant, Vanessa và Melissa, những người đã dành nhiều giờ ngoài giờ làm việc để hỗ trợ lên kế hoạch cho mọi thứ. Chúng tôi đã gặp một vài thăng trầm khi mới bắt đầu chuẩn bị, nhưng kết quả cuối cùng thật phi thường. Thực tế, ý kiến đồng thuận chung dường như là bữa tiệc năm nay tuyệt vời nhất từ trước đến nay. Chúng ta có lượng người tham dự đông nhất lịch sử và nhiều người đồng ý rằng các hoạt động năm nay đã góp phần vào thành công của bữa tiệc. Thật vui khi thấy mọi người hòa đồng và tham gia tất cả các sự kiện. Chúng ta thậm chí còn vượt mục tiêu gây quỹ từ thiện cho trẻ em hơn 1.000 đô la. Một lần nữa, tôi xin cảm ơn tất cả mọi người.",
+              ],
+              questions: [
+                {
+                  number: 143,
+                  options: {
+                    A: "helps",
+                    B: "helped",
+                    C: "helping",
+                    D: "had help",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Sự việc bữa tiệc đã diễn ra trong quá khứ ('was the best yet') -> dùng thì quá khứ đơn 'helped'.",
+                },
+                {
+                  number: 144,
+                  options: {
+                    A: "I really enjoyed all the food and chatting with everyone.",
+                    B: "I worked really hard to plan this event.",
+                    C: "Special thanks to Keith, Grant, Vanessa, and Melissa, who spent many hours outside of work to help plan everything.",
+                    D: "I'm glad to see that everyone made it to work today.",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Câu trước cảm ơn tất cả mọi người đã giúp bữa tiệc thành công, câu C tiếp nối bằng lời cảm ơn đặc biệt tới nhóm phụ trách lên kế hoạch.",
+                },
+                {
+                  number: 145,
+                  options: {
+                    A: "regular",
+                    B: "familiar",
+                    C: "different",
+                    D: "general",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Cụm từ cố định 'the general consensus' (sự đồng thuận chung / ý kiến chung của số đông).",
+                },
+                {
+                  number: 146,
+                  options: {
+                    A: "overstepped",
+                    B: "surrendered",
+                    C: "exceeded",
+                    D: "overwhelmed",
+                  },
+                  answer: "C",
+                  explanation:
+                    "'Exceeded our... fundraising goals by over $1000' (vượt mục tiêu gây quỹ hơn 1.000 đô la).",
+                },
+              ],
+            },
+          ],
+        },
+
+        // ==================== UNIT 3 ====================
+        {
+          unit: 3,
+          title: "TOEIC Part 6 — Unit 3",
+          source: "Part 6 03.pdf",
+          passages: [
+            {
+              id: "u3p1",
+              range: "131–134",
+              type: "Notice",
+              heading: "Lobby Renovation — Helio Tech",
+              paragraphs: [
+                "From: Vice President Donna Johnson | To: Helio Tech Employees | Date: July 5th | Subject: Lobby Renovation",
+                "Receiving the federal grant money last month {{131}} us to invest in upgrading a few areas of our building. {{132}} We will be remodeling the lobby starting July 12th. It should take approximately two weeks. {{133}} that time, if you have a meeting with anyone from outside of the company, please schedule to have it at the Rose Street Café on the corner. We have set up a special account that anyone from the company can use over those two weeks. Please, just sign and date your check and return it to your server. We are {{134}} that this is a bit of an inconvenience, and we thank you for your cooperation.",
+              ],
+              translation: [
+                "Từ: Phó Chủ tịch Donna Johnson | Gửi: Nhân viên Helio Tech | Ngày: 5 tháng 7 | Chủ đề: Cải tạo Sảnh chính",
+                "Việc nhận được khoản tiền tài trợ liên bang vào tháng trước đã cho phép chúng ta đầu tư nâng cấp một vài khu vực trong tòa nhà. Khu vực đầu tiên được hưởng lợi từ việc này là sảnh chính. Chúng tôi sẽ sửa sang lại sảnh bắt đầu từ ngày 12 tháng 7. Quá trình này sẽ mất khoảng hai tuần. Trong suốt khoảng thời gian đó, nếu bạn có cuộc họp với bất kỳ ai bên ngoài công ty, vui lòng sắp xếp tổ chức tại quán cà phê Rose Street ở góc phố. Chúng tôi đã thiết lập một tài khoản đặc biệt mà bất kỳ nhân viên nào cũng có thể sử dụng trong hai tuần đó. Bạn chỉ cần ký tên, ghi ngày tháng vào hóa đơn và gửi lại cho nhân viên phục vụ. Chúng tôi biết rằng điều này có chút bất tiện và xin cảm ơn sự hợp tác của các bạn.",
+              ],
+              questions: [
+                {
+                  number: 131,
+                  options: {
+                    A: "did allow",
+                    B: "has allowed",
+                    C: "allows",
+                    D: "are allowing",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Hành động nhận tiền tài trợ tháng trước dẫn đến kết quả ở hiện tại là có thể đầu tư nâng cấp -> dùng thì hiện tại hoàn thành 'has allowed' (chủ ngữ là danh động từ 'Receiving...' chia số ít).",
+                },
+                {
+                  number: 132,
+                  options: {
+                    A: "Construction will begin when the building permits are received.",
+                    B: "This celebration will last for most of the month of July.",
+                    C: "Considering the cost, the renovation might be postponed.",
+                    D: "The first area that will benefit from this is the lobby.",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Câu trước nói về việc nâng cấp một vài khu vực trong tòa nhà, câu D nêu cụ thể khu vực đầu tiên là sảnh ('the lobby'), khớp với câu sau 'We will be remodeling the lobby...'.",
+                },
+                {
+                  number: 133,
+                  options: { A: "Upon", B: "During", C: "Around", D: "Until" },
+                  answer: "B",
+                  explanation:
+                    "'During that time' (Trong suốt khoảng thời gian hai tuần đó).",
+                },
+                {
+                  number: 134,
+                  options: {
+                    A: "aware",
+                    B: "disciplined",
+                    C: "reluctant",
+                    D: "content",
+                  },
+                  answer: "A",
+                  explanation:
+                    "'We are aware that this is a bit of an inconvenience' (Chúng tôi nhận thức/biết rằng điều này gây chút bất tiện).",
+                },
+              ],
+            },
+            {
+              id: "u3p2",
+              range: "135–138",
+              type: "E-mail",
+              heading: "RE: Landscaping and Maintenance",
+              paragraphs: [
+                "Date: June 21 | To: Mike Harris | From: Rhonda Cross | Subject: RE: Landscaping and Maintenance",
+                "Thank you for your {{135}} about our services. Arbor Care is a green lawn care and landscaping business. We only use environmentally friendly techniques and products when caring for the grounds of any business. We've been working in the Portland area for {{136}} 20 years. Currently, we are serving more than 150 businesses in the downtown area.",
+                "As to your specific request, yes, we can easily remove dead trees and replace them with something that fits the {{137}} landscaping. To give you an exact quote, we would need to stop by and assess the situation in person. To have one of our garden technicians stop by, please call us at (713) 678-9916. {{138}}",
+              ],
+              translation: [
+                "Ngày: 21 tháng 6 | Gửi: Mike Harris | Từ: Rhonda Cross | Chủ đề: V/v Cảnh quan và Bảo trì",
+                "Cảm ơn anh đã gửi yêu cầu tìm hiểu thông tin về dịch vụ của chúng tôi. Arbor Care là doanh nghiệp chăm sóc bãi cỏ và cảnh quan xanh. Chúng tôi chỉ sử dụng các kỹ thuật và sản phẩm thân thiện với môi trường khi chăm sóc khuôn viên của bất kỳ doanh nghiệp nào. Chúng tôi đã hoạt động tại khu vực Portland được hơn 20 năm. Hiện tại, chúng tôi đang phục vụ hơn 150 doanh nghiệp ở khu vực trung tâm.",
+                "Về yêu cầu cụ thể của anh, vâng, chúng tôi có thể dễ dàng di dời những cây chết và thay thế chúng bằng loại cây phù hợp với cảnh quan hiện có. Để đưa ra báo giá chính xác, chúng tôi cần ghé qua và đánh giá tình hình trực tiếp. Để mời một kỹ thuật viên làm vườn của chúng tôi ghé thăm, vui lòng gọi cho chúng tôi theo số (713) 678-9916. Chúng tôi mong sớm nhận được phản hồi từ anh.",
+              ],
+              questions: [
+                {
+                  number: 135,
+                  options: {
+                    A: "submission",
+                    B: "placement",
+                    C: "review",
+                    D: "inquiry",
+                  },
+                  answer: "D",
+                  explanation:
+                    "'Thank you for your inquiry about our services' (Cảm ơn vì câu hỏi/yêu cầu tìm hiểu thông tin của bạn về dịch vụ của chúng tôi).",
+                },
+                {
+                  number: 136,
+                  options: { A: "over", B: "around", C: "until", D: "through" },
+                  answer: "A",
+                  explanation: "'For over 20 years' (trong hơn 20 năm).",
+                },
+                {
+                  number: 137,
+                  options: {
+                    A: "exist",
+                    B: "existed",
+                    C: "existing",
+                    D: "exists",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Tính từ 'existing' đứng trước danh từ 'landscaping' (cảnh quan hiện có).",
+                },
+                {
+                  number: 138,
+                  options: {
+                    A: "It is a pleasure doing business with you.",
+                    B: "We hope to hear from you soon.",
+                    C: "Please send us an email.",
+                    D: "Best wishes for your continued success.",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Câu trước mời khách hàng gọi điện để đặt lịch kỹ thuật viên đến khảo sát, nên câu kết hợp lý nhất là 'We hope to hear from you soon' (Chúng tôi mong sớm nhận được phản hồi từ bạn).",
+                },
+              ],
+            },
+            {
+              id: "u3p3",
+              range: "139–142",
+              type: "Advertisement",
+              heading: "City Realty",
+              paragraphs: [
+                "City Realty is Washington's number one real estate company, serving the state for over 50 years. We {{139}} recognized as the state's leading experts in the industry and many of our agents have been awarded for their excellence in service by Forbes Property Magazine. Our agents are {{140}} to bringing their best knowledge and expertise to the table, and they have extensive know-how about the housing market dos and don'ts. Our agents specialize in different areas of the industry including corporate real estate, residential real estate, and rental properties. {{141}}",
+                "Our headquarters is located in the central downtown area where you can meet with one of our agents {{142}} a free consultation. You can also visit our website www.cityrealty.com for property listings and further information.",
+              ],
+              translation: [
+                "City Realty là công ty bất động sản số một tại Washington, phục vụ toàn bang trong hơn 50 năm qua. Chúng tôi đã và đang được công nhận là những chuyên gia hàng đầu của bang trong ngành và nhiều chuyên viên của chúng tôi đã được Tạp chí Bất động sản Forbes trao giải thưởng về dịch vụ xuất sắc. Các chuyên viên của chúng tôi cam kết mang đến kiến thức và chuyên môn tốt nhất, đồng thời có hiểu biết sâu rộng về những điều nên và không nên làm trên thị trường nhà ở. Đội ngũ chuyên viên của chúng tôi chuyên về nhiều lĩnh vực khác nhau bao gồm bất động sản doanh nghiệp, bất động sản nhà ở và bất động sản cho thuê. Bạn có thể tin tưởng rằng họ sẽ đáp ứng đúng nhu cầu cụ thể của bạn.",
+                "Trụ sở chính của chúng tôi tọa lạc tại khu vực trung tâm thành phố, nơi bạn có thể gặp gỡ một trong các chuyên viên của chúng tôi để được tư vấn miễn phí. Bạn cũng có thể truy cập trang web www.cityrealty.com để xem danh sách bất động sản và thông tin chi tiết.",
+              ],
+              questions: [
+                {
+                  number: 139,
+                  options: {
+                    A: "been",
+                    B: "had been",
+                    C: "are being",
+                    D: "have been",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Câu bị động thì hiện tại hoàn thành 'We have been recognized as...' (Chúng tôi đã và đang được công nhận là...).",
+                },
+                {
+                  number: 140,
+                  options: {
+                    A: "attached",
+                    B: "faithful",
+                    C: "committed",
+                    D: "loyal",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Cấu trúc 'be committed to + V-ing' (cam kết/tận tâm làm gì).",
+                },
+                {
+                  number: 141,
+                  options: {
+                    A: "You can be confident that they serve your specific needs.",
+                    B: "You can rent hundreds of properties from our listings.",
+                    C: "The agents in corporate real estate make the most earnings.",
+                    D: "The residential agents are very busy with the rising housing market.",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Câu trước nói các chuyên viên chuyên về nhiều lĩnh vực khác nhau, câu A kết luận rằng bạn có thể tin tưởng họ đáp ứng đúng nhu cầu cụ thể của bạn.",
+                },
+                {
+                  number: 142,
+                  options: { A: "with", B: "for", C: "to", D: "from" },
+                  answer: "B",
+                  explanation:
+                    "'Meet with one of our agents for a free consultation' (gặp gỡ một trong các chuyên viên của chúng tôi để được tư vấn miễn phí).",
+                },
+              ],
+            },
+            {
+              id: "u3p4",
+              range: "143–146",
+              type: "Notice",
+              heading: "Policy Change — Reimbursement Policy",
+              paragraphs: [
+                "From: James Jones, Executive Manager | To: Sales Agents | Date: July 15 | Subject: Policy Change",
+                "Dear Sales Agents,",
+                "There has been a recent change to our reimbursement policy. In the past, you simply had to pay out of pocket first then provide your receipts after renting vehicles, taking business trips, or {{143}} other business expenses. {{144}} now you will be required to fill out an application which will need to be approved by the accounting department first. {{145}} If you spend beyond the amount given in the card, you will have to pay out of your own pocket and will not be reimbursed for that.",
+                "Please read the attachment to get further details on what expenses can and cannot be {{146}} by the company.",
+              ],
+              translation: [
+                "Từ: James Jones, Giám đốc Điều hành | Gửi: Nhân viên Kinh doanh | Ngày: 15 tháng 7 | Chủ đề: Thay đổi Chính sách",
+                "Thân gửi các Nhân viên Kinh doanh,",
+                "Gần đây đã có một thay đổi đối với chính sách hoàn trả chi phí của chúng ta. Trước đây, các bạn chỉ cần tự bỏ tiền túi trả trước rồi nộp lại hóa đơn sau khi thuê xe, đi công tác hoặc phát sinh các chi phí công tác khác. Tuy nhiên, bây giờ các bạn sẽ phải điền vào đơn đăng ký và cần được bộ phận kế toán phê duyệt trước. Sau đó, bạn sẽ được cấp một thẻ công ty có hạn mức nhất định. Nếu bạn chi tiêu vượt quá số tiền được cấp trong thẻ, bạn sẽ phải tự trả bằng tiền túi và sẽ không được hoàn lại khoản đó.",
+                "Vui lòng đọc tệp đính kèm để biết thêm chi tiết về những khoản chi nào có thể và không thể được công ty phê duyệt.",
+              ],
+              questions: [
+                {
+                  number: 143,
+                  options: {
+                    A: "incur",
+                    B: "incurred",
+                    C: "incurring",
+                    D: "to incur",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Cấu trúc song song sau giới từ 'after': 'renting vehicles, taking business trips, or incurring other business expenses' (phát sinh các chi phí công tác khác).",
+                },
+                {
+                  number: 144,
+                  options: {
+                    A: "However",
+                    B: "Therefore",
+                    C: "Furthermore",
+                    D: "Since",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Chỉ sự tương phản giữa quy định cũ ('In the past...') và quy định mới ('now...').",
+                },
+                {
+                  number: 145,
+                  options: {
+                    A: "They will not approve any card not authorized by a bank.",
+                    B: "You will have to spend from your own credit card.",
+                    C: "Then you will be provided with a company card which holds limited funds.",
+                    D: "They must decide whether our budget allows for our expenses.",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Câu liền sau nhắc đến 'spend beyond the amount given in the card' (chi tiêu vượt quá số tiền cấp trong thẻ), nên câu 145 phải nhắc tới việc cấp thẻ công ty có hạn mức.",
+                },
+                {
+                  number: 146,
+                  options: {
+                    A: "certain",
+                    B: "acknowledged",
+                    C: "established",
+                    D: "approved",
+                  },
+                  answer: "D",
+                  explanation:
+                    "'What expenses can and cannot be approved by the company' (những khoản chi nào có thể và không thể được công ty phê duyệt).",
+                },
+              ],
+            },
+          ],
+        },
+
+        // ==================== UNIT 4 ====================
+        {
+          unit: 4,
+          title: "TOEIC Part 6 — Unit 4",
+          source: "Part 6 04.pdf",
+          passages: [
+            {
+              id: "u4p1",
+              range: "131–134",
+              type: "Notice",
+              heading: "Beverly Boutique: Sales Assistant Position",
+              paragraphs: [
+                "Our boutique is looking for enthusiastic candidates for our sales assistant position. {{131}} Previous experience in a similar position is preferred, but not necessary. Organizational skills is also a must, as well as some experience with computer use. Most of all, we need someone who is personable, someone who can make customers feel {{132}} and someone who is passionate about fashion. Duties will include serving customers, taking inventory, and minor jobs around the boutique such as sweeping and locking the doors at closing time. Payment will be by sales commission which gives employees more {{133}} to serve their customers as best they can. Hours will be flexible. For more information, please visit our website.",
+                "If you {{134}} in the position, please send your resume to Rita at rlan@bboutique.com.",
+              ],
+              translation: [
+                "Beverly Boutique: Vị trí Trợ lý Bán hàng",
+                "Cửa hàng thời trang của chúng tôi đang tìm kiếm những ứng viên nhiệt huyết cho vị trí trợ lý bán hàng. Ứng viên cần thân thiện và có khả năng giao tiếp với khách hàng trong mọi tình huống. Kinh nghiệm trước đây ở vị trí tương tự được ưu tiên nhưng không bắt buộc. Kỹ năng tổ chức cũng là điều bắt buộc, cùng với một chút kinh nghiệm sử dụng máy tính. Hơn hết, chúng tôi cần một người dễ mến, người có thể khiến khách hàng cảm thấy thoải mái và đam mê thời trang. Nhiệm vụ sẽ bao gồm phục vụ khách hàng, kiểm kê hàng hóa và các công việc lặt vặt quanh cửa hàng như quét dọn và khóa cửa lúc đóng cửa. Lương sẽ được trả theo hoa hồng bán hàng, điều này mang lại cho nhân viên nhiều động lực hơn để phục vụ khách hàng tốt nhất có thể. Giờ làm việc linh hoạt. Để biết thêm thông tin, vui lòng truy cập trang web của chúng tôi.",
+                "Nếu bạn quan tâm đến vị trí này, vui lòng gửi hồ sơ xin việc cho Rita theo địa chỉ rlan@bboutique.com.",
+              ],
+              questions: [
+                {
+                  number: 131,
+                  options: {
+                    A: "Our boutique is the leader in trendy fashions.",
+                    B: "Hurry before the promotion ends.",
+                    C: "Candidates need to be friendly and able to communicate with customers in all kinds of situations.",
+                    D: "Come visit our store to see what our business is about.",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Đoạn văn là thông báo tuyển dụng nhân viên bán hàng, câu C nêu yêu cầu đối với ứng viên ('Candidates need to be friendly...'), phù hợp mạch văn liệt kê tiêu chí tuyển dụng.",
+                },
+                {
+                  number: 132,
+                  options: {
+                    A: "comfortable",
+                    B: "appropriate",
+                    C: "neglected",
+                    D: "convenient",
+                  },
+                  answer: "A",
+                  explanation:
+                    "'Make customers feel comfortable' (khiến khách hàng cảm thấy thoải mái).",
+                },
+                {
+                  number: 133,
+                  options: {
+                    A: "influence",
+                    B: "incentives",
+                    C: "insistence",
+                    D: "consideration",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Trả lương theo hoa hồng giúp nhân viên có thêm động lực ('incentives') phục vụ khách hàng tốt nhất.",
+                },
+                {
+                  number: 134,
+                  options: {
+                    A: "be interesting",
+                    B: "were interesting",
+                    C: "interest",
+                    D: "are interested",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Cấu trúc 'be interested in...' (quan tâm đến...).",
+                },
+              ],
+            },
+            {
+              id: "u4p2",
+              range: "135–138",
+              type: "Notice",
+              heading: "Music Teacher Needed — Mike's Music School",
+              paragraphs: [
+                "Mike's Music School is {{135}} seeking a new piano instructor for weekend and evening classes. Mike's Music School has been operating in the Central district since 1992. {{136}} Because of this, we hope to hire a long-time resident of Central to join our team. Applicants should be well versed in {{137}} teaching techniques. If you are interested in {{138}} for the position, we will be holding interviews and auditions this Saturday at 12:00 at our main studio on Elm Street and Dupont Ave.",
+              ],
+              translation: [
+                "Cần tuyển Giáo viên Âm nhạc — Trường Âm nhạc Mike",
+                "Trường Âm nhạc Mike đang tích cực tìm kiếm một giảng viên piano mới cho các lớp học cuối tuần và buổi tối. Trường Âm nhạc Mike đã hoạt động tại quận Central từ năm 1992. Cam kết của chúng tôi đối với cộng đồng cũng quan trọng như cam kết đối với học viên. Vì lý do này, chúng tôi hy vọng tuyển dụng được một cư dân lâu năm của quận Central gia nhập đội ngũ. Ứng viên cần thông thạo các kỹ thuật giảng dạy đương đại. Nếu bạn quan tâm đến việc ứng tuyển cho vị trí này, chúng tôi sẽ tổ chức phỏng vấn và thử giọng/trình diễn vào thứ Bảy tuần này lúc 12:00 tại phòng thu chính trên đường Elm và đại lộ Dupont.",
+              ],
+              questions: [
+                {
+                  number: 135,
+                  options: {
+                    A: "active",
+                    B: "actived",
+                    C: "actively",
+                    D: "activated",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Trạng từ 'actively' bổ nghĩa cho động từ 'is seeking' (đang tích cực tìm kiếm).",
+                },
+                {
+                  number: 136,
+                  options: {
+                    A: "Our company tries to work with outside communities.",
+                    B: "Our commitment to the community is as important as our commitment to our students.",
+                    C: "Our company is unique and uses strange instruments.",
+                    D: "Our company is in a special location, next to the auto service center.",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Câu liền sau bắt đầu bằng 'Because of this, we hope to hire a long-time resident of Central...' (Vì điều này, chúng tôi hy vọng tuyển một cư dân lâu năm của khu Central), khớp với ý cam kết gắn bó với cộng đồng ở đáp án B.",
+                },
+                {
+                  number: 137,
+                  options: {
+                    A: "contemporary",
+                    B: "unknown",
+                    C: "strange",
+                    D: "boring",
+                  },
+                  answer: "A",
+                  explanation:
+                    "'Contemporary teaching techniques' (các kỹ thuật giảng dạy đương đại/hiện đại).",
+                },
+                {
+                  number: 138,
+                  options: {
+                    A: "apply",
+                    B: "applied",
+                    C: "applying",
+                    D: "to apply",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Sau giới từ 'in' ('interested in') dùng danh động từ V-ing -> 'applying'.",
+                },
+              ],
+            },
+            {
+              id: "u4p3",
+              range: "139–142",
+              type: "Letter",
+              heading: "Department of Wildlife — Hunting Permit Scheme",
+              paragraphs: [
+                "October 09 | Bob Prosser | 342 Winkler Ave | Fairbanks, AK 20037",
+                "Dear Mr. Prosser,",
+                "The information that you {{139}} about changes to the hunting permit scheme has been enclosed. Please note that each permit must be filled out and applied for separately. When filling out your application, you must mark all answers clearly and with a black or blue pen. Please do not use cursive script, print only. Each application {{140}} enclosed in its own envelope and received before the applicable deadline. {{141}} Because of this, you must plan your submissions in a timely fashion to make sure that you receive your permit while the applicable season is still open. I hope that the information {{142}} answers all of your questions. Take care and happy hunting.",
+                "Sincerely, Shirley Horn — Executive Secretary, Department of Wildlife",
+              ],
+              translation: [
+                "Kính gửi ông Prosser,",
+                "Thông tin mà ông đã yêu cầu về những thay đổi đối với quy định cấp giấy phép săn bắn đã được đính kèm. Xin lưu ý rằng mỗi giấy phép phải được điền và nộp đơn riêng biệt. Khi điền đơn đăng ký, ông phải đánh dấu tất cả các câu trả lời rõ ràng bằng bút mực đen hoặc xanh. Vui lòng không viết chữ thảo, chỉ viết chữ in hoa. Mỗi đơn đăng ký phải được bỏ vào phong bì riêng và gửi đến trước thời hạn quy định. Các đơn đăng ký nhận được có thể mất tới 5 tuần để xử lý. Vì lý do này, ông phải lên kế hoạch nộp hồ sơ kịp thời để đảm bảo nhận được giấy phép trong khi mùa săn bắn tương ứng vẫn đang mở. Tôi hy vọng thông tin đính kèm sẽ giải đáp mọi thắc mắc của ông. Bảo trọng và chúc ông có chuyến đi săn vui vẻ.",
+                "Trân trọng, Shirley Horn — Thư ký Điều hành, Sở Động vật Hoang dã",
+              ],
+              questions: [
+                {
+                  number: 139,
+                  options: {
+                    A: "provided",
+                    B: "supply",
+                    C: "request",
+                    D: "requested",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Thông tin mà ông đã yêu cầu trước đó ('The information that you requested... has been enclosed') -> chia quá khứ đơn 'requested'.",
+                },
+                {
+                  number: 140,
+                  options: {
+                    A: "won't be",
+                    B: "would be",
+                    C: "must be",
+                    D: "couldn't be",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Quy định bắt buộc trong hồ sơ hành chính: Mỗi đơn đăng ký 'phải được' ('must be') bỏ vào phong bì riêng.",
+                },
+                {
+                  number: 141,
+                  options: {
+                    A: "Received applications can take up to 5 weeks to process.",
+                    B: "Applications are never approved before the season is over.",
+                    C: "Sometimes applications get lost.",
+                    D: "Never make an application in person.",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Câu sau bắt đầu bằng 'Because of this, you must plan your submissions in a timely fashion...' (Vì lý do này, bạn phải lên kế hoạch nộp đơn kịp thời), giải thích cho việc hồ sơ có thể mất tới 5 tuần để xử lý ở đáp án A.",
+                },
+                {
+                  number: 142,
+                  options: {
+                    A: "enclose",
+                    B: "enclosing",
+                    C: "inclose",
+                    D: "enclosed",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Phân từ quá khứ 'enclosed' dùng như tính từ đứng sau danh từ để rút gọn mệnh đề quan hệ bị động ('the information [which is] enclosed' = thông tin được đính kèm).",
+                },
+              ],
+            },
+            {
+              id: "u4p4",
+              range: "143–146",
+              type: "Website Posting",
+              heading: "Employee Message Board — Request for Feedback",
+              paragraphs: [
+                "Posted by James Frohm, Human Resources Director",
+                "Hello colleagues,",
+                "The holiday season is fast approaching and we need to {{143}} our office party! There have been several {{144}} for locations and themes made to me directly, but I wanted to invite everyone in the office to give me their feedback. All ideas are welcome, but I must remind everyone that our office {{145}}. Our party can include all forms of secular celebration, but out of respect for everyone, there may be no religious themes. Please respond to me directly by e-mail at jamesfrohm@ccn.net, so I can get started making plans. {{146}}",
+                "Sincerely, James",
+              ],
+              translation: [
+                "Bảng tin Nhân viên — Yêu cầu Góp ý",
+                "Đăng bởi James Frohm, Giám đốc Nhân sự",
+                "Xin chào các đồng nghiệp,",
+                "Mùa lễ hội đang đến gần và chúng ta cần lên kế hoạch cho bữa tiệc văn phòng! Đã có một vài đề xuất về địa điểm và chủ đề được gửi trực tiếp cho tôi, nhưng tôi muốn mời tất cả mọi người trong văn phòng đóng góp ý kiến. Mọi ý tưởng đều được hoan nghênh, nhưng tôi phải nhắc nhở mọi người rằng văn phòng của chúng ta là một không gian an toàn cho mọi phong tục và văn hóa. Bữa tiệc của chúng ta có thể bao gồm mọi hình thức kỷ niệm phi tôn giáo, nhưng để tôn trọng tất cả mọi người, sẽ không có các chủ đề tôn giáo. Vui lòng phản hồi trực tiếp cho tôi qua email tại jamesfrohm@ccn.net để tôi có thể bắt đầu lên kế hoạch. Tôi rất mong chờ những ý tưởng và sự nhiệt tình của các bạn.",
+                "Trân trọng, James",
+              ],
+              questions: [
+                {
+                  number: 143,
+                  options: {
+                    A: "make",
+                    B: "plan",
+                    C: "conceive",
+                    D: "deliver",
+                  },
+                  answer: "B",
+                  explanation:
+                    "'Plan our office party' (lên kế hoạch cho bữa tiệc công ty).",
+                },
+                {
+                  number: 144,
+                  options: {
+                    A: "comments",
+                    B: "suggestions",
+                    C: "spots",
+                    D: "suggested",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Sau 'several' cần danh từ số nhiều -> 'suggestions for locations and themes' (một vài đề xuất về địa điểm và chủ đề).",
+                },
+                {
+                  number: 145,
+                  options: {
+                    A: "is a safe space for all customs and cultures",
+                    B: "stays open late on Tuesday",
+                    C: "needs a new janitor",
+                    D: "will move next week",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Câu sau nói bữa tiệc có thể bao gồm mọi hình thức kỷ niệm phi tôn giáo để tôn trọng tất cả mọi người, khớp với ý văn phòng là môi trường tôn trọng mọi phong tục và văn hóa ở đáp án A.",
+                },
+                {
+                  number: 146,
+                  options: {
+                    A: "I look forward to your ideas and enthusiasm.",
+                    B: "I'm look forward to your ideas and enthusiasm.",
+                    C: "I look forward to your undivided attention.",
+                    D: "I hope you reply before it's too late.",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Câu kết email chuyên nghiệp và đúng ngữ pháp ('I look forward to + danh từ'). Câu B sai ngữ pháp ('I'm look').",
+                },
+              ],
+            },
+          ],
+        },
+
+        // ==================== UNIT 5 ====================
+        {
+          unit: 5,
+          title: "TOEIC Part 6 — Unit 5",
+          source: "Part 6 05.pdf",
+          passages: [
+            {
+              id: "u5p1",
+              range: "131–134",
+              type: "Notice",
+              heading: "Network Upgrade — Key Card System",
+              paragraphs: [
+                "To: All Staff | From: Michael Davis, Head Technician | Subject: Network Upgrade",
+                "We regret to inform the staff that as of next week, from Monday the 13th of November to sometime midweek, the employee key card system will not be active. In order to get into and out of the building, you will need to buzz security. In order to unlock, or lock, any door, you will {{131}} assistance from the security team.",
+                "The old system was reviewed and many vulnerabilities were discovered. {{132}}, the company has decided to replace the old system. This process should take three to four days.",
+                "As part of the process, new key cards will be issued to each member of the staff. Key cards will be available for you to pick up from Wednesday, the 15th of November, in the security office. Please, feel free to stop by any time {{133}} the day to collect yours. {{134}}",
+                "We apologize for any inconvenience this may cause.",
+              ],
+              translation: [
+                "Gửi: Toàn thể Nhân viên | Từ: Michael Davis, Trưởng phòng Kỹ thuật | Chủ đề: Nâng cấp Mạng lưới",
+                "Chúng tôi rất tiếc phải thông báo với toàn thể nhân viên rằng kể từ tuần tới, từ thứ Hai ngày 13 tháng 11 đến khoảng giữa tuần, hệ thống thẻ từ nhân viên sẽ không hoạt động. Để ra vào tòa nhà, bạn sẽ cần bấm chuông gọi bảo vệ. Để mở hoặc khóa bất kỳ cánh cửa nào, bạn sẽ phải yêu cầu sự hỗ trợ từ đội ngũ an ninh.",
+                "Hệ thống cũ đã được kiểm tra và phát hiện nhiều lỗ hổng bảo mật. Do đó, công ty đã quyết định thay thế hệ thống cũ. Quá trình này sẽ mất từ ba đến bốn ngày.",
+                "Là một phần của quy trình, thẻ từ mới sẽ được cấp cho từng nhân viên. Thẻ từ sẽ sẵn sàng để các bạn đến nhận từ thứ Tư, ngày 15 tháng 11, tại văn phòng an ninh. Vui lòng ghé qua bất cứ lúc nào trong ngày để nhận thẻ của bạn. Văn phòng an ninh mở cửa 24 giờ mỗi ngày.",
+                "Chúng tôi xin lỗi vì bất kỳ sự bất tiện nào mà điều này có thể gây ra.",
+              ],
+              questions: [
+                {
+                  number: 131,
+                  options: {
+                    A: "is requesting",
+                    B: "has requested",
+                    C: "have to request",
+                    D: "had to request",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Sau trợ động từ 'will' dùng động từ nguyên mẫu -> 'will have to request assistance' (sẽ phải yêu cầu sự hỗ trợ).",
+                },
+                {
+                  number: 132,
+                  options: {
+                    A: "Unfortunately",
+                    B: "Therefore",
+                    C: "Regardless",
+                    D: "Finally",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Hệ thống cũ có nhiều lỗ hổng bảo mật -> 'Therefore' (Do đó), công ty quyết định thay thế hệ thống cũ.",
+                },
+                {
+                  number: 133,
+                  options: { A: "upon", B: "during", C: "before", D: "at" },
+                  answer: "B",
+                  explanation:
+                    "'Any time during the day' (bất cứ lúc nào trong ngày).",
+                },
+                {
+                  number: 134,
+                  options: {
+                    A: "The move from keys to keyless entry should make the facility more secure.",
+                    B: "We will be looking forward to seeing you sometime next week.",
+                    C: "The security office is open 24 hours a day.",
+                    D: "This is for product security.",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Câu trước mời nhân viên ghé qua văn phòng an ninh bất cứ lúc nào trong ngày để lấy thẻ mới, câu C bổ sung thông tin văn phòng an ninh mở cửa 24/24 giờ.",
+                },
+              ],
+            },
+            {
+              id: "u5p2",
+              range: "135–138",
+              type: "Advertisement",
+              heading: "Handy Maids Home Service",
+              paragraphs: [
+                "Call us at 555-1244",
+                "Handy Maids Home Service {{135}} professional cleaning services for your business or home. We steam vacuum carpeted areas, polish hardwood flooring, wipe away all traces of dust and dirt in hard-to-find areas, and clean out clutter. Our {{136}} service is second to none in the tri-state area. We provide a one-day service after estimations are calculated. {{137}}, we provide weekly and monthly services for customers who request it.",
+                "The cleaning products we use are environmentally friendly and pet and child safe. {{138}} Please visit our website at www.handymaids.com or call us for more information.",
+              ],
+              translation: [
+                "Dịch vụ Vệ sinh Gia đình Handy Maids — Gọi cho chúng tôi theo số 555-1244",
+                "Handy Maids Home Service cung cấp các dịch vụ vệ sinh chuyên nghiệp cho doanh nghiệp hoặc ngôi nhà của bạn. Chúng tôi hút bụi bằng hơi nước các khu vực trải thảm, đánh bóng sàn gỗ cứng, lau sạch mọi dấu vết bụi bẩn ở những ngóc ngách khó tìm và dọn dẹp đồ đạc bừa bộn. Dịch vụ xuất sắc của chúng tôi không ai sánh bằng trong khu vực ba bang. Chúng tôi cung cấp dịch vụ một ngày sau khi tính toán báo giá. Ngoài ra, chúng tôi còn cung cấp dịch vụ hàng tuần và hàng tháng cho những khách hàng có nhu cầu.",
+                "Các sản phẩm tẩy rửa chúng tôi sử dụng đều thân thiện với môi trường và an toàn cho thú cưng cũng như trẻ em. Thực tế, chúng tôi hướng tới việc giữ cho ngôi nhà và doanh nghiệp trở thành một nơi an toàn và sạch sẽ mà không cần sử dụng hóa chất độc hại. Vui lòng truy cập trang web www.handymaids.com hoặc gọi cho chúng tôi để biết thêm thông tin.",
+              ],
+              questions: [
+                {
+                  number: 135,
+                  options: {
+                    A: "provide",
+                    B: "provides",
+                    C: "provided",
+                    D: "providing",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Chủ ngữ 'Handy Maids Home Service' là tên một công ty (số ít) -> động từ hiện tại đơn chia 'provides'.",
+                },
+                {
+                  number: 136,
+                  options: {
+                    A: "unusual",
+                    B: "peculiar",
+                    C: "best",
+                    D: "exceptional",
+                  },
+                  answer: "D",
+                  explanation:
+                    "'Our exceptional service is second to none' (Dịch vụ xuất sắc của chúng tôi không ai sánh bằng). Không dùng 'best' vì thiếu mạo từ 'the'.",
+                },
+                {
+                  number: 137,
+                  options: {
+                    A: "In addition",
+                    B: "Because",
+                    C: "On the other hand",
+                    D: "As a result",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Bổ sung thêm thông tin ('Ngoài dịch vụ một ngày, chúng tôi còn cung cấp dịch vụ hàng tuần và hàng tháng').",
+                },
+                {
+                  number: 138,
+                  options: {
+                    A: "We make sure that your pets and children don't go near the chemicals.",
+                    B: "In fact, we aim to make the home and business a safe and clean place without the use of harsh chemicals.",
+                    C: "The all-natural cleaning agents may not be as effective, but they are safe.",
+                    D: "Pets and children will be asked to leave the premises during cleaning.",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Câu trước nói sản phẩm tẩy rửa thân thiện môi trường và an toàn cho trẻ em, thú cưng; câu B làm rõ thêm ('Thực tế, chúng tôi hướng tới việc giữ không gian sạch sẽ mà không dùng hóa chất độc hại').",
+                },
+              ],
+            },
+            {
+              id: "u5p3",
+              range: "139–142",
+              type: "Advertisement",
+              heading: "Saldesta — Rest Your Mind and Body",
+              paragraphs: [
+                "It's what you've been dreaming of. Peaceful sleep without a struggle is what you need. That's what Saldesta {{139}}. Saldesta helps people fall asleep quickly and stay asleep the entire night. It's the only non-narcotic sleeping aid, and it's {{140}} for long-term use. {{141}} Talk to your doctor first before using sleeping aids for extended periods. Tonight, just close your eyes, and leave everything else to Saldesta.",
+                "Find out how to improve your sleep at www.saldesta.com. Or call 1-800-Saldesta.",
+                "Important Safety Information: Saldesta works quickly and should be taken right {{142}} bed. Be sure you have at least eight hours to devote to sleep before becoming active. Do not use alcohol while taking Saldesta. Most sleep medication carries some risk of dependency.",
+              ],
+              translation: [
+                "Saldesta — Thư giãn Tâm trí và Cơ thể",
+                "Đó là điều bạn hằng mơ ước. Một giấc ngủ yên bình không trằn trọc chính là thứ bạn cần. Đó chính là những gì Saldesta mang lại. Saldesta giúp mọi người nhanh chóng đi vào giấc ngủ và ngủ ngon suốt cả đêm. Đây là sản phẩm hỗ trợ giấc ngủ không gây nghiện duy nhất và được phê duyệt để sử dụng lâu dài. Vì vậy, bạn có thể yên tâm sử dụng hết đêm này qua đêm khác. Hãy tham khảo ý kiến bác sĩ trước khi sử dụng các sản phẩm hỗ trợ giấc ngủ trong thời gian dài. Tối nay, hãy nhắm mắt lại và giao phó mọi thứ còn lại cho Saldesta.",
+                "Thông tin An toàn Quan trọng: Saldesta phát huy tác dụng nhanh và nên được uống ngay trước khi đi ngủ. Hãy đảm bảo bạn có ít nhất tám tiếng dành cho giấc ngủ trước khi hoạt động trở lại. Không sử dụng đồ uống có cồn khi đang dùng Saldesta.",
+              ],
+              questions: [
+                {
+                  number: 139,
+                  options: {
+                    A: "offers",
+                    B: "sustains",
+                    C: "mitigates",
+                    D: "maintains",
+                  },
+                  answer: "A",
+                  explanation:
+                    "'That's what Saldesta offers' (Đó chính là những gì Saldesta mang lại).",
+                },
+                {
+                  number: 140,
+                  options: {
+                    A: "to approve",
+                    B: "approves",
+                    C: "approving",
+                    D: "approved",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Câu bị động 'it's approved for long-term use' (sản phẩm được phê duyệt để sử dụng lâu dài).",
+                },
+                {
+                  number: 141,
+                  options: {
+                    A: "So you can feel comfortable taking it night after night.",
+                    B: "Talk to your doctor today to see if it's right for you.",
+                    C: "This is the only stimulant approved for prolonged use that is approved by the FDA.",
+                    D: "Enter this code for a free sample and discounts.",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Câu trước nói thuốc được phê duyệt dùng lâu dài, câu A tiếp nối hệ quả 'Vì vậy bạn có thể yên tâm sử dụng mỗi đêm'. (Loại C vì thuốc ngủ là chất an thần, không phải chất kích thích 'stimulant').",
+                },
+                {
+                  number: 142,
+                  options: {
+                    A: "during",
+                    B: "around",
+                    C: "before",
+                    D: "after",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Thuốc ngủ phát huy tác dụng nhanh và nên uống ngay trước khi đi ngủ ('right before bed').",
+                },
+              ],
+            },
+            {
+              id: "u5p4",
+              range: "143–146",
+              type: "Notice",
+              heading: "Rental Policy — Sales Team",
+              paragraphs: [
+                "Date: August 22 | To: All Sales Team Members | From: Melinda Lackey, Sales Manager | Subject: Rental Policy",
+                "For some {{143}}, we allowed sales reps to pay for their car rentals up front with their personal cards or cash and then be reimbursed later. This is no longer the policy. It has not been the policy for over two months now. As of June 15, all payments for rentals were supposed to have {{144}} with the company card that was assigned to each of you. Larry in accounting has informed me that he has received 6 different reimbursement forms since then. I have gone ahead and allowed Larry to process those 6 forms. {{145}} I'm sorry for the {{146}} tone, but everyone was asked to do this in July. If you have any questions, please contact me directly.",
+              ],
+              translation: [
+                "Ngày: 22 tháng 8 | Gửi: Toàn thể Thành viên Đội Kinh doanh | Từ: Melinda Lackey, Quản lý Kinh doanh | Chủ đề: Chính sách Thuê xe",
+                "Trong một khoảng thời gian, chúng tôi đã cho phép nhân viên kinh doanh thanh toán trước tiền thuê xe bằng thẻ cá nhân hoặc tiền mặt và sau đó được hoàn tiền lại. Đây không còn là chính sách hiện hành nữa. Chính sách này đã chấm dứt được hơn hai tháng nay. Kể từ ngày 15 tháng 6, tất cả các khoản thanh toán thuê xe đáng lẽ đã phải được thực hiện bằng thẻ công ty được cấp cho mỗi người. Larry ở phòng kế toán đã thông báo với tôi rằng anh ấy đã nhận được 6 đơn yêu cầu hoàn tiền khác nhau kể từ đó. Tôi đã đồng ý cho phép Larry xử lý 6 đơn đó. Nhưng kể từ ngày mai, sẽ không ai được hoàn tiền nữa. Tôi xin lỗi vì giọng điệu có phần gay gắt, nhưng tất cả mọi người đều đã được yêu cầu thực hiện việc này từ tháng 7. Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ trực tiếp với tôi.",
+              ],
+              questions: [
+                {
+                  number: 143,
+                  options: {
+                    A: "distances",
+                    B: "place",
+                    C: "event",
+                    D: "time",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Cụm từ cố định 'For some time' (Trong một khoảng thời gian).",
+                },
+                {
+                  number: 144,
+                  options: {
+                    A: "making",
+                    B: "to be made",
+                    C: "makes",
+                    D: "been made",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Cấu trúc nguyên mẫu hoàn thành bị động 'were supposed to have been made' (đáng lẽ đã phải được thực hiện bằng thẻ công ty).",
+                },
+                {
+                  number: 145,
+                  options: {
+                    A: "Only Fonitna Rental should be used to book cars in the future.",
+                    B: "But, as of tomorrow, no one will be reimbursed.",
+                    C: "He will redesign the form by the beginning of next week.",
+                    D: "Everyone is required to turn in their cards as soon as possible.",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Câu trước nói người quản lý đã châm chước duyệt 6 đơn hoàn tiền cũ, câu B tạo sự đối lập ('Nhưng kể từ ngày mai, sẽ không ai được hoàn tiền nữa').",
+                },
+                {
+                  number: 146,
+                  options: {
+                    A: "overreaching",
+                    B: "gracious",
+                    C: "benevolent",
+                    D: "harsh",
+                  },
+                  answer: "D",
+                  explanation:
+                    "'I'm sorry for the harsh tone' (Tôi xin lỗi vì giọng điệu gay gắt/nghiêm khắc).",
+                },
+              ],
+            },
+          ],
+        },
+
+        // ==================== UNIT 6 ====================
+        {
+          unit: 6,
+          title: "TOEIC Part 6 — Unit 6",
+          source: "Part 6 06.pdf",
+          passages: [
+            {
+              id: "u6p1",
+              range: "131–134",
+              type: "Article",
+              heading: "Major Expansion for Local Biotech Startup",
+              paragraphs: [
+                "Medicatenet, a leading biotechnology company, {{131}} yesterday that it has raised $200 million in venture capital from investors. It plans to use those {{132}} to install cutting-edge technology involving machine learning to develop new medicines. The investment will enable Medicatenet to triple its workforce {{133}} the next twelve months. {{134}}",
+              ],
+              translation: [
+                "Bước Mở rộng Lớn của Công ty Khởi nghiệp Công nghệ Sinh học Địa phương",
+                "Medicatenet, một công ty công nghệ sinh học hàng đầu, đã thông báo vào ngày hôm qua rằng họ đã huy động được 200 triệu đô la vốn đầu tư mạo hiểm từ các nhà đầu tư. Công ty dự định sử dụng nguồn vốn đó để lắp đặt công nghệ tiên tiến liên quan đến học máy (machine learning) nhằm phát triển các loại thuốc mới. Khoản đầu tư này sẽ giúp Medicatenet tăng gấp ba lực lượng lao động trong vòng mười hai tháng tới. Để đáp ứng sự gia tăng này, công ty đã ký hợp đồng thuê để mở rộng sang một cơ sở mới tại Norwalk.",
+              ],
+              questions: [
+                {
+                  number: 131,
+                  options: {
+                    A: "announce",
+                    B: "announced",
+                    C: "announcement",
+                    D: "to announce",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Có trạng từ thời gian quá khứ 'yesterday' -> chia động từ thì quá khứ đơn 'announced'.",
+                },
+                {
+                  number: 132,
+                  options: {
+                    A: "funds",
+                    B: "laboratories",
+                    C: "parts",
+                    D: "teams",
+                  },
+                  answer: "A",
+                  explanation:
+                    "'Those funds' thay thế cho khoản vốn đầu tư 200 triệu đô la ('$200 million in venture capital') ở câu trước.",
+                },
+                {
+                  number: 133,
+                  options: { A: "between", B: "about", C: "at", D: "over" },
+                  answer: "D",
+                  explanation:
+                    "'Over the next twelve months' (trong vòng 12 tháng tới).",
+                },
+                {
+                  number: 134,
+                  options: {
+                    A: "With great fanfare, Medicatenet has published the results of a five-year study.",
+                    B: "Most therapies are developed in a trial-and-error process.",
+                    C: "Medicatenet is just one of several leading biotechnology companies.",
+                    D: "To accommodate this increase, the company has signed a lease to expand into a new facility in Norwalk.",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Câu trước nói công ty sẽ tăng gấp ba quy mô nhân sự, câu D nối tiếp hợp lý: 'Để đáp ứng sự gia tăng này, công ty đã ký hợp đồng thuê cơ sở mới ở Norwalk'.",
+                },
+              ],
+            },
+            {
+              id: "u6p2",
+              range: "135–138",
+              type: "E-mail",
+              heading: "Arrival at Mellow Bay Resort",
+              paragraphs: [
+                "From: Valeria Sanchez <vsanchez@mellowbayresort.com> | To: Seo-Jun Hak <seojunhak2390@amail.com> | Subject: Arrival at Mellow Bay Resort | Date: June 4",
+                "Dear Mr. Hak,",
+                "Your stay at Mellow Bay Resort is coming soon! The check-in time is between 3:00 P.M. and 8:00 P.M. Please call us at (305) 555-0125 if you plan to arrive before or after these hours. Your room may be given to another guest if you arrive after 8:00 P.M. without {{135}}.",
+                "When checking in, you will receive complimentary tickets for the breakfast buffet, {{136}} is located down the hall from the lobby. You may also want to make dinner reservations at Lookout Restaurant on the top floor of the hotel with {{137}} views of the ocean and town.",
+                "Also be sure to stop at our guest services desk for information about local attractions. {{138}} There is so much in the bay area to explore! We look forward to welcoming you as our guest.",
+                "Best regards, Valeria",
+              ],
+              translation: [
+                "Từ: Valeria Sanchez | Gửi: Seo-Jun Hak | Chủ đề: Kỳ nghỉ tại Khu nghỉ dưỡng Mellow Bay | Ngày: 4 tháng 6",
+                "Kính gửi ông Hak,",
+                "Kỳ nghỉ của ông tại Khu nghỉ dưỡng Mellow Bay sắp đến rồi! Thời gian nhận phòng là từ 3:00 chiều đến 8:00 tối. Vui lòng gọi cho chúng tôi theo số (305) 555-0125 nếu ông dự định đến trước hoặc sau khung giờ này. Phòng của ông có thể được nhường cho khách khác nếu ông đến sau 8:00 tối mà không báo trước.",
+                "Khi nhận phòng, ông sẽ nhận được vé miễn phí cho bữa sáng tự chọn, nằm ở cuối hành lang tính từ sảnh chính. Ông cũng có thể muốn đặt bàn ăn tối tại Nhà hàng Lookout trên tầng cao nhất của khách sạn với tầm nhìn ngoạn mục ra đại dương và thị trấn.",
+                "Cũng đừng quên ghé qua quầy dịch vụ khách hàng của chúng tôi để biết thông tin về các điểm tham quan địa phương. Chúng tôi có thể giúp ông lên kế hoạch tận hưởng hoạt động lặn biển, chèo thuyền buồm hoặc các hoạt động khác. Có rất nhiều điều thú vị ở khu vực vịnh để khám phá! Chúng tôi rất mong được chào đón ông.",
+                "Trân trọng, Valeria",
+              ],
+              questions: [
+                {
+                  number: 135,
+                  options: {
+                    A: "notice",
+                    B: "choice",
+                    C: "appearance",
+                    D: "luggage",
+                  },
+                  answer: "A",
+                  explanation: "'Without notice' (mà không báo trước).",
+                },
+                {
+                  number: 136,
+                  options: { A: "how", B: "why", C: "which", D: "when" },
+                  answer: "C",
+                  explanation:
+                    "Mệnh đề quan hệ không xác định bổ nghĩa cho danh từ chỉ vật 'the breakfast buffet', dùng 'which'.",
+                },
+                {
+                  number: 137,
+                  options: {
+                    A: "sturdy",
+                    B: "recent",
+                    C: "spectacular",
+                    D: "faithful",
+                  },
+                  answer: "C",
+                  explanation:
+                    "'Spectacular views of the ocean and town' (tầm nhìn ngoạn mục/tuyệt đẹp ra đại dương và thị trấn).",
+                },
+                {
+                  number: 138,
+                  options: {
+                    A: "Guests used to receive a discount on one item at the gift shop on the first floor.",
+                    B: "We can help you with plans to enjoy scuba diving, sailing, or other activities.",
+                    C: "Every room has a cable television connection with access to popular movies.",
+                    D: "Guests can sometimes check in to the hotel early with no additional charge.",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Câu trước nhắc đến quầy dịch vụ khách hàng cung cấp thông tin về các điểm tham quan địa phương, câu B tiếp nối về việc hỗ trợ lên kế hoạch lặn biển, chèo thuyền...",
+                },
+              ],
+            },
+            {
+              id: "u6p3",
+              range: "139–142",
+              type: "Letter",
+              heading: "Faremount Antique Auctions",
+              paragraphs: [
+                "January 17 | Kenji Davis | 26 Peartree Lane | Baltimore, MD 21205",
+                "Dear Mr. Davis,",
+                "It was a pleasure to talk with you at the Annual Model Train Show in Baltimore earlier this month. I {{139}} by the high quality of the antique trains that you had on display.",
+                "You mentioned that you might want to sell several sets of antique trains. Faremount Antique Auctions would be an ideal {{140}} for you. Twice a year we hold an online auction of antique toys that attracts bids from model train collectors from around the world. Our most recent auction was in November. {{141}} I believe you will find that items in our auction sold for higher prices {{142}} similar items did at other sites.",
+                "Our next auction will be held May 21-22. Let me know if you are interested in participating.",
+                "Sincerely, Justine Garcia, Faremount Antique Auctions",
+              ],
+              translation: [
+                "Kính gửi ông Davis,",
+                "Thật vinh hạnh khi được trò chuyện với ông tại Triển lãm Tàu hỏa Mô hình Thường niên ở Baltimore vào đầu tháng này. Tôi đã rất ấn tượng bởi chất lượng cao của những đoàn tàu cổ mà ông trưng bày.",
+                "Ông có đề cập rằng ông có thể muốn bán một vài bộ tàu hỏa cổ. Nhà đấu giá đồ cổ Faremount sẽ là một sàn giao dịch lý tưởng dành cho ông. Hai lần một năm, chúng tôi tổ chức đấu giá trực tuyến đồ chơi cổ, thu hút sự trả giá từ các nhà sưu tập tàu hỏa mô hình trên khắp thế giới. Phiên đấu giá gần đây nhất của chúng tôi diễn ra vào tháng 11. Tôi khuyến khích ông xem trực tuyến mức giá đã được trả cho các món đồ trong phiên đấu giá đó. Tôi tin rằng ông sẽ thấy các món đồ trong phiên đấu giá của chúng tôi bán được với giá cao hơn so với các món đồ tương tự ở những trang web khác.",
+                "Phiên đấu giá tiếp theo của chúng tôi sẽ được tổ chức vào ngày 21–22 tháng 5. Hãy cho tôi biết nếu ông quan tâm đến việc tham gia.",
+                "Trân trọng, Justine Garcia, Nhà đấu giá đồ cổ Faremount",
+              ],
+              questions: [
+                {
+                  number: 139,
+                  options: {
+                    A: "impress",
+                    B: "impressed",
+                    C: "was impressed",
+                    D: "was impressing",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Cấu trúc bị động 'I was impressed by...' (Tôi đã rất ấn tượng bởi...).",
+                },
+                {
+                  number: 140,
+                  options: {
+                    A: "basis",
+                    B: "marketplace",
+                    C: "foundation",
+                    D: "career",
+                  },
+                  answer: "B",
+                  explanation:
+                    "'An ideal marketplace for you' (một thị trường/sàn giao dịch lý tưởng cho bạn để bán bộ sưu tập).",
+                },
+                {
+                  number: 141,
+                  options: {
+                    A: "I encourage you to look online at the prices paid for items in that auction.",
+                    B: "Our auctions used to be held at a historic hotel called The Faremount Rose.",
+                    C: "Some of our customers are interested in antique metal banks from the 1800s.",
+                    D: "All participants in the online auction needed credentials to enter the site.",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Câu trước nhắc tới phiên đấu giá gần nhất vào tháng 11, câu A khuyến khích người nhận xem trực tuyến mức giá đã trả trong phiên đấu giá đó, nối mạch với câu sau.",
+                },
+                {
+                  number: 142,
+                  options: {
+                    A: "although",
+                    B: "since",
+                    C: "nonetheless",
+                    D: "than",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Cấu trúc so sánh hơn: 'higher prices than similar items did...' (giá cao hơn so với các món đồ tương tự ở trang khác).",
+                },
+              ],
+            },
+            {
+              id: "u6p4",
+              range: "143–146",
+              type: "Memo",
+              heading: "Half Day — Harkfield Capital",
+              paragraphs: [
+                "To: All Personnel | From: Harkfield Capital | Subject: Half day | Date: November 10",
+                "On Friday, November 19, beginning at 2:00 P.M., the parking garage will be power washed and the lines will be repainted. Before the workers can {{143}}, the garage needs to be empty.",
+                "Therefore, all employees will receive a paid half day off from work. {{144}} Those who begin at 9:00 A.M. will finish at 1:00 P.M. No lunch hours will be taken. Employees must {{145}} the garage immediately after completing their shifts.",
+                "The garage will remain {{146}} all weekend. Employees who work on the weekend must park on the street or in a paid lot.",
+                "We hope you will enjoy this extra time off.",
+              ],
+              translation: [
+                "Gửi: Toàn thể Nhân sự | Từ: Harkfield Capital | Chủ đề: Nghỉ nửa ngày | Ngày: 10 tháng 11",
+                "Vào thứ Sáu, ngày 19 tháng 11, bắt đầu từ 2:00 chiều, nhà để xe sẽ được xịt rửa áp lực cao và sơn lại vạch kẻ. Trước khi công nhân có thể bắt đầu làm việc, nhà để xe cần phải trống.",
+                "Do đó, tất cả nhân viên sẽ được nghỉ nửa ngày có hưởng lương. Những nhân viên bắt đầu làm việc lúc 8:00 sáng sẽ tan làm lúc 12:00 trưa. Những người bắt đầu lúc 9:00 sáng sẽ kết thúc lúc 1:00 chiều. Sẽ không tính giờ nghỉ trưa. Nhân viên phải rời khỏi nhà để xe ngay sau khi hoàn thành ca làm việc.",
+                "Nhà để xe sẽ vẫn đóng cửa suốt cuối tuần. Nhân viên làm việc vào cuối tuần phải đỗ xe trên đường hoặc tại bãi đỗ xe trả phí.",
+                "Chúng tôi hy vọng các bạn sẽ tận hưởng khoảng thời gian nghỉ ngơi thêm này.",
+              ],
+              questions: [
+                {
+                  number: 143,
+                  options: {
+                    A: "be hired",
+                    B: "be paid",
+                    C: "rest",
+                    D: "start",
+                  },
+                  answer: "D",
+                  explanation:
+                    "'Before the workers can start, the garage needs to be empty' (Trước khi công nhân có thể bắt đầu làm việc, nhà để xe cần phải trống).",
+                },
+                {
+                  number: 144,
+                  options: {
+                    A: "Employees who start work at 8:00 A.M. will leave at noon.",
+                    B: "Confidential material should be disposed of in a secure bin.",
+                    C: "Carpooling has become increasingly popular with employees.",
+                    D: "Managers must approve all overtime requests.",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Câu liền sau nêu lịch của nhóm bắt đầu lúc 9:00 sáng ('Those who begin at 9:00 A.M. will finish at 1:00 P.M.'), nên câu 144 nêu lịch của nhóm bắt đầu lúc 8:00 sáng là hoàn toàn song song.",
+                },
+                {
+                  number: 145,
+                  options: {
+                    A: "vacates",
+                    B: "vacate",
+                    C: "vacated",
+                    D: "be vacated",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Sau động từ khuyết thiếu 'must' dùng động từ nguyên mẫu chủ động 'vacate' (rời khỏi/di dời xe khỏi nhà để xe).",
+                },
+                {
+                  number: 146,
+                  options: {
+                    A: "underground",
+                    B: "exact",
+                    C: "spacious",
+                    D: "closed",
+                  },
+                  answer: "D",
+                  explanation:
+                    "'Remain closed all weekend' (vẫn đóng cửa suốt cuối tuần).",
+                },
+              ],
+            },
+          ],
+        },
+
+        // ==================== UNIT 7 ====================
+        {
+          unit: 7,
+          title: "TOEIC Part 6 — Unit 7",
+          source: "Part 6 07.pdf",
+          passages: [
+            {
+              id: "u7p1",
+              range: "131–134",
+              type: "Article",
+              heading: "A New Season at the Farmers Market",
+              paragraphs: [
+                "Lee Valley Farmers Market is {{131}} exciting changes. Jerry Carver, who has been the market's {{132}} for the last three years, stepped down last week. He was replaced by Paul Frankson, who oversaw operations at Garden Haven Farm.",
+                'The main market area is expanding from ten to fifteen booths to include more than just produce. {{133}} There are also plans for a coffee stand and a craft section. "We really appreciate our loyal customers who have been purchasing produce from us for many years," said Frankson. "We hope that by offering a {{134}} range of products, we can encourage more people to shop locally."',
+                "Lee Valley Farmers Market is open year-round, seven days a week, from 8:00 A.M. to 6:00 P.M.",
+              ],
+              translation: [
+                "Một Mùa Mới tại Chợ Nông sản",
+                "Chợ Nông sản Lee Valley đang trải qua những thay đổi thú vị. Jerry Carver, người đã làm quản lý chợ trong ba năm qua, đã từ chức vào tuần trước. Ông được thay thế bởi Paul Frankson, người từng giám sát hoạt động tại Trang trại Garden Haven.",
+                'Khu vực chợ chính đang mở rộng từ mười lên mười lăm gian hàng để bán nhiều mặt hàng hơn ngoài nông sản. Thịt, phô mai và mật ong nằm trong số các sản phẩm mới. Ngoài ra còn có kế hoạch mở một quầy cà phê và một khu đồ thủ công mỹ nghệ. "Chúng tôi thực sự trân trọng những khách hàng trung thành đã mua nông sản của chúng tôi trong nhiều năm qua," ông Frankson nói. "Chúng tôi hy vọng rằng bằng cách cung cấp danh mục sản phẩm đa dạng hơn, chúng tôi có thể khuyến khích nhiều người mua sắm tại địa phương hơn."',
+                "Chợ Nông sản Lee Valley mở cửa quanh năm, bảy ngày một tuần, từ 8:00 sáng đến 6:00 chiều.",
+              ],
+              questions: [
+                {
+                  number: 131,
+                  options: {
+                    A: "resulting",
+                    B: "attaching",
+                    C: "competing",
+                    D: "undergoing",
+                  },
+                  answer: "D",
+                  explanation:
+                    "'Undergoing exciting changes' (đang trải qua những thay đổi thú vị).",
+                },
+                {
+                  number: 132,
+                  options: {
+                    A: "shipper",
+                    B: "grower",
+                    C: "driver",
+                    D: "manager",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Người tiền nhiệm từ chức và được thay thế bởi Paul Frankson (người từng giám sát vận hành) -> chức danh là 'manager' (người quản lý chợ).",
+                },
+                {
+                  number: 133,
+                  options: {
+                    A: "However, there is a pharmacy next door.",
+                    B: "It will be closed over the winter months.",
+                    C: "Meat, cheese, and honey are among the new products.",
+                    D: "Currently, parking is available in the garage across the street.",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Câu trước nói khu vực chợ mở rộng để bán nhiều mặt hàng hơn ngoài nông sản ('more than just produce'), câu C liệt kê cụ thể các sản phẩm mới (thịt, phô mai, mật ong).",
+                },
+                {
+                  number: 134,
+                  options: { A: "widen", B: "wider", C: "widest", D: "widely" },
+                  answer: "B",
+                  explanation:
+                    "Tính từ so sánh hơn 'a wider range of products' (danh mục sản phẩm đa dạng/rộng lớn hơn).",
+                },
+              ],
+            },
+            {
+              id: "u7p2",
+              range: "135–138",
+              type: "Advertisement",
+              heading: "MARCHETTI TIRES — Greenback Discount Warehouse Club",
+              paragraphs: [
+                "Don't let tires that are cracked, bulging, or worn slow you down. Cruise into the new year on fresh Marchetti premium tires! Now at all Greenback Discount Warehouse Club locations, members can save $75 on a {{135}} of four this month.",
+                "{{136}} Sign up for an annual membership before December 31 and take an extra $20 off tire installation.",
+                "Some exclusions {{137}}, and sizes may not be available for all vehicle makes and models. For {{138}} details, go to your nearest Greenback Discount Warehouse Club or visit the Web site at www.gdwc.com/tires.",
+              ],
+              translation: [
+                "LỐP XE MARCHETTI",
+                "Đừng để những chiếc lốp bị nứt, phồng hoặc mòn làm chậm bước bạn. Hãy lướt vào năm mới trên bộ lốp cao cấp Marchetti mới toanh! Ngay bây giờ tại tất cả các chi nhánh của Câu lạc bộ Kho giảm giá Greenback, hội viên có thể tiết kiệm 75 đô la khi mua một bộ bốn chiếc trong tháng này.",
+                "Bạn có muốn trở thành hội viên không? Hãy đăng ký thẻ hội viên thường niên trước ngày 31 tháng 12 và được giảm thêm 20 đô la phí lắp đặt lốp.",
+                "Một số trường hợp ngoại lệ được áp dụng và kích cỡ có thể không có sẵn cho tất cả các hãng và dòng xe. Để biết thêm chi tiết, hãy đến Câu lạc bộ Kho giảm giá Greenback gần nhất hoặc truy cập trang web www.gdwc.com/tires.",
+              ],
+              questions: [
+                {
+                  number: 135,
+                  options: { A: "file", B: "packet", C: "set", D: "round" },
+                  answer: "C",
+                  explanation: "'A set of four' (một bộ 4 chiếc lốp).",
+                },
+                {
+                  number: 136,
+                  options: {
+                    A: "Are you tired of sitting in traffic?",
+                    B: "Would you like to become a member?",
+                    C: "Do you need a trusted mechanic?",
+                    D: "Are you interested in a new car?",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Câu liền sau mời đăng ký thẻ thành viên thường niên ('Sign up for an annual membership...'), khớp với câu hỏi 'Bạn có muốn trở thành thành viên không?'.",
+                },
+                {
+                  number: 137,
+                  options: {
+                    A: "apply",
+                    B: "to apply",
+                    C: "applying",
+                    D: "had applied",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Cụm từ cố định trong điều khoản quảng cáo: 'Some exclusions apply' (Một số trường hợp ngoại lệ được áp dụng).",
+                },
+                {
+                  number: 138,
+                  options: {
+                    A: "modern",
+                    B: "optional",
+                    C: "inflated",
+                    D: "further",
+                  },
+                  answer: "D",
+                  explanation: "'For further details' (Để biết thêm chi tiết).",
+                },
+              ],
+            },
+            {
+              id: "u7p3",
+              range: "139–142",
+              type: "E-mail",
+              heading: "Event Confirmation — Bonner Trampoline Park",
+              paragraphs: [
+                "To: Ezgi Inan | From: Tina Yun | Date: 15 April | Subject: Event Confirmation",
+                "Dear Ms. Inan,",
+                "It was a pleasure {{139}} with you today. Thank you for booking your 21 May team-building event at Bonner Trampoline Park. As I mentioned, Bonner offers a variety of lunch packages. I have put you down for the basic option. This {{140}} one slice of pizza, one can of lemonade, and one small bag of crisps for £8 per person. You may upgrade your package to add a fruit or vegetable tray for £35. Bonner can also provide a sheet cake for an additional £30. {{141}}, you may bring your own cake or another dessert. {{142}} Food orders can be changed up to 48 hours prior to your event.",
+                "Sincerely, Tina Yun — Events Manager, Bonner Trampoline Park",
+              ],
+              translation: [
+                "Gửi: Ezgi Inan | Từ: Tina Yun | Ngày: 15 tháng 4 | Chủ đề: Xác nhận Sự kiện",
+                "Kính gửi cô Inan,",
+                "Rất vui được trò chuyện với cô hôm nay. Cảm ơn cô đã đặt sự kiện gắn kết đội ngũ vào ngày 21 tháng 5 tại Công viên Bạt nhún Bonner. Như tôi đã đề cập, Bonner cung cấp nhiều gói bữa trưa đa dạng. Tôi đã đăng ký cho cô gói cơ bản. Gói này bao gồm một lát pizza, một lon nước chanh và một túi khoai tây chiên nhỏ với giá 8 bảng Anh mỗi người. Cô có thể nâng cấp gói của mình để thêm một khay trái cây hoặc rau củ với giá 35 bảng. Bonner cũng có thể cung cấp một chiếc bánh kem lớn với phụ phí 30 bảng. Hoặc là, cô có thể tự mang bánh kem hoặc món tráng miệng khác của riêng mình. Vui lòng trả lời tin nhắn này nếu cô muốn nâng cấp thực đơn. Đơn đặt đồ ăn có thể được thay đổi tối đa 48 giờ trước sự kiện của cô.",
+                "Trân trọng, Tina Yun — Quản lý Sự kiện, Công viên Bạt nhún Bonner",
+              ],
+              questions: [
+                {
+                  number: 139,
+                  options: {
+                    A: "speaking",
+                    B: "presenting",
+                    C: "performing",
+                    D: "celebrating",
+                  },
+                  answer: "A",
+                  explanation:
+                    "'It was a pleasure speaking with you today' (Rất vui được trò chuyện với cô hôm nay).",
+                },
+                {
+                  number: 140,
+                  options: {
+                    A: "includes",
+                    B: "including",
+                    C: "has included",
+                    D: "would have included",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Mô tả thông tin thực tế về gói cơ bản ở hiện tại -> chia động từ hiện tại đơn số ít 'includes'.",
+                },
+                {
+                  number: 141,
+                  options: {
+                    A: "Similarly",
+                    B: "In short",
+                    C: "Alternatively",
+                    D: "For example",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Đưa ra lựa chọn thay thế ('Hoặc là / Ngoài ra, bạn có thể tự mang bánh kem hoặc món tráng miệng khác').",
+                },
+                {
+                  number: 142,
+                  options: {
+                    A: "Our vegetable tray is a popular item.",
+                    B: "Check-in for your party begins at noon.",
+                    C: "Each guest will need to sign a waiver prior to the event.",
+                    D: "Please reply to this message if you would like to upgrade your menu.",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Đoạn văn đang nói về các gói đồ ăn và việc nâng cấp thực đơn, câu sau nhắc thời hạn thay đổi đơn đặt đồ ăn, nên câu D mời phản hồi email nếu muốn nâng cấp thực đơn rất khớp.",
+                },
+              ],
+            },
+            {
+              id: "u7p4",
+              range: "143–146",
+              type: "Notice",
+              heading: "Paxton Mobile Banking Account Setup",
+              paragraphs: [
+                "Thank you for initiating the setup of your Paxton Mobile Banking account. {{143}}",
+                'Once your account is fully activated, you will receive notifications of any account activity, {{144}} deposits, withdrawals, and fund transfers. You can {{145}} notification settings on the "My Account" page on our mobile app or Web site. For your security purposes, you will be prompted to request a one-time {{146}} code before changing your settings. If you have any questions, please visit www.paxtonmobilebanking.com/FAQ.',
+              ],
+              translation: [
+                "Cảm ơn bạn đã bắt đầu thiết lập tài khoản Ngân hàng Di động Paxton của mình. Để hoàn tất quy trình, hãy làm theo hướng dẫn mà chúng tôi đã gửi tới email của bạn.",
+                'Sau khi tài khoản của bạn được kích hoạt đầy đủ, bạn sẽ nhận được thông báo về mọi hoạt động của tài khoản, chẳng hạn như gửi tiền, rút tiền và chuyển khoản. Bạn có thể điều chỉnh cài đặt thông báo trên trang "Tài khoản của tôi" trên ứng dụng di động hoặc trang web của chúng tôi. Vì mục đích bảo mật của bạn, bạn sẽ được nhắc yêu cầu mã xác minh dùng một lần trước khi thay đổi cài đặt. Nếu bạn có bất kỳ câu hỏi nào, vui lòng truy cập www.paxtonmobilebanking.com/FAQ.',
+              ],
+              questions: [
+                {
+                  number: 143,
+                  options: {
+                    A: "To open a new line of credit, call your local branch office.",
+                    B: "To complete the process, follow the instructions we sent to your e-mail.",
+                    C: "Please respond to this survey so we can learn how to serve you better.",
+                    D: "You can order a replacement bank card directly from the app.",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Câu trước cảm ơn vì đã bắt đầu thiết lập tài khoản ('initiating the setup'), câu B hướng dẫn bước tiếp theo để hoàn tất quy trình ('To complete the process...').",
+                },
+                {
+                  number: 144,
+                  options: {
+                    A: "without",
+                    B: "as soon as",
+                    C: "instead of",
+                    D: "such as",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Liệt kê ví dụ về các hoạt động tài khoản ('such as deposits, withdrawals, and fund transfers').",
+                },
+                {
+                  number: 145,
+                  options: {
+                    A: "adjust",
+                    B: "interrupt",
+                    C: "spend",
+                    D: "allow",
+                  },
+                  answer: "A",
+                  explanation:
+                    "'Adjust notification settings' (điều chỉnh cài đặt thông báo).",
+                },
+                {
+                  number: 146,
+                  options: {
+                    A: "verify",
+                    B: "verifies",
+                    C: "verifiability",
+                    D: "verification",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Cụm danh từ 'a one-time verification code' (mã xác minh dùng một lần).",
+                },
+              ],
+            },
+          ],
+        },
+
+        // ==================== UNIT 8 ====================
+        {
+          unit: 8,
+          title: "TOEIC Part 6 — Unit 8",
+          source: "Part 6 08.pdf",
+          passages: [
+            {
+              id: "u8p1",
+              range: "131–134",
+              type: "Web Page",
+              heading: "Slipcovers — Glen and Meadows Home Goods",
+              paragraphs: [
+                "Glen and Meadows Home Goods now sells a variety of practical covers {{131}} your chairs and sofas. Our slipcovers are available in a wide selection of sizes and colors. We have many options for your most heavily used {{132}}. There are many beautiful stain-resistant fabrics to choose from. {{133}} If the use of synthetic materials is a concern, you can select from our Naturals Collection. Whatever your interior design plans, you can {{134}} change the look of any room with Glen and Meadows slipcovers.",
+              ],
+              translation: [
+                "Tấm phủ ghế Sofa — Đồ gia dụng Glen và Meadows",
+                "Đồ gia dụng Glen và Meadows hiện bán nhiều loại tấm phủ tiện dụng để bảo vệ ghế và sofa của bạn. Các tấm phủ của chúng tôi có sẵn với nhiều kích cỡ và màu sắc đa dạng. Chúng tôi có nhiều lựa chọn cho những món đồ nội thất được sử dụng thường xuyên nhất của bạn. Có rất nhiều loại vải chống bám bẩn đẹp mắt để lựa chọn. Và chúng tôi đang bổ sung thêm nhiều lựa chọn mới mỗi tuần. Nếu việc sử dụng chất liệu tổng hợp là điều bạn băn khoăn, bạn có thể chọn từ Bộ sưu tập Tự nhiên của chúng tôi. Dù kế hoạch thiết kế nội thất của bạn là gì, bạn đều có thể thay đổi nhanh chóng diện mạo của bất kỳ căn phòng nào với tấm phủ ghế Glen và Meadows.",
+              ],
+              questions: [
+                {
+                  number: 131,
+                  options: {
+                    A: "protect",
+                    B: "to protect",
+                    C: "are protecting",
+                    D: "protected",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Động từ nguyên mẫu chỉ mục đích 'to protect your chairs and sofas' (để bảo vệ ghế và sofa của bạn).",
+                },
+                {
+                  number: 132,
+                  options: {
+                    A: "furniture",
+                    B: "systems",
+                    C: "appliances",
+                    D: "routes",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Ghế và sofa thuộc nhóm đồ nội thất ('furniture').",
+                },
+                {
+                  number: 133,
+                  options: {
+                    A: "They do not hold up well with frequent use.",
+                    B: "They are no longer available on our online store.",
+                    C: "And we are adding more options every week.",
+                    D: "We find them fun and easy to wear.",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Câu trước giới thiệu có nhiều loại vải chống bám bẩn để lựa chọn, câu C bổ sung tích cực 'Và chúng tôi đang thêm nhiều lựa chọn mới mỗi tuần'.",
+                },
+                {
+                  number: 134,
+                  options: {
+                    A: "quicken",
+                    B: "quickly",
+                    C: "quicker",
+                    D: "quick",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Trạng từ 'quickly' bổ nghĩa cho động từ 'change' (thay đổi nhanh chóng diện mạo của bất kỳ căn phòng nào).",
+                },
+              ],
+            },
+            {
+              id: "u8p2",
+              range: "135–138",
+              type: "E-mail",
+              heading: "Information — Building Heating Unit",
+              paragraphs: [
+                "To: All Staff <staff@kelseytech.co.uk> | From: Kosei Masutani <kmasutani@kelseytech.co.uk> | Subject: Information | Date: 26 January",
+                "Some of you may have felt a bit {{135}} while sitting at your desk this morning. That's because one of the heating units in our building is broken. Unfortunately, the repair crew cannot come to fix the problem until Thursday. The open office space on the lower level is the most affected area, with only some heat. Our interns are {{136}} there, so they will be assigned temporary office spaces on other floors. {{137}}, upon arrival tomorrow morning, interns will need to check in with Ms. Connor to receive their alternative work-space assignments. {{138}} In the meantime, be assured we will ensure everyone's safety and resolve this quickly.",
+                "Kosei Masutani, Facilities Manager",
+              ],
+              translation: [
+                "Gửi: Toàn thể Nhân viên | Từ: Kosei Masutani | Chủ đề: Thông báo | Ngày: 26 tháng 1",
+                "Một số bạn có thể đã cảm thấy hơi khó chịu khi ngồi tại bàn làm việc sáng nay. Đó là do một trong các thiết bị sưởi trong tòa nhà của chúng ta bị hỏng. Thật không may, đội sửa chữa không thể đến khắc phục sự cố cho đến thứ Năm. Không gian văn phòng mở ở tầng dưới là khu vực bị ảnh hưởng nhiều nhất, chỉ có một chút hơi ấm. Các thực tập sinh của chúng ta được bố trí chỗ ngồi ở đó, vì vậy họ sẽ được phân bổ không gian làm việc tạm thời ở các tầng khác. Do đó, khi đến nơi vào sáng mai, các thực tập sinh sẽ cần gặp cô Connor để nhận vị trí làm việc thay thế. Tôi xin lỗi vì sự bất tiện này. Trong thời gian chờ đợi, hãy yên tâm rằng chúng tôi sẽ đảm bảo an toàn cho mọi người và giải quyết vấn đề này nhanh chóng.",
+                "Kosei Masutani, Quản lý Cơ sở vật chất",
+              ],
+              questions: [
+                {
+                  number: 135,
+                  options: {
+                    A: "uncomfortable",
+                    B: "lonely",
+                    C: "prompt",
+                    D: "overwhelmed",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Máy sưởi bị hỏng nên nhân viên ngồi ở bàn làm việc cảm thấy hơi khó chịu/lạnh ('a bit uncomfortable').",
+                },
+                {
+                  number: 136,
+                  options: {
+                    A: "a location",
+                    B: "to locate",
+                    C: "locating",
+                    D: "located",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Cấu trúc bị động 'are located there' (được bố trí chỗ ngồi ở đó).",
+                },
+                {
+                  number: 137,
+                  options: {
+                    A: "However",
+                    B: "Likewise",
+                    C: "Consequently",
+                    D: "Otherwise",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Chỉ kết quả: Vì thực tập sinh được phân bổ chỗ làm việc tạm thời ở tầng khác -> 'Consequently' (Do đó), sáng mai đến nơi họ cần gặp cô Connor để nhận vị trí mới.",
+                },
+                {
+                  number: 138,
+                  options: {
+                    A: "The interns will not arrive here until June.",
+                    B: "I apologize for the inconvenience.",
+                    C: "We will soon be renovating the open office space.",
+                    D: "Heater maintenance is sometimes costly.",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Email thông báo sự cố hỏng máy sưởi ảnh hưởng đến nhân viên, câu xin lỗi 'I apologize for the inconvenience' trước câu cam kết khắc phục nhanh chóng là chuẩn xác nhất.",
+                },
+              ],
+            },
+            {
+              id: "u8p3",
+              range: "139–142",
+              type: "Brochure",
+              heading: "Southerby Designs",
+              paragraphs: [
+                "Southerby Designs is the leading firm in designing retail spaces and product displays in the greater Chennington area. For nearly three decades, Southerby Designs has collaborated with countless stores, {{139}} beautiful designs for their retail spaces. We have {{140}} worked with several museums and event production companies to create captivating, streamlined, and inviting visitor experiences. {{141}} designing retail displays to completing projects for leading cultural institutions, Southerby Designs can partner with your organization to develop the perfect design solution to fit your needs. {{142}} We are confident that we can develop a solution to help you!",
+              ],
+              translation: [
+                "Southerby Designs",
+                "Southerby Designs là công ty hàng đầu trong lĩnh vực thiết kế không gian bán lẻ và trưng bày sản phẩm tại khu vực Chennington mở rộng. Trong gần ba thập kỷ, Southerby Designs đã hợp tác với vô số cửa hàng, tạo ra những thiết kế đẹp mắt cho không gian bán lẻ của họ. Chúng tôi thậm chí còn hợp tác với một số bảo tàng và công ty tổ chức sự kiện để tạo ra những trải nghiệm khách tham quan lôi cuốn, tinh gọn và hấp dẫn. Từ việc thiết kế khu trưng bày bán lẻ cho đến hoàn thành các dự án cho các tổ chức văn hóa hàng đầu, Southerby Designs có thể hợp tác với tổ chức của bạn để phát triển giải pháp thiết kế hoàn hảo phù hợp với nhu cầu của bạn. Hãy liên hệ với chúng tôi ngay hôm nay và cho chúng tôi biết những thách thức thiết kế mà bạn đang gặp phải. Chúng tôi tự tin rằng mình có thể phát triển một giải pháp để giúp bạn!",
+              ],
+              questions: [
+                {
+                  number: 139,
+                  options: {
+                    A: "produced",
+                    B: "have produced",
+                    C: "was producing",
+                    D: "producing",
+                  },
+                  answer: "D",
+                  explanation:
+                    "Rút gọn mệnh đề trạng ngữ/quan hệ mang nghĩa chủ động: '...has collaborated with countless stores, producing beautiful designs...' (tạo ra những thiết kế đẹp mắt).",
+                },
+                {
+                  number: 140,
+                  options: {
+                    A: "even",
+                    B: "instead",
+                    C: "therefore",
+                    D: "nevertheless",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Nhấn mạnh sự mở rộng phạm vi khách hàng: 'We have even worked with several museums...' (Chúng tôi thậm chí còn hợp tác với một số bảo tàng...).",
+                },
+                {
+                  number: 141,
+                  options: { A: "By", B: "Over", C: "After", D: "From" },
+                  answer: "D",
+                  explanation:
+                    "Cấu trúc 'From A to B' ('From designing retail displays to completing projects...').",
+                },
+                {
+                  number: 142,
+                  options: {
+                    A: "We worked with a large portfolio of designers and artists at that time.",
+                    B: "Contact us today and let us know what design challenges you are facing.",
+                    C: "In fact, we raised our rates for the first time last year.",
+                    D: "In contrast, our business has grown substantially over the past ten years.",
+                  },
+                  answer: "B",
+                  explanation:
+                    "Câu kêu gọi hành động (Call to Action) ở cuối brochure quảng cáo dịch vụ: 'Hãy liên hệ với chúng tôi ngay hôm nay...'.",
+                },
+              ],
+            },
+            {
+              id: "u8p4",
+              range: "143–146",
+              type: "Web Page",
+              heading: "Central Train Service — Gift Cards",
+              paragraphs: [
+                "Central Train Service makes it {{143}} than ever to give the gift of travel. Our gift cards are the perfect way to give someone special an unforgettable journey. Traveling by train can provide passengers with a worry-free experience. {{144}} Enjoy visiting amazing cities and beautiful national parks.",
+                "Central Train Service gift cards never {{145}}. They can be redeemed online or at any major train station. Cards can be purchased in amounts up to $500. There are no additional {{146}}. The full value of the gift card can be applied to any ticket purchase.",
+              ],
+              translation: [
+                "Dịch vụ Tàu hỏa Trung tâm — Thẻ Quà tặng",
+                "Dịch vụ Tàu hỏa Trung tâm giúp việc tặng món quà du lịch trở nên dễ dàng hơn bao giờ hết. Thẻ quà tặng của chúng tôi là cách hoàn hảo để mang đến cho một người đặc biệt một hành trình khó quên. Du lịch bằng tàu hỏa có thể mang lại cho hành khách trải nghiệm không lo âu. Du khách có thể thoải mái thư giãn và tận hưởng chuyến phiêu lưu. Hãy tận hưởng việc ghé thăm những thành phố tuyệt vời và các công viên quốc gia xinh đẹp.",
+                "Thẻ quà tặng của Dịch vụ Tàu hỏa Trung tâm không bao giờ hết hạn. Chúng có thể được quy đổi trực tuyến hoặc tại bất kỳ nhà ga lớn nào. Thẻ có thể được mua với mệnh giá lên tới 500 đô la. Không có bất kỳ khoản phí phụ thu nào. Toàn bộ giá trị của thẻ quà tặng có thể được áp dụng cho bất kỳ giao dịch mua vé nào.",
+              ],
+              questions: [
+                {
+                  number: 143,
+                  options: { A: "easily", B: "easier", C: "easy", D: "ease" },
+                  answer: "B",
+                  explanation:
+                    "Cấu trúc 'make it + tính từ so sánh hơn + than ever' -> 'makes it easier than ever' (giúp việc tặng món quà du lịch trở nên dễ dàng hơn bao giờ hết).",
+                },
+                {
+                  number: 144,
+                  options: {
+                    A: "The tourists often visit Paris and London.",
+                    B: "There are several ways to change your seat selection.",
+                    C: "Travelers are free to relax and enjoy the adventure.",
+                    D: "Passengers must travel with personal identification.",
+                  },
+                  answer: "C",
+                  explanation:
+                    "Câu trước nói đi tàu mang lại trải nghiệm không lo âu ('worry-free experience'), câu C tiếp nối ý này ('Hành khách có thể thoải mái thư giãn và tận hưởng chuyến phiêu lưu').",
+                },
+                {
+                  number: 145,
+                  options: {
+                    A: "expire",
+                    B: "expiring",
+                    C: "expired",
+                    D: "expiration",
+                  },
+                  answer: "A",
+                  explanation:
+                    "Chủ ngữ 'gift cards' số nhiều, diễn tả quy định/sự thật chung -> động từ hiện tại đơn nguyên mẫu 'expire' (không bao giờ hết hạn).",
+                },
+                {
+                  number: 146,
+                  options: {
+                    A: "comments",
+                    B: "instructions",
+                    C: "dates",
+                    D: "fees",
+                  },
+                  answer: "D",
+                  explanation:
+                    "'There are no additional fees' (Không có bất kỳ khoản phí phụ thu nào).",
+                },
+              ],
+            },
+          ],
+        },
+      ];
+
+      // ==================== STATE MANAGEMENT ====================
+      const STORAGE_KEY = "toeic_part6_master_v1";
+
+      let appState = {
+        currentUnitIndex: 0,
+        currentPassageIndex: 0,
+        mode: "practice", // 'practice' | 'exam'
+        filterWrongOnly: false,
+        showTranslation: false,
+        mobilePane: "passage", // 'passage' | 'questions'
+        // userAnswers: { [questionUniqueId]: 'A' | 'B' | 'C' | 'D' }
+        userAnswers: {},
+        // checkedQuestions: { [questionUniqueId]: true }
+        checkedQuestions: {},
+        // examSubmitted: { [unitIndex]: { submitted: true, timeSpent: number } }
+        examSubmitted: {},
+      };
+
+      let timerInterval = null;
+      let remainingSeconds = 8 * 60; // 8 phút cho 16 câu Part 6 chuẩn TOEIC
+
+      function loadState() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            appState = {
+              ...appState,
+              ...parsed,
+              // Luôn reset bộ lọc sai khi mở lại để tránh nhầm lẫn nếu chưa có câu sai
+              filterWrongOnly: false,
+            };
+          }
+        } catch (e) {
+          console.warn("Không thể tải tiến độ từ localStorage:", e);
+        }
+      }
+
+      function saveState() {
+        try {
+          const toSave = {
+            currentUnitIndex: appState.currentUnitIndex,
+            currentPassageIndex: appState.currentPassageIndex,
+            mode: appState.mode,
+            userAnswers: appState.userAnswers,
+            checkedQuestions: appState.checkedQuestions,
+            examSubmitted: appState.examSubmitted,
+          };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+        } catch (e) {
+          console.warn("Không thể lưu tiến độ:", e);
+        }
+      }
+
+      function getQuestionUid(unitIdx, qNumber) {
+        return `u${unitIdx + 1}_q${qNumber}`;
+      }
+
+      // ==================== RENDER FUNCTIONS ====================
+      function renderAll() {
+        renderUnitTabs();
+        renderHeaderAndStats();
+        renderPassageTabs();
+        renderPassageContent();
+        renderQuestionsList();
+        updateModeUI();
+        updateMobilePaneUI();
+      }
+
+      function renderUnitTabs() {
+        const container = document.getElementById("unitTabsContainer");
+        container.innerHTML = TOEIC_DATA.map((u, idx) => {
+          const isActive = idx === appState.currentUnitIndex;
+          // Tính số câu đã làm trong Unit
+          let answered = 0;
+          let correct = 0;
+          u.passages.forEach((p) => {
+            p.questions.forEach((q) => {
+              const uid = getQuestionUid(idx, q.number);
+              if (appState.userAnswers[uid]) {
+                answered++;
+                if (appState.userAnswers[uid] === q.answer) correct++;
+              }
+            });
+          });
+
+          const isCompleted = answered === 16;
+          let dotHtml = "";
+          if (isCompleted) {
+            dotHtml = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span>`;
+          } else if (answered > 0) {
+            dotHtml = `<span class="w-2 h-2 rounded-full bg-amber-400"></span>`;
+          }
+
+          return `
+          <button
+            onclick="selectUnit(${idx})"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all border ${
+              isActive
+                ? "bg-indigo-600 text-white border-indigo-600 shadow-xs"
+                : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100"
+            }"
+          >
+            <span>Unit ${u.unit}</span>
+            ${dotHtml}
+          </button>
+        `;
+        }).join("");
+      }
+
+      function renderHeaderAndStats() {
+        const unitObj = TOEIC_DATA[appState.currentUnitIndex];
+        document.getElementById("currentUnitBadge").textContent =
+          `UNIT ${unitObj.unit}`;
+        document.getElementById("currentUnitTitle").textContent =
+          `${unitObj.title} (Câu 131 – 146)`;
+
+        // Tính thống kê Unit hiện tại
+        let answered = 0;
+        let correct = 0;
+        let wrong = 0;
+        const isExamDone =
+          appState.mode === "exam" &&
+          appState.examSubmitted[appState.currentUnitIndex]?.submitted;
+
+        unitObj.passages.forEach((p) => {
+          p.questions.forEach((q) => {
+            const uid = getQuestionUid(appState.currentUnitIndex, q.number);
+            const ans = appState.userAnswers[uid];
+            if (ans) {
+              answered++;
+              // Trong chế độ luyện tập, tính đúng/sai khi đã kiểm tra; trong thi thử tính sau khi nộp bài
+              const canReveal =
+                appState.mode === "practice"
+                  ? !!appState.checkedQuestions[uid]
+                  : isExamDone;
+              if (canReveal) {
+                if (ans === q.answer) correct++;
+                else wrong++;
+              }
+            }
+          });
+        });
+
+        const revealedTotal = correct + wrong;
+        const accuracy =
+          revealedTotal > 0 ? Math.round((correct / revealedTotal) * 100) : 0;
+
+        document.getElementById("unitAnsweredCount").textContent =
+          `${answered}/16`;
+        document.getElementById("unitCorrectCount").textContent = correct;
+        document.getElementById("unitWrongCount").textContent = wrong;
+        document.getElementById("unitAccuracyText").textContent =
+          `${accuracy}%`;
+        document.getElementById("unitProgressBar").style.width =
+          `${(answered / 16) * 100}%`;
+
+        // Tổng tiến độ toàn bộ 8 Unit
+        let totalAnswered = 0;
+        TOEIC_DATA.forEach((u, uIdx) => {
+          u.passages.forEach((p) => {
+            p.questions.forEach((q) => {
+              if (appState.userAnswers[getQuestionUid(uIdx, q.number)])
+                totalAnswered++;
+            });
+          });
+        });
+        document.getElementById("overallStatsText").textContent =
+          `Tổng tiến độ: ${totalAnswered}/128 câu`;
+
+        // Cập nhật nút lọc câu sai
+        const btnFilter = document.getElementById("btnFilterWrong");
+        const filterLabel = document.getElementById("filterWrongLabel");
+        if (appState.filterWrongOnly) {
+          btnFilter.className =
+            "inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold border border-rose-300 bg-rose-50 text-rose-700 transition";
+          filterLabel.textContent = "Đang lọc câu sai";
+        } else {
+          btnFilter.className =
+            "inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition";
+          filterLabel.textContent = "Chỉ ôn câu sai";
+        }
+
+        // Banner kết quả thi thử
+        const resultBanner = document.getElementById("examResultBanner");
+        if (isExamDone) {
+          const totalAcc = Math.round((correct / 16) * 100);
+          const spent =
+            appState.examSubmitted[appState.currentUnitIndex].timeSpent || 0;
+          const mins = String(Math.floor(spent / 60)).padStart(2, "0");
+          const secs = String(spent % 60).padStart(2, "0");
+          document.getElementById("examResultHeading").textContent =
+            `Bạn đạt ${correct}/16 câu đúng (${totalAcc}%)`;
+          document.getElementById("examResultSubtext").textContent =
+            `Thời gian hoàn thành: ${mins}:${secs} • Hãy xem giải thích chi tiết từng câu ở bên dưới.`;
+          resultBanner.classList.remove("hidden");
+        } else {
+          resultBanner.classList.add("hidden");
+        }
+      }
+
+      function renderPassageTabs() {
+        const unitObj = TOEIC_DATA[appState.currentUnitIndex];
+        const container = document.getElementById("passageTabsContainer");
+        const isExamDone =
+          appState.mode === "exam" &&
+          appState.examSubmitted[appState.currentUnitIndex]?.submitted;
+
+        container.innerHTML = unitObj.passages
+          .map((p, pIdx) => {
+            const isActive = pIdx === appState.currentPassageIndex;
+            let doneCount = 0;
+            let wrongCount = 0;
+            p.questions.forEach((q) => {
+              const uid = getQuestionUid(appState.currentUnitIndex, q.number);
+              const ans = appState.userAnswers[uid];
+              if (ans) {
+                doneCount++;
+                const revealed =
+                  appState.mode === "practice"
+                    ? !!appState.checkedQuestions[uid]
+                    : isExamDone;
+                if (revealed && ans !== q.answer) wrongCount++;
+              }
+            });
+
+            let badge = `<span class="text-[11px] px-1.5 py-0.5 rounded-md ${isActive ? "bg-indigo-500 text-white" : "bg-slate-100 text-slate-600"}">${doneCount}/4</span>`;
+            if (wrongCount > 0) {
+              badge = `<span class="text-[11px] px-1.5 py-0.5 rounded-md bg-rose-100 text-rose-700 font-bold">${wrongCount} sai</span>`;
+            }
+
+            return `
+          <button
+            onclick="selectPassage(${pIdx})"
+            class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap border transition-all ${
+              isActive
+                ? "bg-indigo-600 text-white border-indigo-600 shadow-xs"
+                : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
+            }"
+          >
+            <span>Đoạn ${pIdx + 1} (${p.range})</span>
+            ${badge}
+          </button>
+        `;
+          })
+          .join("");
+
+        // Cập nhật nút điều hướng Trước / Sau
+        const isFirst = appState.currentPassageIndex === 0;
+        const isLast =
+          appState.currentPassageIndex === unitObj.passages.length - 1;
+        document.getElementById("btnPrevPassage").disabled = isFirst;
+        document.getElementById("btnNextPassage").disabled = isLast;
+        document.getElementById("btnPrevPassageBottom").disabled = isFirst;
+        document.getElementById("btnNextPassageBottom").disabled = isLast;
+        document.getElementById("passagePageIndicator").textContent =
+          `Đoạn ${appState.currentPassageIndex + 1} / ${unitObj.passages.length}`;
+      }
+
+      function renderPassageContent() {
+        const unitObj = TOEIC_DATA[appState.currentUnitIndex];
+        const passage = unitObj.passages[appState.currentPassageIndex];
+        const isExamDone =
+          appState.mode === "exam" &&
+          appState.examSubmitted[appState.currentUnitIndex]?.submitted;
+
+        document.getElementById("passageMetaBadge").textContent =
+          `Questions ${passage.range} • ${passage.type}`;
+        document.getElementById("passageHeading").textContent = passage.heading;
+
+        // Xây dựng map câu hỏi theo số thứ tự để chèn vào các placeholder {{131}}
+        const qMap = {};
+        passage.questions.forEach((q) => {
+          qMap[q.number] = q;
+        });
+
+        const contentContainer = document.getElementById("passageContent");
+        contentContainer.innerHTML = passage.paragraphs
+          .map((paraText) => {
+            // Thay thế {{131}} bằng pill tương tác hiển thị số câu + đáp án đã chọn
+            const formattedHtml = paraText.replace(
+              /\{\{(\d+)\}\}/g,
+              (match, numStr) => {
+                const qNum = parseInt(numStr, 10);
+                const qObj = qMap[qNum];
+                const uid = getQuestionUid(appState.currentUnitIndex, qNum);
+                const selectedOpt = appState.userAnswers[uid];
+                const isRevealed =
+                  appState.mode === "practice"
+                    ? !!appState.checkedQuestions[uid]
+                    : isExamDone;
+
+                let displayText = `[${qNum}] ..........`;
+                let styleClasses =
+                  "bg-indigo-50 text-indigo-700 border-indigo-300 hover:bg-indigo-100";
+
+                if (selectedOpt && qObj) {
+                  const chosenText = qObj.options[selectedOpt];
+                  displayText = `(${qNum}) ${chosenText}`;
+                  if (isRevealed) {
+                    if (selectedOpt === qObj.answer) {
+                      styleClasses =
+                        "bg-emerald-100 text-emerald-900 border-emerald-400 font-semibold";
+                    } else {
+                      styleClasses =
+                        "bg-rose-100 text-rose-900 border-rose-400 line-through decoration-rose-600";
+                    }
+                  } else {
+                    styleClasses =
+                      "bg-amber-100 text-amber-900 border-amber-400 font-semibold";
+                  }
+                }
+
+                return `<button type="button" onclick="focusQuestionCard(${qNum})" title="Nhấn để tới câu ${qNum}" class="blank-pill inline-flex items-center px-2 py-0.5 mx-0.5 rounded-lg border text-sm sm:text-[15px] font-medium cursor-pointer align-baseline text-left ${styleClasses}">${displayText}</button>`;
+              },
+            );
+
+            return `<p>${formattedHtml}</p>`;
+          })
+          .join("");
+
+        // Dịch đoạn văn
+        const translationBox = document.getElementById("translationBox");
+        const translationBtnText =
+          document.getElementById("translationBtnText");
+        if (appState.showTranslation) {
+          translationBox.classList.remove("hidden");
+          translationBtnText.textContent = "Ẩn bản dịch";
+          document.getElementById("translationContent").innerHTML =
+            passage.translation.map((t) => `<p>${t}</p>`).join("");
+        } else {
+          translationBox.classList.add("hidden");
+          translationBtnText.textContent = "Dịch đoạn văn";
+        }
+      }
+
+      function renderQuestionsList() {
+        const unitObj = TOEIC_DATA[appState.currentUnitIndex];
+        const passage = unitObj.passages[appState.currentPassageIndex];
+        const container = document.getElementById("questionsContainer");
+        const isExamDone =
+          appState.mode === "exam" &&
+          appState.examSubmitted[appState.currentUnitIndex]?.submitted;
+
+        // Nút kiểm tra cả 4 câu chỉ hiện ở chế độ Luyện tập
+        const btnCheckPassage = document.getElementById("btnCheckPassage");
+        if (appState.mode === "practice") {
+          btnCheckPassage.classList.remove("hidden");
+        } else {
+          btnCheckPassage.classList.add("hidden");
+        }
+
+        let questionsToRender = passage.questions;
+        if (appState.filterWrongOnly) {
+          questionsToRender = passage.questions.filter((q) => {
+            const uid = getQuestionUid(appState.currentUnitIndex, q.number);
+            const ans = appState.userAnswers[uid];
+            const isRevealed =
+              appState.mode === "practice"
+                ? !!appState.checkedQuestions[uid]
+                : isExamDone;
+            return isRevealed && ans && ans !== q.answer;
+          });
+        }
+
+        if (questionsToRender.length === 0) {
+          container.innerHTML = `
+          <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center">
+            <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h4 class="font-bold text-slate-900">Không có câu làm sai trong đoạn này!</h4>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">Bạn có thể tắt bộ lọc "Chỉ ôn câu sai" hoặc chuyển sang đoạn khác.</p>
+          </div>
+        `;
+          return;
+        }
+
+        container.innerHTML = questionsToRender
+          .map((q) => {
+            const uid = getQuestionUid(appState.currentUnitIndex, q.number);
+            const selectedOpt = appState.userAnswers[uid];
+            const isRevealed =
+              appState.mode === "practice"
+                ? !!appState.checkedQuestions[uid]
+                : isExamDone;
+            const isCorrect = selectedOpt === q.answer;
+
+            let statusBadge = "";
+            if (isRevealed) {
+              if (selectedOpt) {
+                statusBadge = isCorrect
+                  ? `<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700">✓ Chính xác</span>`
+                  : `<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-700">✕ Sai (Đáp án: ${q.answer})</span>`;
+              } else {
+                statusBadge = `<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Chưa chọn (Đáp án: ${q.answer})</span>`;
+              }
+            }
+
+            const optionsHtml = ["A", "B", "C", "D"]
+              .map((letter) => {
+                const optText = q.options[letter];
+                const isChosen = selectedOpt === letter;
+                const isRightAnswer = q.answer === letter;
+
+                let btnStyle =
+                  "border-slate-200 bg-white hover:bg-slate-50 text-slate-800";
+                let circleStyle =
+                  "bg-slate-100 text-slate-700 border-slate-300";
+
+                if (!isRevealed) {
+                  if (isChosen) {
+                    btnStyle =
+                      "border-indigo-600 bg-indigo-50/70 text-indigo-950 ring-1 ring-indigo-600";
+                    circleStyle = "bg-indigo-600 text-white border-indigo-600";
+                  }
+                } else {
+                  if (isRightAnswer) {
+                    btnStyle =
+                      "border-emerald-500 bg-emerald-50/90 text-emerald-950 ring-1 ring-emerald-500";
+                    circleStyle =
+                      "bg-emerald-600 text-white border-emerald-600";
+                  } else if (isChosen && !isRightAnswer) {
+                    btnStyle =
+                      "border-rose-500 bg-rose-50/90 text-rose-950 ring-1 ring-rose-500";
+                    circleStyle = "bg-rose-600 text-white border-rose-600";
+                  } else {
+                    btnStyle =
+                      "border-slate-200 bg-slate-50/50 text-slate-500 opacity-75";
+                  }
+                }
+
+                return `
+            <button
+              type="button"
+              onclick="selectAnswer(${q.number}, '${letter}')"
+              class="w-full text-left p-2.5 sm:p-3 rounded-xl border transition-all flex items-start gap-3 ${btnStyle}"
+            >
+              <span class="w-6 h-6 rounded-full border text-xs font-bold flex items-center justify-center shrink-0 mt-0.5 ${circleStyle}">
+                ${letter}
+              </span>
+              <span class="text-xs sm:text-sm leading-snug font-medium">${optText}</span>
+            </button>
+          `;
+              })
+              .join("");
+
+            // Nút kiểm tra từng câu (chỉ hiện trong Practice Mode khi đã chọn đáp án và chưa mở lời giải)
+            let checkBtnHtml = "";
+            if (appState.mode === "practice" && !isRevealed) {
+              checkBtnHtml = `
+            <button
+              type="button"
+              onclick="checkSingleQuestion(${q.number})"
+              class="text-xs font-bold px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 transition"
+            >
+              Xem đáp án & giải thích
+            </button>
+          `;
+            }
+
+            // Khung giải thích chi tiết
+            const explanationHtml = isRevealed
+              ? `
+          <div class="mt-3.5 pt-3.5 border-t border-slate-100">
+            <div class="rounded-xl bg-slate-50 border border-slate-200/90 p-3.5">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-indigo-700 mb-1">
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+                <span>Giải thích chi tiết (Đáp án đúng: ${q.answer})</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${q.explanation}</p>
+            </div>
+          </div>
+        `
+              : "";
+
+            return `
+          <div id="question-card-${q.number}" class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-xs transition-all">
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-white font-bold text-xs">Câu ${q.number}</span>
+                ${statusBadge}
+              </div>
+              ${checkBtnHtml}
+            </div>
+
+            <div class="space-y-2">
+              ${optionsHtml}
+            </div>
+
+            ${explanationHtml}
+          </div>
+        `;
+          })
+          .join("");
+      }
+
+      // ==================== INTERACTIONS & LOGIC ====================
+      function selectUnit(unitIdx) {
+        appState.currentUnitIndex = unitIdx;
+        appState.currentPassageIndex = 0;
+        saveState();
+        if (appState.mode === "exam") {
+          setupExamTimerForCurrentUnit();
+        }
+        renderAll();
+      }
+
+      function selectPassage(passageIdx) {
+        appState.currentPassageIndex = passageIdx;
+        saveState();
+        renderPassageTabs();
+        renderPassageContent();
+        renderQuestionsList();
+      }
+
+      function navigatePassage(delta) {
+        const unitObj = TOEIC_DATA[appState.currentUnitIndex];
+        const nextIdx = appState.currentPassageIndex + delta;
+        if (nextIdx >= 0 && nextIdx < unitObj.passages.length) {
+          selectPassage(nextIdx);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }
+
+      function selectAnswer(qNumber, letter) {
+        const uid = getQuestionUid(appState.currentUnitIndex, qNumber);
+        // Nếu đang ở chế độ Thi thử và đã nộp bài thì khóa không cho sửa đáp án
+        if (
+          appState.mode === "exam" &&
+          appState.examSubmitted[appState.currentUnitIndex]?.submitted
+        ) {
+          showToast(
+            'Bài thi thử đã nộp. Nhấn "Thi lại Unit này" nếu muốn làm lại.',
+          );
+          return;
+        }
+
+        appState.userAnswers[uid] = letter;
+        saveState();
+        renderUnitTabs();
+        renderHeaderAndStats();
+        renderPassageTabs();
+        renderPassageContent();
+        renderQuestionsList();
+      }
+
+      function checkSingleQuestion(qNumber) {
+        const uid = getQuestionUid(appState.currentUnitIndex, qNumber);
+        if (!appState.userAnswers[uid]) {
+          showToast(`Bạn chưa chọn đáp án cho câu ${qNumber}!`);
+          return;
+        }
+        appState.checkedQuestions[uid] = true;
+        saveState();
+        renderHeaderAndStats();
+        renderPassageTabs();
+        renderPassageContent();
+        renderQuestionsList();
+      }
+
+      function checkCurrentPassage() {
+        const passage =
+          TOEIC_DATA[appState.currentUnitIndex].passages[
+            appState.currentPassageIndex
+          ];
+        let hasAnyAnswer = false;
+        passage.questions.forEach((q) => {
+          const uid = getQuestionUid(appState.currentUnitIndex, q.number);
+          if (appState.userAnswers[uid]) {
+            hasAnyAnswer = true;
+          }
+          appState.checkedQuestions[uid] = true;
+        });
+        if (!hasAnyAnswer) {
+          showToast("Đã hiển thị đáp án & giải thích cho cả 4 câu!");
+        }
+        saveState();
+        renderHeaderAndStats();
+        renderPassageTabs();
+        renderPassageContent();
+        renderQuestionsList();
+      }
+
+      function toggleTranslation() {
+        appState.showTranslation = !appState.showTranslation;
+        renderPassageContent();
+      }
+
+      function toggleFilterWrong() {
+        appState.filterWrongOnly = !appState.filterWrongOnly;
+        renderHeaderAndStats();
+        renderQuestionsList();
+      }
+
+      function focusQuestionCard(qNumber) {
+        // Trên mobile, tự động chuyển sang tab Câu hỏi
+        if (window.innerWidth < 1024) {
+          setMobilePane("questions");
+        }
+        setTimeout(() => {
+          const card = document.getElementById(`question-card-${qNumber}`);
+          if (card) {
+            card.scrollIntoView({ behavior: "smooth", block: "center" });
+            card.classList.add("ring-2", "ring-indigo-500");
+            setTimeout(
+              () => card.classList.remove("ring-2", "ring-indigo-500"),
+              1400,
+            );
+          }
+        }, 60);
+      }
+
+      // ==================== MODE SWITCHING & EXAM TIMER ====================
+      function switchMode(newMode) {
+        if (appState.mode === newMode) return;
+        appState.mode = newMode;
+        saveState();
+
+        if (newMode === "exam") {
+          setupExamTimerForCurrentUnit();
+        } else {
+          stopExamTimer();
+        }
+        renderAll();
+      }
+
+      function updateModeUI() {
+        const btnPractice = document.getElementById("btnModePractice");
+        const btnExam = document.getElementById("btnModeExam");
+        const modeBadge = document.getElementById("modeDescriptionBadge");
+        const timerBox = document.getElementById("examTimerBox");
+        const btnSubmitExam = document.getElementById("btnSubmitExam");
+
+        if (appState.mode === "practice") {
+          btnPractice.className =
+            "px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-indigo-700 shadow-xs";
+          btnExam.className =
+            "px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 hover:text-slate-900";
+          modeBadge.textContent = "Chế độ Luyện tập: Xem giải thích từng câu";
+          modeBadge.className =
+            "px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200";
+          timerBox.classList.add("hidden");
+          timerBox.classList.remove("flex");
+          btnSubmitExam.classList.add("hidden");
+        } else {
+          btnExam.className =
+            "px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-indigo-700 shadow-xs";
+          btnPractice.className =
+            "px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 hover:text-slate-900";
+          modeBadge.textContent = "Chế độ Thi thử: Giới hạn 08:00 / Unit";
+          modeBadge.className =
+            "px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200";
+          timerBox.classList.remove("hidden");
+          timerBox.classList.add("flex");
+
+          const isSubmitted =
+            !!appState.examSubmitted[appState.currentUnitIndex]?.submitted;
+          if (isSubmitted) {
+            btnSubmitExam.classList.add("hidden");
+          } else {
+            btnSubmitExam.classList.remove("hidden");
+          }
+        }
+      }
+
+      function setupExamTimerForCurrentUnit() {
+        stopExamTimer();
+        const isSubmitted =
+          !!appState.examSubmitted[appState.currentUnitIndex]?.submitted;
+        if (isSubmitted) {
+          document.getElementById("timerText").textContent = "Đã nộp";
+          return;
+        }
+
+        remainingSeconds = 8 * 60;
+        updateTimerDisplay();
+
+        timerInterval = setInterval(() => {
+          remainingSeconds--;
+          updateTimerDisplay();
+          if (remainingSeconds <= 0) {
+            stopExamTimer();
+            showToast("Hết giờ làm bài! Hệ thống tự động nộp bài.");
+            submitExamUnit(true);
+          }
+        }, 1000);
+      }
+
+      function stopExamTimer() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+      }
+
+      function updateTimerDisplay() {
+        const mins = String(
+          Math.floor(Math.max(0, remainingSeconds) / 60),
+        ).padStart(2, "0");
+        const secs = String(Math.max(0, remainingSeconds) % 60).padStart(
+          2,
+          "0",
+        );
+        document.getElementById("timerText").textContent = `${mins}:${secs}`;
+      }
+
+      function submitExamUnit(autoSubmitted = false) {
+        stopExamTimer();
+        const timeSpent = Math.max(1, 8 * 60 - remainingSeconds);
+        appState.examSubmitted[appState.currentUnitIndex] = {
+          submitted: true,
+          timeSpent,
+        };
+        saveState();
+        if (!autoSubmitted) {
+          showToast(
+            "Đã nộp bài! Bạn có thể xem điểm số và giải thích chi tiết.",
+          );
+        }
+        renderAll();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // ==================== MOBILE PANE SWITCHER ====================
+      function setMobilePane(pane) {
+        appState.mobilePane = pane;
+        updateMobilePaneUI();
+      }
+
+      function updateMobilePaneUI() {
+        const passagePane = document.getElementById("passagePane");
+        const questionsPane = document.getElementById("questionsPane");
+        const tabPassage = document.getElementById("mobileTabPassage");
+        const tabQuestions = document.getElementById("mobileTabQuestions");
+
+        if (window.innerWidth >= 1024) {
+          passagePane.classList.remove("hidden");
+          questionsPane.classList.remove("hidden");
+          return;
+        }
+
+        if (appState.mobilePane === "passage") {
+          passagePane.classList.remove("hidden");
+          questionsPane.classList.add("hidden");
+          tabPassage.className =
+            "py-2 rounded-lg text-xs font-bold bg-white text-indigo-700 shadow-xs";
+          tabQuestions.className =
+            "py-2 rounded-lg text-xs font-bold text-slate-600";
+        } else {
+          passagePane.classList.add("hidden");
+          questionsPane.classList.remove("hidden");
+          tabQuestions.className =
+            "py-2 rounded-lg text-xs font-bold bg-white text-indigo-700 shadow-xs";
+          tabPassage.className =
+            "py-2 rounded-lg text-xs font-bold text-slate-600";
+        }
+      }
+
+      // ==================== RESET MODAL & TOAST ====================
+      function openResetModal() {
+        const unitObj = TOEIC_DATA[appState.currentUnitIndex];
+        document.getElementById("resetModalUnitName").textContent =
+          `Unit ${unitObj.unit}`;
+        const modal = document.getElementById("resetModal");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+      }
+
+      function closeResetModal() {
+        const modal = document.getElementById("resetModal");
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
+
+      function confirmResetUnit() {
+        closeResetModal();
+        resetCurrentUnit();
+      }
+
+      function resetCurrentUnit() {
+        const unitObj = TOEIC_DATA[appState.currentUnitIndex];
+        unitObj.passages.forEach((p) => {
+          p.questions.forEach((q) => {
+            const uid = getQuestionUid(appState.currentUnitIndex, q.number);
+            delete appState.userAnswers[uid];
+            delete appState.checkedQuestions[uid];
+          });
+        });
+        delete appState.examSubmitted[appState.currentUnitIndex];
+        appState.filterWrongOnly = false;
+        saveState();
+
+        if (appState.mode === "exam") {
+          setupExamTimerForCurrentUnit();
+        }
+        renderAll();
+        showToast(`Đã đặt lại toàn bộ dữ liệu Unit ${unitObj.unit}!`);
+      }
+
+      let toastTimeout = null;
+      function showToast(msg) {
+        const box = document.getElementById("toastBox");
+        document.getElementById("toastMessage").textContent = msg;
+        box.classList.remove("translate-y-20", "opacity-0");
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          box.classList.add("translate-y-20", "opacity-0");
+        }, 2800);
+      }
+
+      // ==================== INITIALIZATION ====================
+      window.addEventListener("resize", updateMobilePaneUI);
+      window.onload = function () {
+        loadState();
+        if (appState.mode === "exam") {
+          setupExamTimerForCurrentUnit();
+        }
+        renderAll();
+      };
+    </script>
+  </body>
+</html>

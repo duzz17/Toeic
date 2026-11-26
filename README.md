@@ -1,6 +1,6 @@
 # TOEIC Master — 7 Parts
 
-Website luyện TOEIC gồm Part 1 đến Part 7. Trang chủ là `index.html`; mỗi phần có trang riêng. Part 3 được biên dịch từ React/TSX bằng Vite khi build.
+Website luyện TOEIC gồm Part 1 đến Part 7. Trang chủ là `index.html`; mỗi phần có trang riêng. `part3.html` là file HTML độc lập, được tạo từ ứng dụng React/TSX bằng Vite khi build.
 
 ## Chạy thử trên máy
 

@@ -13,7 +13,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         home: resolve(root, "index.html"),
-        part3: resolve(root, "part3.html"),
+        part3: resolve(root, "part3-app.html"),
       },
     },
   },
